@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil — Sardor Umarov – Ovoza</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}" />
+
+  <style>
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #pageLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      background: #c0392b;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* Bir marta to'liq aylanib o'z joyiga qaytadi */
+    @keyframes icon-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      70% {
+        transform: rotate(380deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loader-bar {
+      width: 140px;
+      height: 2px;
+      background: #2e2e2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0%;
+      background: #c0392b;
+      border-radius: 2px;
+      animation: fill 1s ease forwards;
+    }
+
+    @keyframes fill {
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="pageLoader">
+    <div class="loader-icon">
+      <i class="fas fa-satellite-dish"></i>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate">Dushanba, 7 Yanvar 2025</span>
+      </div>
+      <div class="topbar-links">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <span class="divider">|</span>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active">UZ</a>
+          <a href="#" class="lang-btn">RU</a>
+          <a href="#" class="lang-btn">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="main-navbar">
+    <div class="container navbar-wrap">
+      <a href="{% url 'home' %}" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div>
+          <span class="logo-name">Ovoza</span>
+          <span class="logo-tagline">Yangiliklar portali</span>
+        </div>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item">
+          <a href="{% url 'categories' %}">Categories <i class="fas fa-chevron-down"></i></a>
+        </li>
+        <li class="nav-item"><a href="{% url 'news_page' %}">News</a></li>
+        <li class="nav-item active">
+          <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
+            <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profile</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-right">
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- PROFILE HERO -->
+  <div class="profile-hero">
+  <!-- Cover -->
+  <div class="profile-cover">
+
+  </div>
+
+  <div class="container">
+    <!-- Info row -->
+    <div class="profile-info-row">
+
+      <!-- Avatar + Text markaz -->
+      <div class="profile-center">
+        <div class="avatar-wrap">
+          {% if user.avatar %}
+            <img class="profile-avatar" src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}" id="profileAvatar" />
+          {% else %}
+            <div class="profile-avatar profile-avatar-default" id="profileAvatarDefault">
+              <i class="fas fa-user"></i>
+            </div>
+          {% endif %}
+          <div class="avatar-edit" id="avatarEditBtn" title="Rasmni o'zgartirish">
+            <i class="fas fa-camera"></i>
+          </div>
+          <input type="file" id="avatarInput" accept="image/*" style="display:none;" />
+        </div>
+        <div class="user-info">
+          <div class="user-name" id="userName">{{ user.get_full_name|default:user.username }}</div>
+          <div class="user-handle">{{ email }}</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="profile-actions">
+        <button class="btn-logout" id="logoutBtn">
+          <a href="{% url 'logout' %}">
+            <i class="fas fa-sign-out-alt"></i> Chiqish
+          </a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="profile-stats">
+      <div class="stat-item">
+        <div class="stat-num">247</div>
+        <div class="stat-label">Yoqtirgan</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">94</div>
+        <div class="stat-label">Izohlar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Yanvar 2023</div>
+        <div class="stat-label">A'zo bo'lgan</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- MAIN -->
+  <div class="profile-main">
+    <div class="container">
+      <div class="profile-grid">
+
+        <!-- Content -->
+        <div class="profile-content">
+
+          <!-- Tabs -->
+          <div class="profile-tabs">
+            <button class="tab-btn active" data-tab="liked">
+              <i class="fas fa-heart"></i> Yoqtirilganlar
+              <span class="tab-count">247</span>
+            </button>
+            <button class="tab-btn" data-tab="comments">
+              <i class="fas fa-comment"></i> Izohlarim
+              <span class="tab-count">94</span>
+            </button>
+          </div>
+
+          <!-- LIKED TAB -->
+          <div class="tab-panel active" id="tab-liked">
+            <div class="liked-list" id="likedList">
+
+              <div class="liked-card" data-id="1">
+                <div class="liked-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=280&q=75&auto=format&fit=crop"
+                    alt="" loading="lazy" />
+                </div>
+                <div class="liked-body">
+                  <div class="liked-cat">Siyosat</div>
+                  <div class="liked-title">O'rta Osiyo sammiti: Besh davlat rahbarlari strategik shartnoma imzoladi
+                  </div>
+                  <div class="liked-excerpt">Toshkentda bo'lib o'tgan mintaqaviy sammit doirasida O'rta Osiyo davlatlari
+                    iqtisodiy hamkorlikni yangi bosqichga ko'taruvchi bitimga imzo chekdi.</div>
+                  <div class="liked-footer">
+                    <div class="liked-meta">
+                      <span><i class="far fa-calendar-alt"></i> 7 Yanvar 2025</span>
+                      <span><i class="far fa-eye"></i> 18,420</span>
+                      <span><i class="far fa-clock"></i> 8 daqiqa</span>
+                    </div>
+                    <button class="unlike-btn" data-id="1"><i class="fas fa-heart"></i> Bekor qilish</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="liked-card" data-id="2">
+                <div class="liked-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=280&q=75&auto=format&fit=crop"
+                    alt="" loading="lazy" />
+                </div>
+                <div class="liked-body">
+                  <div class="liked-cat">Sport</div>
+                  <div class="liked-title">O'zbekiston bokschilaridan jahon chempionatida 7 ta oltin medal — tarixiy
+                    rekord</div>
+                  <div class="liked-excerpt">Milliy boks terma jamoasi Tailandda bo'lib o'tgan jahon chempionatida eng
+                    yaxshi natijasini ko'rsatdi.</div>
+                  <div class="liked-footer">
+                    <div class="liked-meta">
+                      <span><i class="far fa-calendar-alt"></i> 6 Yanvar 2025</span>
+                      <span><i class="far fa-eye"></i> 14,200</span>
+                      <span><i class="far fa-clock"></i> 5 daqiqa</span>
+                    </div>
+                    <button class="unlike-btn" data-id="2"><i class="fas fa-heart"></i> Bekor qilish</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="liked-card" data-id="3">
+                <div class="liked-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=280&q=75&auto=format&fit=crop"
+                    alt="" loading="lazy" />
+                </div>
+                <div class="liked-body">
+                  <div class="liked-cat">Texnologiya</div>
+                  <div class="liked-title">O'zbekistonda sun'iy intellekt asosida ishlatiladigan davlat xizmatlari ishga
+                    tushirildi</div>
+                  <div class="liked-excerpt">Raqamli rivojlanish vazirligi e-hukumat platformasida AI-yordamchi
+                    xizmatlarini sinov tartibida ishga tushirdi.</div>
+                  <div class="liked-footer">
+                    <div class="liked-meta">
+                      <span><i class="far fa-calendar-alt"></i> 5 Yanvar 2025</span>
+                      <span><i class="far fa-eye"></i> 11,550</span>
+                      <span><i class="far fa-clock"></i> 6 daqiqa</span>
+                    </div>
+                    <button class="unlike-btn" data-id="3"><i class="fas fa-heart"></i> Bekor qilish</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="liked-card" data-id="4">
+                <div class="liked-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=280&q=75&auto=format&fit=crop"
+                    alt="" loading="lazy" />
+                </div>
+                <div class="liked-body">
+                  <div class="liked-cat">Iqtisod</div>
+                  <div class="liked-title">Markaziy bank foiz stavkasini pasaytirdi — so'm kursiga ta'siri qanday
+                    bo'ladi?</div>
+                  <div class="liked-excerpt">Markaziy bank boshqaruvi qaror qabul qilib, asosiy foiz stavkasini 0.5
+                    punktga pasaytirdi.</div>
+                  <div class="liked-footer">
+                    <div class="liked-meta">
+                      <span><i class="far fa-calendar-alt"></i> 4 Yanvar 2025</span>
+                      <span><i class="far fa-eye"></i> 9,840</span>
+                      <span><i class="far fa-clock"></i> 4 daqiqa</span>
+                    </div>
+                    <button class="unlike-btn" data-id="4"><i class="fas fa-heart"></i> Bekor qilish</button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /liked-list -->
+          </div>
+
+          <!-- COMMENTS TAB -->
+          <div class="tab-panel" id="tab-comments">
+
+            <div class="comment-card">
+              <div class="comment-article-ref">
+                <img class="comment-article-img"
+                  src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=120&q=60&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="comment-article-info">
+                  <div class="comment-article-cat">Siyosat</div>
+                  <div class="comment-article-title">O'rta Osiyo sammiti: Besh davlat rahbarlari strategik shartnoma
+                    imzoladi</div>
+                </div>
+              </div>
+              <div class="comment-text">Bu sammit haqiqatan ham tarixiy ahamiyatga ega. O'rta Osiyo davlatlari
+                birgalikda harakat qilishsa, mintaqa iqtisodiyoti yangi bosqichga ko'tarilishi aniq. Energetika va
+                transport sohasidagi hamkorlik ayniqsa muhim.</div>
+              <div class="comment-footer">
+                <div class="comment-meta">
+                  <span><i class="far fa-clock"></i> 7 Yanvar 2025, 15:42</span>
+                  <span><i class="far fa-thumbs-up"></i> 24 ta like</span>
+                </div>
+                <div class="comment-actions">
+                  <button class="comment-action"><i class="fas fa-pen"></i> Tahrirlash</button>
+                  <button class="comment-action delete-action" data-comment="1"><i class="fas fa-trash"></i>
+                    O'chirish</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="comment-card">
+              <div class="comment-article-ref">
+                <img class="comment-article-img"
+                  src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=120&q=60&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="comment-article-info">
+                  <div class="comment-article-cat">Sport</div>
+                  <div class="comment-article-title">O'zbekiston bokschilaridan jahon chempionatida 7 ta oltin medal
+                  </div>
+                </div>
+              </div>
+              <div class="comment-text">Milliy jamoamiz uchun tarixiy natija! 7 ta oltin medal — bu shunchaki raqobat
+                emas, bu O'zbekiston sportining jahon miqyosida tan olinishidir. Keyingi Olimpiadaga katta umid bilan
+                qarayapmiz.</div>
+              <div class="comment-footer">
+                <div class="comment-meta">
+                  <span><i class="far fa-clock"></i> 6 Yanvar 2025, 12:18</span>
+                  <span><i class="far fa-thumbs-up"></i> 47 ta like</span>
+                </div>
+                <div class="comment-actions">
+                  <button class="comment-action"><i class="fas fa-pen"></i> Tahrirlash</button>
+                  <button class="comment-action delete-action" data-comment="2"><i class="fas fa-trash"></i>
+                    O'chirish</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="comment-card">
+              <div class="comment-article-ref">
+                <img class="comment-article-img"
+                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=120&q=60&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="comment-article-info">
+                  <div class="comment-article-cat">Texnologiya</div>
+                  <div class="comment-article-title">Davlat xizmatlarida sun'iy intellekt joriy etildi</div>
+                </div>
+              </div>
+              <div class="comment-text">AI texnologiyasini davlat xizmatlariga joriy etish — to'g'ri qadam. Fuqarolar
+                hujjatlarni tezroq rasmiylashtirishlari muhim. Faqat xavfsizlik masalalarini ham nazarda tutish kerak.
+              </div>
+              <div class="comment-footer">
+                <div class="comment-meta">
+                  <span><i class="far fa-clock"></i> 5 Yanvar 2025, 09:05</span>
+                  <span><i class="far fa-thumbs-up"></i> 18 ta like</span>
+                </div>
+                <div class="comment-actions">
+                  <button class="comment-action"><i class="fas fa-pen"></i> Tahrirlash</button>
+                  <button class="comment-action delete-action" data-comment="3"><i class="fas fa-trash"></i>
+                    O'chirish</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div><!-- /profile-content -->
+
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+
+          <!-- User info -->
+          <div class="info-widget">
+            <div class="info-widget-header"><i class="fas fa-user"></i> Ma'lumotlar</div>
+            <div class="info-row"><i class="fas fa-envelope"></i><span>Email</span><strong>sardor@ovoza.uz</strong>
+            </div>
+            <div class="info-row"><i class="far fa-calendar-alt"></i><span>A'zo bo'lgan</span><strong>Yanvar
+                2023</strong></div>
+          </div>
+          <!-- Notification prefs -->
+          <div class="info-widget">
+            <div class="info-widget-header"><i class="fas fa-bell"></i> Bildirishnomalar</div>
+            <div class="pref-item">
+              <div class="pref-label"><i class="fas fa-newspaper"></i> Yangi yangiliklar</div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="pref-item">
+              <div class="pref-label"><i class="fas fa-comment"></i> Izohlarimga javob</div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="pref-item">
+              <div class="pref-label"><i class="fas fa-envelope"></i> Email xabarnomalar</div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="pref-item">
+              <div class="pref-label"><i class="fab fa-telegram"></i> Telegram xabarlari</div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+            <span class="footer-logo-name">Ovoza</span>
+          </div>
+          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Siyosat</a></li>
+            <li><a href="#">Iqtisod</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Dunyo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Biz haqimizda</a></li>
+            <li><a href="#">Tahririyat</a></li>
+            <li><a href="#">Reklama</a></li>
+            <li><a href="#">Arxiv</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          </div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Maxfiylik</a>
+          <a href="#">Shartlar</a>
+          <a href="#">Cookie</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <div id="logoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+  <div style="background:#1a1a1a; border:1px solid #2e2e2e; border-top:3px solid #c0392b; border-radius:4px; padding:32px; min-width:320px; text-align:center;">
+    <div style="font-size:40px; margin-bottom:16px;"><i class="fas fa-sign-out-alt" style="color:#c0392b;"></i></div>
+    <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:8px;">Chiqmoqchimisiz?</div>
+    <div style="font-size:14px; color:#999; margin-bottom:24px;">Hisobdan chiqiladi</div>
+    <div style="display:flex; gap:10px; justify-content:center;">
+      <button id="logoutCancel" style="padding:10px 24px; background:#242424; border:1px solid #2e2e2e; color:#999; border-radius:2px; cursor:pointer; font-size:13px;">Bekor qilish</button>
+      <button id="logoutConfirm" style="padding:10px 24px; background:#c0392b; border:none; color:#fff; border-radius:2px; cursor:pointer; font-size:13px;">Chiqish</button>
+    </div>
+  </div>
+</div>
+
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.getElementById('pageLoader').classList.add('hidden');
+      }, 1100);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'assets/js/profile.js' %}"></script>
+</body>
+
+</html>

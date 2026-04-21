@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aloqa – Ovoza</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'assets/css/contact.css' %}" />
+</head>
+
+<body>
+
+  <!-- Loader -->
+  <div id="pageLoader">
+    <div class="loader-icon"><i class="fas fa-satellite-dish"></i></div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate">Dushanba, 7 Yanvar 2025</span>
+      </div>
+      <div class="topbar-links">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <span class="divider">|</span>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active">UZ</a>
+          <a href="#" class="lang-btn">RU</a>
+          <a href="#" class="lang-btn">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="main-navbar">
+    <div class="container navbar-wrap">
+      <a href="{% url 'home' %}" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div>
+          <span class="logo-name">Ovoza</span>
+          <span class="logo-tagline">Yangiliklar portali</span>
+        </div>
+      </a>
+      <a href="{% url 'home' %}" class="nav-back"><i class="fas fa-arrow-left"></i> Bosh sahifaga qaytish</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-label">Aloqa</div>
+        <h1>Biz bilan <em>bog'laning</em></h1>
+        <p>Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="contact-main">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- ── FORM ── -->
+        <div class="form-side">
+          <div class="form-section-title">Xabar yuboring</div>
+
+          <!-- Subject tabs -->
+          <div class="subject-tabs" id="subjectTabs">
+            <button class="subject-tab active" data-subject="umumiy"><i class="fas fa-comment"></i> Umumiy
+              savol</button>
+            <button class="subject-tab" data-subject="hamkorlik"><i class="fas fa-handshake"></i> Hamkorlik</button>
+            <button class="subject-tab" data-subject="reklama"><i class="fas fa-bullhorn"></i> Reklama</button>
+            <button class="subject-tab" data-subject="xato"><i class="fas fa-bug"></i> Xato bildirish</button>
+            <button class="subject-tab" data-subject="boshqa"><i class="fas fa-ellipsis-h"></i> Boshqa</button>
+          </div>
+
+          <!-- Form -->
+          <form class="contact-form" id="contactForm" novalidate>
+            <input type="hidden" id="subjectInput" value="Umumiy savol" />
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Ism <span>*</span></label>
+                <div class="input-wrap">
+                  <i class="fas fa-user input-icon"></i>
+                  <input type="text" class="form-input" id="fname" placeholder="Ismingiz" />
+                </div>
+                <div class="form-error" id="fnameErr"><i class="fas fa-exclamation-circle"></i> Ism kiritilmagan</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Familiya</label>
+                <div class="input-wrap">
+                  <i class="fas fa-user input-icon"></i>
+                  <input type="text" class="form-input" id="lname" placeholder="Familiyangiz" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email <span>*</span></label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" class="form-input" id="email" placeholder="email@misol.uz" />
+              </div>
+              <div class="form-error" id="emailErr"><i class="fas fa-exclamation-circle"></i> To'g'ri email kiriting
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Telefon</label>
+              <div class="input-wrap">
+                <i class="fas fa-phone input-icon"></i>
+                <input type="tel" class="form-input" id="phone" placeholder="+998 90 000 00 00" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Xabar <span>*</span></label>
+              <textarea class="form-textarea" id="message" placeholder="Xabaringizni yozing..."></textarea>
+              <div class="form-error" id="msgErr"><i class="fas fa-exclamation-circle"></i> Xabar kiritilmagan</div>
+            </div>
+
+            <button type="submit" class="btn-send" id="sendBtn">
+              <div class="spinner"></div>
+              <span class="btn-text"><i class="fas fa-paper-plane"></i> Xabar yuborish</span>
+            </button>
+          </form>
+
+          <!-- Success -->
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="success-title">Xabar yuborildi!</div>
+            <div class="success-text">Tez orada siz bilan bog'lanamiz.<br>Odatda 24 soat ichida javob beramiz.</div>
+          </div>
+
+          <!-- FAQ -->
+          <div class="faq-section">
+            <div class="form-section-title">Ko'p so'raladigan savollar</div>
+            <div class="faq-grid" id="faqGrid">
+
+              <div class="faq-item">
+                <div class="faq-question">Reklama narxlari qancha? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun
+                  reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">Muxbir bo'lish mumkinmi? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna
+                  maqolalaringizni info@ovoza.uz manziliga yuboring.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">Yangilik taklif qilsam bo'ladimi? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar
+                  qiling. Tahririyat ko'rib chiqadi.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">Xato ma'lumot topsam nima qilaman? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Iltimos, "Xato bildirish" bo'limidan foydalaning yoki to'g'ridan to'g'ri
+                  tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz.</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ── INFO SIDE ── -->
+        <div class="info-side">
+
+          <!-- Contact cards -->
+          <div class="contact-card">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Asosiy email</div>
+              <div class="contact-card-value">info@ovoza.uz</div>
+              <div class="contact-card-note">Umumiy savollar uchun</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon green"><i class="fas fa-bullhorn"></i></div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Reklama bo'limi</div>
+              <div class="contact-card-value">reklama@ovoza.uz</div>
+              <div class="contact-card-note">Hamkorlik va reklama uchun</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon blue"><i class="fas fa-phone"></i></div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Telefon</div>
+              <div class="contact-card-value">+998 71 200-00-00</div>
+              <div class="contact-card-note">Dush–Juma: 09:00 – 18:00</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon tg"><i class="fab fa-telegram-plane"></i></div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Telegram</div>
+              <div class="contact-card-value">@ovoza_uz</div>
+              <div class="contact-card-note">412K+ obunachi</div>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="map-block">
+            <div class="map-placeholder">
+              <div class="map-pin"><i class="fas fa-map-marker-alt"></i></div>
+              <p>Toshkent, Mirzo Ulug'bek ko'chasi, 47</p>
+            </div>
+            <div class="map-footer">
+              <div class="map-address"><i class="fas fa-map-marker-alt"></i> Mirzo Ulug'bek tumani</div>
+              <a href="https://maps.google.com" target="_blank" class="map-link">
+                Xaritada ko'rish <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Work hours -->
+          <div class="hours-card">
+            <div class="hours-header"><i class="fas fa-clock"></i> Ish vaqti</div>
+            <div class="hours-row today">
+              <span class="hours-day">Dushanba</span>
+              <span class="hours-time">09:00 – 18:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Seshanba</span>
+              <span class="hours-time">09:00 – 18:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Chorshanba</span>
+              <span class="hours-time">09:00 – 18:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Payshanba</span>
+              <span class="hours-time">09:00 – 18:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Juma</span>
+              <span class="hours-time">09:00 – 17:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Shanba</span>
+              <span class="hours-time closed">Dam olish</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Yakshanba</span>
+              <span class="hours-time closed">Dam olish</span>
+            </div>
+          </div>
+
+          <!-- Social -->
+          <div class="social-section">
+            <div class="form-section-title">Ijtimoiy tarmoqlar</div>
+            <div class="social-grid">
+              <a href="#" class="social-btn tg">
+                <i class="fab fa-telegram-plane"></i>
+                <div>
+                  <div class="social-btn-name">Telegram</div>
+                  <div class="social-btn-sub">412K obunachi</div>
+                </div>
+              </a>
+              <a href="#" class="social-btn fb">
+                <i class="fab fa-facebook-f"></i>
+                <div>
+                  <div class="social-btn-name">Facebook</div>
+                  <div class="social-btn-sub">284K like</div>
+                </div>
+              </a>
+              <a href="#" class="social-btn yt">
+                <i class="fab fa-youtube"></i>
+                <div>
+                  <div class="social-btn-name">YouTube</div>
+                  <div class="social-btn-sub">198K obunachi</div>
+                </div>
+              </a>
+              <a href="#" class="social-btn ig">
+                <i class="fab fa-instagram"></i>
+                <div>
+                  <div class="social-btn-name">Instagram</div>
+                  <div class="social-btn-sub">156K kuzatuvchi</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+            <span class="footer-logo-name">Ovoza</span>
+          </div>
+          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Siyosat</a></li>
+            <li><a href="#">Iqtisod</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Dunyo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Biz haqimizda</a></li>
+            <li><a href="contact.html">Aloqa</a></li>
+            <li><a href="#">Reklama</a></li>
+            <li><a href="#">Arxiv</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          </div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Maxfiylik</a>
+          <a href="#">Shartlar</a>
+          <a href="#">Cookie</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'assets/js/contact.js' %}"></script>
+</body>
+
+</html>

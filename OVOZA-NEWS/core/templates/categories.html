@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kategoriyalar – Ovoza Yangiliklar Portali</title>
+  <meta name="description"
+    content="Ovoza – barcha yangilik kategoriyalari: siyosat, iqtisod, sport, texnologiya, dunyo va boshqalar." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/categories.css' %}" />
+
+  <style>
+    /* ── Engagement badges ── */
+    .eng-badges {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity .22s ease, transform .22s ease;
+      pointer-events: none;
+    }
+
+    .cat-card:hover .eng-badges,
+    .art-card:hover .eng-badges {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .eng-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 11px 3px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transform: skewX(-12deg);
+      border-radius: 2px;
+      transition: transform .18s cubic-bezier(.34, 1.56, .64, 1), filter .18s ease;
+      letter-spacing: .3px;
+    }
+
+    .eng-badge>* {
+      transform: skewX(12deg);
+      display: inline-block;
+    }
+
+    .eng-badge:hover {
+      transform: skewX(-12deg) translateY(-2px) scale(1.08);
+      filter: brightness(1.25);
+    }
+
+    .badge-views {
+      background: rgba(36, 113, 163, .18);
+      color: #5dade2;
+      border: 1px solid rgba(93, 173, 226, .3);
+    }
+
+    .badge-like {
+      background: rgba(192, 57, 43, .15);
+      color: #f1948a;
+      border: 1px solid rgba(241, 148, 138, .3);
+    }
+
+    .badge-share {
+      background: rgba(30, 132, 73, .15);
+      color: #58d68d;
+      border: 1px solid rgba(88, 214, 141, .3);
+    }
+  </style>
+  <style>
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #pageLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      background: #c0392b;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes icon-spin {
+      0% {
+        transform: rotate(0deg)
+      }
+
+      70% {
+        transform: rotate(380deg)
+      }
+
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+
+    .loader-bar {
+      width: 140px;
+      height: 2px;
+      background: #2e2e2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0%;
+      background: #c0392b;
+      border-radius: 2px;
+      animation: fill 1s ease forwards;
+    }
+
+    @keyframes fill {
+      to {
+        width: 100%
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ TOPBAR ═══ -->
+  <div id="pageLoader">
+    <div class="loader-icon"><i class="fas fa-satellite-dish"></i></div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-date">
+        <i class="far fa-calendar-alt"></i>
+        <span id="topbarDate">Dushanba, 7 Yanvar 2025 | 09:00</span>
+      </div>
+      <div class="topbar-links">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <span class="divider">|</span>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active" data-lang="uz">UZ</a>
+          <a href="#" class="lang-btn" data-lang="ru">RU</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="main-navbar">
+    <div class="container navbar-wrap">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+        <span class="logo-name">Ovoza</span>
+      </a>
+
+      <!-- Menu -->
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item active"><a href="categories.html">Categories</a></li>
+        <li class="nav-item"><a href="#">News</a></li>
+        <li class="nav-item">
+          <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="#"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Right -->
+      <div class="nav-right">
+        <button class="nav-search-btn" id="searchTriggerNav">
+          <i class="fas fa-search"></i> Qidirish
+        </button>
+        <a href="#" class="btn-subscribe">
+          <i class="fas fa-envelope"></i> Obuna
+        </a>
+        <button class="navbar-toggler" id="navToggler">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ═══ PAGE HERO ═══ -->
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div class="page-hero-left">
+        <div class="breadcrumb">
+          <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Kategoriyalar</span>
+        </div>
+        <h1>Barcha <span>Kategoriyalar</span></h1>
+        <p>O'zingizga qiziq bo'lgan yo'nalishni tanlang — siyosatdan tortib san'atgacha, iqtisoddan sportgacha hamma
+          narsa bir joyda.</p>
+      </div>
+      <div class="page-hero-stat">
+        <div class="hero-stat-item">
+          <span class="hero-stat-num" id="statArticles">0</span>
+          <span class="hero-stat-label">Jami maqola</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">12</span>
+          <span class="hero-stat-label">Kategoriya</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num" id="statToday">0</span>
+          <span class="hero-stat-label">Bugun</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FILTER BAR ═══ -->
+  <div class="filter-bar">
+    <div class="container filter-bar-inner">
+      <span class="filter-label"><i class="fas fa-filter"
+          style="margin-right:6px;color:var(--primary);"></i>Saralash:</span>
+      <div class="filter-tags" id="filterTags">
+        <button class="filter-tag active" data-filter="all"><i class="fas fa-th"></i> Barchasi</button>
+        <button class="filter-tag" data-filter="news"><i class="fas fa-newspaper"></i> Yangiliklar</button>
+        <button class="filter-tag" data-filter="analysis"><i class="fas fa-chart-pie"></i> Tahlil</button>
+        <button class="filter-tag" data-filter="interview"><i class="fas fa-microphone"></i> Intervyu</button>
+        <button class="filter-tag" data-filter="video"><i class="fas fa-play-circle"></i> Video</button>
+      </div>
+      <div class="filter-sort">
+        <i class="fas fa-sort-amount-down" style="color:var(--primary);"></i>
+        <select id="sortSelect">
+          <option value="popular">Mashhurlik bo'yicha</option>
+          <option value="articles">Maqolalar soni</option>
+          <option value="az">A–Z tartibda</option>
+          <option value="new">Yangi qo'shilgan</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CATEGORIES ═══ -->
+  <main class="categories-section">
+    <div class="container">
+
+      <div class="section-hd">
+        <span class="section-hd-title">Kategoriyalar</span>
+        <span class="section-hd-count" id="visibleCount">12 ta kategoriya</span>
+      </div>
+
+      <div class="cat-grid" id="catGrid">
+
+        <!-- FEATURED: Siyosat -->
+        <div class="cat-card featured" data-cat="siyosat">
+          <div class="cat-card-side">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#1a6fa8,#2471a3);">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <div class="cat-card-name-side">Siyosat</div>
+          </div>
+          <div class="cat-card-main">
+            <p class="cat-card-desc">O'zbekiston va dunyo siyosiy hayoti: parlament qarorlari, diplomatik munosabatlar,
+              siyosiy tahlillar va sharhlar.</p>
+            <div class="latest-in-cat">
+              <div class="latest-in-cat-title">So'nggi maqolalar</div>
+              <div class="latest-in-cat-item">Prezident iqtisodiy islohotlar farmonini imzoladi</div>
+              <div class="latest-in-cat-item">Parlament yangi qonun loyihasini muhokama qildi</div>
+              <div class="latest-in-cat-item">O'zbekiston–Xitoy munosabatlari yangi bosqichga</div>
+            </div>
+            <div class="cat-card-footer" style="margin-top:16px;">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 248 ta maqola</div><span
+                class="cat-badge-hot"><i class="fas fa-fire"></i> HOT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEATURED: Sport -->
+        <div class="cat-card featured" data-cat="sport">
+          <div class="cat-card-side">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#c0392b,#e74c3c);">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="cat-card-name-side">Sport</div>
+          </div>
+          <div class="cat-card-main">
+            <p class="cat-card-desc">Futbol, boks, kurash, basketbol va boshqa sport turlaridan so'nggi natijalar,
+              turnirlar va milliy jamoamiz yangiliklari.</p>
+            <div class="latest-in-cat">
+              <div class="latest-in-cat-title">So'nggi maqolalar</div>
+              <div class="latest-in-cat-item">O'zbekiston bokschilaridan jahon chempionatida rekord</div>
+              <div class="latest-in-cat-item">Futbol Superligi yangi mavsumda ishga tushdi</div>
+              <div class="latest-in-cat-item">Milliy terma jamoa Osiyo chempionati finalida</div>
+            </div>
+            <div class="cat-card-footer" style="margin-top:16px;">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 312 ta maqola</div><span
+                class="cat-badge-hot"><i class="fas fa-fire"></i> HOT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Iqtisod -->
+        <div class="cat-card" data-cat="iqtisod">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#1e8449,#27ae60);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#1e8449,#27ae60);">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Iqtisod</div>
+            <p class="cat-card-desc">Valyuta kurslari, birja, biznes yangiliklari, investitsiyalar va makroiqtisodiy
+              ko'rsatkichlar.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 196 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texnologiya -->
+        <div class="cat-card" data-cat="texnologiya">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#6c3483,#8e44ad);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#6c3483,#8e44ad);">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Texnologiya</div>
+            <p class="cat-card-desc">Sun'iy intellekt, 5G, IT-sanoat, startaplar va O'zbekiston raqamli
+              transformatsiyasi.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 174 ta maqola</div><span
+                class="cat-badge-new">YANGI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dunyo -->
+        <div class="cat-card" data-cat="dunyo">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#1a5276,#2e86c1);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#1a5276,#2e86c1);">
+              <i class="fas fa-globe-asia"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Dunyo</div>
+            <p class="cat-card-desc">Xalqaro voqealar, geosiyosat, MDH, Yevropa, Amerika va Osiyo bo'yicha xabarlar.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 287 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jamiyat -->
+        <div class="cat-card" data-cat="jamiyat">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#7d6608,#d4ac0d);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#7d6608,#d4ac0d);">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Jamiyat</div>
+            <p class="cat-card-desc">Ta'lim, atrof-muhit, ijtimoiy muammolar va fuqarolik hayotiga oid materiallar.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 143 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Madaniyat -->
+        <div class="cat-card" data-cat="madaniyat">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#943126,#c0392b);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#943126,#c0392b);">
+              <i class="fas fa-palette"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Madaniyat</div>
+            <p class="cat-card-desc">San'at, musiqa, kino, teatr, adabiyot va O'zbekiston madaniy merosi bo'yicha
+              yangiliklar.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 118 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Salomatlik -->
+        <div class="cat-card" data-cat="salomatlik">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#117a65,#1abc9c);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#117a65,#1abc9c);">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Salomatlik</div>
+            <p class="cat-card-desc">Tibbiyot yangiliklari, sog'lom turmush tarzi, kasalliklarning oldini olish va
+              sog'liqni saqlash tizimi.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 92 ta maqola</div><span
+                class="cat-badge-new">YANGI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ilm-fan -->
+        <div class="cat-card" data-cat="ilmfan">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#1a6fa8,#5dade2);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#1a6fa8,#5dade2);">
+              <i class="fas fa-flask"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Ilm-Fan</div>
+            <p class="cat-card-desc">Ilmiy kashfiyotlar, tadqiqotlar, kosmik yangiliklar va O'zbekiston fani rivoji
+              haqida.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 76 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ta'lim -->
+        <div class="cat-card" data-cat="talim">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#6e2f7e,#a569bd);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#6e2f7e,#a569bd);">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Ta'lim</div>
+            <p class="cat-card-desc">Maktab, oliy ta'lim, grant, stipendiya va ta'lim islohotlari haqidagi so'nggi
+              yangiliklar.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 134 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ekologiya -->
+        <div class="cat-card" data-cat="ekologiya">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#196f3d,#52be80);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#196f3d,#52be80);">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Ekologiya</div>
+            <p class="cat-card-desc">Iqlim o'zgarishi, yashil energetika, Orol dengizi muammosi va tabiatni muhofaza
+              qilish.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 88 ta maqola</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video -->
+        <div class="cat-card" data-cat="video">
+          <div class="cat-card-accent" style="background:linear-gradient(90deg,#922b21,#f1948a);"></div>
+          <div class="cat-card-icon-wrap">
+            <div class="cat-icon-circle" style="background:linear-gradient(135deg,#922b21,#f1948a);">
+              <i class="fas fa-video"></i>
+            </div>
+            <div class="cat-card-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-name">Video</div>
+            <p class="cat-card-desc">Maxsus video reportajlar, intervyular, jonli translyatsiyalar va multimedia
+              kontentlar.</p>
+            <div class="cat-card-footer">
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> 64 ta maqola</div><span
+                class="cat-badge-new">YANGI</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /cat-grid -->
+
+      <!-- Popular tags -->
+      <div class="tags-section" style="margin-top:52px;">
+        <div class="section-hd" style="margin-bottom:20px;">
+          <span class="section-hd-title">Mashhur Teglar</span>
+        </div>
+        <div class="tags-cloud">
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Iqtisodiyot <span class="tag-count">312</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Siyosat <span class="tag-count">248</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Futbol <span class="tag-count">196</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Prezident <span class="tag-count">184</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Texnologiya <span class="tag-count">174</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Dollar kursi <span class="tag-count">167</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Boks <span class="tag-count">143</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Toshkent <span class="tag-count">138</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Sun'iy intellekt <span
+              class="tag-count">129</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Dunyo yangiliklari <span
+              class="tag-count">118</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Ta'lim <span class="tag-count">112</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Ekologiya <span class="tag-count">96</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Parlament <span class="tag-count">88</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Samarqand <span class="tag-count">74</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Investitsiya <span class="tag-count">68</span></span>
+          <span class="tag-pill"><i class="fas fa-hashtag"></i> Madaniyat <span class="tag-count">61</span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+            <span class="footer-logo-name">Ovoza</span>
+          </div>
+          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy
+            va chuqur tahliliy materiallar.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Siyosat</a></li>
+            <li><a href="#">Iqtisod</a></li>
+            <li><a href="#">Jamiyat</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Dunyo yangiliklari</a></li>
+            <li><a href="#">Madaniyat va san'at</a></li>
+            <li><a href="#">Sog'liqni saqlash</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Biz haqimizda</a></li>
+            <li><a href="#">Tahririyat</a></li>
+            <li><a href="#">Reklama</a></li>
+            <li><a href="#">Hamkorlik</a></li>
+            <li><a href="#">Arxiv</a></li>
+            <li><a href="#">RSS lenta</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          </div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Maxfiylik siyosati</a>
+          <a href="#">Foydalanish shartlari</a>
+          <a href="#">Cookie</a>
+          <a href="#">Saytxaritasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Bootstrap JS -->
+
+  <!-- ═══ SEARCH OVERLAY ═══ -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-box">
+      <div class="search-ov-label"><i class="fas fa-search"></i> Kategoriya qidirish</div>
+      <div class="search-ov-input-wrap">
+        <i class="fas fa-search search-ov-icon"></i>
+        <input id="searchOvInput" class="search-ov-input" type="text" placeholder="Kategoriya nomi..."
+          autocomplete="off" spellcheck="false" />
+        <button class="search-ov-close" id="searchOvClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="search-ov-hints">
+        <span><kbd>ESC</kbd> Yopish</span>
+        <span><kbd>Ctrl K</kbd> Ochish</span>
+      </div>
+      <div class="search-ov-quick">
+        <span class="search-ov-quick-label">Tez o'tish:</span>
+        <div class="search-ov-tags">
+          <span class="search-ov-tag" data-q="siyosat"><i class="fas fa-landmark"></i> Siyosat</span>
+          <span class="search-ov-tag" data-q="sport"><i class="fas fa-trophy"></i> Sport</span>
+          <span class="search-ov-tag" data-q="iqtisod"><i class="fas fa-chart-line"></i> Iqtisod</span>
+          <span class="search-ov-tag" data-q="texnologiya"><i class="fas fa-microchip"></i> Texnologiya</span>
+          <span class="search-ov-tag" data-q="dunyo"><i class="fas fa-globe-asia"></i> Dunyo</span>
+          <span class="search-ov-tag" data-q="madaniyat"><i class="fas fa-palette"></i> Madaniyat</span>
+        </div>
+      </div>
+      <div class="search-ov-result" id="searchOvResult"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Page JS -->
+  <script src="{% static 'assets/js/categories.js' %}"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.getElementById('pageLoader').classList.add('hidden');
+      }, 1100);
+    });
+  </script>
+</body>
+
+</html>

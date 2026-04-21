@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Sahifa topilmadi | Ovoza</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Source+Sans+3:wght@400;600&family=Oswald:wght@500;600&display=swap" />
+
+  <style>
+    :root {
+      --primary: #c0392b;
+      --dark: #0f0f0f;
+      --dark-2: #1a1a1a;
+      --border: #2e2e2e;
+      --white: #ffffff;
+      --muted: #555;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 52px 52px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    /* Red glow */
+    body::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(192, 57, 43, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Navbar strip */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--dark-2);
+      border-bottom: 3px solid var(--primary);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .logo-dot {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    /* Center content */
+    .center {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 20px;
+      animation: fade-in 0.6s ease both;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Big 404 */
+    .err-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(120px, 22vw, 220px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -8px;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Red underline accent */
+    .err-num::after {
+      content: '';
+      display: block;
+      height: 5px;
+      background: var(--primary);
+      width: 60%;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Zero is red */
+    .err-num .zero {
+      color: var(--primary);
+    }
+
+    .err-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(16px, 3vw, 22px);
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      margin: 24px 0 12px;
+    }
+
+    .err-text {
+      font-size: clamp(14px, 2vw, 16px);
+      color: #555;
+      max-width: 360px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    /* Buttons */
+    .btn-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      border: 2px solid var(--primary);
+    }
+
+    .btn-home:hover {
+      background: transparent;
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #666;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      border: 2px solid var(--border);
+      cursor: pointer;
+    }
+
+    .btn-back:hover {
+      border-color: #555;
+      color: #999;
+    }
+
+    /* Bottom hint */
+    .hint {
+      position: fixed;
+      bottom: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      z-index: 10;
+    }
+
+    .hint a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .hint a:hover {
+      text-decoration: underline;
+    }
+
+    /* Countdown */
+    .countdown {
+      font-size: 12px;
+      color: #444;
+      margin-top: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .countdown span {
+      color: var(--primary);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="logo-dot"><i class="fas fa-satellite-dish"></i></div>
+    <a href="index.html" class="logo-name">Ovoza</a>
+  </div>
+
+  <!-- Center -->
+  <div class="center">
+    <div class="err-num">4<span class="zero">0</span>4</div>
+    <div class="err-title">Sahifa topilmadi</div>
+    <p class="err-text">
+      Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud bo'lmagan bo'lishi mumkin.
+    </p>
+    <div class="btn-wrap">
+      <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Bosh sahifa</a>
+      <button class="btn-back" onclick="history.back()"><i class="fas fa-arrow-left"></i> Orqaga</button>
+    </div>
+    <div class="countdown">
+      <span id="sec">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →
+      <a href="index.html">Bosh sahifa</a>
+    </div>
+  </div>
+
+  <!-- Bottom hint -->
+  <div class="hint">
+    Yordam kerakmi? <a href="mailto:info@ovoza.uz">info@ovoza.uz</a>
+  </div>
+
+  <script>
+    let s = 10;
+    const el = document.getElementById("sec");
+    const t = setInterval(() => {
+      s--;
+      if (el) el.textContent = s;
+      if (s <= 0) { clearInterval(t); window.location.href = "index.html"; }
+    }, 1000);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ovoza – O'zbekiston Yangiliklari Portali</title>
+  <meta name="description"
+    content="Ovoza – O'zbekistonning eng tezkor va ishonchli yangiliklar portali. Siyosat, iqtisod, sport, texnologiya va dunyo yangiliklari." />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'assets/css/index.css' %}" />
+
+  <!-- Engagement badges -->
+  <style>
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #pageLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      background: #c0392b;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* Bir marta to'liq aylanib o'z joyiga qaytadi */
+    @keyframes icon-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      70% {
+        transform: rotate(380deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loader-bar {
+      width: 140px;
+      height: 2px;
+      background: #2e2e2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0%;
+      background: #c0392b;
+      border-radius: 2px;
+      animation: fill 1s ease forwards;
+    }
+
+    @keyframes fill {
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div id="pageLoader">
+    <div class="loader-icon">
+      <i class="fas fa-satellite-dish"></i>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-date">
+        <i class="far fa-calendar-alt"></i>
+        <span id="topbarDate">Dushanba, 7 Yanvar 2025 | 09:00</span>
+      </div>
+      <div class="ticker-wrap">
+        <span class="ticker-label"><i class="fas fa-bolt" style="margin-right:4px;"></i>So'nggi</span>
+        <div class="ticker-track">
+          <span>O'zbekiston va Xitoy o'rtasida yangi savdo shartnomasi imzolandi</span>
+          <span>Prezident Shavkat Mirziyoyev Buxoroda yangi sanoat majmuasini ochdi</span>
+          <span>NBA: "Utah Jazz" jamoasi ketma-ket to'rtinchi g'alabasini qo'lga kiritdi</span>
+          <span>Toshkentda 2025-yil bahor mavsumi ob-havosi bashorati e'lon qilindi</span>
+          <span>Yoshlar olimpiadasi: O'zbekiston jamoasi yana 3 ta oltin medal qo'lga kiritdi</span>
+          <span>Milliy valyuta: so'm kursi barqarorlashdi – Markaziy bank bayonoti</span>
+          <span>Texnologiya: O'zbekistonda birinchi IT-park kengaytirilmoqda</span>
+        </div>
+      </div>
+      <div class="topbar-links">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <span class="divider">|</span>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active" data-lang="uz">UZ</a>
+          <a href="#" class="lang-btn" data-lang="ru">RU</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-navbar">
+    <div class="navbar-top-row">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+          <div class="logo-text">
+            <span class="logo-name">Ovoza</span>
+            <span class="logo-tagline">Yangiliklar portali</span>
+          </div>
+        </a>
+        <div class="nav-search">
+          <button class="nav-search-trigger" id="searchTrigger" type="button">
+            <i class="fas fa-search search-lead"></i>
+            <span class="trigger-text">Yangilik, mavzu yoki muallif qidirish...</span>
+          </button>
+        </div>
+        <div class="nav-actions">
+          <button class="btn-icon" title="Bildirishnomalar">
+            <i class="fas fa-bell"></i>
+            <span class="notif-dot"></span>
+          </button>
+          <a href="#" class="btn-subscribe">
+            <i class="fas fa-envelope"></i> <span>Obuna bo'lish</span>
+          </a>
+          <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-bottom-row" id="navbarMenu">
+      <div class="container">
+        <ul class="nav-center-menu">
+          <li class="nav-item active"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item">
+            <a href="{% url 'categories' %}">Categories <i class="fas fa-chevron-down"></i></a>
+          </li>
+          <li class="nav-item"><a href="{% url 'news_page' %}">News</a></li>
+          <li class="nav-item">
+            <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+            <div class="nav-dropdown">
+              <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
+              <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+              <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
+              <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profile</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-main">
+          <img src="{{ hero_post.image.url }}" alt="Asosiy yangilik" loading="eager" />
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <span class="hero-badge hero-anim-badge"><i class="fas fa-bolt"></i> Tezkor xabar</span>
+            <h1 class="hero-title" id="heroTitle" data-text="{{ hero_post.title }}"></h1>
+            <p class="hero-excerpt hero-anim-desc" id="heroDesc">
+              {{ hero_post.short_description }}
+            </p>
+            <div class="hero-meta hero-anim-meta" id="heroMeta">
+              <span><i class="far fa-user"></i>{{ hero_post.author.first_name }} {{hero_post.author.last_name }}</span>
+              <span><i class="far fa-clock"></i>{{ hero_post.time_since }}</span>
+              <span><i class="far fa-eye"></i>{{ hero_post.views }} marta o'qildi</span>
+            </div>
+            <a href="{% url 'post_about' hero_post.id %}" class="hero-read-btn hero-anim-btn" id="heroBtn">
+              To'liq o'qish <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-side-card">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=75&auto=format&fit=crop"
+              alt="Iqtisod yangiligi" loading="lazy" />
+            <div class="overlay"></div>
+            <div class="card-content">
+              <span class="side-badge">Iqtisod</span>
+              <h3>So'm kursi barqarorlashdi: Markaziy bank yangi chora-tadbirlar e'lon qildi</h3>
+              <div class="meta-small"><i class="far fa-clock"></i> 4 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i>
+                6,850</div>
+            </div>
+          </div>
+          <div class="hero-side-card">
+            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=75&auto=format&fit=crop"
+              alt="Sport yangiligi" loading="lazy" />
+            <div class="overlay"></div>
+            <div class="card-content">
+              <span class="side-badge red">Sport</span>
+              <h3>Milliy terma jamoamiz Osiyo chempionatida g'alaba qozondi</h3>
+              <div class="meta-small"><i class="far fa-clock"></i> 6 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i>
+                9,120</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="content-sidebar-grid">
+        <div class="content-area">
+          <section id="recommended">
+            <div class="section-header">
+              <h2 class="section-title">Tavsiya etilganlar</h2>
+              <a href="#" class="section-link">Barchasi <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="news-grid">
+
+              <article class="news-card">
+                <div class="card-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&q=75&auto=format&fit=crop"
+                    alt="Texnologiya" loading="lazy" />
+                  <span class="card-category tech">Texnologiya</span>
+                  <div class="eng-badges"><span class="eng-badge badge-views"><i class="far fa-eye"></i> Eng ko'p
+                      o'qilgan</span></div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">Sun'iy intellekt O'zbekiston ta'lim tizimiga joriy etilmoqda</h3>
+                  <p class="card-excerpt">Xalq ta'limi vazirligi maktablarda AI-asosli ta'lim dasturini sinov tartibida
+                    ishga tushirdi. Pilot loyiha 50 ta maktabda amalga oshiriladi.</p>
+                  <div class="card-meta">
+                    <div class="card-meta-left">
+                      <span><i class="far fa-clock"></i> 1 soat oldin</span>
+                      <span><i class="far fa-eye"></i> 4,210</span>
+                    </div>
+                    <a href="#" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1491466424936-e304919aada7?w=500&q=75&auto=format&fit=crop"
+                    alt="Siyosat" loading="lazy" />
+                  <span class="card-category politics">Siyosat</span>
+                  <div class="eng-badges"><span class="eng-badge badge-like"><i class="fas fa-heart"></i> Eng ko'p
+                      yoqtirilgan</span></div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">Qo'shma Shtatlarda yangi diplomatik delegatsiya qabul qilindi</h3>
+                  <p class="card-excerpt">Toshkentda AQSh elchixonasi vakillari bilan ikki tomonlama munosabatlar
+                    bo'yicha muhim muzokara yakunlandi. Ikki tomonlama savdo hajmini ikki barobarga oshirish
+                    rejalashtirilmoqda.</p>
+                  <div class="card-meta">
+                    <div class="card-meta-left">
+                      <span><i class="far fa-clock"></i> 3 soat oldin</span>
+                      <span><i class="far fa-eye"></i> 7,480</span>
+                    </div>
+                    <a href="#" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&q=75&auto=format&fit=crop"
+                    alt="Ekologiya" loading="lazy" />
+                  <span class="card-category economy">Iqtisod</span>
+                  <div class="eng-badges"><span class="eng-badge badge-share"><i class="fas fa-share-alt"></i> Eng ko'p
+                      ulashilgan</span></div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">Yashil energetika: O'zbekistonda quyosh elektrostansiyasi qurilishi boshlandi
+                  </h3>
+                  <p class="card-excerpt">Navoiy viloyatida 500 MVt quvvatga ega quyosh elektrostansiyasining qurilishi
+                    rasman boshlandi. Loyiha 2026-yilga qadar tugallanishi kutilmoqda.</p>
+                  <div class="card-meta">
+                    <div class="card-meta-left">
+                      <span><i class="far fa-clock"></i> 5 soat oldin</span>
+                      <span><i class="far fa-eye"></i> 3,980</span>
+                    </div>
+                    <a href="#" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1540747913346-19212a4b423c?w=500&q=75&auto=format&fit=crop"
+                    alt="Sport" loading="lazy" />
+                  <span class="card-category sport">Sport</span>
+                  <div class="eng-badges"><span class="eng-badge badge-like"><i class="fas fa-heart"></i> Eng ko'p
+                      yoqtirilgan</span></div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">O'zbekiston bokschilaridan jahon chempionatida yangi rekord</h3>
+                  <p class="card-excerpt">Milliy boks terma jamoasi bitta chempionatda 7 ta oltin, 4 ta kumush medal
+                    qo'lga kiritib, tarixiy rekord o'rnatdi.</p>
+                  <div class="card-meta">
+                    <div class="card-meta-left">
+                      <span><i class="far fa-clock"></i> 7 soat oldin</span>
+                      <span><i class="far fa-eye"></i> 11,340</span>
+                    </div>
+                    <a href="#" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=500&q=75&auto=format&fit=crop"
+                    alt="Madaniyat" loading="lazy" />
+                  <span class="card-category" style="background:#7d6608;">Madaniyat</span>
+                  <div class="eng-badges"><span class="eng-badge badge-comment"><i class="fas fa-comment"></i>
+                      Trend</span></div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">Samarqand xalqaro musiqa festivaliga 40 mamlakatdan san'atkor keladi</h3>
+                  <p class="card-excerpt">Yillik an'anaviy festival bu safar rekord miqdordagi qatnashchilarni jalb
+                    etdi. 5 kun davomida 200 dan ortiq kontsert va tadbir bo'lib o'tadi.</p>
+                  <div class="card-meta">
+                    <div class="card-meta-left">
+                      <span><i class="far fa-clock"></i> 9 soat oldin</span>
+                      <span><i class="far fa-eye"></i> 5,670</span>
+                    </div>
+                    <a href="#" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-img">
+                  <img
+                    src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&q=75&auto=format&fit=crop"
+                    alt="Dunyo" loading="lazy" />
+                  <span class="card-category world">Dunyo</span>
+                  <div class="eng-badges"><span class="eng-badge badge-share"><i class="fas fa-share-alt"></i> Eng ko'p
+                      ulashilgan</span></div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">BMT Bosh Assambleyasida O'rta Osiyo xavfsizligi masalasi ko'rildi</h3>
+                  <p class="card-excerpt">Yangi York shahrida bo'lib o'tgan sessiyada mintaqaviy barqarorlik va suv
+                    resurslari bo'yicha muhim rezolyutsiya qabul qilindi.</p>
+                  <div class="card-meta">
+                    <div class="card-meta-left">
+                      <span><i class="far fa-clock"></i> 11 soat oldin</span>
+                      <span><i class="far fa-eye"></i> 8,120</span>
+                    </div>
+                    <a href="#" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+            <div class="pagination-wrap">
+              <button class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <span class="page-dots">...</span>
+              <button class="page-btn">12</button>
+              <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </section>
+
+          <section id="latest">
+            <div class="section-header">
+              <h2 class="section-title">Eng so'nggi yangiliklar</h2>
+              <a href="#" class="section-link">Hammasi <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="latest-list">
+              <div class="latest-item">
+                <span class="latest-num">01</span>
+                <img class="latest-img"
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&q=70&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="latest-body">
+                  <div class="latest-cat">Siyosat</div>
+                  <div class="latest-title">Vazirlar Mahkamasi yangi ijtimoiy himoya dasturini tasdiqladi</div>
+                  <div class="latest-meta"><i class="far fa-clock"></i> 30 daqiqa oldin &nbsp;·&nbsp; <i
+                      class="far fa-eye"></i> 2,140</div>
+                </div>
+              </div>
+              <div class="latest-item">
+                <span class="latest-num">02</span>
+                <img class="latest-img"
+                  src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=200&q=70&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="latest-body">
+                  <div class="latest-cat">Iqtisod</div>
+                  <div class="latest-title">Toshkent fond birjasida yangi rekord: savdo hajmi 1.2 trillion so'mni
+                    tashkil etdi</div>
+                  <div class="latest-meta"><i class="far fa-clock"></i> 1 soat oldin &nbsp;·&nbsp; <i
+                      class="far fa-eye"></i> 3,890</div>
+                </div>
+              </div>
+              <div class="latest-item">
+                <span class="latest-num">03</span>
+                <img class="latest-img"
+                  src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=200&q=70&auto=format&fit=crop" alt=""
+                  loading="lazy" />
+                <div class="latest-body">
+                  <div class="latest-cat">Texnologiya</div>
+                  <div class="latest-title">O'zbekistonda 5G texnologiyasi sinovlari muvaffaqiyatli yakunlandi</div>
+                  <div class="latest-meta"><i class="far fa-clock"></i> 2 soat oldin &nbsp;·&nbsp; <i
+                      class="far fa-eye"></i> 6,450</div>
+                </div>
+              </div>
+              <div class="latest-item">
+                <span class="latest-num">04</span>
+                <img class="latest-img"
+                  src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&q=70&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="latest-body">
+                  <div class="latest-cat">Sport</div>
+                  <div class="latest-title">Futbol: O'zbekiston Superligi yangi mavsumga kirishdi</div>
+                  <div class="latest-meta"><i class="far fa-clock"></i> 3 soat oldin &nbsp;·&nbsp; <i
+                      class="far fa-eye"></i> 4,770</div>
+                </div>
+              </div>
+              <div class="latest-item">
+                <span class="latest-num">05</span>
+                <img class="latest-img"
+                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&q=70&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <div class="latest-body">
+                  <div class="latest-cat">Jamiyat</div>
+                  <div class="latest-title">Yangi o'quv yilida barcha maktablarga zamonaviy kompyuter laboratoriyalari
+                    o'rnatiladi</div>
+                  <div class="latest-meta"><i class="far fa-clock"></i> 4 soat oldin &nbsp;·&nbsp; <i
+                      class="far fa-eye"></i> 5,100</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="section-divider" />
+
+          <section class="categories-section" id="categories">
+            <div class="section-header">
+              <h2 class="section-title">Kategoriyalar</h2>
+            </div>
+            <div class="cat-grid">
+              <div class="cat-card">
+                <div class="cat-header">
+                  <div class="cat-icon politics"><i class="fas fa-landmark"></i></div>
+                  <div>
+                    <div class="cat-name">Siyosat</div>
+                    <div class="cat-count">248 ta maqola</div>
+                  </div>
+                </div>
+                <div class="cat-preview">
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Parlament sessiyasi yakunlandi</div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Yangi mahalliy hokimlar tayinlandi
+                  </div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Qonun loyihasi muhokamaga chiqarildi
+                  </div>
+                </div>
+              </div>
+              <div class="cat-card">
+                <div class="cat-header">
+                  <div class="cat-icon economy"><i class="fas fa-chart-bar"></i></div>
+                  <div>
+                    <div class="cat-name">Iqtisod</div>
+                    <div class="cat-count">312 ta maqola</div>
+                  </div>
+                </div>
+                <div class="cat-preview">
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> GDP o'sishi 6.2% ni tashkil etdi
+                  </div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Eksport hajmi yangi rekord qo'ydi
+                  </div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Investitsiya jozibadorligi oshmoqda
+                  </div>
+                </div>
+              </div>
+              <div class="cat-card">
+                <div class="cat-header">
+                  <div class="cat-icon sport"><i class="fas fa-trophy"></i></div>
+                  <div>
+                    <div class="cat-name">Sport</div>
+                    <div class="cat-count">196 ta maqola</div>
+                  </div>
+                </div>
+                <div class="cat-preview">
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Boks: Olimov dunyoda 1-o'rin</div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Kurash: jahon chempioni aniq</div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Futbol: PAKHTAKOR g'alaba qildi</div>
+                </div>
+              </div>
+              <div class="cat-card">
+                <div class="cat-header">
+                  <div class="cat-icon tech"><i class="fas fa-microchip"></i></div>
+                  <div>
+                    <div class="cat-name">Texnologiya</div>
+                    <div class="cat-count">174 ta maqola</div>
+                  </div>
+                </div>
+                <div class="cat-preview">
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> E-hukumat xizmatlari yangilandi</div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> IT-Park rezidenlaridan yangi startup
+                  </div>
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Kiber xavfsizlik konferensiyasi
+                    ochildi</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-coins"></i> Valyuta Kurslari</div>
+            <div id="currencyWidget" class="currency-list">
+              <div class="currency-item">
+                <div class="currency-left"><span class="currency-flag">🇺🇸</span><span
+                    class="currency-code">USD</span><span class="currency-name">Dollar</span></div>
+                <div class="currency-right"><span class="currency-rate" id="rate-usd">12,720.50</span><span
+                    class="currency-change up" id="chg-usd"><i class="fas fa-arrow-up"></i> 0.12%</span></div>
+              </div>
+              <div class="currency-item">
+                <div class="currency-left"><span class="currency-flag">🇪🇺</span><span
+                    class="currency-code">EUR</span><span class="currency-name">Evro</span></div>
+                <div class="currency-right"><span class="currency-rate" id="rate-eur">13,840.20</span><span
+                    class="currency-change up" id="chg-eur"><i class="fas fa-arrow-up"></i> 0.08%</span></div>
+              </div>
+              <div class="currency-item">
+                <div class="currency-left"><span class="currency-flag">🇷🇺</span><span
+                    class="currency-code">RUB</span><span class="currency-name">Rubl</span></div>
+                <div class="currency-right"><span class="currency-rate" id="rate-rub">137.40</span><span
+                    class="currency-change down" id="chg-rub"><i class="fas fa-arrow-down"></i> 0.31%</span></div>
+              </div>
+              <div class="currency-item">
+                <div class="currency-left"><span class="currency-flag">🇨🇳</span><span
+                    class="currency-code">CNY</span><span class="currency-name">Yuan</span></div>
+                <div class="currency-right"><span class="currency-rate" id="rate-cny">1,754.30</span><span
+                    class="currency-change up" id="chg-cny"><i class="fas fa-arrow-up"></i> 0.05%</span></div>
+              </div>
+              <div class="currency-item">
+                <div class="currency-left"><span class="currency-flag">🇬🇧</span><span
+                    class="currency-code">GBP</span><span class="currency-name">Funt</span></div>
+                <div class="currency-right"><span class="currency-rate" id="rate-gbp">16,110.80</span><span
+                    class="currency-change down" id="chg-gbp"><i class="fas fa-arrow-down"></i> 0.19%</span></div>
+              </div>
+            </div>
+            <div class="widget-footer-note"><i class="fas fa-sync-alt"></i> Markaziy bank kursi · <span
+                id="currencyTime">--:--</span></div>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-cloud-sun"></i> Ob-havo</div>
+            <div class="weather-widget">
+              <div class="weather-tabs">
+                <button class="wtab active" data-city="tashkent">Toshkent</button>
+                <button class="wtab" data-city="samarkand">Samarqand</button>
+                <button class="wtab" data-city="bukhara">Buxoro</button>
+              </div>
+              <div class="weather-main" id="weatherMain">
+                <div class="weather-icon-wrap"><i class="fas fa-sun weather-icon sunny"></i></div>
+                <div class="weather-info">
+                  <div class="weather-temp" id="weatherTemp">+18°C</div>
+                  <div class="weather-desc" id="weatherDesc">Quyoshli, quruq</div>
+                  <div class="weather-city" id="weatherCity">Toshkent</div>
+                </div>
+              </div>
+              <div class="weather-details">
+                <div class="wd-item"><i class="fas fa-wind"></i> <span id="wWind">12 km/h</span></div>
+                <div class="wd-item"><i class="fas fa-tint"></i> <span id="wHumid">38%</span></div>
+                <div class="wd-item"><i class="fas fa-eye"></i> <span id="wVis">10 km</span></div>
+              </div>
+              <div class="weather-forecast">
+                <div class="wf-item"><span>Ert.</span><i class="fas fa-cloud-sun"></i><span>+20°</span></div>
+                <div class="wf-item"><span>Cho.</span><i class="fas fa-cloud"></i><span>+16°</span></div>
+                <div class="wf-item"><span>Pay.</span><i class="fas fa-cloud-rain"></i><span>+13°</span></div>
+                <div class="wf-item"><span>Jum.</span><i class="fas fa-sun"></i><span>+22°</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-futbol"></i> Futbol Natijalari</div>
+            <div class="football-tabs">
+              <button class="ftab active" data-league="uzbek">O'zbekiston</button>
+              <button class="ftab" data-league="premier">Premier</button>
+              <button class="ftab" data-league="champions">UCL</button>
+            </div>
+            <div class="football-matches" id="footballMatches">
+              <div class="match-item">
+                <div class="match-teams"><span class="team home">Pakhtakor</span><span class="match-score finished">2 –
+                    1</span><span class="team away">Nasaf</span></div>
+                <div class="match-info"><span class="match-status fin">Tugadi</span> · 78'</div>
+              </div>
+              <div class="match-item live-match">
+                <div class="match-teams"><span class="team home">Neftchi</span><span class="match-score live-score">1 –
+                    1</span><span class="team away">Bunyodkor</span></div>
+                <div class="match-info"><span class="match-status live"><i class="fas fa-circle pulse-dot"></i>
+                    JONLI</span> · 63'</div>
+              </div>
+              <div class="match-item">
+                <div class="match-teams"><span class="team home">Lokomotiv</span><span class="match-score upcoming">– :
+                    –</span><span class="team away">Dinamo</span></div>
+                <div class="match-info"><span class="match-status upcoming-s">Bugun</span> · 18:00</div>
+              </div>
+              <div class="match-item">
+                <div class="match-teams"><span class="team home">AGMK</span><span class="match-score finished">0 –
+                    0</span><span class="team away">Metallurg</span></div>
+                <div class="match-info"><span class="match-status fin">Tugadi</span> · Dum.</div>
+              </div>
+            </div>
+            <a href="#" class="widget-more-link"><i class="fas fa-list"></i> Barcha natijalar</a>
+          </div>
+
+          <div class="newsletter-widget">
+            <h4><i class="fas fa-envelope-open-text"></i> Xabar Olish</h4>
+            <p>Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="email" placeholder="Email manzilingiz..." required />
+              <button type="submit"><i class="fas fa-paper-plane"></i> Obuna bo'lish</button>
+            </form>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-share-alt"></i> Ijtimoiy Tarmoqlar</div>
+            <div class="social-counts">
+              <div class="social-item">
+                <div class="social-left">
+                  <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div><span>Facebook</span>
+                </div><span class="social-count">284K</span>
+              </div>
+              <div class="social-item">
+                <div class="social-left">
+                  <div class="social-icon telegram"><i class="fab fa-telegram-plane"></i></div><span>Telegram</span>
+                </div><span class="social-count">412K</span>
+              </div>
+              <div class="social-item">
+                <div class="social-left">
+                  <div class="social-icon youtube"><i class="fab fa-youtube"></i></div><span>YouTube</span>
+                </div><span class="social-count">198K</span>
+              </div>
+              <div class="social-item">
+                <div class="social-left">
+                  <div class="social-icon instagram"><i class="fab fa-instagram"></i></div><span>Instagram</span>
+                </div><span class="social-count">156K</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+            <span class="footer-logo-name">Ovoza</span>
+          </div>
+          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy
+            va chuqur tahliliy materiallar.</p>
+          <div class="footer-social">
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Siyosat</a></li>
+            <li><a href="#">Iqtisod</a></li>
+            <li><a href="#">Jamiyat</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Dunyo yangiliklari</a></li>
+            <li><a href="#">Madaniyat va san'at</a></li>
+            <li><a href="#">Sog'liqni saqlash</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Biz haqimizda</a></li>
+            <li><a href="#">Tahririyat</a></li>
+            <li><a href="#">Reklama</a></li>
+            <li><a href="#">Hamkorlik</a></li>
+            <li><a href="#">Muharrirlar</a></li>
+            <li><a href="#">Arxiv</a></li>
+            <li><a href="#">RSS lenta</a></li>
+            <li><a href="#">Mobil ilova</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          </div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+          <div class="footer-contact-item" style="margin-top:12px;">
+            <i class="fas fa-shield-alt"></i>
+            <span style="font-size:12px;color:var(--gray-mid);">OAV ro'yxatga olish guvohnomasi: №0912-B</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Maxfiylik siyosati</a>
+          <a href="#">Foydalanish shartlari</a>
+          <a href="#">Cookie</a>
+          <a href="#">Saytxaritasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Qidirish">
+    <div class="search-overlay-box">
+      <div class="search-overlay-label"><i class="fas fa-search"
+          style="margin-right:6px;color:var(--primary);"></i>Qidirish</div>
+      <div class="search-overlay-input-wrap">
+        <i class="fas fa-search ov-search-icon"></i>
+        <input class="search-overlay-input" id="searchOverlayInput" type="text" placeholder="Nima qidiryapsiz?"
+          autocomplete="off" spellcheck="false" />
+        <button class="search-overlay-close" id="searchOverlayClose" title="Yopish (ESC)"><i
+            class="fas fa-times"></i></button>
+      </div>
+      <div class="search-overlay-hint">
+        <span><kbd>Enter</kbd> Qidirish</span>
+        <span><kbd>ESC</kbd> Yopish</span>
+        <span><kbd>Ctrl K</kbd> Ochish</span>
+      </div>
+      <div class="search-overlay-tags">
+        <span class="search-tag"><i class="fas fa-fire-alt"></i> Siyosat</span>
+        <span class="search-tag"><i class="fas fa-chart-line"></i> Iqtisod</span>
+        <span class="search-tag"><i class="fas fa-trophy"></i> Sport</span>
+        <span class="search-tag"><i class="fas fa-microchip"></i> Texnologiya</span>
+        <span class="search-tag"><i class="fas fa-globe"></i> Dunyo</span>
+        <span class="search-tag"><i class="fas fa-heartbeat"></i> Salomatlik</span>
+      </div>
+    </div>
+  </div>
+
+  <button id="scrollTop"
+    style="position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--primary);color:#fff;border:none;border-radius:2px;font-size:16px;cursor:pointer;opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
+    title="Yuqoriga">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'assets/js/index.js' %}"></script>
+
+  <script>
+    /* Hero typewriter + slide-in animatsiyasi */
+    window.addEventListener('load', function () {
+      var titleEl = document.getElementById('heroTitle');
+      var text = titleEl ? titleEl.getAttribute('data-text') : '';
+      if (!text) return;
+
+      // Cursor
+      var cursor = document.createElement('span');
+      cursor.className = 'hero-cursor';
+      titleEl.appendChild(cursor);
+
+      // Typewriter
+      var i = 0;
+      var speed = 38;
+      function type() {
+        if (i < text.length) {
+          titleEl.insertBefore(document.createTextNode(text[i]), cursor);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          cursor.remove();
+          // Slide-in boshlanadi
+          var els = document.querySelectorAll('.hero-anim-badge, .hero-anim-desc, .hero-anim-meta, .hero-anim-btn');
+          els.forEach(function (el) { el.classList.add('visible'); });
+        }
+      }
+      setTimeout(type, 300);
+    });
+  </script>
+  <script>
+    /* Search overlay */
+    (function () {
+      var overlay = document.getElementById('searchOverlay');
+      var input = document.getElementById('searchOverlayInput');
+      var closeBtn = document.getElementById('searchOverlayClose');
+      var trigger = document.getElementById('searchTrigger');
+      if (!overlay) return;
+
+      function open() {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function () { if (input) input.focus(); }, 120);
+      }
+      function close() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        if (input) input.value = '';
+      }
+
+      if (trigger) trigger.addEventListener('click', open);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); overlay.classList.contains('active') ? close() : open(); }
+      });
+    })();
+  </script>
+
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.getElementById('pageLoader').classList.add('hidden');
+      }, 1100);
+    });
+  </script>
+
+
+
+</body>
+
+</html>

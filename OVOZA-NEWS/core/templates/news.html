@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yangiliklar – Ovoza</title>
+  <meta name="description" content="Ovoza — O'zbekiston va dunyo bo'yicha so'nggi yangiliklar." />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'assets/css/news.css' %}" />
+
+  <style>
+    .badge-like {
+      background: rgba(192, 57, 43, .15);
+      color: #f1948a;
+      border: 1px solid rgba(241, 148, 138, .3);
+    }
+
+    .badge-share {
+      background: rgba(30, 132, 73, .15);
+      color: #58d68d;
+      border: 1px solid rgba(88, 214, 141, .3);
+    }
+  </style>
+
+  <style>
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #pageLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      background: #c0392b;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* Bir marta to'liq aylanib o'z joyiga qaytadi */
+    @keyframes icon-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      70% {
+        transform: rotate(380deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loader-bar {
+      width: 140px;
+      height: 2px;
+      background: #2e2e2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0%;
+      background: #c0392b;
+      border-radius: 2px;
+      animation: fill 1s ease forwards;
+    }
+
+    @keyframes fill {
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="pageLoader">
+    <div class="loader-icon">
+      <i class="fas fa-satellite-dish"></i>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+  <!-- ═══ TOPBAR ═══ -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-date">
+        <i class="far fa-calendar-alt"></i>
+        <span id="topbarDate">Dushanba, 7 Yanvar 2025</span>
+      </div>
+      <div class="topbar-links">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <span class="divider">|</span>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active">UZ</a>
+          <a href="#" class="lang-btn">RU</a>
+          <a href="#" class="lang-btn">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="main-navbar">
+    <div class="container navbar-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+        <span class="logo-name">Ovoza</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a href="categories.html">Categories</a></li>
+        <li class="nav-item active"><a href="news.html">News</a></li>
+        <li class="nav-item">
+          <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-search-btn" id="searchBtn"><i class="fas fa-search"></i> Qidirish</button>
+        <a href="#" class="btn-subscribe"><i class="fas fa-envelope"></i> Obuna</a>
+        <button class="navbar-toggler" id="navToggler"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ═══ -->
+  <section class="page-header">
+    <div class="container page-header-inner">
+      <div class="page-header-left">
+        <div class="breadcrumb">
+          <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Yangiliklar</span>
+        </div>
+        <h1 class="page-title">So'nggi <span>Yangiliklar</span></h1>
+        <p class="page-subtitle">O'zbekiston va dunyo bo'yicha eng dolzarb xabarlar — har kuni yangilanib turadi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FILTER BAR ═══ -->
+  <div class="filter-bar">
+    <div class="container filter-bar-inner">
+      <div class="filter-cats" id="filterCats">
+        <button class="filter-cat active" data-cat="all"><i class="fas fa-th"></i> Barchasi</button>
+        <button class="filter-cat" data-cat="siyosat"><i class="fas fa-landmark"></i> Siyosat</button>
+        <button class="filter-cat" data-cat="iqtisod"><i class="fas fa-chart-line"></i> Iqtisod</button>
+        <button class="filter-cat" data-cat="sport"><i class="fas fa-trophy"></i> Sport</button>
+        <button class="filter-cat" data-cat="tech"><i class="fas fa-microchip"></i> Texnologiya</button>
+        <button class="filter-cat" data-cat="dunyo"><i class="fas fa-globe"></i> Dunyo</button>
+        <button class="filter-cat" data-cat="jamiyat"><i class="fas fa-users"></i> Jamiyat</button>
+      </div>
+      <div class="filter-right">
+        <div class="sort-wrap">
+          <i class="fas fa-sort-amount-down" style="color:var(--primary);"></i>
+          <select id="sortSelect">
+            <option value="newest">Eng yangi</option>
+            <option value="popular">Mashhur</option>
+            <option value="discussed">Ko'p muhokama</option>
+          </select>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" id="listViewBtn" title="List ko'rinish"><i class="fas fa-list"></i></button>
+          <button class="view-btn" id="gridViewBtn" title="Grid ko'rinish"><i class="fas fa-th-large"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main-section">
+    <div class="container">
+      <div class="layout-grid">
+
+        <div class="content-area">
+          <div class="section-hd">
+            <span class="section-title">Yangiliklar</span>
+            <span class="result-count" id="resultCount">247 ta yangilik topildi</span>
+          </div>
+
+          <div class="news-list" id="newsList">
+
+            <!-- FEATURED -->
+            <div class="news-item featured" data-cat="siyosat">
+              <div class="ni-img featured-img">
+                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80&auto=format&fit=crop"
+                  alt="" loading="eager" />
+                <span class="ni-badge politics">Siyosat</span>
+              </div>
+              <div class="ni-body">
+                <div class="breaking-label"><i class="fas fa-bolt"></i> Tezkor xabar</div>
+                <div class="ni-meta-top">
+                  <span class="cat-label">Siyosat</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> 45 daqiqa oldin</span>
+                </div>
+                <h2 class="ni-title">O'rta Osiyo sammiti: Besh davlat rahbarlari strategik hamkorlik to'g'risida muhim
+                  bitim imzoladi</h2>
+                <p class="ni-excerpt">Toshkentda bo'lib o'tgan mintaqaviy sammit doirasida O'rta Osiyo davlatlari
+                  iqtisodiy hamkorlikni yangi bosqichga ko'taruvchi tarixiy bitimga imzo chekdi. Shartnoma iqtisodiy,
+                  energetika va transport sohasini qamrab oladi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=11" alt="" />
+                      Sardor Umarov</span>
+                    <span><i class="far fa-eye"></i> 18,420</span>
+                    <span><i class="far fa-comment"></i> 94</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="news-divider"><span>Bugungi yangiliklar</span></div>
+
+            <!-- Item 1 -->
+            <div class="news-item" data-cat="iqtisod">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge economy">Iqtisod</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Iqtisod</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> 1 soat oldin</span>
+                </div>
+                <h3 class="ni-title">Markaziy bank foiz stavkasini pasaytirdi — so'm kursiga ta'siri qanday bo'ladi?
+                </h3>
+                <p class="ni-excerpt">Markaziy bank boshqaruvi qaror qabul qilib, asosiy foiz stavkasini 0.5 punktga
+                  pasaytirdi. Bu qaror milliy valyuta kursiga va aholiga ta'siri haqida ekspertlar fikrlashmoqda.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=32" alt="" />
+                      Malika Yusupova</span>
+                    <span><i class="far fa-eye"></i> 9,840</span>
+                    <span><i class="far fa-comment"></i> 47</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="news-item" data-cat="sport">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge sport">Sport</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Sport</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> 2 soat oldin</span>
+                </div>
+                <h3 class="ni-title">O'zbekiston bokschilaridan jahon chempionatida 7 ta oltin medal — tarixiy rekord
+                </h3>
+                <p class="ni-excerpt">Milliy boks terma jamoasi Tailandda bo'lib o'tgan jahon chempionatida eng yaxshi
+                  natijasini ko'rsatdi. Bu tarixiy muvaffaqiyat mamlakatimiz sportini yangi bosqichga olib chiqadi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=15" alt="" />
+                      Jasur Mirzayev</span>
+                    <span><i class="far fa-eye"></i> 14,200</span>
+                    <span><i class="far fa-comment"></i> 128</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="news-item" data-cat="tech">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge tech">Texnologiya</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Texnologiya</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> 3 soat oldin</span>
+                </div>
+                <h3 class="ni-title">O'zbekistonda sun'iy intellekt asosida ishlatiladigan davlat xizmatlari ishga
+                  tushirildi</h3>
+                <p class="ni-excerpt">Raqamli rivojlanish vazirligi e-hukumat platformasida AI-yordamchi xizmatlarini
+                  sinov tartibida ishga tushirdi. Fuqarolar hujjatlarni 3 barobar tez rasmiylashtirishlari mumkin
+                  bo'ladi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=22" alt="" />
+                      Aziza Rahimova</span>
+                    <span><i class="far fa-eye"></i> 11,550</span>
+                    <span><i class="far fa-comment"></i> 63</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="news-item" data-cat="dunyo">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge world">Dunyo</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Dunyo</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> 4 soat oldin</span>
+                </div>
+                <h3 class="ni-title">BMT Xavfsizlik Kengashida yangi qaror qabul qilindi — O'zbekiston pozitsiyasi</h3>
+                <p class="ni-excerpt">Yangi York shahrida bo'lib o'tgan Xavfsizlik Kengashi sessiyasida mintaqaviy
+                  barqarorlik va suv resurslari boshqaruvi bo'yicha muhim rezolyutsiya qabul qilindi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=44" alt="" />
+                      Dilnoza Hamidova</span>
+                    <span><i class="far fa-eye"></i> 7,890</span>
+                    <span><i class="far fa-comment"></i> 31</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="news-divider"><span>Kecha</span></div>
+
+            <!-- Item 5 -->
+            <div class="news-item" data-cat="jamiyat">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge">Jamiyat</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Jamiyat</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> Kecha, 18:30</span>
+                </div>
+                <h3 class="ni-title">Toshkent universitetlari xalqaro reytingda yangi o'rinlarga ko'tarildi</h3>
+                <p class="ni-excerpt">2025-yilgi QS World University Rankings ro'yxatida Toshkent davlat texnika
+                  universiteti va O'zMU yangi o'rinlarga ko'tarildi. Bu mamlakatimiz ta'lim tizimining jadal
+                  rivojlanishidan dalolat beradi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=55" alt="" />
+                      Umid Toshmatov</span>
+                    <span><i class="far fa-eye"></i> 6,340</span>
+                    <span><i class="far fa-comment"></i> 52</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="news-item" data-cat="iqtisod">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge economy">Iqtisod</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Iqtisod</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> Kecha, 15:00</span>
+                </div>
+                <h3 class="ni-title">Navoiyda 500 MVt quvvatga ega yashil elektrostansiya qurilishi boshlandi</h3>
+                <p class="ni-excerpt">Yashil energetika sohasidagi eng yirik loyiha Navoiy viloyatida rasman boshlandi.
+                  Loyiha 2026-yilga qadar 500 MVt quvvatga ega quyosh elektrostansiyasini yaratishni nazarda tutadi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=60" alt="" />
+                      Sherzod Nazarov</span>
+                    <span><i class="far fa-eye"></i> 5,120</span>
+                    <span><i class="far fa-comment"></i> 24</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="news-item" data-cat="sport">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge sport">Sport</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Sport</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> Kecha, 12:15</span>
+                </div>
+                <h3 class="ni-title">Futbol Superligi: Pakhtakor uchinchi ketma-ket g'alaba qozondi</h3>
+                <p class="ni-excerpt">Toshkent Pakhtakori Milliy stadionida Nasaf bilan bo'lgan uchrashuv 2-0 hisobida
+                  tugadi. Jamoa peshqadamlikni mustahkamladi va raqiblardan 5 ochga uzoqlashdi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=15" alt="" />
+                      Jasur Mirzayev</span>
+                    <span><i class="far fa-eye"></i> 8,760</span>
+                    <span><i class="far fa-comment"></i> 76</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="news-item" data-cat="siyosat">
+              <div class="ni-img">
+                <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=400&q=75&auto=format&fit=crop"
+                  alt="" loading="lazy" />
+                <span class="ni-badge politics">Siyosat</span>
+              </div>
+              <div class="ni-body">
+                <div class="ni-meta-top">
+                  <span class="cat-label">Siyosat</span><span class="dot">·</span>
+                  <span><i class="far fa-clock"></i> Kecha, 09:00</span>
+                </div>
+                <h3 class="ni-title">Yangi mahalliy hokimlar tayinlandi — ular kim va qanday rejalar bilan kelmoqda?
+                </h3>
+                <p class="ni-excerpt">Bir necha viloyatlarda mahalliy hokimiyat rahbarlariga o'zgarishlar kiritildi.
+                  Yangi tayinlangan hokimlar matbuot anjumanida o'z dasturiy rejalarini e'lon qildi.</p>
+                <div class="ni-footer">
+                  <div class="ni-meta-bottom">
+                    <span class="ni-author"><img class="ni-author-img" src="https://i.pravatar.cc/40?img=11" alt="" />
+                      Sardor Umarov</span>
+                    <span><i class="far fa-eye"></i> 4,530</span>
+                    <span><i class="far fa-comment"></i> 18</span>
+                  </div>
+                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /news-list -->
+
+          <!-- Pagination -->
+          <div class="pagination-wrap">
+            <button class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <span class="page-dots">...</span>
+            <button class="page-btn">31</button>
+            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+          </div>
+
+        </div><!-- /content-area -->
+
+        <!-- ── SIDEBAR ── -->
+        <aside class="sidebar">
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-fire-alt"></i> Ko'p O'qilganlar</div>
+            <div class="popular-item">
+              <span class="pop-num">01</span>
+              <img class="pop-img"
+                src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=120&q=60&auto=format&fit=crop"
+                alt="" loading="lazy" />
+              <div class="pop-body">
+                <div class="pop-title">Sammit: Besh davlat rahbarlari muhim bitim imzoladi</div>
+                <div class="pop-meta"><i class="far fa-eye"></i> 18,420 &nbsp;·&nbsp; <i class="far fa-clock"></i> 45
+                  daqiqa</div>
+              </div>
+            </div>
+            <div class="popular-item">
+              <span class="pop-num">02</span>
+              <img class="pop-img"
+                src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=120&q=60&auto=format&fit=crop"
+                alt="" loading="lazy" />
+              <div class="pop-body">
+                <div class="pop-title">Boks: O'zbekiston 7 ta oltin medal qo'lga oldi</div>
+                <div class="pop-meta"><i class="far fa-eye"></i> 14,200 &nbsp;·&nbsp; <i class="far fa-clock"></i> 2
+                  soat</div>
+              </div>
+            </div>
+            <div class="popular-item">
+              <span class="pop-num">03</span>
+              <img class="pop-img"
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=120&q=60&auto=format&fit=crop"
+                alt="" loading="lazy" />
+              <div class="pop-body">
+                <div class="pop-title">Davlat xizmatlari AI texnologiyasiga o'tdi</div>
+                <div class="pop-meta"><i class="far fa-eye"></i> 11,550 &nbsp;·&nbsp; <i class="far fa-clock"></i> 3
+                  soat</div>
+              </div>
+            </div>
+            <div class="popular-item">
+              <span class="pop-num">04</span>
+              <img class="pop-img"
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=120&q=60&auto=format&fit=crop"
+                alt="" loading="lazy" />
+              <div class="pop-body">
+                <div class="pop-title">Markaziy bank foiz stavkasini pasaytirdi</div>
+                <div class="pop-meta"><i class="far fa-eye"></i> 9,840 &nbsp;·&nbsp; <i class="far fa-clock"></i> 1 soat
+                </div>
+              </div>
+            </div>
+            <div class="popular-item">
+              <span class="pop-num">05</span>
+              <img class="pop-img"
+                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=120&q=60&auto=format&fit=crop"
+                alt="" loading="lazy" />
+              <div class="pop-body">
+                <div class="pop-title">Pakhtakor ketma-ket 3 g'alaba qozondi</div>
+                <div class="pop-meta"><i class="far fa-eye"></i> 8,760 &nbsp;·&nbsp; <i class="far fa-clock"></i> Kecha
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="newsletter-widget">
+            <h4><i class="fas fa-envelope-open-text"></i> Yangiliklar</h4>
+            <p>Har kuni ertalab eng muhim 10 ta xabar</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="email" placeholder="Email manzilingiz..." required />
+              <button type="submit"><i class="fas fa-paper-plane"></i> Obuna bo'lish</button>
+            </form>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-th-large"></i> Kategoriyalar</div>
+            <div class="cat-link-item">
+              <div class="cat-link-left">
+                <div class="cat-dot" style="background:#2471a3;"></div><span class="cat-link-name">Siyosat</span>
+              </div><span class="cat-link-count">248</span>
+            </div>
+            <div class="cat-link-item">
+              <div class="cat-link-left">
+                <div class="cat-dot" style="background:#1e8449;"></div><span class="cat-link-name">Iqtisod</span>
+              </div><span class="cat-link-count">196</span>
+            </div>
+            <div class="cat-link-item">
+              <div class="cat-link-left">
+                <div class="cat-dot" style="background:#c0392b;"></div><span class="cat-link-name">Sport</span>
+              </div><span class="cat-link-count">312</span>
+            </div>
+            <div class="cat-link-item">
+              <div class="cat-link-left">
+                <div class="cat-dot" style="background:#6c3483;"></div><span class="cat-link-name">Texnologiya</span>
+              </div><span class="cat-link-count">174</span>
+            </div>
+            <div class="cat-link-item">
+              <div class="cat-link-left">
+                <div class="cat-dot" style="background:#1a5276;"></div><span class="cat-link-name">Dunyo</span>
+              </div><span class="cat-link-count">287</span>
+            </div>
+            <div class="cat-link-item">
+              <div class="cat-link-left">
+                <div class="cat-dot" style="background:#b7950b;"></div><span class="cat-link-name">Jamiyat</span>
+              </div><span class="cat-link-count">143</span>
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
+            <div class="tags-cloud">
+              <span class="tag-item">#Prezident</span><span class="tag-item">#Parlament</span>
+              <span class="tag-item">#Dollar</span><span class="tag-item">#Futbol</span>
+              <span class="tag-item">#Pakhtakor</span><span class="tag-item">#AI</span>
+              <span class="tag-item">#5G</span><span class="tag-item">#Boks</span>
+              <span class="tag-item">#Sammit</span><span class="tag-item">#Toshkent</span>
+              <span class="tag-item">#Samarqand</span><span class="tag-item">#GDP</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+            <span class="footer-logo-name">Ovoza</span>
+          </div>
+          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy
+            va chuqur tahliliy materiallar.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Siyosat</a></li>
+            <li><a href="#">Iqtisod</a></li>
+            <li><a href="#">Jamiyat</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Dunyo yangiliklari</a></li>
+            <li><a href="#">Madaniyat va san'at</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Biz haqimizda</a></li>
+            <li><a href="#">Tahririyat</a></li>
+            <li><a href="#">Reklama</a></li>
+            <li><a href="#">Hamkorlik</a></li>
+            <li><a href="#">Arxiv</a></li>
+            <li><a href="#">RSS lenta</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          </div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Maxfiylik siyosati</a>
+          <a href="#">Foydalanish shartlari</a>
+          <a href="#">Cookie</a>
+          <a href="#">Saytxaritasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.getElementById('pageLoader').classList.add('hidden');
+      }, 1100);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'assets/js/news.js' %}"></script>
+</body>
+
+</html>
