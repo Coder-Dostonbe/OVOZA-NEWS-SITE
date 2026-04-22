@@ -1,14 +1,15 @@
-import os
 import json
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.db.models import F, Q, Count
+from django.utils.timezone import now
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount
+from django.core.paginator import Paginator
 
 def home(request):
     q = request.GET.get('q', '').strip()   # .split() o'chirildi — string bo'lishi kerak
@@ -53,7 +54,12 @@ def post_about(request, id):
     advertisement = Advertisement.objects.filter(is_active=True).first()
 
     ip = get_client_ip(request)
-    obj, created = PostView.objects.get_or_create(post=about_post, ip=ip)
+
+    if request.user.is_authenticated:
+        obj, created = PostView.objects.get_or_create(post=about_post, ip=f'user_(request.user.id)')
+    else:
+        obj, created = PostView.objects.get_or_create(post=about_post, ip=ip)
+
     if created:
         Post.objects.filter(id=about_post.id).update(views=F('views') + 1)
         about_post.refresh_from_db()
@@ -100,12 +106,36 @@ def add_comment(request, post_id):
         }
     })
 
+@login_required(login_url='/login/')
+@require_POST
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+    data = json.loads(request.body)
+    message = data.get('message', '').strip()
+    if not message:
+        return JsonResponse({'success': False, 'message': 'Izoh bo\'sh bo\'lishi mumkin emas!'})
+    comment.message = message
+    comment.save()
+    return JsonResponse({'success': True})
+
+
+@login_required(login_url='/login/')
+@require_POST
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+    comment.delete()
+    return JsonResponse({'success': True})
 
 @require_POST
 def like_post(request, id):
     post = get_object_or_404(Post, id=id)
     ip = get_client_ip(request)
-    like, created = Like.objects.get_or_create(post=post, ip=ip)
+
+    if request.user.is_authenticated:
+        like, created = Like.objects.get_or_create(post=post, user=request.user, defaults={'ip':ip})
+    else:
+        like, created = Like.objects.get_or_create(post=post, ip=ip)
+
     if not created:
         like.delete()
         liked = False
@@ -157,7 +187,7 @@ def login_page(request):
         login(request, user)
         remember = data.get('remember', False)
         if not remember:
-            request.session.set_expiry(0)  # brauzer yopilganda session o'chadi
+            request.session.set_expiry(0)
         else:
             request.session.set_expiry(60 * 60 * 24 * 30)  # 30 kun
         return JsonResponse({'success': True, 'redirect': '/'})
@@ -178,9 +208,44 @@ def profile(request):
     else:
         email = 'Email mavjud emas!'
 
+    like_count = Like.objects.filter(user=request.user).count()
+    user_comments = Comment.objects.filter(user=request.user).select_related('post').order_by('-created_at')
+    comment_count = user_comments.count()
+    joined = request.user.date_joined.strftime('%B %Y')
+
+    liked_posts = Like.objects.filter(user=request.user).select_related('post', 'post__category').order_by('-created_at')
+    liked_paginator = Paginator(liked_posts, 10)
+    liked_page = request.GET.get('liked_page', 1)
+    liked_posts = liked_paginator.get_page(liked_page)
+
+    comment_posts = Comment.objects.filter(user=request.user).select_related('post').order_by('-created_at')
+    comment_paginator = Paginator(comment_posts, 10)
+    comment_page = request.GET.get('comment_page', 1)
+    comment_posts = comment_paginator.get_page(comment_page)
+
+    last_viewed = PostView.objects.filter(post__is_published=True).order_by('-created_at').first()
+    last_read = last_viewed.post if last_viewed else None
+    response = Like.objects.filter(user=request.user).values('post__category__name').annotate(total=Count('id')).order_by('-total').first()
+    top_category = response['post__category__name'] if response else None
+    today = now().date()
+    today_views = PostView.objects.filter(created_at__date=today).count()
+    total_view = PostView.objects.count()
+
+
+
     ctx = {
         'social': social,
         'email': email,
+        'like_count': like_count,
+        'user_comments': user_comments,
+        'comment_count': comment_count,
+        'joined': joined,
+        'liked_posts': liked_posts,
+        'comment_posts': comment_posts,
+        'last_read': last_read,
+        'top_category': top_category,
+        'today_views': today_views,
+        'total_view': total_view,
     }
 
     return render(request, 'profile.html', ctx)

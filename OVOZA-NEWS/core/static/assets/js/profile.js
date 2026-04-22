@@ -69,65 +69,157 @@
     });
   });
 
-  /* ─── Unlike (yoqtirishni bekor qilish) ──────────── */
-  document.querySelectorAll(".unlike-btn").forEach(btn => {
-    btn.addEventListener("click", function () {
-      const card = this.closest(".liked-card");
-      if (!card) return;
+    /* ─── Unlike (yoqtirishni bekor qilish) ──────────── */
+    document.querySelectorAll(".unlike-btn").forEach(btn => {
+      btn.addEventListener("click", async function () {
+        const card = this.closest(".liked-card");
+        if (!card) return;
 
-      card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-      card.style.opacity = "0";
-      card.style.transform = "translateX(-20px)";
+        const postId = this.dataset.id;
 
-      setTimeout(() => {
-        card.remove();
-        updateLikedCount();
-        showToast("Yoqtirishdan olib tashlandi", "success");
-      }, 320);
+        const res = await fetch(`/like/${postId}/`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "X-CSRFToken": getCookie("csrftoken") },
+        });
+
+        const data = await res.json();
+
+        if (!data.liked) {
+          card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+          card.style.opacity = "0";
+          card.style.transform = "translateX(-20px)";
+          setTimeout(() => {
+            card.remove();
+            updateLikedCount();
+            showToast("Yoqtirishdan olib tashlandi", "success");
+          }, 320);
+        }
+      });
     });
-  });
 
   function updateLikedCount() {
-    const remaining = document.querySelectorAll(".liked-card").length;
-    const countEl   = document.querySelector('[data-tab="liked"] .tab-count');
-    if (countEl) countEl.textContent = remaining;
+      const remaining = document.querySelectorAll(".liked-card").length;
+      const countEl   = document.querySelector('[data-tab="liked"] .tab-count');
+      if (countEl) countEl.textContent = remaining;
 
-    if (remaining === 0) {
-      const list = document.getElementById("likedList");
-      if (list) list.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon"><i class="far fa-heart"></i></div>
-          <div class="empty-title">Yoqtirganlar yo'q</div>
-          <div class="empty-text">Yangiliklar o'qib, yoqtirgan maqolalaringiz bu yerda ko'rinadi</div>
-        </div>`;
+      const statNum = document.getElementById("likesStatNum");
+      if (statNum) statNum.textContent = remaining;
+
+      if (remaining === 0) {
+          const list = document.getElementById("likedList");
+          if (list) list.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon"><i class="far fa-heart"></i></div>
+              <div class="empty-title">Yoqtirganlar yo'q</div>
+              <div class="empty-text">Yangiliklar o'qib, yoqtirgan maqolalaringiz bu yerda ko'rinadi</div>
+            </div>`;
+      }
     }
-  }
 
-  /* ─── Delete comment ──────────────────────────────── */
-  document.querySelectorAll(".delete-action").forEach(btn => {
-    btn.addEventListener("click", function () {
-      const card = this.closest(".comment-card");
-      if (!card) return;
-
-      if (!confirm("Bu izohni o'chirmoqchimisiz?")) return;
-
-      card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-      card.style.opacity = "0";
-      card.style.transform = "translateX(-20px)";
-
-      setTimeout(() => {
-        card.remove();
-        updateCommentCount();
-        showToast("Izoh o'chirildi", "success");
-      }, 320);
+    /* ─── Edit comment ────────────────────────────────── */
+    document.querySelectorAll(".edit-action").forEach(btn => {
+      btn.addEventListener("click", function () {
+        const commentId = this.dataset.comment;
+        const textEl    = document.getElementById(`comment-text-${commentId}`);
+        const editForm  = document.getElementById(`edit-form-${commentId}`);
+        const textarea  = document.getElementById(`edit-textarea-${commentId}`);
+        if (!editForm) return;
+        if (textarea && textEl) textarea.value = textEl.textContent.trim();
+        if (textEl) textEl.style.display = "none";
+        editForm.style.display = "block";
+        textarea?.focus();
+      });
     });
-  });
+
+    document.querySelectorAll(".edit-cancel").forEach(btn => {
+      btn.addEventListener("click", function () {
+        const commentId = this.dataset.comment;
+        const textEl    = document.getElementById(`comment-text-${commentId}`);
+        const editForm  = document.getElementById(`edit-form-${commentId}`);
+        if (editForm) editForm.style.display = "none";
+        if (textEl)   textEl.style.display   = "block";
+      });
+    });
+
+    document.querySelectorAll(".edit-save").forEach(btn => {
+      btn.addEventListener("click", async function () {
+        const commentId = this.dataset.comment;
+        const textEl    = document.getElementById(`comment-text-${commentId}`);
+        const editForm  = document.getElementById(`edit-form-${commentId}`);
+        const textarea  = document.getElementById(`edit-textarea-${commentId}`);
+        const message   = textarea?.value.trim();
+        if (!message) return;
+
+        const res = await fetch(`/comment/edit/${commentId}/`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          if (textEl) textEl.textContent = message;
+          if (editForm) editForm.style.display = "none";
+          if (textEl)   textEl.style.display   = "block";
+          showToast("Izoh tahrirlandi", "success");
+        } else {
+          showToast("Xatolik yuz berdi", "error");
+        }
+      });
+    });
+
+    /* ─── Delete comment ──────────────────────────────── */
+    let currentDeleteCard = null;
+    let currentDeleteId = null;
+
+    document.querySelectorAll(".delete-action").forEach(btn => {
+      btn.addEventListener("click", function () {
+        currentDeleteCard = this.closest(".comment-card");
+        currentDeleteId = this.dataset.comment;
+        document.getElementById("deleteCommentModal").style.display = "flex";
+      });
+    });
+
+    document.getElementById("deleteCommentCancel")?.addEventListener("click", () => {
+      document.getElementById("deleteCommentModal").style.display = "none";
+    });
+
+    document.getElementById("deleteCommentConfirm")?.addEventListener("click", async () => {
+      document.getElementById("deleteCommentModal").style.display = "none";
+
+      const res = await fetch(`/comment/delete/${currentDeleteId}/`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "X-CSRFToken": getCookie("csrftoken") },
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        currentDeleteCard.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+        currentDeleteCard.style.opacity = "0";
+        currentDeleteCard.style.transform = "translateX(-20px)";
+        setTimeout(() => {
+          currentDeleteCard.remove();
+          updateCommentCount();
+          showToast("Izoh o'chirildi", "success");
+        }, 320);
+      } else {
+        showToast("Xatolik yuz berdi", "error");
+      }
+    });
 
   function updateCommentCount() {
-    const remaining = document.querySelectorAll(".comment-card").length;
-    const countEl   = document.querySelector('[data-tab="comments"] .tab-count');
-    if (countEl) countEl.textContent = remaining;
-  }
+      const remaining = document.querySelectorAll(".comment-card").length;
+      const countEl   = document.querySelector('[data-tab="comments"] .tab-count');
+      if (countEl) countEl.textContent = remaining;
+
+      const statNum = document.getElementById("commentsStatNum");
+      if (statNum) statNum.textContent = remaining;
+    }
 
   /* ─── Edit profile btn ────────────────────────────── */
   const editBtn = document.getElementById("editProfileBtn");

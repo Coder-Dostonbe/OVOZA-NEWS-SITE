@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
   {% load static %}
   <meta charset="UTF-8" />
@@ -13,550 +12,547 @@
   <link rel="stylesheet" href="{% static 'assets/css/detail.css' %}" />
   <style>
     #pageLoader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
+      position: fixed; inset: 0; z-index: 99999;
       background: #0f0f0f;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 20px;
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
-
-    #pageLoader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
+    #pageLoader.hidden { opacity: 0; visibility: hidden; }
     .loader-icon {
-      width: 64px;
-      height: 64px;
-      background: #c0392b;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      color: #fff;
-      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      width: 64px; height: 64px; background: #c0392b; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: #fff;
+      animation: icon-spin 1s cubic-bezier(0.4,0,0.2,1) forwards;
     }
-
-    @keyframes icon-spin {
-      0% {
-        transform: rotate(0deg)
-      }
-
-      70% {
-        transform: rotate(380deg)
-      }
-
-      100% {
-        transform: rotate(360deg)
-      }
-    }
-
-    .loader-bar {
-      width: 140px;
-      height: 2px;
-      background: #2e2e2e;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .loader-fill {
-      height: 100%;
-      width: 0%;
-      background: #c0392b;
-      border-radius: 2px;
-      animation: fill 1s ease forwards;
-    }
-
-    @keyframes fill {
-      to {
-        width: 100%
-      }
-    }
+    @keyframes icon-spin { 0%{transform:rotate(0deg)} 70%{transform:rotate(380deg)} 100%{transform:rotate(360deg)} }
+    .loader-bar { width: 140px; height: 2px; background: #2e2e2e; border-radius: 2px; overflow: hidden; }
+    .loader-fill { height: 100%; width: 0%; background: #c0392b; border-radius: 2px; animation: fill 1s ease forwards; }
+    @keyframes fill { to { width: 100% } }
   </style>
 </head>
-
 <body>
 
-  <div id="pageLoader">
-    <div class="loader-icon"><i class="fas fa-satellite-dish"></i></div>
-    <div class="loader-bar">
-      <div class="loader-fill"></div>
+<div id="pageLoader">
+  <div class="loader-icon"><i class="fas fa-satellite-dish"></i></div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="read-progress" id="readProgress"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate"></span></div>
+    <div class="topbar-links">
+      <a href="#"><i class="fab fa-telegram"></i><span> Telegram</span></a>
+      <span class="divider">|</span>
+      <a href="#"><i class="fas fa-rss"></i><span> RSS</span></a>
+      <span class="divider">|</span>
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active">UZ</a>
+        <a href="#" class="lang-btn">RU</a>
+        <a href="#" class="lang-btn">EN</a>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="read-progress" id="readProgress"></div>
-
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate">Dushanba, 7 Yanvar 2025</span>
+<!-- NAVBAR -->
+<nav class="main-navbar">
+  <div class="container navbar-wrap">
+    <a href="{% url 'home' %}" class="nav-logo">
+      <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+      <div class="logo-text">
+        <span class="logo-name">Ovoza</span>
+        <span class="logo-tagline">Yangiliklar portali</span>
       </div>
-      <div class="topbar-links">
-        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
-        <span class="divider">|</span>
-        <a href="#"><i class="fas fa-rss"></i> RSS</a>
-        <span class="divider">|</span>
-        <div class="lang-switcher">
-          <a href="#" class="lang-btn active">UZ</a>
-          <a href="#" class="lang-btn">RU</a>
-          <a href="#" class="lang-btn">EN</a>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+      <li class="nav-item">
+        <a href="{% url 'categories' %}">Categories <i class="fas fa-chevron-down"></i></a>
+      </li>
+      <li class="nav-item active"><a href="{% url 'news_page' %}">News</a></li>
+      <li class="nav-item">
+        <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+        <div class="nav-dropdown">
+          <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
+          <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
+          <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profil</a>
         </div>
-      </div>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="navbar-toggler" id="navToggler" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
+</nav>
 
-  <!-- NAVBAR -->
-  <nav class="main-navbar">
-    <div class="container navbar-wrap">
-      <a href="{% url 'home' %}" class="nav-logo">
-        <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
-        <div class="logo-text">
-          <span class="logo-name">Ovoza</span>
-          <span class="logo-tagline">Yangiliklar portali</span>
-        </div>
-      </a>
-      <ul class="nav-menu" id="navMenu">
-        <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
-        <li class="nav-item">
-          <a href="{% url 'categories' %}">Categories <i class="fas fa-chevron-down"></i></a>
-        </li>
-        <li class="nav-item active"><a href="{% url 'news_page' %}">News</a></li>
-        <li class="nav-item">
-          <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-          <div class="nav-dropdown">
-            <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
-            <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
-            <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profil</a>
-          </div>
-        </li>
-      </ul>
-      <div class="nav-right">
-
-
-        <button class="navbar-toggler" id="navToggler"><i class="fas fa-bars"></i></button>
-      </div>
+<!-- Mobile drawer -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">
+      <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+      <span class="logo-name">Ovoza</span>
     </div>
-  </nav>
+    <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+  </div>
+  <ul class="drawer-menu">
+    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+    <li><a href="{% url 'categories' %}"><i class="fas fa-th-large"></i> Kategoriyalar</a></li>
+    <li><a href="{% url 'news_page' %}"><i class="fas fa-newspaper"></i> Yangiliklar</a></li>
+    <li><a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> Haqimizda</a></li>
+    <li><a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Aloqa</a></li>
+    {% if request.user.is_authenticated %}
+    <li><a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profil</a></li>
+    <li class="drawer-logout"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Chiqish</a></li>
+    {% else %}
+    <li class="drawer-login"><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Kirish</a></li>
+    <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish</a></li>
+    {% endif %}
+  </ul>
+</div>
 
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <div class="breadcrumb">
-        <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
-        <i class="fas fa-chevron-right"></i>
-        <a href="/categories/">Kategoriyalar</a>
-        <i class="fas fa-chevron-right"></i>
-        <a href="#">{{ about_post.category }}</a>
-        <i class="fas fa-chevron-right"></i>
-        <span>{{ about_post.title|truncatechars:50 }}</span>
-      </div>
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="/categories/">Kategoriyalar</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="#">{{ about_post.category }}</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>{{ about_post.title|truncatechars:40 }}</span>
     </div>
   </div>
+</div>
 
-  <!-- ARTICLE -->
-  <div class="article-wrap">
-    <div class="container">
-      <div class="article-grid">
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="container">
+    <div class="article-grid">
 
-        <!-- MAIN -->
-        <article class="article-main" id="articleMain">
+      <!-- MAIN -->
+      <article class="article-main" id="articleMain">
 
-          <div class="article-cat">{{ about_post.category }}</div>
+        <div class="article-cat">{{ about_post.category }}</div>
+        <h1 class="article-title">{{ about_post.title }}</h1>
+        <p class="article-lead">{{ about_post.short_description }}</p>
 
-          <h1 class="article-title">{{ about_post.title }}</h1>
-
-          <p class="article-lead">{{ about_post.short_description }}</p>
-
-          <!-- Meta -->
-          <div class="article-meta">
-            <div class="meta-author">
-              {% if about_post.author.avatar %}
-              <img class="author-img" src="{{ about_post.author.avatar.url }}"
-                alt="{{ about_post.author.get_full_name }}" />
-              {% else %}
-              <div class="author-img"
-                style="background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;">
-                <i class="fas fa-user"></i></div>
-              {% endif %}
-              <div class="author-info">
-                <div class="author-name">{{ about_post.author.first_name }} {{ about_post.author.last_name }}</div>
-                <div class="author-role">
-                  {% for group in about_post.author.groups.all %}{{ group.name }}{% endfor %}
-                </div>
-              </div>
+        <!-- Meta -->
+        <div class="article-meta">
+          <div class="meta-author">
+            {% if about_post.author.avatar %}
+              <img class="author-img" src="{{ about_post.author.avatar.url }}" alt="{{ about_post.author.get_full_name }}" />
+            {% else %}
+              <div class="author-img author-avatar-default"><i class="fas fa-user"></i></div>
+            {% endif %}
+            <div class="author-info">
+              <div class="author-name">{{ about_post.author.first_name }} {{ about_post.author.last_name }}</div>
+              <div class="author-role">{% for group in about_post.author.groups.all %}{{ group.name }}{% endfor %}</div>
             </div>
-            <span class="meta-sep">|</span>
-            <div class="meta-item"><i class="far fa-calendar-alt"></i> {{ about_post.time_since }}</div>
-            <div class="meta-item"><i class="far fa-clock"></i> Yangilandi: {{ about_post.updated_at|date:"d M Y, H:i"  }}</div>
-            <div class="meta-item"><i class="far fa-eye"></i> {{ about_post.views }} marta o'qildi</div>
           </div>
+          <span class="meta-sep">|</span>
+          <div class="meta-item"><i class="far fa-calendar-alt"></i> {{ about_post.time_since }}</div>
+          <div class="meta-item"><i class="far fa-clock"></i> {{ about_post.updated_at|date:"d M Y, H:i" }}</div>
+          <div class="meta-item"><i class="far fa-eye"></i> {{ about_post.views }} marta o'qildi</div>
+        </div>
 
-          <!-- Engagement -->
-          <div class="engagement-row">
-            <button class="eng-btn like-btn" id="likeBtn" data-id="{{ about_post.id }}" data-likes="{{ about_post.likes.count }}">
-              <i class="far fa-heart"></i>
-              <span>Yoqtirish</span>
-              <span class="eng-count" id="likeCount">0</span>
-            </button>
-            <button class="eng-btn comment-btn" id="commentScrollBtn">
-              <i class="far fa-comment"></i>
-              <span>Fikrlar</span>
-              <span class="eng-count">{{ about_post.comments.count }}</span>
-            </button>
-           <button class="eng-btn share-btn" id="shareDropBtn">
-              <i class="fas fa-share-alt"></i>
-              <span>Ulashish</span>
-              <span class="eng-count" id="shareCount">{{ about_post.share }}</span>
-           </button>
+        <!-- Engagement row — TEPADA -->
+        <div class="engagement-row">
+          <!-- Like: faqat son ko'rinadi, bosilmaydi -->
+          <div class="eng-btn eng-like-display" style="cursor:default;">
+            <i class="fas fa-thumbs-up" style="color:var(--primary);"></i>
+            <span>Yoqtirishlar</span>
+            <span class="eng-count" id="likeCountTop">{{ about_post.likes.count }}</span>
           </div>
+          <!-- Comment: scrollga olib boradi -->
+          <button class="eng-btn" id="commentScrollBtn">
+            <i class="far fa-comment"></i>
+            <span>Fikrlar</span>
+            <span class="eng-count">{{ about_post.comments.count }}</span>
+          </button>
+          <!-- Share -->
+          <button class="eng-btn" id="shareDropBtn">
+            <i class="fas fa-share-alt"></i>
+            <span>Ulashish</span>
+            <span class="eng-count" id="shareCount">{{ about_post.share }}</span>
+          </button>
+        </div>
 
-          <!-- Hero image -->
-          <div class="article-hero-img">
-            <img src="{{ about_post.image.url }}" alt="{{ about_post.title }}" loading="eager" />
-          </div>
-          <div class="hero-img-caption">
-            <i class="fas fa-camera"></i> {{ about_post.source}}
-          </div>
+        <!-- Hero image -->
+        <div class="article-hero-img">
+          <img src="{{ about_post.image.url }}" alt="{{ about_post.title }}" loading="eager" />
+        </div>
+        <div class="hero-img-caption">
+          <i class="fas fa-camera"></i> {{ about_post.source }}
+        </div>
 
-          <!-- Article body -->
-          <div class="article-body">
-            {% for block in about_post.blocks.all %}
-
-            {% if block.type == 'text' %}
-            <p>{{ block.text }}</p>
-            {% endif %}
-
+        <!-- Article body -->
+        <div class="article-body">
+          {% for block in about_post.blocks.all %}
+            {% if block.type == 'text' %}<p>{{ block.text }}</p>{% endif %}
             {% if block.type == 'title' %}
-            {% if block.level == 2 %}<h2>{{ block.title }}</h2>{% endif %}
-            {% if block.level == 3 %}<h3>{{ block.title }}</h3>{% endif %}
+              {% if block.level == 2 %}<h2>{{ block.title }}</h2>{% endif %}
+              {% if block.level == 3 %}<h3>{{ block.title }}</h3>{% endif %}
             {% endif %}
-
             {% if block.type == 'quote' %}
-            <blockquote>
-              <p>{{ block.text }}</p>
-              <cite>{{ block.title }}</cite>
-            </blockquote>
+            <blockquote><p>{{ block.text }}</p><cite>{{ block.title }}</cite></blockquote>
             {% endif %}
-
             {% if block.type == 'image' %}
             <figure class="inline-img">
               <img src="{{ block.image.url }}" alt="{{ block.title }}" loading="lazy" />
               <figcaption><i class="fas fa-camera"></i> {{ block.title }}</figcaption>
             </figure>
             {% endif %}
-
             {% if block.type == 'info' %}
             <div class="info-box">
               <div class="info-box-title"><i class="fas fa-info-circle"></i> {{ block.title }}</div>
-              <ul>
-                {% for line in block.text.splitlines %}
-                {% if line %}<li>{{ line }}</li>{% endif %}
-                {% endfor %}
-              </ul>
+              <ul>{% for line in block.text.splitlines %}{% if line %}<li>{{ line }}</li>{% endif %}{% endfor %}</ul>
             </div>
             {% endif %}
-
-            {% endfor %}
-
-            <!-- Stat row — barcha stat bloklari bitta qatorda -->
-            {% if stat_blocks %}
-            <div class="stat-row">
-              {% for s in stat_blocks %}
-              <div class="stat-card">
-                <div class="stat-num">{{ s.value }}</div>
-                <div class="stat-label">{{ s.title }}</div>
-              </div>
-              {% endfor %}
+          {% endfor %}
+          {% if stat_blocks %}
+          <div class="stat-row">
+            {% for s in stat_blocks %}
+            <div class="stat-card">
+              <div class="stat-num">{{ s.value }}</div>
+              <div class="stat-label">{{ s.title }}</div>
             </div>
-            {% endif %}
-
-          </div>
-
-          <!-- Tags -->
-          <div class="article-tags">
-            <span class="tag-label"><i class="fas fa-hashtag"></i> Teglar:</span>
-            {% for tag in about_post.tags.all %}
-            <a href="{% url 'tag_posts' tag.name %}" class="article-tag">#{{ tag.name }}</a>
-            {% empty %}
-            <a href="#" class="article-tag">#Yangilik</a>
             {% endfor %}
           </div>
-
-          <!-- Share bar -->
-          <div class="share-bar">
-            <span class="share-label"><i class="fas fa-share-alt" style="color:var(--primary);margin-right:4px;"></i>
-              Ulashish:</span>
-            <button class="share-btn tg"
-              onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(location.href))"><i
-                class="fab fa-telegram-plane"></i><span> Telegram</span></button>
-            <button class="share-btn fb"
-              onclick="window.open('https://facebook.com/sharer.php?u='+encodeURIComponent(location.href))"><i
-                class="fab fa-facebook-f"></i><span> Facebook</span></button>
-            <button class="share-btn tw"
-              onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href))"><i
-                class="fab fa-twitter"></i><span> Twitter</span></button>
-            <button class="share-btn wa"
-              onclick="window.open('https://wa.me/?text='+encodeURIComponent(location.href))"><i
-                class="fab fa-whatsapp"></i><span> WhatsApp</span></button>
-            <button class="share-btn cp" id="copyLinkBtn"><i class="fas fa-link"></i><span> Nusxa olish</span></button>
-          </div>
-
-          <!-- Related news -->
-          <section class="related-section">
-            <div class="section-hd"><span class="section-title">O'xshash Yangiliklar</span></div>
-            <div class="related-grid">
-              {% for post in related_posts %}
-              <div class="related-card">
-                <div class="related-img"><img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" /></div>
-                <div class="related-body">
-                  <div class="related-cat">{{ post.category }}</div>
-                  <div class="related-title"><a href="{% url 'post_about' post.id %}">{{ post.title }}</a></div>
-                  <div class="related-meta"><i class="far fa-clock"></i> {{ post.time_since }}</div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </section>
-
-          <!-- Comments -->
-          <section class="comments-section" id="commentsSection">
-  <div class="section-hd">
-    <span class="section-title">Fikrlar</span>
-    <span class="comments-count" id="commentsCount">{{ about_post.comments.count }} ta izoh</span>
-  </div>
-
-  {% if request.user.is_authenticated %}
-  <div class="comment-form-wrap">
-    <div class="comment-form-title"><i class="fas fa-pen"></i> Fikr bildirish</div>
-    <textarea class="comment-textarea" id="commentTextarea" placeholder="Fikringizni yozing..."></textarea>
-    <div class="comment-form-footer">
-      <button class="btn-comment-submit" id="submitComment" data-post-id="{{ about_post.id }}">
-        <i class="fas fa-paper-plane"></i> Yuborish
-      </button>
-    </div>
-  </div>
-  {% else %}
-  <div class="comment-form-wrap">
-    <div class="comment-form-title"><i class="fas fa-pen"></i> Fikr bildirish</div>
-    <div class="comment-note">
-      <i class="fas fa-info-circle"></i> Fikr bildirish uchun
-      <a href="{% url 'login' %}">kirish</a> yoki <a href="{% url 'register' %}">ro'yxatdan o'tish</a> kerak
-    </div>
-  </div>
-  {% endif %}
-
-  <div class="comment-list" id="commentList">
-    {% for comment in comments %}
-    <div class="comment-item" id="comment-{{ comment.id }}">
-
-      {% if comment.user.avatar %}
-        <img class="comment-avatar" src="{{ comment.user.avatar.url }}" alt="" />
-      {% else %}
-        {% with social=comment.user.socialaccount_set.first %}
-          {% if social %}
-            <img class="comment-avatar" src="{{ social.extra_data.picture }}" alt="" />
-          {% else %}
-            <div class="comment-avatar profile-avatar-default"><i class="fas fa-user"></i></div>
           {% endif %}
-        {% endwith %}
-      {% endif %}
-
-      <div class="comment-body">
-        <div class="comment-header">
-          <span class="comment-author">{{ comment.user.get_full_name|default:comment.user.username }}</span>
-          <span class="comment-date">{{ comment.created_at|date:"d M, H:i" }}</span>
         </div>
-        <div class="comment-text">{{ comment.message }}</div>
-        <div class="comment-actions">
+
+        <!-- Tags -->
+        <div class="article-tags">
+          <span class="tag-label"><i class="fas fa-hashtag"></i> Teglar:</span>
+          {% for tag in about_post.tags.all %}
+          <a href="{% url 'tag_posts' tag.name %}" class="article-tag">#{{ tag.name }}</a>
+          {% empty %}<a href="#" class="article-tag">#Yangilik</a>
+          {% endfor %}
+        </div>
+
+        <!-- ===== LIKE TUGMASI — PASTDA ===== -->
+        <div class="like-section">
+          <button type="button" class="like-btn-main" id="likeBtn"
+                  data-id="{{ about_post.id }}"
+                  data-likes="{{ about_post.likes.count }}"
+                  {% if not request.user.is_authenticated %}data-guest="true"{% endif %}>
+            <i class="far fa-thumbs-up"></i>
+            <span class="like-btn-text">Yoqtirish</span>
+            <span class="like-btn-count" id="likeCount">{{ about_post.likes.count }}</span>
+          </button>
+        </div>
+
+        <!-- Share bar -->
+        <div class="share-bar">
+          <span class="share-label"><i class="fas fa-share-alt"></i> Ulashish:</span>
+          <button class="share-btn tg" onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(location.href))">
+            <i class="fab fa-telegram-plane"></i><span> Telegram</span>
+          </button>
+          <button class="share-btn fb" onclick="window.open('https://facebook.com/sharer.php?u='+encodeURIComponent(location.href))">
+            <i class="fab fa-facebook-f"></i><span> Facebook</span>
+          </button>
+          <button class="share-btn tw" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href))">
+            <i class="fab fa-twitter"></i><span> Twitter</span>
+          </button>
+          <button class="share-btn wa" onclick="window.open('https://wa.me/?text='+encodeURIComponent(location.href))">
+            <i class="fab fa-whatsapp"></i><span> WhatsApp</span>
+          </button>
+          <button class="share-btn cp" id="copyLinkBtn"><i class="fas fa-link"></i><span> Nusxa olish</span></button>
+        </div>
+
+        <!-- Related news -->
+        <section class="related-section">
+          <div class="section-hd"><span class="section-title">O'xshash Yangiliklar</span></div>
+          <div class="related-grid">
+            {% for post in related_posts %}
+            <div class="related-card">
+              <div class="related-img"><img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" /></div>
+              <div class="related-body">
+                <div class="related-cat">{{ post.category }}</div>
+                <div class="related-title"><a href="{% url 'post_about' post.id %}">{{ post.title }}</a></div>
+                <div class="related-meta"><i class="far fa-clock"></i> {{ post.time_since }}</div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <!-- ===== COMMENTS ===== -->
+        <section class="comments-section" id="commentsSection">
+          <div class="section-hd">
+            <span class="section-title">Fikrlar</span>
+            <span class="comments-count" id="commentsCount">{{ about_post.comments.count }} ta izoh</span>
+          </div>
+
           {% if request.user.is_authenticated %}
-          <button class="comment-action-btn reply-btn" data-comment-id="{{ comment.id }}">
-            <i class="far fa-comment"></i> Javob
-          </button>
-          {% endif %}
-        </div>
-        <div class="reply-form" id="reply-form-{{ comment.id }}" style="display:none;">
-          <textarea class="comment-textarea" placeholder="Javobingizni yozing..." style="margin-top:10px;"></textarea>
-          <button class="btn-comment-submit reply-submit" data-post-id="{{ about_post.id }}" data-parent-id="{{ comment.id }}" style="margin-top:8px;">
-            <i class="fas fa-paper-plane"></i> Yuborish
-          </button>
-        </div>
-
-        {% for reply in comment.replies.all %}
-        <div class="comment-item reply-item" style="margin-top:12px;margin-left:40px;">
-
-          {% if reply.user.avatar %}
-            <img class="comment-avatar" src="{{ reply.user.avatar.url }}" alt="" />
-          {% else %}
-            {% with social=reply.user.socialaccount_set.first %}
-              {% if social %}
-                <img class="comment-avatar" src="{{ social.extra_data.picture }}" alt="" />
-              {% else %}
-                <div class="comment-avatar profile-avatar-default"><i class="fas fa-user"></i></div>
-              {% endif %}
-            {% endwith %}
-          {% endif %}
-
-          <div class="comment-body">
-            <div class="comment-header">
-              <span class="comment-author">{{ reply.user.get_full_name|default:reply.user.username }}</span>
-              <span class="comment-date">{{ reply.created_at|date:"d M, H:i" }}</span>
+          <div class="comment-form-wrap">
+            <div class="comment-form-title"><i class="fas fa-pen"></i> Fikr bildirish</div>
+            <textarea class="comment-textarea" id="commentTextarea" placeholder="Fikringizni yozing..."></textarea>
+            <div class="comment-form-footer">
+              <button class="btn-comment-submit" id="submitComment" data-post-id="{{ about_post.id }}">
+                <i class="fas fa-paper-plane"></i> Yuborish
+              </button>
             </div>
-            <div class="comment-text">{{ reply.message }}</div>
           </div>
-        </div>
-        {% endfor %}
+          {% else %}
+          <div class="comment-form-wrap comment-form-guest">
+            <div class="comment-note">
+              <i class="fas fa-lock"></i>
+              Fikr bildirish uchun <a href="{% url 'login' %}">kirish</a> yoki <a href="{% url 'register' %}">ro'yxatdan o'tish</a> kerak
+            </div>
+          </div>
+          {% endif %}
 
-      </div>
-    </div>
-    {% empty %}
-    <p style="color:var(--text-muted);padding:16px 0;font-size:14px;">Hali izoh qoldirilmagan. Birinchi bo'ling!</p>
-    {% endfor %}
-  </div>
-</section>
+          <div class="comment-list" id="commentList">
+            {% for comment in comments %}
+            <div class="comment-item" id="comment-{{ comment.id }}">
 
-        </article>
-
-        <!-- SIDEBAR -->
-        <aside class="article-sidebar">
-          <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-fire-alt"></i> Ko'p O'qilganlar</div>
-
-            {% for m in most_viewed %}
-            <div class="pop-item">
-              <span class="pop-num">{{ forloop.counter|stringformat:'02d' }}</span>
-              <img class="pop-img" src="{{ m.image.url }}" alt="" loading="lazy" />
-              <div class="pop-body">
-                <div class="pop-title">
-                  <a href="{% url 'post_about' m.id %}">{{ m.title }}</a>
+              <!-- ===== AVATAR — to'g'ri tartib ===== -->
+              {% if comment.user.avatar %}
+                <img class="comment-avatar" src="{{ comment.user.avatar.url }}" alt="{{ comment.user.username }}" />
+              {% else %}
+                <div class="comment-avatar comment-avatar-default">
+                  {{ comment.user.username|first|upper }}
                 </div>
-                <div class="pop-meta">
-                  <i class="far fa-eye"></i> {{ m.views }} ·
-                  <i class="far fa-clock"></i> {{ m.time_since }}
+              {% endif %}
+
+              <div class="comment-body">
+                <div class="comment-header">
+                  <span class="comment-author">{{ comment.user.get_full_name|default:comment.user.username }}</span>
+                  <span class="comment-date">{{ comment.created_at|date:"d M, H:i" }}</span>
                 </div>
+
+                <!-- Comment text -->
+                <div class="comment-text" id="inline-comment-text-{{ comment.id }}">{{ comment.message }}</div>
+
+                <!-- Inline edit form -->
+                {% if request.user == comment.user %}
+                <div id="inline-edit-form-{{ comment.id }}" style="display:none; margin-top:10px;">
+                  <textarea id="inline-edit-textarea-{{ comment.id }}" class="comment-textarea" style="min-height:80px;">{{ comment.message }}</textarea>
+                  <div class="edit-form-actions">
+                    <button class="btn-comment-submit inline-edit-save" data-comment-id="{{ comment.id }}">
+                      <i class="fas fa-check"></i> Saqlash
+                    </button>
+                    <button class="inline-edit-cancel" data-comment-id="{{ comment.id }}">
+                      <i class="fas fa-times"></i> Bekor
+                    </button>
+                  </div>
+                </div>
+                {% endif %}
+
+                <!-- Actions -->
+                <div class="comment-actions">
+                  {% if request.user.is_authenticated %}
+                  <button class="comment-action-btn reply-btn" data-comment-id="{{ comment.id }}">
+                    <i class="fas fa-reply"></i> Javob
+                  </button>
+                  {% endif %}
+                  {% if request.user == comment.user %}
+                  <button class="comment-action-btn comment-edit-btn" data-comment-id="{{ comment.id }}">
+                    <i class="fas fa-pen"></i> Tahrirlash
+                  </button>
+                  {% endif %}
+                </div>
+
+                <!-- Reply form -->
+                <div class="reply-form" id="reply-form-{{ comment.id }}" style="display:none;">
+                  <textarea class="comment-textarea reply-textarea" placeholder="Javobingizni yozing..."></textarea>
+                  <button class="btn-comment-submit reply-submit"
+                          data-post-id="{{ about_post.id }}"
+                          data-parent-id="{{ comment.id }}">
+                    <i class="fas fa-paper-plane"></i> Yuborish
+                  </button>
+                </div>
+
+                <!-- Replies -->
+                {% for reply in comment.replies.all %}
+                <div class="comment-item reply-item" id="comment-{{ reply.id }}">
+                  {% if reply.user.avatar %}
+                    <img class="comment-avatar comment-avatar-sm" src="{{ reply.user.avatar.url }}" alt="{{ reply.user.username }}" />
+                  {% else %}
+                    <div class="comment-avatar comment-avatar-default comment-avatar-sm">
+                      {{ reply.user.username|first|upper }}
+                    </div>
+                  {% endif %}
+                  <div class="comment-body">
+                    <div class="comment-header">
+                      <span class="comment-author">{{ reply.user.get_full_name|default:reply.user.username }}</span>
+                      <span class="comment-date">{{ reply.created_at|date:"d M, H:i" }}</span>
+                    </div>
+                    <div class="comment-text">{{ reply.message }}</div>
+                    {% if request.user == reply.user %}
+                    <div class="comment-actions">
+                      <button class="comment-action-btn comment-edit-btn" data-comment-id="{{ reply.id }}">
+                        <i class="fas fa-pen"></i> Tahrirlash
+                      </button>
+                    </div>
+                    <div id="inline-edit-form-{{ reply.id }}" style="display:none; margin-top:10px;">
+                      <textarea id="inline-edit-textarea-{{ reply.id }}" class="comment-textarea" style="min-height:70px;">{{ reply.message }}</textarea>
+                      <div class="edit-form-actions">
+                        <button class="btn-comment-submit inline-edit-save" data-comment-id="{{ reply.id }}">
+                          <i class="fas fa-check"></i> Saqlash
+                        </button>
+                        <button class="inline-edit-cancel" data-comment-id="{{ reply.id }}">
+                          <i class="fas fa-times"></i> Bekor
+                        </button>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+                {% endfor %}
+
               </div>
             </div>
+            {% empty %}
+            <div class="comments-empty">
+              <i class="far fa-comment-dots"></i>
+              <p>Hali izoh qoldirilmagan. Birinchi bo'ling!</p>
+            </div>
             {% endfor %}
-
           </div>
+        </section>
 
-          {% if advertisement %}
-            <div class="ad-banner">
-              <div class="ad-label">Reklama</div>
-              {% if advertisement.video %}
-              <a href="{{ advertisement.url }}" target="_blank">
-                <video class="ad-video" autoplay muted loop playsinline style="width:100%;height:140px;object-fit:cover;display:block;">
-                  <source src="{{ advertisement.video.url }}" type="video/mp4" />
-                </video>
-              </a>
-              {% elif advertisement.image %}
-              <a href="{{ advertisement.url }}" target="_blank">
-                <img src="{{ advertisement.image.url }}" alt="{{ advertisement.title }}" style="width:100%;display:block;" />
-              </a>
-              {% endif %}
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="article-sidebar">
+        <div class="sidebar-widget">
+          <div class="widget-header"><i class="fas fa-fire-alt"></i> Ko'p O'qilganlar</div>
+          {% for m in most_viewed %}
+          <div class="pop-item">
+            <span class="pop-num">{{ forloop.counter|stringformat:'02d' }}</span>
+            <img class="pop-img" src="{{ m.image.url }}" alt="" loading="lazy" />
+            <div class="pop-body">
+              <div class="pop-title"><a href="{% url 'post_about' m.id %}">{{ m.title }}</a></div>
+              <div class="pop-meta"><i class="far fa-eye"></i> {{ m.views }} · <i class="far fa-clock"></i> {{ m.time_since }}</div>
             </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if advertisement %}
+        <div class="ad-banner">
+          <div class="ad-label">Reklama</div>
+          {% if advertisement.video %}
+          <a href="{{ advertisement.url }}" target="_blank">
+            <video class="ad-video" autoplay muted loop playsinline>
+              <source src="{{ advertisement.video.url }}" type="video/mp4" />
+            </video>
+          </a>
+          {% elif advertisement.image %}
+          <a href="{{ advertisement.url }}" target="_blank">
+            <img src="{{ advertisement.image.url }}" alt="{{ advertisement.title }}" />
+          </a>
           {% endif %}
+        </div>
+        {% endif %}
 
-          <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
-            <div class="tags-cloud">
-              {% for pt in about_post.all_tags.all %}
-              <a href="{% url 'tag_posts' pt.name %}" class="tag-pill">#{{ pt.name }}</a>
-              {% empty %}
-              <a href="#" class="tag-pill">#Yangilik</a>
-              {% endfor %}
-            </div>
-          </div>      <!-- sidebar-widget -->
+        <div class="sidebar-widget">
+          <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
+          <div class="tags-cloud">
+            {% for pt in about_post.tags.all %}
+            <a href="{% url 'tag_posts' pt.name %}" class="tag-pill">#{{ pt.name }}</a>
+            {% empty %}<a href="#" class="tag-pill">#Yangilik</a>
+            {% endfor %}
+          </div>
+        </div>
+      </aside>
 
-        </aside>
+    </div>
+  </div>
+</div>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+          <span class="footer-logo-name">Ovoza</span>
+        </div>
+        <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-telegram-plane"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+        <ul class="footer-links-list">
+          <li><a href="#">Siyosat</a></li>
+          <li><a href="#">Iqtisod</a></li>
+          <li><a href="#">Sport</a></li>
+          <li><a href="#">Texnologiya</a></li>
+          <li><a href="#">Dunyo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+        <ul class="footer-links-list">
+          <li><a href="#">Biz haqimizda</a></li>
+          <li><a href="#">Tahririyat</a></li>
+          <li><a href="#">Reklama</a></li>
+          <li><a href="#">Arxiv</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47</div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
+        <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Maxfiylik siyosati</a>
+        <a href="#">Shartlar</a>
+        <a href="#">Cookie</a>
       </div>
     </div>
   </div>
+</footer>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div><span
-              class="footer-logo-name">Ovoza</span>
-          </div>
-          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
-          <div class="footer-social">
-            <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-telegram-plane"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
-          <ul class="footer-links-list">
-            <li><a href="#">Siyosat</a></li>
-            <li><a href="#">Iqtisod</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Texnologiya</a></li>
-            <li><a href="#">Dunyo</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
-          <ul class="footer-links-list">
-            <li><a href="#">Biz haqimizda</a></li>
-            <li><a href="#">Tahririyat</a></li>
-            <li><a href="#">Reklama</a></li>
-            <li><a href="#">Arxiv</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
-          </div>
-          <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
-          <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
-          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
-        <div class="footer-bottom-links"><a href="#">Maxfiylik siyosati</a><a href="#">Shartlar</a><a
-            href="#">Cookie</a></div>
-      </div>
-    </div>
-  </footer>
+<button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
 
-  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
-
-  <!-- Alert modal -->
-  <div class="alert-modal-overlay" id="alertModal">
-    <div class="alert-modal">
-      <div class="alert-icon"><i class="fas fa-user-lock"></i></div>
-      <div class="alert-title">Kirish talab etiladi</div>
-      <div class="alert-text">Fikr bildirish uchun avval ro'yxatdan o'tgan bo'lishingiz kerak.<br>Hisobingiz bo'lsa,
-        kirish qilasizmi?</div>
-      <div class="alert-btns">
-        <button class="btn-alert-login" onclick="window.location.href='/login/'"><i class="fas fa-sign-in-alt"></i>
-          Kirish</button>
-        <button class="btn-alert-close" id="alertClose">Bekor qilish</button>
-      </div>
+<!-- Alert modal -->
+<div class="alert-modal-overlay" id="alertModal">
+  <div class="alert-modal">
+    <div class="alert-icon"><i class="fas fa-user-lock"></i></div>
+    <div class="alert-title">Kirish talab etiladi</div>
+    <div class="alert-text">Like bosish uchun avval tizimga kiring.</div>
+    <div class="alert-btns">
+      <button class="btn-alert-login" onclick="window.location.href='/login/'"><i class="fas fa-sign-in-alt"></i> Kirish</button>
+      <button class="btn-alert-close" id="alertClose">Bekor qilish</button>
     </div>
   </div>
+</div>
 
-  <script>
-    window.addEventListener('load', function () {
-      setTimeout(function () { document.getElementById('pageLoader').classList.add('hidden'); }, 1100);
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{% static 'assets/js/detail.js' %}"></script>
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.getElementById('pageLoader').classList.add('hidden'); }, 1100);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/js/detail.js' %}"></script>
 </body>
-
 </html>
