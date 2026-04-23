@@ -24,4 +24,7 @@ urlpatterns = [
 
     path('comment/delete/<int:comment_id>/', delete_comment, name='delete_comment'),
     path('comment/edit/<int:comment_id>/', edit_comment, name='edit_comment'),
+
+    path('search/', search_view, name='search'),
+
 ]

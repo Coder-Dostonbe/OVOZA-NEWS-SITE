@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qidiruv natijalari – Ovoza</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'assets/css/search.css' %}" />
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate"></span></div>
+      <div class="topbar-links">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <span class="divider">|</span>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active">UZ</a>
+          <a href="#" class="lang-btn">RU</a>
+          <a href="#" class="lang-btn">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="main-navbar">
+    <div class="container navbar-wrap">
+      <a href="{% url 'home' %}" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div class="logo-text">
+          <span class="logo-name">Ovoza</span>
+          <span class="logo-tagline">Yangiliklar portali</span>
+        </div>
+      </a>
+      <div class="nav-search">
+        <form method="GET" action="{% url 'search' %}">
+          <div class="nav-search-wrap">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" name="q" value="{{ q }}" placeholder="Qidirish..." class="nav-search-input" id="navSearchInput" autocomplete="off" />
+            {% if q %}<button type="button" class="search-clear" id="searchClear"><i class="fas fa-times"></i></button>{% endif %}
+          </div>
+        </form>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a href="{% url 'categories' %}">Categories</a></li>
+        <li class="nav-item"><a href="{% url 'news_page' %}">News</a></li>
+      </ul>
+      <button class="navbar-toggler" id="navToggler"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="search-main">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="search-header">
+        <div class="search-header-left">
+          <div class="search-label"><i class="fas fa-search"></i> Qidiruv natijalari</div>
+          {% if q %}
+          <h1 class="search-query">"{{ q }}"</h1>
+          {% endif %}
+        </div>
+        {% if q %}
+        <div class="search-meta">
+          <span class="search-count">
+            {% if posts.paginator.count %}
+              {{ posts.paginator.count }} ta natija topildi
+            {% else %}
+              Hech narsa topilmadi
+            {% endif %}
+          </span>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Results -->
+      {% if q %}
+        {% if posts %}
+        <div class="results-list">
+          {% for post in posts %}
+          <div class="result-card">
+            <a href="{% url 'post_about' post.id %}" class="result-img">
+              <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" />
+            </a>
+            <div class="result-body">
+              <div class="result-cat">{{ post.category }}</div>
+              <a href="{% url 'post_about' post.id %}" class="result-title">{{ post.title }}</a>
+              <p class="result-excerpt">{{ post.short_description }}</p>
+              <div class="result-meta">
+                <span><i class="far fa-calendar-alt"></i> {{ post.time_since }}</span>
+                <span><i class="far fa-eye"></i> {{ post.views }}</span>
+                <span><i class="far fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if posts.has_other_pages %}
+        <div class="pagination-wrap">
+          {% if posts.has_previous %}
+            <a href="?q={{ q }}&page={{ posts.previous_page_number }}" class="page-btn"><i class="fas fa-chevron-left"></i></a>
+          {% else %}
+            <span class="page-btn disabled"><i class="fas fa-chevron-left"></i></span>
+          {% endif %}
+
+          {% for num in posts.paginator.page_range %}
+            {% if posts.number == num %}
+              <span class="page-btn active">{{ num }}</span>
+            {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+              <a href="?q={{ q }}&page={{ num }}" class="page-btn">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+
+          {% if posts.has_next %}
+            <a href="?q={{ q }}&page={{ posts.next_page_number }}" class="page-btn"><i class="fas fa-chevron-right"></i></a>
+          {% else %}
+            <span class="page-btn disabled"><i class="fas fa-chevron-right"></i></span>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% else %}
+        <!-- Empty state -->
+        <div class="empty-state">
+          <div class="empty-icon"><i class="fas fa-search"></i></div>
+          <div class="empty-title">"{{ q }}" bo'yicha hech narsa topilmadi</div>
+          <div class="empty-text">Boshqa kalit so'z bilan qidirib ko'ring</div>
+          <a href="{% url 'home' %}" class="empty-btn"><i class="fas fa-home"></i> Bosh sahifaga qaytish</a>
+        </div>
+        {% endif %}
+
+      {% else %}
+      <!-- No query -->
+      <div class="empty-state">
+        <div class="empty-icon"><i class="fas fa-search"></i></div>
+        <div class="empty-title">Nima qidiryapsiz?</div>
+        <div class="empty-text">Yuqoridagi qidiruv maydoniga so'z kiriting</div>
+      </div>
+      {% endif %}
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Maxfiylik</a>
+          <a href="#">Shartlar</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'assets/js/search.js' %}"></script>
+</body>
+</html>

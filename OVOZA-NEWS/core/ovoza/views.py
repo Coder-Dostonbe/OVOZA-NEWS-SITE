@@ -11,32 +11,61 @@ from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount
 from django.core.paginator import Paginator
 
-def home(request):
-    q = request.GET.get('q', '').strip()   # .split() o'chirildi — string bo'lishi kerak
 
-    posts = Post.objects.filter(is_published=True).order_by('-created_at')
-    hero_post = Post.objects.filter(is_featured=True, is_published=True).first()
-    random_post = Post.objects.filter(is_published=False).order_by('?')
+def search_post(q):
+    if not q:
+        return Post.objects.none()
+    return Post.objects.filter(is_published=True).filter(
+        Q(title__icontains=q) |
+        Q(short_description__icontains=q) |
+        Q(author__first_name__icontains=q) |
+        Q(author__last_name__icontains=q) |
+        Q(author__username__icontains=q) |
+        Q(category__name__icontains=q) |
+        Q(tags__name__icontains=q)
+    ).distinct().order_by('-created_at')
 
 
-    if q:
-        posts = posts.filter(
-            Q(title__icontains=q) |
-            Q(short_description__icontains=q)
-        )
+def search_view(request):
+    q = request.GET.get('q', '').strip()
+    posts = search_post(q) if q else Post.objects.none()
 
-    paginator = Paginator(posts, 5)
+    paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
 
+    return render(request, 'search.html', {'posts': posts, 'q': q})
+
+def home(request):
+    q= request.GET.get('q', '').strip()
+
+    recommended = Post.objects.filter(is_published=True).order_by('-created_at')
+
+    if not q:
+        recommended = search_post(q)
+
+    hero_post = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at').first()
+    side_posts = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at')[1:3]
+    random_post = Post.objects.filter(is_published=False).order_by('?')
+    ticker = Post.objects.filter(is_published=True).order_by('-created_at')[:10]
+    recommended = Post.objects.filter(is_published=True).exclude(id__in=[hero_post.id] + list(side_posts.values_list('id', flat=True))).order_by('-created_at')
+
+
+    paginator = Paginator(recommended, 5)
+    page_number = request.GET.get('page')
+    recommended = paginator.get_page(page_number)
+
     ctx = {
-        'posts': posts,
-        'q': q,
         'hero_post': hero_post,
+        'side_posts': side_posts,
         'random_post': random_post,
+        'ticker': ticker,
+        'recommended': recommended,
     }
 
     return render(request, 'index.html', ctx)
+
+
 
 def get_client_ip(request):
     x_forwarded = request.META.get('HTTP_X_FORWARDED_FOR')
