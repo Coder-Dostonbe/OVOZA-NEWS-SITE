@@ -546,3 +546,10 @@ ul { list-style:none; }
   .related-img { width:80px; }
   .alert-modal { padding:24px 18px; }
 }
+
+.article-text p,
+.article-text span {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+}

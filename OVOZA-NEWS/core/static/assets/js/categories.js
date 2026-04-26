@@ -44,25 +44,68 @@
   }
 
   /* ─── Animated counters ──────────────────────────────── */
-  function animCount(el, target, ms) {
-    if (!el) return;
+  /* ─── Animated counters ──────────────────────────────────── */
+function typeText(el, text, ms) {
+  if (!el) return Promise.resolve();
+  el.textContent = "";
+  return new Promise(resolve => {
+    let i = 0;
+    const t = setInterval(() => {
+      el.textContent += text[i];
+      i++;
+      if (i >= text.length) { clearInterval(t); resolve(); }
+    }, ms / text.length);
+  });
+}
+
+function animCount(el, target, ms) {
+  if (!el) return Promise.resolve();
+  return new Promise(resolve => {
     let v = 0;
     const step = Math.ceil(target / (ms / 16));
     const t = setInterval(() => {
-      v += step; if (v >= target) { v = target; clearInterval(t); }
+      v += step;
+      if (v >= target) { v = target; clearInterval(t); resolve(); }
       el.textContent = v.toLocaleString("ru-RU");
     }, 16);
-  }
-  let countersRan = false;
-  const cObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !countersRan) {
-      countersRan = true;
-      animCount(document.getElementById("statArticles"), 1892, 1200);
-      animCount(document.getElementById("statToday"),      47,  800);
-    }
   });
-  const hero = document.querySelector(".page-hero");
-  if (hero) cObs.observe(hero);
+}
+
+async function runCounters() {
+  const statArticles = document.getElementById("statArticles");
+  const statCat      = document.querySelector(".hero-stat-item:nth-child(2) .hero-stat-num");
+  const statToday    = document.getElementById("statToday");
+
+  const labelArticles = statArticles?.nextElementSibling;
+  const labelCat      = statCat?.nextElementSibling;
+  const labelToday    = statToday?.nextElementSibling;
+
+  const articlesVal = parseInt(statArticles?.textContent || 0);
+  const catVal      = parseInt(statCat?.textContent || 0);
+  const todayVal    = parseInt(statToday?.textContent || 0);
+
+  // Barchasini nolga tushiramiz
+  if (statArticles) statArticles.textContent = "0";
+  if (statCat)      statCat.textContent      = "0";
+  if (statToday)    statToday.textContent    = "0";
+  if (labelArticles) labelArticles.textContent = "";
+  if (labelCat)      labelCat.textContent      = "";
+  if (labelToday)    labelToday.textContent    = "";
+
+  // 1 — Jami maqola
+  await animCount(statArticles, articlesVal, 1200);
+  await typeText(labelArticles, "Jami maqola", 400);
+
+  // 2 — Kategoriya
+  await animCount(statCat, catVal, 800);
+  await typeText(labelCat, "Kategoriya", 350);
+
+  // 3 — Bugun
+  await animCount(statToday, todayVal, 600);
+  await typeText(labelToday, "Bugun", 300);
+}
+
+
 
   /* ─── Card staggered entrance ────────────────────────── */
   const allCards = document.querySelectorAll(".cat-card");
@@ -89,7 +132,7 @@
 
       setTimeout(() => {
         cardEl.classList.remove("pressing");
-        const url = `category-detail.html?cat=${key}`;
+        const url = `/category/${key}/`;
 
         if (document.startViewTransition) {
           document.startViewTransition(() => {
@@ -151,4 +194,67 @@
   }
 
   console.log("Ovoza – categories.js (View Transitions) yuklandi");
+  window.runCounters = runCounters;
 })();
+
+/* ─── Search overlay ─────────────────────────────────── */
+  const searchOverlay  = document.getElementById("searchOverlay");
+  const searchTrigger  = document.getElementById("searchTriggerNav");
+  const searchOvClose  = document.getElementById("searchOvClose");
+  const searchOvInput  = document.getElementById("searchOvInput");
+  searchOvInput?.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        const q = this.value.trim();
+        if (q) window.location.href = `/search/?q=${encodeURIComponent(q)}`;
+    }
+});
+
+  if (searchTrigger) {
+    searchTrigger.addEventListener("click", () => {
+      searchOverlay.classList.add("active");
+      setTimeout(() => searchOvInput?.focus(), 200);
+    });
+  }
+
+  if (searchOvClose) {
+    searchOvClose.addEventListener("click", () => {
+      searchOverlay.classList.remove("active");
+    });
+  }
+
+  // ESC bilan yopish
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") searchOverlay?.classList.remove("active");
+  });
+
+  // Ctrl+K bilan ochish
+  document.addEventListener("keydown", e => {
+    if (e.ctrlKey && e.key === "k") {
+      e.preventDefault();
+      searchOverlay?.classList.add("active");
+      setTimeout(() => searchOvInput?.focus(), 200);
+    }
+  });
+
+  // Overlay tashqarisiga bosib yopish
+  searchOverlay?.addEventListener("click", e => {
+    if (e.target === searchOverlay) searchOverlay.classList.remove("active");
+  });
+
+  // Tez o'tish teglari
+  document.querySelectorAll(".search-ov-tag").forEach(tag => {
+    tag.addEventListener("click", function() {
+      if (searchOvInput) searchOvInput.value = this.dataset.q;
+      searchOvInput?.focus();
+    });
+  });
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.getElementById('pageLoader').classList.add('hidden');
+    }, 1100);
+
+    setTimeout(function () {
+      if (typeof runCounters === 'function') runCounters();
+    }, 1100);  // loader (1100ms) + biroz kutish (500ms)
+  });

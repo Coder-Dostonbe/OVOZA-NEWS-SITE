@@ -437,5 +437,8 @@
     });
   }
 
-  console.log("Ovoza – detail.js yuklandi ✓");
+  document.querySelectorAll('.article-text *').forEach(el => {
+  el.style.backgroundColor = '';
+  el.style.color = '';
+});
 })();

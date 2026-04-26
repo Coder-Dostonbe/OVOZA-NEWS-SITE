@@ -1,0 +1,97 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block after_related_objects %}
+<style>
+.icon-picker-wrap { margin: 20px 0; }
+.icon-picker-label { font-weight: bold; margin-bottom: 10px; display: block; }
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    background: white;
+    font-size: 11px;
+    text-align: center;
+}
+.icon-item:hover { border-color: #417690; background: #e8f0f7; }
+.icon-item.selected { border-color: #c0392b; background: #fdf0ef; }
+.icon-item i { font-size: 22px; color: #333; }
+.color-row { display: flex; gap: 20px; align-items: center; margin-top: 10px; }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<div class="icon-picker-wrap">
+    <span class="icon-picker-label">🎨 Ikonka tanlang:</span>
+    <div class="icon-grid" id="iconGrid">
+        {% for value, label in fa_icons %}
+        <div class="icon-item" data-icon="{{ value }}" onclick="selectIcon('{{ value }}', this)">
+            <i class="{{ value }}"></i>
+            <span>{{ label|truncatechars:12 }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div style="margin-top:16px;">
+    <strong>🎨 Rang va preview:</strong>
+    <div class="color-row">
+        <div>
+            <label>Rang:</label><br>
+            <input type="color" id="colorPicker" value="#1a6fa8" oninput="updatePreview()">
+        </div>
+        <div id="iconPreview"
+             style="width:50px;height:50px;border-radius:10px;display:flex;align-items:center;
+                    justify-content:center;font-size:24px;color:white;background:#1a6fa8;">
+            <i class="fas fa-folder" id="previewIcon"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+function selectIcon(iconClass, el) {
+    document.querySelectorAll('.icon-item').forEach(i => i.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('id_icon').value = iconClass;
+    document.getElementById('previewIcon').className = iconClass;
+}
+
+function updatePreview() {
+    const c = document.getElementById('colorPicker').value;
+    document.getElementById('iconPreview').style.background = c;
+    document.getElementById('id_color').value = c;
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+    const currentIcon = document.getElementById('id_icon').value;
+    const currentColor = document.getElementById('id_color').value;
+
+    if (currentIcon) {
+        const el = document.querySelector(`[data-icon="${currentIcon}"]`);
+        if (el) el.classList.add('selected');
+        document.getElementById('previewIcon').className = currentIcon;
+    }
+    if (currentColor) {
+        document.getElementById('colorPicker').value = currentColor;
+        document.getElementById('iconPreview').style.background = currentColor;
+    }
+});
+</script>
+{% endblock %}

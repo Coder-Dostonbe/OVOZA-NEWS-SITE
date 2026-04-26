@@ -2,210 +2,6 @@
 (function () {
   "use strict";
 
-  /* ─── Category config ─────────────────────────────────
-     Har kategoriya uchun: rang, icon, nom, tavsif, statistika
-  ──────────────────────────────────────────────────────── */
-  const CATEGORIES = {
-    sport: {
-      name:    "Sport",
-      icon:    "fa-trophy",
-      color1:  "#c0392b",
-      color2:  "#7b241c",
-      desc:    "Futbol, boks, kurash, basketbol va barcha sport turlaridan so'nggi yangiliklar, natijalar va tahlillar.",
-      articles: 312,
-      today:   14,
-      image:   "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#Futbol","#Boks","#Kurash","#Olimpiada","#Pakhtakor","#Tennis","#Basketbol","#Taekwondo","#Milliy jamoasi","#Chempionat"],
-    },
-    siyosat: {
-      name:    "Siyosat",
-      icon:    "fa-landmark",
-      color1:  "#2471a3",
-      color2:  "#154360",
-      desc:    "O'zbekiston va dunyo siyosiy hayoti: parlament qarorlari, diplomatik munosabatlar va siyosiy tahlillar.",
-      articles: 248,
-      today:   9,
-      image:   "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#Parlament","#Prezident","#Diplomatiya","#Qonun","#Hukumat","#Saylov","#MDH","#Tashqi siyosat"],
-    },
-    iqtisod: {
-      name:    "Iqtisod",
-      icon:    "fa-chart-line",
-      color1:  "#1e8449",
-      color2:  "#145a32",
-      desc:    "Valyuta kurslari, birja, biznes yangiliklari, investitsiyalar va makroiqtisodiy ko'rsatkichlar.",
-      articles: 196,
-      today:   11,
-      image:   "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#Dollar","#So'm","#Birja","#Investitsiya","#GDP","#Biznes","#Bank","#Eksport"],
-    },
-    texnologiya: {
-      name:    "Texnologiya",
-      icon:    "fa-microchip",
-      color1:  "#6c3483",
-      color2:  "#4a235a",
-      desc:    "Sun'iy intellekt, 5G, IT-sanoat, startaplar va O'zbekiston raqamli transformatsiyasi.",
-      articles: 174,
-      today:   8,
-      image:   "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#AI","#5G","#IT-Park","#Startup","#Dasturlash","#Raqamlashtirish","#Kiberhavfsizlik"],
-    },
-    dunyo: {
-      name:    "Dunyo",
-      icon:    "fa-globe-asia",
-      color1:  "#1a5276",
-      color2:  "#0e2f44",
-      desc:    "Xalqaro voqealar, geosiyosat, MDH, Yevropa, Amerika va Osiyo bo'yicha xabarlar.",
-      articles: 287,
-      today:   16,
-      image:   "https://images.unsplash.com/photo-1491466424936-e304919aada7?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#BMT","#NATO","#G20","#Yevropa","#AQSh","#Xitoy","#Rossiya","#MDH"],
-    },
-    jamiyat: {
-      name:    "Jamiyat",
-      icon:    "fa-users",
-      color1:  "#b7950b",
-      color2:  "#7d6608",
-      desc:    "Ta'lim, atrof-muhit, ijtimoiy muammolar va fuqarolik hayotiga oid materiallar.",
-      articles: 143,
-      today:   6,
-      image:   "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#Ta'lim","#Ekologiya","#Salomatlik","#Oila","#Yoshlar","#Madaniyat"],
-    },
-    madaniyat: {
-      name:    "Madaniyat",
-      icon:    "fa-palette",
-      color1:  "#943126",
-      color2:  "#641e16",
-      desc:    "San'at, musiqa, kino, teatr, adabiyot va O'zbekiston madaniy merosi bo'yicha yangiliklar.",
-      articles: 118,
-      today:   5,
-      image:   "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#Musiqa","#Kino","#Teatr","#San'at","#Adabiyot","#Festival","#Meros"],
-    },
-    salomatlik: {
-      name:    "Salomatlik",
-      icon:    "fa-heartbeat",
-      color1:  "#117a65",
-      color2:  "#0b5345",
-      desc:    "Tibbiyot yangiliklari, sog'lom turmush tarzi va sog'liqni saqlash tizimi haqida.",
-      articles: 92,
-      today:   4,
-      image:   "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900&q=80&auto=format&fit=crop",
-      tags:    ["#Tibbiyot","#Sog'lom turmush","#Shifokor","#Kasalxona","#Fitness","#Ruhiyat"],
-    },
-  };
-
-  /* ─── Read URL param ──────────────────────────────── */
-  const params  = new URLSearchParams(window.location.search);
-  const catKey  = (params.get("cat") || "sport").toLowerCase();
-  const cat     = CATEGORIES[catKey] || CATEGORIES.sport;
-
-  /* ─── Apply category colors (CSS vars) ───────────── */
-  function applyColor(c1, c2) {
-    document.documentElement.style.setProperty("--cat-color-1", c1);
-    document.documentElement.style.setProperty("--cat-color-2", c2);
-  }
-  applyColor(cat.color1, cat.color2);
-
-  /* ─── Fill hero ───────────────────────────────────── */
-  const heroName    = document.getElementById("heroName");
-  const heroIcon    = document.getElementById("heroIcon");
-  const heroDesc    = document.getElementById("heroDesc");
-  const heroBigIcon = document.getElementById("heroBigIcon");
-  const breadCat    = document.getElementById("breadCrumbCat");
-  const featBadge   = document.getElementById("featuredBadge");
-  const trendTitle  = document.getElementById("trendingTitle");
-  const pageTitle   = document.getElementById("pageTitle");
-
-  if (heroName)    heroName.textContent    = cat.name;
-  if (heroDesc)    heroDesc.textContent    = cat.desc;
-  if (breadCat)    breadCat.textContent    = cat.name;
-  if (trendTitle)  trendTitle.textContent  = `${cat.name} — Trendlar`;
-  if (pageTitle)   pageTitle.textContent   = `${cat.name} – Ovoza Yangiliklar Portali`;
-
-  if (heroIcon) {
-    heroIcon.className = `fas ${cat.icon}`;
-  }
-  if (heroBigIcon) {
-    heroBigIcon.className = `cat-hero-big-icon fas ${cat.icon}`;
-  }
-  if (featBadge) {
-    featBadge.innerHTML = `<i class="fas ${cat.icon}"></i> ${cat.name}`;
-  }
-
-  /* Article tags update */
-  document.querySelectorAll(".art-card-tag").forEach(el => {
-    el.textContent = cat.name;
-  });
-  document.querySelectorAll(".featured-badge").forEach(el => {
-    el.style.background = cat.color1;
-  });
-
-  /* Stats counter */
-  function animCount(el, target, ms) {
-    if (!el) return;
-    let v = 0; const step = Math.ceil(target / (ms / 16));
-    const t = setInterval(() => {
-      v += step;
-      if (v >= target) { v = target; clearInterval(t); }
-      el.textContent = v.toLocaleString("ru-RU");
-    }, 16);
-  }
-  const statArticles = document.getElementById("statArticles");
-  const statToday    = document.getElementById("statToday");
-  if (statArticles) statArticles.textContent = cat.articles;
-  if (statToday)    statToday.textContent    = cat.today;
-
-  // Animate on load
-  setTimeout(() => {
-    animCount(statArticles, cat.articles, 1000);
-    animCount(statToday,    cat.today,    700);
-  }, 400);
-
-  /* Tags sidebar */
-  const tagsWrap = document.querySelector(".tags-wrap");
-  if (tagsWrap && cat.tags) {
-    tagsWrap.innerHTML = cat.tags
-      .map(t => `<span class="tag-item">${t}</span>`)
-      .join("");
-    tagsWrap.querySelectorAll(".tag-item").forEach(pill => {
-      pill.addEventListener("click", function () {
-        this.style.borderColor = cat.color1;
-        this.style.color = "#fff";
-        setTimeout(() => {
-          this.style.borderColor = "";
-          this.style.color = "";
-        }, 900);
-      });
-    });
-  }
-
-  /* Featured image update */
-  const featImg = document.querySelector(".featured-article img");
-  if (featImg && cat.image) featImg.src = cat.image;
-
-  /* ─── Sub-tabs ────────────────────────────────────── */
-  document.querySelectorAll(".cat-tab").forEach(tab => {
-    tab.addEventListener("click", function () {
-      document.querySelectorAll(".cat-tab").forEach(t => t.classList.remove("active"));
-      this.classList.add("active");
-    });
-  });
-
-  /* ─── Pagination ──────────────────────────────────── */
-  document.querySelectorAll(".page-btn:not(.disabled)").forEach(btn => {
-    btn.addEventListener("click", function () {
-      document.querySelectorAll(".page-btn:not(.disabled)").forEach(b => {
-        if (!b.querySelector("i")) b.classList.remove("active");
-      });
-      if (!this.querySelector("i")) {
-        this.classList.add("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
-  });
-
   /* ─── Live clock ──────────────────────────────────── */
   const dateEl = document.getElementById("topbarDate");
   if (dateEl) {
@@ -239,21 +35,167 @@
   }
 
   /* ─── Sticky navbar shadow ────────────────────────── */
-  const navbar = document.querySelector(".main-navbar");
+  const navbar    = document.querySelector(".main-navbar");
+  const scrollBtn = document.getElementById("scrollTop");
   window.addEventListener("scroll", () => {
     if (navbar) navbar.style.boxShadow = window.scrollY > 50
       ? "0 4px 30px rgba(0,0,0,0.8)" : "0 2px 20px rgba(0,0,0,0.5)";
     if (scrollBtn) {
-      scrollBtn.style.opacity = window.scrollY > 400 ? "1" : "0";
+      scrollBtn.style.opacity       = window.scrollY > 400 ? "1" : "0";
       scrollBtn.style.pointerEvents = window.scrollY > 400 ? "auto" : "none";
     }
   });
 
   /* ─── Scroll to top ───────────────────────────────── */
-  const scrollBtn = document.getElementById("scrollTop");
   if (scrollBtn) {
     scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   }
+
+  /* ─── Stats animation ─────────────────────────────── */
+  function animCount(el, target, ms) {
+  if (!el) return Promise.resolve();
+  return new Promise(resolve => {
+    let v = 0;
+    const totalSteps = ms / 16;
+    const step = target / totalSteps; // Math.ceil o'rniga oddiy bo'linma
+    const t = setInterval(() => {
+      v += step;
+      if (v >= target) { v = target; clearInterval(t); resolve(); }
+      el.textContent = Math.floor(v).toLocaleString("ru-RU");
+    }, 16);
+  });
+}
+
+  async function runStats() {
+  const statArticles = document.getElementById("statArticles");
+  const statToday    = document.getElementById("statToday");
+  const statViews    = document.getElementById("statViews");
+
+  const articlesVal = parseInt(statArticles?.textContent || 0);
+  const todayVal    = parseInt(statToday?.textContent    || 0);
+  const viewsVal    = parseInt(statViews?.textContent    || 0);
+
+  // 0 ga o'zgartirmaymiz — loader yopilgandan keyin animatsiya boshlanadi
+  await animCount(statArticles, articlesVal, 1200);
+  await animCount(statToday,    todayVal,    800);
+  await animCount(statViews,    viewsVal,    1000);
+}
+
+/* ─── Sub-tabs AJAX ───────────────────────────────── */
+
+// Sahifa ochilganda dastlabki holatni saqlaymiz
+const initialFeatured = document.querySelector('.featured-article')?.outerHTML || '';
+const initialGrid = document.getElementById('articlesGrid')?.innerHTML || '';
+
+document.querySelectorAll(".cat-tab").forEach(tab => {
+  tab.addEventListener("click", function () {
+    document.querySelectorAll(".cat-tab").forEach(t => t.classList.remove("active"));
+    this.classList.add("active");
+
+    const tabKey = this.dataset.tab;
+
+    // Barchasi tabida dastlabki holatga qaytamiz
+    if (tabKey === 'all') {
+      const featuredWrap = document.querySelector('.featured-article');
+      if (featuredWrap) {
+        featuredWrap.outerHTML = initialFeatured;
+      } else {
+        const contentArea = document.querySelector('.content-area');
+        if (contentArea) contentArea.insertAdjacentHTML('afterbegin', initialFeatured);
+      }
+      const grid = document.getElementById('articlesGrid');
+      if (grid) grid.innerHTML = initialGrid;
+      return;
+    }
+
+    // Boshqa tablarda AJAX
+    const slug = window.location.pathname.split('/')[2];
+
+    fetch(`/category/${slug}/posts/?tab=${tabKey}`)
+      .then(r => r.json())
+      .then(data => {
+
+        // ── Featured yangilash ──
+        const featuredWrap = document.querySelector('.featured-article');
+        if (data.featured) {
+          if (featuredWrap) {
+            featuredWrap.style.display = '';
+            featuredWrap.href = data.featured.url;
+            const img = featuredWrap.querySelector('img');
+            if (img) img.src = data.featured.image;
+            const title = featuredWrap.querySelector('.featured-title');
+            if (title) title.textContent = data.featured.title;
+            const meta = featuredWrap.querySelector('.featured-meta');
+            if (meta) meta.innerHTML = `
+              <span><i class="far fa-user"></i> ${data.featured.author}</span>
+              <span><i class="far fa-clock"></i> ${data.featured.time_since}</span>
+              <span><i class="far fa-eye"></i> ${data.featured.views}</span>
+              <span><i class="far fa-comment"></i> ${data.featured.comments}</span>
+            `;
+          }
+        } else {
+          if (featuredWrap) featuredWrap.style.display = 'none';
+        }
+
+        // ── Grid yangilash ──
+        const grid = document.getElementById("articlesGrid");
+        if (!grid) return;
+
+        if (!data.posts.length) {
+          grid.innerHTML = `
+            <div class="empty-wrapper">
+              <div class="empty-state">
+                <div class="empty-icon"><i class="fas fa-newspaper"></i></div>
+                <h3 class="empty-title">Hozircha maqola yo'q</h3>
+                <p class="empty-desc">Bu bo'limda hali maqolalar qo'shilmagan.</p>
+              </div>
+            </div>`;
+          return;
+        }
+
+        grid.innerHTML = data.posts.map((post, i) => `
+          <a href="${post.url}" class="art-card ${i % 3 === 2 ? 'wide' : ''}">
+            <div class="art-card-img tall">
+              ${post.image ? `<img src="${post.image}" alt="${post.title}" loading="lazy" />` : ''}
+              <span class="art-card-tag">${post.category_name || ''}</span>
+            </div>
+            <div class="art-card-body">
+              <div class="art-card-title">${post.title}</div>
+              <div class="art-card-excerpt">${post.short_description}</div>
+              <div class="art-card-footer">
+                <span><i class="far fa-clock"></i> ${post.time_since} &nbsp;·&nbsp; <i class="far fa-eye"></i> ${post.views}</span>
+                <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </a>
+        `).join('');
+
+        // Animatsiya
+        grid.querySelectorAll('.art-card').forEach((card, i) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(18px)';
+          card.style.transition = `opacity 0.4s ease ${i * 50}ms, transform 0.4s ease ${i * 50}ms`;
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 50);
+        });
+      });
+  });
+});
+
+  /* ─── Pagination ──────────────────────────────────── */
+  document.querySelectorAll(".page-btn:not(.disabled)").forEach(btn => {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".page-btn:not(.disabled)").forEach(b => {
+        if (!b.querySelector("i")) b.classList.remove("active");
+      });
+      if (!this.querySelector("i")) {
+        this.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  });
 
   /* ─── Art card entrance animation ────────────────── */
   const cards = document.querySelectorAll(".art-card, .featured-article");
@@ -274,10 +216,7 @@
     io.observe(card);
   });
 
-  /* ─── View Transitions — Orqaga qaytish ──────────────
-     Breadcrumb va "Kategoriyalar" linklari bosilganda
-     going-back klassini qo'shib transition bilan qaytadi
-  ─────────────────────────────────────────────────────── */
+  /* ─── View Transitions — Orqaga qaytish ──────────── */
   function goBackWithTransition(url) {
     if (document.startViewTransition) {
       document.documentElement.classList.add("going-back");
@@ -289,7 +228,6 @@
     }
   }
 
-  /* Breadcrumb linklar */
   document.querySelectorAll(".breadcrumb a").forEach(link => {
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
@@ -300,7 +238,6 @@
     });
   });
 
-  /* Navbar — Categories link */
   document.querySelectorAll(".nav-menu a, .nav-item a").forEach(link => {
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
@@ -311,5 +248,33 @@
     });
   });
 
-  console.log(`Ovoza – category-detail.js yuklandi | kategoriya: ${cat.name}`);
+  /* ─── Page loader + stats ─────────────────────────── */
+  window.addEventListener('load', function () {
+  // Avval raqamlarni 0 qilamiz — loader ostida
+  const statArticles = document.getElementById("statArticles");
+  const statToday    = document.getElementById("statToday");
+  const statViews    = document.getElementById("statViews");
+
+  const articlesVal = parseInt(statArticles?.textContent || 0);
+  const todayVal    = parseInt(statToday?.textContent    || 0);
+  const viewsVal    = parseInt(statViews?.textContent    || 0);
+
+  if (statArticles) statArticles.textContent = "0";
+  if (statToday)    statToday.textContent    = "0";
+  if (statViews)    statViews.textContent    = "0";
+
+  setTimeout(function () {
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+      loader.classList.add('hidden');
+
+    }
+    // Loader yopilishi bilan animatsiya boshlanadi
+    animCount(statArticles, articlesVal, 400).then(() =>
+      animCount(statToday, todayVal, 400).then(() =>
+        animCount(statViews, viewsVal, 600)
+      )
+    );
+  }, 1100);
+});
 })();

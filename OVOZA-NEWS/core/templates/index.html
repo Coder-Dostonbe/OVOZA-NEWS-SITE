@@ -72,7 +72,6 @@
         <span class="divider">|</span>
         <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
         <span class="divider">|</span>
-        <span class="divider">|</span>
         <div class="lang-switcher">
           <a href="#" class="lang-btn active" data-lang="uz">UZ</a>
           <a href="#" class="lang-btn" data-lang="ru">RU</a>
@@ -162,7 +161,7 @@
               <div class="overlay"></div>
               <div class="card-content">
                 <span class="side-badge {% if forloop.counter == 2 %}red{% endif %}">{{ post.category }}</span>
-                <h3>{{ post.title }}</h3>
+                <a href="{% url 'post_about' post.id %}"><h3>{{ post.title }}</h3></a>
                 <div class="meta-small"><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</div>
               </div>
             </div>
@@ -192,7 +191,7 @@
                   <span class="card-category tech">{{ post.category }}</span>
                 </div>
                 <div class="card-body">
-                  <h3 class="card-title">{{ post.title }}</h3>
+                  <a href="{% url 'post_about' post.id %}"><h3 class="card-title">{{ post.title }}</h3></a>
                   <p class="card-excerpt">{{ post.short_description }}</p>
                   <div class="card-meta">
                     <div class="card-meta-left">
@@ -238,55 +237,20 @@
 
           <section id="latest">
             <div class="section-header">
-              <h2 class="section-title">Eng so'nggi yangiliklar</h2>
-              <a href="#" class="section-link">Hammasi <i class="fas fa-arrow-right"></i></a>
+              <h2 class="section-title">Eng qaynoq yangiliklar</h2>
             </div>
             <div class="latest-list">
-              <div class="latest-item">
-                <span class="latest-num">01</span>
-                <img class="latest-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&q=70&auto=format&fit=crop" alt="" loading="lazy" />
+              {% for post in random_post %}
+               <div class="latest-item">
+                <span class="latest-num">{{ forloop.counter|stringformat:'02d' }}</span>
+                <img class="latest-img" src="{{ post.image.url }}" alt="" loading="lazy" />
                 <div class="latest-body">
-                  <div class="latest-cat">Siyosat</div>
-                  <div class="latest-title">Vazirlar Mahkamasi yangi ijtimoiy himoya dasturini tasdiqladi</div>
-                  <div class="latest-meta"><i class="far fa-clock"></i> 30 daqiqa oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 2,140</div>
+                  <div class="latest-cat">{{ post.category }}</div>
+                  <div class="latest-title">{{ post.title }}</div>
+                  <div class="latest-meta"><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</div>
                 </div>
               </div>
-              <div class="latest-item">
-                <span class="latest-num">02</span>
-                <img class="latest-img" src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=200&q=70&auto=format&fit=crop" alt="" loading="lazy" />
-                <div class="latest-body">
-                  <div class="latest-cat">Iqtisod</div>
-                  <div class="latest-title">Toshkent fond birjasida yangi rekord: savdo hajmi 1.2 trillion so'mni tashkil etdi</div>
-                  <div class="latest-meta"><i class="far fa-clock"></i> 1 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 3,890</div>
-                </div>
-              </div>
-              <div class="latest-item">
-                <span class="latest-num">03</span>
-                <img class="latest-img" src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=200&q=70&auto=format&fit=crop" alt="" loading="lazy" />
-                <div class="latest-body">
-                  <div class="latest-cat">Texnologiya</div>
-                  <div class="latest-title">O'zbekistonda 5G texnologiyasi sinovlari muvaffaqiyatli yakunlandi</div>
-                  <div class="latest-meta"><i class="far fa-clock"></i> 2 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 6,450</div>
-                </div>
-              </div>
-              <div class="latest-item">
-                <span class="latest-num">04</span>
-                <img class="latest-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&q=70&auto=format&fit=crop" alt="" loading="lazy" />
-                <div class="latest-body">
-                  <div class="latest-cat">Sport</div>
-                  <div class="latest-title">Futbol: O'zbekiston Superligi yangi mavsumga kirishdi</div>
-                  <div class="latest-meta"><i class="far fa-clock"></i> 3 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 4,770</div>
-                </div>
-              </div>
-              <div class="latest-item">
-                <span class="latest-num">05</span>
-                <img class="latest-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&q=70&auto=format&fit=crop" alt="" loading="lazy" />
-                <div class="latest-body">
-                  <div class="latest-cat">Jamiyat</div>
-                  <div class="latest-title">Yangi o'quv yilida barcha maktablarga zamonaviy kompyuter laboratoriyalari o'rnatiladi</div>
-                  <div class="latest-meta"><i class="far fa-clock"></i> 4 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 5,100</div>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </section>
 
@@ -404,39 +368,20 @@
           </div>
 
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-futbol"></i> Futbol Natijalari</div>
-            <div class="football-tabs">
-              <button class="ftab active" data-league="uzbek">O'zbekiston</button>
-              <button class="ftab" data-league="premier">Premier</button>
-              <button class="ftab" data-league="champions">UCL</button>
+            <div class="widget-header"><i class="fas fa-smog"></i> Havo Sifati (AQI)</div>
+            <div id="aqiWidget" style="padding:4px 0;">
+              <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px;">Yuklanmoqda...</div>
             </div>
-            <div class="football-matches" id="footballMatches">
-              <div class="match-item">
-                <div class="match-teams"><span class="team home">Pakhtakor</span><span class="match-score finished">2 – 1</span><span class="team away">Nasaf</span></div>
-                <div class="match-info"><span class="match-status fin">Tugadi</span> · 78'</div>
-              </div>
-              <div class="match-item live-match">
-                <div class="match-teams"><span class="team home">Neftchi</span><span class="match-score live-score">1 – 1</span><span class="team away">Bunyodkor</span></div>
-                <div class="match-info"><span class="match-status live"><i class="fas fa-circle pulse-dot"></i> JONLI</span> · 63'</div>
-              </div>
-              <div class="match-item">
-                <div class="match-teams"><span class="team home">Lokomotiv</span><span class="match-score upcoming">– : –</span><span class="team away">Dinamo</span></div>
-                <div class="match-info"><span class="match-status upcoming-s">Bugun</span> · 18:00</div>
-              </div>
-              <div class="match-item">
-                <div class="match-teams"><span class="team home">AGMK</span><span class="match-score finished">0 – 0</span><span class="team away">Metallurg</span></div>
-                <div class="match-info"><span class="match-status fin">Tugadi</span> · Dum.</div>
-              </div>
-            </div>
-            <a href="#" class="widget-more-link"><i class="fas fa-list"></i> Barcha natijalar</a>
           </div>
 
           <div class="newsletter-widget">
             <h4><i class="fas fa-envelope-open-text"></i> Xabar Olish</h4>
             <p>Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga</p>
             <form class="newsletter-form" id="newsletterForm">
-              <input type="email" placeholder="Email manzilingiz..." required />
-              <button type="submit"><i class="fas fa-paper-plane"></i> Obuna bo'lish</button>
+              <input type="email" id="subscribeEmail" placeholder="Email manzilingiz..." required />
+              <button type="button" onclick="subscribeNow()">
+                <i class="fas fa-paper-plane"></i> Obuna bo'lish
+              </button>
             </form>
           </div>
 
@@ -560,51 +505,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'assets/js/index.js' %}"></script>
 
-  <script>
-    window.addEventListener('load', function () {
-      var titleEl = document.getElementById('heroTitle');
-      var text = titleEl ? titleEl.getAttribute('data-text') : '';
-      if (!text) return;
-      var cursor = document.createElement('span');
-      cursor.className = 'hero-cursor';
-      titleEl.appendChild(cursor);
-      var i = 0;
-      function type() {
-        if (i < text.length) {
-          titleEl.insertBefore(document.createTextNode(text[i]), cursor);
-          i++;
-          setTimeout(type, 38);
-        } else {
-          cursor.remove();
-          document.querySelectorAll('.hero-anim-badge, .hero-anim-desc, .hero-anim-meta, .hero-anim-btn').forEach(function(el) { el.classList.add('visible'); });
-        }
-      }
-      setTimeout(type, 300);
-    });
-  </script>
-  <script>
-    (function () {
-      var overlay = document.getElementById('searchOverlay');
-      var input = document.getElementById('searchOverlayInput');
-      var closeBtn = document.getElementById('searchOverlayClose');
-      var trigger = document.getElementById('searchTrigger');
-      if (!overlay) return;
-      function open() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; setTimeout(function () { if (input) input.focus(); }, 120); }
-      function close() { overlay.classList.remove('active'); document.body.style.overflow = ''; if (input) input.value = ''; }
-      if (trigger) trigger.addEventListener('click', open);
-      if (closeBtn) closeBtn.addEventListener('click', close);
-      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') close();
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); overlay.classList.contains('active') ? close() : open(); }
-      });
-    })();
-  </script>
-  <script>
-    window.addEventListener('load', function () {
-      setTimeout(function () { document.getElementById('pageLoader').classList.add('hidden'); }, 1100);
-    });
-  </script>
 
 </body>
 </html>

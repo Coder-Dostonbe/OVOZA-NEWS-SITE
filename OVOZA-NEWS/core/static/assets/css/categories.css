@@ -1354,3 +1354,133 @@ ul { list-style: none; }
 
 /* Cards highlight / hide */
 .cat-card.search-hidden { display: none !important; }
+
+
+ /* ── Engagement badges ── */
+    .eng-badges {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity .22s ease, transform .22s ease;
+      pointer-events: none;
+    }
+
+    .cat-card:hover .eng-badges,
+    .art-card:hover .eng-badges {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .eng-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 11px 3px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transform: skewX(-12deg);
+      border-radius: 2px;
+      transition: transform .18s cubic-bezier(.34, 1.56, .64, 1), filter .18s ease;
+      letter-spacing: .3px;
+    }
+
+    .eng-badge>* {
+      transform: skewX(12deg);
+      display: inline-block;
+    }
+
+    .eng-badge:hover {
+      transform: skewX(-12deg) translateY(-2px) scale(1.08);
+      filter: brightness(1.25);
+    }
+
+    .badge-views {
+      background: rgba(36, 113, 163, .18);
+      color: #5dade2;
+      border: 1px solid rgba(93, 173, 226, .3);
+    }
+
+    .badge-like {
+      background: rgba(192, 57, 43, .15);
+      color: #f1948a;
+      border: 1px solid rgba(241, 148, 138, .3);
+    }
+
+    .badge-share {
+      background: rgba(30, 132, 73, .15);
+      color: #58d68d;
+      border: 1px solid rgba(88, 214, 141, .3);
+    }
+.pageLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #0f0f0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.pageLoader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      background: #c0392b;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes icon-spin {
+      0% {
+        transform: rotate(0deg)
+      }
+
+      70% {
+        transform: rotate(380deg)
+      }
+
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+
+    .loader-bar {
+      width: 140px;
+      height: 2px;
+      background: #2e2e2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0%;
+      background: #c0392b;
+      border-radius: 2px;
+      animation: fill 1s ease forwards;
+    }
+
+    @keyframes fill {
+      to {
+        width: 100%
+      }
+    }

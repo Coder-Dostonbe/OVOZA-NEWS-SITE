@@ -5,97 +5,84 @@
   {% load static %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="pageTitle">Sport – Ovoza Yangiliklar Portali</title>
-  <meta name="description" content="Ovoza – kategoriya yangiliklari." />
+  <title>{{ category.name }} – Ovoza Yangiliklar Portali</title>
+  <meta name="description" content="Ovoza – {{ category.name }} yangiliklari." />
 
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
 
-  <link rel="stylesheet" href="https://cdn.js' %}delivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="{% static 'assets/css/category-detail.css' %}" />
 
   <style>
-    #pageLoader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: #0f0f0f;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    #pageLoader.hidden {
+  #pageLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #0f0f0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+     #pageLoader.hidden {
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
     }
+  .loader-icon {
+    width: 64px; height: 64px; background: #c0392b;
+    border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; font-size: 28px; color: #fff;
+    animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes icon-spin {
+    0% { transform: rotate(0deg); }
+    70% { transform: rotate(380deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .loader-bar { width: 140px; height: 2px; background: #2e2e2e; border-radius: 2px; overflow: hidden; }
+  .loader-fill { height: 100%; width: 0%; background: #c0392b; border-radius: 2px; animation: fill 1s ease forwards; }
+  @keyframes fill { to { width: 100%; } }
 
-    .loader-icon {
-      width: 64px;
-      height: 64px;
-      background: #c0392b;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      color: #fff;
-      animation: icon-spin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
+  .empty-wrapper { padding: 60px 20px; text-align: center; }
+  .empty-state { display: inline-block; }
+  .empty-icon {
+    width: 80px; height: 80px;
+    background: var(--cat-color-1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; color: #fff;
+    margin: 0 auto 20px;
+    opacity: 0.8;
+  }
+  .empty-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px; font-weight: 700;
+    color: #fff; margin-bottom: 10px;
+  }
+  .empty-desc {
+    font-size: 15px; color: #aaa;
+    max-width: 400px; margin: 0 auto;
+  }
+</style>
 
-    /* Bir marta to'liq aylanib o'z joyiga qaytadi */
-    @keyframes icon-spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      70% {
-        transform: rotate(380deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .loader-bar {
-      width: 140px;
-      height: 2px;
-      background: #2e2e2e;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .loader-fill {
-      height: 100%;
-      width: 0%;
-      background: #c0392b;
-      border-radius: 2px;
-      animation: fill 1s ease forwards;
-    }
-
-    @keyframes fill {
-      to {
-        width: 100%;
-      }
+  <style>
+    :root {
+      --cat-color-1: {{ category.color }};
+      --cat-color-2: #0a0a0a;
     }
   </style>
-
 </head>
 
 <body>
 
   <div id="pageLoader">
-    <div class="loader-icon">
-      <i class="fas fa-satellite-dish"></i>
-    </div>
-    <div class="loader-bar">
-      <div class="loader-fill"></div>
-    </div>
+    <div class="loader-icon"><i class="fas fa-satellite-dish"></i></div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
   </div>
 
   <!-- ═══ TOPBAR ═══ -->
@@ -122,30 +109,26 @@
   <!-- ═══ NAVBAR ═══ -->
   <nav class="main-navbar">
     <div class="container navbar-wrap">
-      <a href="index.html" class="nav-logo">
+      <a href="{% url 'home' %}" class="nav-logo">
         <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
         <span class="logo-name">Ovoza</span>
       </a>
       <ul class="nav-menu" id="navMenu">
-        <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li class="nav-item active"><a href="categories.html">Categories</a></li>
-        <li class="nav-item"><a href="news.html">News</a></li>
+        <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item active"><a href="{% url 'categories' %}">Categories</a></li>
+        <li class="nav-item"><a href="{% url 'news_page' %}">News</a></li>
         <li class="nav-item">
           <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
           <div class="nav-dropdown">
-            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
-            <a href="profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
+            <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profile</a>
           </div>
         </li>
       </ul>
       <div class="nav-right">
-        <button class="nav-search-btn" id="searchBtn">
-          <i class="fas fa-search"></i> Qidirish
-        </button>
-        <a href="#" class="btn-subscribe"><i class="fas fa-envelope"></i> Obuna</a>
         <button class="navbar-toggler" id="navToggler"><i class="fas fa-bars"></i></button>
       </div>
     </div>
@@ -153,37 +136,36 @@
 
   <!-- ═══ HERO BANNER ═══ -->
   <section class="cat-hero">
-    <div class="cat-hero-bg" id="heroBg"></div>
-    <i class="cat-hero-big-icon" id="heroBigIcon"></i>
+    <div class="cat-hero-bg" style="background: linear-gradient(135deg, {{ category.color }}, #0a0a0a);"></div>
+    <i class="cat-hero-big-icon fas {{ category.icon }}"></i>
     <div class="cat-hero-content">
       <div class="container">
         <div class="cat-hero-inner">
           <div class="cat-hero-left">
             <div class="breadcrumb">
-              <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+              <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
               <i class="fas fa-chevron-right"></i>
-              <a href="categories.html">Kategoriyalar</a>
+              <a href="{% url 'categories' %}">Kategoriyalar</a>
               <i class="fas fa-chevron-right"></i>
-              <span id="breadCrumbCat">Sport</span>
+              <span>{{ category.name }}</span>
             </div>
             <div class="cat-hero-title-row">
-              <div class="cat-hero-icon"><i id="heroIcon" class="fas fa-trophy"></i></div>
-              <h1 class="cat-hero-name" id="heroName">Sport</h1>
+              <div class="cat-hero-icon"><i class="fas {{ category.icon }}"></i></div>
+              <h1 class="cat-hero-name">{{ category.name }}</h1>
             </div>
-            <p class="cat-hero-desc" id="heroDesc">Futbol, boks, kurash va barcha sport turlaridan so'nggi yangiliklar,
-              natijalar va tahlillar.</p>
+            <p class="cat-hero-desc">{{ category.description }}</p>
           </div>
           <div class="cat-hero-right">
             <div class="cat-stat">
-              <span class="cat-stat-num" id="statArticles">312</span>
+              <span class="cat-stat-num" id="statArticles">{{ posts.count }}</span>
               <span class="cat-stat-label">Maqola</span>
             </div>
             <div class="cat-stat">
-              <span class="cat-stat-num" id="statToday">14</span>
+              <span class="cat-stat-num" id="statToday">{{ today_count }}</span>
               <span class="cat-stat-label">Bugun</span>
             </div>
             <div class="cat-stat">
-              <span class="cat-stat-num">28K</span>
+              <span class="cat-stat-num" id="statViews">{{ total_views }}</span>
               <span class="cat-stat-label">O'quvchi</span>
             </div>
           </div>
@@ -199,7 +181,6 @@
           <button class="cat-tab" data-tab="latest">So'nggi</button>
           <button class="cat-tab" data-tab="popular">Mashhur</button>
           <button class="cat-tab" data-tab="video">Video</button>
-          <button class="cat-tab" data-tab="analysis">Tahlil</button>
         </div>
       </div>
     </div>
@@ -213,200 +194,123 @@
         <!-- ── CONTENT ── -->
         <div class="content-area">
 
-          <!-- Featured article -->
-          <a href="#" class="featured-article">
-            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=900&q=80&auto=format&fit=crop"
-              alt="Featured" />
-            <div class="featured-overlay"></div>
-            <div class="featured-content">
-              <span class="featured-badge" id="featuredBadge"><i class="fas fa-star"></i> Tanlangan</span>
-              <h2 class="featured-title">O'zbekiston bokschilaridan jahon chempionatida tarixiy rekord: 7 ta oltin medal
-              </h2>
-              <div class="featured-meta">
-                <span><i class="far fa-user"></i> Jasur Mirzayev</span>
-                <span><i class="far fa-clock"></i> 2 soat oldin</span>
-                <span><i class="far fa-eye"></i> 18,420</span>
-                <span><i class="far fa-comment"></i> 124</span>
+          {% if posts %}
+
+            {% if featured_post %}
+            <a href="{% url 'post_about' featured_post.id %}" class="featured-article">
+              <img src="{{ featured_post.image.url }}" alt="{{ featured_post.title }}" />
+              <div class="featured-overlay"></div>
+              <div class="featured-content">
+                <span class="featured-badge"><i class="fas {{ category.icon }}"></i> {{ category.name }}</span>
+                <h2 class="featured-title">{{ featured_post.title }}</h2>
+                <div class="featured-meta">
+                  <span><i class="far fa-user"></i> {{ featured_post.author.get_full_name|default:featured_post.author.username }}</span>
+                  <span><i class="far fa-clock"></i> {{ featured_post.time_since }}</span>
+                  <span><i class="far fa-eye"></i> {{ featured_post.views }}</span>
+                  <span><i class="far fa-comment"></i> {{ featured_post.comments.count }}</span>
+                </div>
               </div>
+            </a>
+            {% endif %}
+
+            {% if regular_posts %}
+            <div class="articles-grid" id="articlesGrid">
+              {% for post in regular_posts %}
+                {% if forloop.counter|divisibleby:3 %}
+                <a href="{% url 'post_about' post.id %}" class="art-card wide">
+                  <div class="art-card-img tall">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" />
+                    {% endif %}
+                    <span class="art-card-tag">{{ category.name }}</span>
+                  </div>
+                  <div class="art-card-body">
+                    <div class="art-card-title">{{ post.title }}</div>
+                    <div class="art-card-excerpt">{{ post.short_description }}</div>
+                    <div class="art-card-footer">
+                      <span><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</span>
+                      <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </a>
+                {% else %}
+                <a href="{% url 'post_about' post.id %}" class="art-card">
+                  <div class="art-card-img tall">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" />
+                    {% endif %}
+                    <span class="art-card-tag">{{ category.name }}</span>
+                  </div>
+                  <div class="art-card-body">
+                    <div class="art-card-title">{{ post.title }}</div>
+                    <div class="art-card-excerpt">{{ post.short_description }}</div>
+                    <div class="art-card-footer">
+                      <span><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</span>
+                      <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </a>
+                {% endif %}
+              {% endfor %}
             </div>
-          </a>
+            {% endif %}
 
-          <!-- Articles grid -->
-          <div class="articles-grid" id="articlesGrid">
+            <!-- Pagination -->
+            <div class="pagination-wrap">
+            {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}" class="page-btn">
+                <i class="fas fa-chevron-left"></i>
+              </a>
+            {% else %}
+              <button class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
+            {% endif %}
 
-            <!-- Wide horizontal card -->
-            <div class="art-card wide">
-              <div class="art-card-img tall">
-                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=75&auto=format&fit=crop"
-                  alt="" />
-                <span class="art-card-tag" id="gridTag1">Sport</span>
-              </div>
-              <div class="art-card-body">
-                <div class="art-card-title">Futbol: O'zbekiston Superligi yangi mavsum — Pakhtakor boshchilikda davom
-                  etmoqda</div>
-                <div class="art-card-excerpt">Milliy chempionat ikkinchi aylanmasida keskin kurash kuzatilmoqda.
-                  Pakhtakor 5 galdan keyin ham peshqadamlikni saqlab qoldi.</div>
-                <div class="art-card-footer">
-                  <span><i class="far fa-clock"></i> 3 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 9,310</span>
-                  <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
-                </div>
-              </div>
-            </div>
+            {% for i in page_obj.paginator.page_range %}
+              {% if i == page_obj.number %}
+                <button class="page-btn active">{{ i }}</button>
+              {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                <a href="?page={{ i }}" class="page-btn">{{ i }}</a>
+              {% endif %}
+            {% endfor %}
 
-            <!-- Regular cards -->
-            <div class="art-card">
-              <div class="art-card-img tall">
-                <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=400&q=75&auto=format&fit=crop"
-                  alt="" />
-                <span class="art-card-tag">Sport</span>
-              </div>
-              <div class="art-card-body">
-                <div class="art-card-title">Kurash: Jahon chempioni Bekzod Abduraxmonov so'nggi intervyusida niyatlarini
-                  aytdi</div>
-                <div class="art-card-excerpt">Oltin medalist kelajak rejalari haqida so'zladi va navbatdagi musobaqaga
-                  tayyorgarlik jarayonini tushuntirdi.</div>
-                <div class="art-card-footer">
-                  <span><i class="far fa-clock"></i> 4 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 6,180</span>
-                  <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="art-card">
-              <div class="art-card-img tall">
-                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&q=75&auto=format&fit=crop"
-                  alt="" />
-                <span class="art-card-tag">Sport</span>
-              </div>
-              <div class="art-card-body">
-                <div class="art-card-title">Basketbol: O'zbekiston terma jamoasi Osiyo chempionatiga tayyorgarlik seferi
-                  boshladi</div>
-                <div class="art-card-excerpt">Milliy jamoaning bosh murabbiyi yangi taktika va o'yinchilar tanlovi
-                  haqida batafsil ma'lumot berdi.</div>
-                <div class="art-card-footer">
-                  <span><i class="far fa-clock"></i> 5 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 4,450</span>
-                  <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Another wide card -->
-            <div class="art-card wide">
-              <div class="art-card-img tall">
-                <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&q=75&auto=format&fit=crop"
-                  alt="" />
-                <span class="art-card-tag">Sport</span>
-              </div>
-              <div class="art-card-body">
-                <div class="art-card-title">Tennis: Sabina Sharipova xalqaro turnirda yarim finalga chiqdi</div>
-                <div class="art-card-excerpt">O'zbek tennischisi ITF turnirida g'alaba qozonib, o'z reytingini sezilarli
-                  darajada yaxshiladi. Bu uning mavsumidagi eng yaxshi natija.</div>
-                <div class="art-card-footer">
-                  <span><i class="far fa-clock"></i> 6 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 3,720</span>
-                  <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="art-card">
-              <div class="art-card-img short">
-                <img src="https://images.unsplash.com/photo-1568454537842-d933259bb258?w=400&q=75&auto=format&fit=crop"
-                  alt="" />
-                <span class="art-card-tag">Sport</span>
-              </div>
-              <div class="art-card-body">
-                <div class="art-card-title">Taekwondo federatsiyasi yangi sport zali ochilishi haqida bayonot berdi
-                </div>
-                <div class="art-card-excerpt">Toshkentda zamonaviy jihozlangan taekwondo markazi qurilishi yakuniga
-                  yetdi.</div>
-                <div class="art-card-footer">
-                  <span><i class="far fa-clock"></i> 7 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 2,890</span>
-                  <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="art-card">
-              <div class="art-card-img short">
-                <img src="https://images.unsplash.com/photo-1615117972428-28de67cda58e?w=400&q=75&auto=format&fit=crop"
-                  alt="" />
-                <span class="art-card-tag">Sport</span>
-              </div>
-              <div class="art-card-body">
-                <div class="art-card-title">Velositped poygasi: O'zbekiston jamoasi Tour de France ga tayyorlanmoqda
-                </div>
-                <div class="art-card-excerpt">Milliy velosipedchilar Yevropada o'tkaziladigan eng nufuzli poygaga
-                  birinchi marta qatnashishi mumkin.</div>
-                <div class="art-card-footer">
-                  <span><i class="far fa-clock"></i> 8 soat oldin &nbsp;·&nbsp; <i class="far fa-eye"></i> 2,100</span>
-                  <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /articles-grid -->
-
-          <!-- Pagination -->
-          <div class="pagination-wrap">
-            <button class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <span class="page-dots">...</span>
-            <button class="page-btn">22</button>
-            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class="page-btn">
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            {% else %}
+              <button class="page-btn disabled"><i class="fas fa-chevron-right"></i></button>
+            {% endif %}
           </div>
+
+          {% else %}
+            <div class="empty-wrapper">
+              <div class="empty-state">
+                <div class="empty-icon"><i class="fas {{ category.icon }}"></i></div>
+                <h3 class="empty-title">Hozircha maqola yo'q</h3>
+                <p class="empty-desc">Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!</p>
+              </div>
+            </div>
+          {% endif %}
 
         </div><!-- /content-area -->
 
         <!-- ── SIDEBAR ── -->
         <aside class="sidebar">
 
-          <!-- Trending in category -->
+          <!-- Trending -->
           <div class="sidebar-widget">
             <div class="widget-header">
-              <i class="fas fa-fire-alt"></i> <span id="trendingTitle">Sport — Trendlar</span>
+              <i class="fas fa-fire-alt"></i> <span>{{ category.name }} — Trendlar</span>
             </div>
+            {% for post in trend_posts %}
             <div class="trending-item">
-              <span class="trend-num">01</span>
+              <span class="trend-num">{{ forloop.counter|stringformat:"02d" }}</span>
               <div class="trend-body">
-                <div class="trend-title">Xasanboy Dusmatov professional boksga o'tish qarorini e'lon qildi</div>
-                <div class="trend-meta"><i class="far fa-clock"></i> 1 soat &nbsp;·&nbsp; <i class="fas fa-fire"></i>
-                  22.4K</div>
+                <div class="trend-title">{{ post.title }}</div>
+                <div class="trend-meta"><i class="far fa-clock"></i> {{ post.time_sinse }} &nbsp;·&nbsp; <i class="fas fa-eye"></i> {{ post.views }}</div>
               </div>
             </div>
-            <div class="trending-item">
-              <span class="trend-num">02</span>
-              <div class="trend-body">
-                <div class="trend-title">Pakhtakor UEFA Konfrans ligasiga qo'shilish imkoniyati ko'rilmoqda</div>
-                <div class="trend-meta"><i class="far fa-clock"></i> 3 soat &nbsp;·&nbsp; <i class="fas fa-fire"></i>
-                  14.7K</div>
-              </div>
-            </div>
-            <div class="trending-item">
-              <span class="trend-num">03</span>
-              <div class="trend-body">
-                <div class="trend-title">Milliy futbol terma jamoasiga yangi bosh murabbiy tayinlandi</div>
-                <div class="trend-meta"><i class="far fa-clock"></i> 5 soat &nbsp;·&nbsp; <i class="fas fa-fire"></i>
-                  11.2K</div>
-              </div>
-            </div>
-            <div class="trending-item">
-              <span class="trend-num">04</span>
-              <div class="trend-body">
-                <div class="trend-title">O'zbek kurashchilar Osiyo o'yinlarida 5 ta oltin medal qo'lga kiritdi</div>
-                <div class="trend-meta"><i class="far fa-clock"></i> 7 soat &nbsp;·&nbsp; <i class="fas fa-fire"></i>
-                  8.9K</div>
-              </div>
-            </div>
-            <div class="trending-item">
-              <span class="trend-num">05</span>
-              <div class="trend-body">
-                <div class="trend-title">Toshkentda yangi olimpiya basseynining qurilishi boshlandi</div>
-                <div class="trend-meta"><i class="far fa-clock"></i> 9 soat &nbsp;·&nbsp; <i class="fas fa-fire"></i>
-                  6.3K</div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
 
           <!-- Similar posts -->
@@ -414,73 +318,46 @@
             <div class="widget-header">
               <i class="fas fa-layer-group"></i> O'xshash Maqolalar
             </div>
-            <div class="similar-item">
-              <img class="similar-img"
-                src="https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=150&q=70&auto=format&fit=crop"
-                alt="" />
+            {% for post in similar_posts %}
+              <div class="similar-item">
+              <img class="similar-img" src="{{ post.image.url }}" alt="" />
               <div class="similar-body">
-                <div class="similar-title">Gimnastika: Dilorom Yusupova Yevropa kubogi g'olibasi bo'ldi</div>
-                <div class="similar-meta"><i class="far fa-clock"></i> Kecha &nbsp;·&nbsp; <i class="far fa-eye"></i>
-                  5.2K</div>
+                <div class="similar-title">{{ post.title }}</div>
+                <div class="similar-meta"><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</div>
               </div>
             </div>
-            <div class="similar-item">
-              <img class="similar-img"
-                src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=150&q=70&auto=format&fit=crop"
-                alt="" />
-              <div class="similar-body">
-                <div class="similar-title">Yengil atletika: O'zbekistonlik sportchi Osiyo rekordi yangiladi</div>
-                <div class="similar-meta"><i class="far fa-clock"></i> 2 kun &nbsp;·&nbsp; <i class="far fa-eye"></i>
-                  3.8K</div>
-              </div>
-            </div>
-            <div class="similar-item">
-              <img class="similar-img"
-                src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?w=150&q=70&auto=format&fit=crop"
-                alt="" />
-              <div class="similar-body">
-                <div class="similar-title">Golf: O'zbekistonda birinchi professional golf klubi ochildi</div>
-                <div class="similar-meta"><i class="far fa-clock"></i> 3 kun &nbsp;·&nbsp; <i class="far fa-eye"></i>
-                  2.1K</div>
-              </div>
-            </div>
-            <div class="similar-item">
-              <img class="similar-img"
-                src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=150&q=70&auto=format&fit=crop"
-                alt="" />
-              <div class="similar-body">
-                <div class="similar-title">Suzish: Milliy chempionat yakunlandi — reytinglar e'lon qilindi</div>
-                <div class="similar-meta"><i class="far fa-clock"></i> 4 kun &nbsp;·&nbsp; <i class="far fa-eye"></i>
-                  1.9K</div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
 
           <!-- Ad widget -->
           <div class="ad-widget">
-            <div class="ad-label">Reklama</div>
-            <div class="ad-banner">
-              <div class="ad-banner-icon"><i class="fas fa-crown"></i></div>
-              <div class="ad-banner-title">Ovoza Premium</div>
-              <div class="ad-banner-sub">Reklamasiz, tezroq va to'liqroq yangiliklar oling</div>
-              <a href="#" class="ad-btn"><i class="fas fa-bolt"></i> Sinab ko'rish</a>
-            </div>
-          </div>
+          <div class="ad-label">Reklama</div>
+          {% if advertisement.video_url %}
+            <iframe src="{{ advertisement.video_url }}"
+                    width="100%" height="200"
+                    frameborder="0" allowfullscreen>
+            </iframe>
+          {% elif advertisement.video %}
+            <video width="100%" height="200" autoplay muted loop>
+              <source src="{{ advertisement.video.url }}" type="video/mp4">
+            </video>
+          {% elif advertisement.image %}
+            <a href="{{ advertisement.url }}" target="_blank">
+              <img src="{{ advertisement.image.url }}" alt="{{ advertisement.title }}" style="width:100%;border-radius:4px;">
+            </a>
+          {% endif %}
+        </div>
 
           <!-- Tags widget -->
           <div class="sidebar-widget">
             <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
             <div class="tags-wrap">
-              <span class="tag-item">#Futbol</span>
-              <span class="tag-item">#Boks</span>
-              <span class="tag-item">#Kurash</span>
-              <span class="tag-item">#Olimpiada</span>
-              <span class="tag-item">#Pakhtakor</span>
-              <span class="tag-item">#Tennis</span>
-              <span class="tag-item">#Basketbol</span>
-              <span class="tag-item">#Taekwondo</span>
-              <span class="tag-item">#Milliy jamoasi</span>
-              <span class="tag-item">#Chempionat</span>
+              {% for tag in category_tags %}
+                <a href="{% url 'tag_posts' tag.name %}"><span class="tag-item">#{{ tag.name }}</span></a>
+               {% empty %}
+                <span style="color:var(--text-muted);padding:14px;">Hozircha teg yo'q</span>
+              {% endfor %}
+
             </div>
           </div>
 
@@ -511,12 +388,12 @@
         <div class="footer-col">
           <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
           <ul class="footer-links-list">
-            <li><a href="category-detail.html?cat=siyosat">Siyosat</a></li>
-            <li><a href="category-detail.html?cat=iqtisod">Iqtisod</a></li>
-            <li><a href="category-detail.html?cat=jamiyat">Jamiyat</a></li>
-            <li><a href="category-detail.html?cat=sport">Sport</a></li>
-            <li><a href="category-detail.html?cat=texnologiya">Texnologiya</a></li>
-            <li><a href="category-detail.html?cat=dunyo">Dunyo</a></li>
+            <li><a href="#">Siyosat</a></li>
+            <li><a href="#">Iqtisod</a></li>
+            <li><a href="#">Jamiyat</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Dunyo</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -531,8 +408,7 @@
         </div>
         <div class="footer-col">
           <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
-          </div>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47</div>
           <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
           <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
         </div>
@@ -550,16 +426,9 @@
 
   <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
 
-  <script>
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        document.getElementById('pageLoader').classList.add('hidden');
-      }, 1100);
-    });
-  </script>
-
-  <script src="https://cdn.js' %}delivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'assets/js/category-detail.js' %}"></script>
+
 </body>
 
 </html>

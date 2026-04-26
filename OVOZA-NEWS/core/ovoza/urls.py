@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import *
 
@@ -6,6 +6,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('about/<int:id>/', post_about, name='post_about'),
     path('about_section/', about_section, name='about_section'),
+    path('category/<str:slug>/', categories_about, name='categories_about'),
     path('categories/', categories, name='categories'),
     path('contact/', contact, name='contact'),
     path('categories_about/', categories_about, name='categories_about'),
@@ -26,5 +27,11 @@ urlpatterns = [
     path('comment/edit/<int:comment_id>/', edit_comment, name='edit_comment'),
 
     path('search/', search_view, name='search'),
+
+    path('subscribe/', subscribe, name='subscribe'),
+
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
+
+    path('category/<slug:slug>/posts/', category_posts_ajax, name='category_posts_ajax'),
 
 ]

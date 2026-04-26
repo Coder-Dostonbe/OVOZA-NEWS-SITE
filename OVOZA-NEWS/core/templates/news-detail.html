@@ -29,6 +29,20 @@
     .loader-bar { width: 140px; height: 2px; background: #2e2e2e; border-radius: 2px; overflow: hidden; }
     .loader-fill { height: 100%; width: 0%; background: #c0392b; border-radius: 2px; animation: fill 1s ease forwards; }
     @keyframes fill { to { width: 100% } }
+
+    .article-video {
+      margin: 24px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+    .article-video iframe,
+    .article-video video {
+      width: 100%;
+      height: 420px;
+      display: block;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -147,7 +161,7 @@
 
         <div class="article-cat">{{ about_post.category }}</div>
         <h1 class="article-title">{{ about_post.title }}</h1>
-        <p class="article-lead">{{ about_post.short_description }}</p>
+        <p class="article-lead">{{ about_post.short_description|safe }}</p>
 
         <!-- Meta -->
         <div class="article-meta">
@@ -170,19 +184,16 @@
 
         <!-- Engagement row — TEPADA -->
         <div class="engagement-row">
-          <!-- Like: faqat son ko'rinadi, bosilmaydi -->
           <div class="eng-btn eng-like-display" style="cursor:default;">
             <i class="fas fa-thumbs-up" style="color:var(--primary);"></i>
             <span>Yoqtirishlar</span>
             <span class="eng-count" id="likeCountTop">{{ about_post.likes.count }}</span>
           </div>
-          <!-- Comment: scrollga olib boradi -->
           <button class="eng-btn" id="commentScrollBtn">
             <i class="far fa-comment"></i>
             <span>Fikrlar</span>
             <span class="eng-count">{{ about_post.comments.count }}</span>
           </button>
-          <!-- Share -->
           <button class="eng-btn" id="shareDropBtn">
             <i class="fas fa-share-alt"></i>
             <span>Ulashish</span>
@@ -201,13 +212,13 @@
         <!-- Article body -->
         <div class="article-body">
           {% for block in about_post.blocks.all %}
-            {% if block.type == 'text' %}<p>{{ block.text }}</p>{% endif %}
+            {% if block.type == 'text' %}<p>{{ block.text|safe }}</p>{% endif %}
             {% if block.type == 'title' %}
               {% if block.level == 2 %}<h2>{{ block.title }}</h2>{% endif %}
               {% if block.level == 3 %}<h3>{{ block.title }}</h3>{% endif %}
             {% endif %}
             {% if block.type == 'quote' %}
-            <blockquote><p>{{ block.text }}</p><cite>{{ block.title }}</cite></blockquote>
+            <blockquote><p>{{ block.text|safe }}</p>{% if block.title %}<cite>{{ block.title }}</cite>{% endif %}</blockquote>
             {% endif %}
             {% if block.type == 'image' %}
             <figure class="inline-img">
@@ -219,6 +230,20 @@
             <div class="info-box">
               <div class="info-box-title"><i class="fas fa-info-circle"></i> {{ block.title }}</div>
               <ul>{% for line in block.text.splitlines %}{% if line %}<li>{{ line }}</li>{% endif %}{% endfor %}</ul>
+            </div>
+            {% endif %}
+            {% if block.type == 'video' %}
+            <div class="article-video">
+              {% if block.video_url %}
+              <iframe src="{{ block.video_url }}"
+                      frameborder="0" allowfullscreen
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+              </iframe>
+              {% elif block.video %}
+              <video controls>
+                <source src="{{ block.video.url }}" type="video/mp4">
+              </video>
+              {% endif %}
             </div>
             {% endif %}
           {% endfor %}
@@ -320,7 +345,6 @@
             {% for comment in comments %}
             <div class="comment-item" id="comment-{{ comment.id }}">
 
-              <!-- ===== AVATAR — to'g'ri tartib ===== -->
               {% if comment.user.avatar %}
                 <img class="comment-avatar" src="{{ comment.user.avatar.url }}" alt="{{ comment.user.username }}" />
               {% else %}
@@ -335,10 +359,8 @@
                   <span class="comment-date">{{ comment.created_at|date:"d M, H:i" }}</span>
                 </div>
 
-                <!-- Comment text -->
                 <div class="comment-text" id="inline-comment-text-{{ comment.id }}">{{ comment.message }}</div>
 
-                <!-- Inline edit form -->
                 {% if request.user == comment.user %}
                 <div id="inline-edit-form-{{ comment.id }}" style="display:none; margin-top:10px;">
                   <textarea id="inline-edit-textarea-{{ comment.id }}" class="comment-textarea" style="min-height:80px;">{{ comment.message }}</textarea>
@@ -353,7 +375,6 @@
                 </div>
                 {% endif %}
 
-                <!-- Actions -->
                 <div class="comment-actions">
                   {% if request.user.is_authenticated %}
                   <button class="comment-action-btn reply-btn" data-comment-id="{{ comment.id }}">
@@ -367,7 +388,6 @@
                   {% endif %}
                 </div>
 
-                <!-- Reply form -->
                 <div class="reply-form" id="reply-form-{{ comment.id }}" style="display:none;">
                   <textarea class="comment-textarea reply-textarea" placeholder="Javobingizni yozing..."></textarea>
                   <button class="btn-comment-submit reply-submit"
@@ -377,7 +397,6 @@
                   </button>
                 </div>
 
-                <!-- Replies -->
                 {% for reply in comment.replies.all %}
                 <div class="comment-item reply-item" id="comment-{{ reply.id }}">
                   {% if reply.user.avatar %}
@@ -447,7 +466,9 @@
         {% if advertisement %}
         <div class="ad-banner">
           <div class="ad-label">Reklama</div>
-          {% if advertisement.video %}
+          {% if advertisement.video_url %}
+          <iframe src="{{ advertisement.video_url }}" width="100%" height="200" frameborder="0" allowfullscreen></iframe>
+          {% elif advertisement.video %}
           <a href="{{ advertisement.url }}" target="_blank">
             <video class="ad-video" autoplay muted loop playsinline>
               <source src="{{ advertisement.video.url }}" type="video/mp4" />

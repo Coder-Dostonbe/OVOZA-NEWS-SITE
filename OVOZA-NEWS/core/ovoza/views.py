@@ -1,16 +1,18 @@
 import json
+import random
+
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
-from django.db.models import F, Q, Count
+from django.db.models import F, Q, Count, Sum
 from django.utils.timezone import now
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount
 from django.core.paginator import Paginator
-
+from datetime import timedelta
 
 def search_post(q):
     if not q:
@@ -46,7 +48,7 @@ def home(request):
 
     hero_post = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at').first()
     side_posts = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at')[1:3]
-    random_post = Post.objects.filter(is_published=False).order_by('?')
+    random_post = Post.objects.filter(is_published=True).order_by('?')
     ticker = Post.objects.filter(is_published=True).order_by('-created_at')[:10]
     recommended = Post.objects.filter(is_published=True).exclude(id__in=[hero_post.id] + list(side_posts.values_list('id', flat=True))).order_by('-created_at')
 
@@ -78,9 +80,9 @@ def post_about(request, id):
     about_post = get_object_or_404(Post, id=id, is_published=True)
     stat_blocks = about_post.blocks.filter(type='stat')
     related_posts = Post.objects.filter(category=about_post.category, is_published=True).exclude(id=id).order_by('-created_at')[:5]
-    most_viewed = Post.objects.filter(is_published=True).order_by('-views')
+    most_viewed = Post.objects.filter(is_published=True).order_by('-views')[:5]
     comments = about_post.comments.filter(parent=None).select_related('user').prefetch_related('replies__user')
-    advertisement = Advertisement.objects.filter(is_active=True).first()
+
 
     ip = get_client_ip(request)
 
@@ -99,7 +101,7 @@ def post_about(request, id):
         'related_posts': related_posts,
         'most_viewed': most_viewed,
         'comments': comments,
-        'advertisement': advertisement,
+        'advertisement': get_random_ad(),
     })
     return response
 
@@ -196,11 +198,88 @@ def about_section(request):
 
 
 def categories(request):
-    return render(request, 'categories.html')
+    category = Category.objects.annotate(post_count=Count('post'))
+    featured = category.order_by('-post_count')[:2]
+    regular = category.order_by('-post_count')[2:]
+
+    for cat in featured:
+        cat.latest_posts = cat.post_set.order_by('-created_at')[:3]
+
+    today = now().date()
+    total_posts = Post.objects.filter(is_published=True).count()
+    total_categories = Category.objects.count()
+    todays_posts = Post.objects.filter(is_published=True, created_at__date=today).count()
+
+    popular_tags = Tag.objects.annotate(post_count=Count('post')).order_by('-post_count')[:16]
+
+    ctx = {
+        'category': category,
+        'featured': featured,
+        'regular': regular,
+        'total_posts': total_posts,
+        'total_categories': total_categories,
+        'todays_posts': todays_posts,
+        'popular_tags': popular_tags,
+    }
+    return render(request, 'categories.html', ctx)
 
 
-def categories_about(request):
-    return render(request, 'category-detail.html')
+def categories_about(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+
+    posts = Post.objects.filter(category=category, is_published=True).order_by('-created_at')
+
+    paginator = Paginator(posts, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    featured_post = page_obj.object_list.first()
+    if featured_post:
+        regular_posts = posts.exclude(id=featured_post.id)
+    else:
+        regular_posts = Post.objects.none()
+
+    today = now().date()
+    total_posts = Post.objects.filter(created_at__date=today).count()
+    total_views = posts.aggregate(total=Sum('views'))['total'] or 0
+
+    trend_posts = Post.objects.filter(category=category, is_published=True).order_by('-views')[:5]
+
+    category_tags = Tag.objects.filter(post__category=category, post__is_published=True).annotate(post_count=Count('post')).order_by('-post_count')[:10]
+
+    tab = request.GET.get('tab', 'all')
+
+    if tab == 'latest':
+        posts = posts.order_by('-created_at')
+    elif tab == 'popular':
+        posts = posts.order_by('-views')
+    elif tab == 'video':
+        posts = posts.filter(blocks__type='video').distinct()
+    else:
+        posts = posts.order_by('-created_at')
+
+    similar_posts = Post.objects.none()
+    if featured_post:
+        tags = featured_post.tags.all()
+        similar_posts = Post.objects.filter(tags__in=tags).exclude(id=featured_post.id).distinct().order_by('-views')[:4]
+
+    ctx = {
+        'category': category,
+        'posts': posts,
+        'page_obj': page_obj,
+        'featured_post': featured_post,
+        'regular_posts': regular_posts,
+        'total_posts': total_posts,
+        'total_views': total_views,
+        'trend_posts': trend_posts,
+        'similar_posts': similar_posts,
+        'advertisement': get_random_ad(),
+        'category_tags': category_tags,
+        'tab': tab,
+    }
+
+
+    return render(request, 'category-detail.html', ctx)
 
 
 def login_page(request):
@@ -326,11 +405,64 @@ def contact(request):
 def news_page(request):
     return render(request, 'news.html')
 
+@require_POST
+def subscribe(request):
+    data = json.loads(request.body)
+    email = data.get('email', '').strip()
+    if not email:
+        return JsonResponse({'success': False, 'message': "Email kiritilmadi!"})
+    if Subscriber.objects.filter(email=email).exists():
+        return JsonResponse({'success': False, 'message': "Siz allaqachon obuna bo'lgansiz!"})
+    Subscriber.objects.create(email=email)
+    return JsonResponse({'success': True, 'message': "Obuna muvaffaqiyatli amalga oshirildi. Bizni kuzatayotganingiz uchun rahmat😊!"})
+
 def password_reset_page(request):
     return render(request, 'password_reset.html')
 
 def password_reset_done_page(request):
     return render(request, 'password_reset_done.html')
 
+def get_random_ad():
+    ads = Advertisement.objects.filter(is_active=True)
+    if ads.exists():
+        ad = random.choice(list(ads))
+        if ad.video_url:
+            url = ad.video_url
+            # youtube.com/watch?v= yoki youtu.be/ yoki m.youtube.com
+            if 'youtube.com/watch' in url or 'm.youtube.com' in url:
+                video_id = url.split('v=')[-1].split('&')[0]
+                ad.video_url = f'https://www.youtube.com/embed/{video_id}'
+            elif 'youtu.be/' in url:
+                video_id = url.split('youtu.be/')[-1].split('?')[0]
+                ad.video_url = f'https://www.youtube.com/embed/{video_id}'
+        return ad
+    return None
 
+def category_posts_ajax(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    tab = request.GET.get('tab', 'all')
 
+    posts = Post.objects.filter(category=category, is_published=True)
+
+    if tab == 'latest':
+        posts = posts.order_by('-created_at')
+    elif tab == 'popular':
+        posts = posts.order_by('-views')
+    elif tab == 'video':
+        posts = posts.filter(blocks__type='video').distinct()
+    else:
+        posts = posts.order_by('-created_at')
+
+    data = []
+    for post in posts:
+        data.append({
+            'id': post.id,
+            'title': post.title,
+            'short_description': post.short_description,
+            'image': post.image.url if post.image else '',
+            'views': post.views,
+            'time_since': post.time_since(),
+            'url': f'/about/{post.id}/',
+        })
+
+    return JsonResponse({'posts': data})
