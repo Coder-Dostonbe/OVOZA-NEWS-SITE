@@ -157,12 +157,17 @@ ul { list-style: none; }
 .empty-text { font-size: 14px; color: var(--text-muted); }
 
 /* ===== PAGINATION ===== */
-.pagination {
+.pagination,
+.pagination-wrap {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
   margin-top: 28px;
   justify-content: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 .page-btn {
   display: flex;
@@ -182,6 +187,8 @@ ul { list-style: none; }
   text-decoration: none;
 }
 .page-btn:hover { border-color: var(--primary); color: var(--white); background: rgba(192,57,43,0.08); }
+.page-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; cursor: default; }
+.page-btn.disabled { opacity: 0.3; pointer-events: none; cursor: default; }
 .page-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; cursor: default; }
 .page-btn i { font-size: 11px; }
 

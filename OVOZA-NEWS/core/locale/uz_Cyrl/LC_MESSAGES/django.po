@@ -1,8 +1,17 @@
 # Uzbek Cyrillic translations
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-27 16:12+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: Uzbek (Cyrillic)\n"
+"Language: uz_Cyrl\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Bosh sahifa"
 msgstr "Бош саҳифа"
@@ -126,3 +135,865 @@ msgstr "Ёпиш"
 
 msgid "Ochish"
 msgstr "Очиш"
+
+msgid "Sahifa topilmadi"
+msgstr "Саҳифа топилмади"
+
+msgid ""
+"Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud "
+"bo'lmagan bo'lishi mumkin."
+msgstr ""
+"Сиз қидираётган саҳифа ўчирилган, кўчирилган ёки ҳеч қачон мавжуд бўлмаган "
+"бўлиши мумкин."
+
+msgid "Orqaga"
+msgstr "Орқага"
+
+msgid "<span id=\"sec\">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →"
+msgstr "<span id=\"sec\">10</span> сониядан сўнг автоматик йўналтирилasiz →"
+
+msgid "Yordam kerakmi?"
+msgstr "Ёрдам керакми?"
+
+msgid "Biz haqimizda"
+msgstr "Биз ҳақимизда"
+
+msgid "Yangiliklar portali"
+msgstr "Янгиликлар портали"
+
+msgid "O'zbekistonning"
+msgstr "Ўзбекистоннинг"
+
+msgid "eng ishonchli"
+msgstr "энг ишончли"
+
+msgid "yangiliklar portali"
+msgstr "янгиликлар портали"
+
+msgid ""
+"2026-yildan buyon har kuni millionlab o'zbekistonliklar Ovoza orqali dunyo "
+"yangiliklaridan xabardor bo'lmoqda. Haqqoniylik, tezkorlik va chuqurlik — "
+"bizning asosiy tamoyillarimiz."
+msgstr ""
+"2026-йилдан буён ҳар куни миллионлаб ўзбекистонликлар Ovoza орқали дунё "
+"янгиликларидан хабардор бўлмоқда. Ҳаққонийлик, тезкорлик ва чуқурлик — "
+"бизнинг асосий тамойилларимиз."
+
+msgid "Bizning"
+msgstr "Бизнинг"
+
+msgid "missiyamiz"
+msgstr "миссиямиз"
+
+msgid ""
+"Ovoza — O'zbekistonda mustaqil, haqqoniy va tezkor yangiliklar "
+"jurnalistikasini rivojlantirish uchun 2026-yilda tashkil etilgan raqamli "
+"yangiliklar platformasi."
+msgstr ""
+"Ovoza — Ўзбекистонда мустақил, ҳаққоний ва тезкор янгиликлар "
+"журналистикасини ривожлантириш учун 2026-йилда ташкил этилган рақамли "
+"янгиликлар платформаси."
+
+msgid ""
+"Biz har kuni 50 dan ortiq mutaxassis muxbirlarimiz orqali siyosat, iqtisod, "
+"sport, texnologiya va madaniyat sohasidagi eng muhim voqealarni yoritib "
+"boramiz."
+msgstr ""
+"Биз ҳар куни 50 дан ортиқ мутахассис мухбирларимиз орқали сиёсат, иқтисод, "
+"спорт, технология ва маданият соҳасидаги энг муҳим воқеаларни ёритиб борамиз."
+
+msgid "\"Har bir yangilik — birovning hayotiga ta\\"
+msgstr ""
+"\"Ҳар бир янгилик — бировнинг ҳаётига таъсир қилади. Шу сабабли биз ҳар "
+"доим аниқлиги ва ҳаққонийлиги текширилган маълумотларни тақдим этамиз.\""
+
+msgid ""
+"Ovoza faqat yangilik emas, tahlil va kontekst ham taqdim etadi. "
+"O'quvchilarimiz voqealarni nafaqat ko'radi, balki ularni tushunadi."
+msgstr ""
+"Ovoza фақат янгилик эмас, таҳлил ва контекст ҳам тақдим этади. "
+"Ўқувчиларимиз воқеаларни нафақат кўради, балки уларни тушунади."
+
+msgid "2026-yildan buyon"
+msgstr "2026-йилдан буён"
+
+msgid ""
+"Toshkentda tashkil etilgan, butun O'zbekiston va dunyo bo'yicha "
+"o'quvchilarimizga xizmat qilamiz"
+msgstr ""
+"Тошкентда ташкил этилган, бутун Ўзбекистон ва дунё бўйича "
+"ўқувчиларимизга хизмат қиламиз"
+
+msgid "Nashr etilgan"
+msgstr "Нашр этилган"
+
+msgid "ta bo'lim"
+msgstr "та бўлим"
+
+msgid "nafar"
+msgstr "нафар"
+
+msgid "Faol muxbirlar"
+msgstr "Фаол мухбирлар"
+
+msgid "yil"
+msgstr "йил"
+
+msgid "Bozorda tajriba"
+msgstr "Бозорда тажриба"
+
+msgid "Qadriyatlarimiz"
+msgstr "Қадриятларимиз"
+
+msgid "Haqqoniylik"
+msgstr "Ҳаққонийлик"
+
+msgid ""
+"Har bir yangilik kamida 2 ta mustaqil manbadan tekshiriladi. Biz hech qachon "
+"tasdiqlanmagan ma'lumot tarqatmaymiz."
+msgstr ""
+"Ҳар бир янгилик камида 2 та мустақил манбадан текширилади. Биз ҳеч қачон "
+"тасдиқланмаган маълумот тарқатмаймиз."
+
+msgid "Tezkorlik"
+msgstr "Тезкорлик"
+
+msgid ""
+"Voqea sodir bo'lgan daqiqadan 15 daqiqa ichida birinchi xabarimiz chiqadi. "
+"Biz har doim eng birinchi bo'lishga harakat qilamiz."
+msgstr ""
+"Воқеа содир бўлган дақиқадан 15 дақиқа ичида биринчи хабаримиз чиқади. "
+"Биз ҳар доим энг биринчи бўлишга ҳаракат қиламиз."
+
+msgid "Mustaqillik"
+msgstr "Мустақиллик"
+
+msgid ""
+"Siyosiy yoki iqtisodiy bosimdan holi, faqat jamoatchilik manfaati uchun "
+"ishlashga qat'iy rioya qilamiz."
+msgstr ""
+"Сиёсий ёки иқтисодий босимдан ҳоли, фақат жамоатчилик манфаати учун "
+"ишлашга қатъий риоя қиламиз."
+
+msgid "Jamiyat uchun"
+msgstr "Жамият учун"
+
+msgid ""
+"O'quvchilarimiz faqat iste'molchi emas, jamiyatimizning faol a'zolari. "
+"Ularning ovozi bizga muhim."
+msgstr ""
+"Ўқувчиларимиз фақат истеъмолчи эмас, жамиятимизнинг фаол аъзолари. "
+"Уларнинг овози бизга муҳим."
+
+msgid "Innovatsiya"
+msgstr "Инновация"
+
+msgid ""
+"Raqamli jurnalistikaning ilg'or usullarini qo'llagan holda, o'quvchilarga "
+"eng qulay tajriba yaratamiz."
+msgstr ""
+"Рақамли журналистиканинг илғор усулларини қўллаган ҳолда, ўқувчиларга энг "
+"қулай тажриба яратамиз."
+
+msgid "Ko'pqatlamlilik"
+msgstr "Кўпқатламлилик"
+
+msgid ""
+"Mahalliy va xalqaro yangiliklar bir platformada — O'zbekiston va dunyoni bir "
+"joyda kuzating."
+msgstr ""
+"Маҳаллий ва халқаро янгиликлар бир платформада — Ўзбекистон ва дунёни бир "
+"жойда кузатинг."
+
+msgid "Jamoamiz"
+msgstr "Жамоамиз"
+
+#, python-format
+msgid "%(count)s ta maqola nashr etilgan"
+msgstr "%(count)s та мақола нашр этилган"
+
+msgid "Jamoa a'zolari hali qo'shilmagan"
+msgstr "Жамоа аъзолари ҳали қўшилмаган"
+
+msgid "Biz bilan bog'laning"
+msgstr "Биз билан боғланинг"
+
+msgid ""
+"Hamkorlik, reklama yoki muxbir sifatida ishlash bo'yicha savollaringiz bormi?"
+msgstr ""
+"Ҳамкорлик, реклама ёки мухбир сифатида ишлаш бўйича саволларингиз борми?"
+
+msgid "Siyosat"
+msgstr "Сиёсат"
+
+msgid "Iqtisod"
+msgstr "Иқтисод"
+
+msgid "Sport"
+msgstr "Спорт"
+
+msgid "Texnologiya"
+msgstr "Технология"
+
+msgid "Dunyo"
+msgstr "Дунё"
+
+msgid "Tahririyat"
+msgstr "Таҳририят"
+
+msgid "Reklama"
+msgstr "Реклама"
+
+msgid "Hamkorlik"
+msgstr "Ҳамкорлик"
+
+msgid "Arxiv"
+msgstr "Архив"
+
+msgid "Toshkent, Mirzo Ulug'bek ko'chasi, 47"
+msgstr "Тошкент, Мирзо Улуғбек кўчаси, 47"
+
+msgid "Dush–Juma: 09:00 – 18:00"
+msgstr "Душ–Жума: 09:00 – 18:00"
+
+msgid "Maxfiylik"
+msgstr "Махфийлик"
+
+msgid "Shartlar"
+msgstr "Шартлар"
+
+msgid "Yuqoriga"
+msgstr "Юқорига"
+
+msgid "email@misol.uz"
+msgstr "email@misol.uz"
+
+msgid "Kamida 8 belgi"
+msgstr "Камида 8 белги"
+
+msgid "Parolni qayta kiriting"
+msgstr "Паролни қайта киритинг"
+
+msgid "Yangiliklar Portali"
+msgstr "Янгиликлар Портали"
+
+msgid "Barcha"
+msgstr "Барча"
+
+msgid ""
+"O'zingizga qiziq bo'lgan yo'nalishni tanlang — siyosatdan tortib "
+"san'atgacha, iqtisoddan sportgacha hamma narsa bir joyda."
+msgstr ""
+"Ўзингизга қизиқ бўлган йўналишни танланг — сиёсатдан тортиб санъатгача, "
+"иқтисоддан спортгача ҳамма нарса бир жойда."
+
+msgid "Jami maqola"
+msgstr "Жами мақола"
+
+msgid "Kategoriya"
+msgstr "Категория"
+
+msgid "Bugun"
+msgstr "Бугун"
+
+#, python-format
+msgid "%(count)s ta kategoriya"
+msgstr "%(count)s та категория"
+
+msgid "So'nggi maqolalar"
+msgstr "Сўнгги мақолалар"
+
+msgid "Hozircha maqola yo'q"
+msgstr "Ҳозирча мақола йўқ"
+
+#, python-format
+msgid "%(count)s ta maqola"
+msgstr "%(count)s та мақола"
+
+msgid "Mashhur Teglar"
+msgstr "Машҳур Теглар"
+
+msgid "Hozircha teglar yo'q"
+msgstr "Ҳозирча теглар йўқ"
+
+msgid ""
+"O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni "
+"dolzarb, haqqoniy va chuqur tahliliy materiallar."
+msgstr ""
+"Ўзбекистоннинг энг ишончли ва тезкор янгиликлар портали. Ҳар куни долзарб, "
+"ҳаққоний ва чуқур таҳлилий материаллар."
+
+msgid "Jamiyat"
+msgstr "Жамият"
+
+msgid "Dunyo yangiliklari"
+msgstr "Дунё янгиликлари"
+
+msgid "Madaniyat va san'at"
+msgstr "Маданият ва санъат"
+
+msgid "Sog'liqni saqlash"
+msgstr "Соғлиқни сақлаш"
+
+msgid "Kategoriya qidirish"
+msgstr "Категория қидириш"
+
+msgid "Kategoriya nomi..."
+msgstr "Категория номи..."
+
+msgid "Tez o'tish:"
+msgstr "Тез ўтиш:"
+
+msgid "Madaniyat"
+msgstr "Маданият"
+
+msgid "Ismingiz"
+msgstr "Исмингиз"
+
+msgid "Familiyangiz"
+msgstr "Фамилиянгиз"
+
+msgid "+998 90 000 00 00"
+msgstr "+998 90 000 00 00"
+
+msgid "Kompaniya yoki tashkilot nomi"
+msgstr "Компания ёки ташкилот номи"
+
+msgid "Masalan: $500 – $1000"
+msgstr "Масалан: $500 – $1000"
+
+msgid "https://ovoza.uz/about/123/"
+msgstr "https://ovoza.uz/about/123/"
+
+msgid "Xabaringizni yozing..."
+msgstr "Хабарингизни ёзинг..."
+
+msgid "Parolingiz"
+msgstr "Паролингиз"
+
+msgid "Yoqtirishlar"
+msgstr "Ёқтиришлар"
+
+msgid "Fikrlar"
+msgstr "Фикрлар"
+
+msgid "Ulashish"
+msgstr "Улашиш"
+
+msgid "Teglar:"
+msgstr "Теглар:"
+
+msgid "Yoqtirish"
+msgstr "Ёқтириш"
+
+msgid "Ulashish:"
+msgstr "Улашиш:"
+
+msgid "Nusxa olish"
+msgstr "Нусха олиш"
+
+msgid "O'xshash Yangiliklar"
+msgstr "Ўхшаш Янгиликлар"
+
+#, python-format
+msgid "%(count)s ta izoh"
+msgstr "%(count)s та изоҳ"
+
+msgid "Fikr bildirish"
+msgstr "Фикр билдириш"
+
+msgid "Fikringizni yozing..."
+msgstr "Фикрингизни ёзинг..."
+
+msgid "Yuborish"
+msgstr "Юбориш"
+
+msgid "Fikr bildirish uchun"
+msgstr "Фикр билдириш учун"
+
+msgid "kirish"
+msgstr "кириш"
+
+msgid "yoki"
+msgstr "ёки"
+
+msgid "ro'yxatdan o'tish"
+msgstr "рўйхатдан ўтиш"
+
+msgid "kerak"
+msgstr "керак"
+
+msgid "Saqlash"
+msgstr "Сақлаш"
+
+msgid "Bekor"
+msgstr "Бекор"
+
+msgid "Javob"
+msgstr "Жавоб"
+
+msgid "Tahrirlash"
+msgstr "Таҳрирлаш"
+
+msgid "Javobingizni yozing..."
+msgstr "Жавобингизни ёзинг..."
+
+msgid "Hali izoh qoldirilmagan. Birinchi bo'ling!"
+msgstr "Ҳали изоҳ қолдирилмаган. Биринчи бўлинг!"
+
+msgid "Ko'p O'qilganlar"
+msgstr "Кўп Ўқилганлар"
+
+msgid "Kirish talab etiladi"
+msgstr "Кириш талаб этилади"
+
+msgid "Like bosish uchun avval tizimga kiring."
+msgstr "Лайк босиш учун аввал тизимга киринг."
+
+msgid "Bekor qilish"
+msgstr "Бекор қилиш"
+
+msgid ""
+"O'zbekiston va dunyo bo'yicha eng dolzarb xabarlar — har kuni yangilanib "
+"turadi"
+msgstr ""
+"Ўзбекистон ва дунё бўйича энг долзарб хабарлар — ҳар куни янгиланиб туради"
+
+msgid "Barchasi"
+msgstr "Барчаси"
+
+msgid "Eng yangi"
+msgstr "Энг янги"
+
+msgid "Eng mashhur"
+msgstr "Энг машҳур"
+
+msgid "Ko'p muhokama"
+msgstr "Кўп муҳокама"
+
+msgid "List ko\\"
+msgstr "Рўйхат кўриниши"
+
+msgid "Grid ko\\"
+msgstr "Тўр кўриниши"
+
+#, python-format
+msgid "%(count)s ta yangilik topildi"
+msgstr "%(count)s та янгилик топилди"
+
+msgid "Yangiliklar topilmadi."
+msgstr "Янгиликлар топилмади."
+
+msgid "Yangilik, mavzu yoki muallif..."
+msgstr "Янгилик, мавзу ёки муаллиф..."
+
+msgid "Rasmni o\\"
+msgstr "Расмни ўзгартириш"
+
+msgid "Yoqtirgan"
+msgstr "Ёқтирган"
+
+msgid "Izohlar"
+msgstr "Изоҳлар"
+
+msgid "A'zo bo'lgan"
+msgstr "Аъзо бўлган"
+
+msgid "Yoqtirilganlar"
+msgstr "Ёқтирилганлар"
+
+msgid "Izohlarim"
+msgstr "Изоҳларим"
+
+msgid "Yoqtirganlar yo'q"
+msgstr "Ёқтирганлар йўқ"
+
+msgid "Yangiliklar o'qib, yoqtirgan maqolalaringiz bu yerda ko'rinadi"
+msgstr "Янгиликлар ўқиб, ёқтирган мақолаларингиз бу ерда кўринади"
+
+msgid "O'chirish"
+msgstr "Ўчириш"
+
+msgid "Izohlar yo'q"
+msgstr "Изоҳлар йўқ"
+
+msgid "Hali izoh yozmagansiz"
+msgstr "Ҳали изоҳ ёзмагансиз"
+
+msgid "Ma'lumotlar"
+msgstr "Маълумотлар"
+
+msgid "Faollik"
+msgstr "Фаоллик"
+
+msgid "So'nggi o'qilgan"
+msgstr "Сўнгги ўқилган"
+
+msgid "Sevimli kategoriya"
+msgstr "Севимли категория"
+
+msgid "Bugun o'qilgan"
+msgstr "Бугун ўқилган"
+
+msgid "Jami o'qilgan"
+msgstr "Жами ўқилган"
+
+msgid "Chiqmoqchimisiz?"
+msgstr "Чиқмоқчимисиз?"
+
+msgid "Hisobdan chiqiladi"
+msgstr "Ҳисобдан чиқилади"
+
+msgid "Izohni o'chirmoqchimisiz?"
+msgstr "Изоҳни ўчирмоқчимисиз?"
+
+msgid "Bu amal qaytarib bo'lmaydi"
+msgstr "Бу амал қайтариб бўлмайди"
+
+msgid "Qidirish..."
+msgstr "Қидириш..."
+
+msgid "Obuna"
+msgstr "Обуна"
+
+#, python-format
+msgid "<span>#%(name)s</span> tegi bo'yicha yangiliklar"
+msgstr "<span>#%(name)s</span> тeги бўйича янгиликлар"
+
+#, python-format
+msgid "%(count)s ta yangilik"
+msgstr "%(count)s та янгилик"
+
+msgid "Bu teg bo'yicha hali yangilik qo'shilmagan."
+msgstr "Бу тег бўйича ҳали янгилик қўшилмаган."
+
+msgid "Har kuni ertalab eng muhim 10 ta xabar"
+msgstr "Ҳар куни эрталаб энг муҳим 10 та хабар"
+
+#, python-format
+msgid "%(views)s marta o'qildi"
+msgstr "%(views)s марта ўқилди"
+
+msgid "Xush kelibsiz!"
+msgstr "Хуш келибсиз!"
+
+msgid "Hisobingizga kirish uchun ma'lumotlarni kiriting"
+msgstr "Ҳисобингизга кириш учун маълумотларни киритинг"
+
+msgid "Google orqali kirish"
+msgstr "Google орқали кириш"
+
+msgid "yoki email bilan"
+msgstr "ёки email билан"
+
+msgid "Email manzil"
+msgstr "Email манзил"
+
+msgid "To'g'ri email manzil kiriting"
+msgstr "Тўғри email манзил киритинг"
+
+msgid "Parol"
+msgstr "Парол"
+
+msgid "Parolni unutdingizmi?"
+msgstr "Паролни унутдингизми?"
+
+msgid "Parol kiritilmagan"
+msgstr "Парол киритилмаган"
+
+msgid "Meni eslab qol (30 kun)"
+msgstr "Мени эслаб қол (30 кун)"
+
+msgid "Hisobingiz yo'qmi?"
+msgstr "Ҳисобингиз йўқми?"
+
+msgid "Ro'yxatdan o'ting"
+msgstr "Рўйхатдан ўтинг"
+
+msgid "Yordam"
+msgstr "Ёрдам"
+
+msgid "Hisob yaratish"
+msgstr "Ҳисоб яратиш"
+
+msgid "Yangiliklar, izohlar va ko'proq imkoniyatlar uchun ro'yxatdan o'ting"
+msgstr "Янгиликлар, изоҳлар ва кўпроқ имкониятлар учун рўйхатдан ўтинг"
+
+msgid "Google orqali davom etish"
+msgstr "Google орқали давом этиш"
+
+msgid "Ism"
+msgstr "Исм"
+
+msgid "Ism kiritilmagan"
+msgstr "Исм киритилмаган"
+
+msgid "Familiya"
+msgstr "Фамилия"
+
+msgid "Familiya kiritilmagan"
+msgstr "Фамилия киритилмаган"
+
+msgid "Kamida 8 belgi kiriting"
+msgstr "Камида 8 белги киритинг"
+
+msgid "Parolni tasdiqlash"
+msgstr "Паролни тасдиқлаш"
+
+msgid "Parollar mos kelmaydi"
+msgstr "Паролlar мос келмайди"
+
+msgid "va"
+msgstr "ва"
+
+msgid "bilan roziman"
+msgstr "билан розиман"
+
+msgid "Shartlarni qabul qilish shart"
+msgstr "Шартларни қабул қилиш шарт"
+
+msgid "Yangiliklar xabarnomasi olishni xohlayman"
+msgstr "Янгиликлар хабарномаси олишни хоҳлайман"
+
+msgid "Muvaffaqiyatli ro'yxatdan o'tdingiz!"
+msgstr "Муваффақиятли рўйхатдан ўтдингиз!"
+
+msgid "Hisobingiz bormi?"
+msgstr "Ҳисобингиз борми?"
+
+msgid "Biz bilan"
+msgstr "Биз билан"
+
+msgid "bog'laning"
+msgstr "боғланинг"
+
+msgid "Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz."
+msgstr "Савол, таклиф ёки ҳамкорлик бўйича мурожаат қилинг — биз 24 соат ичида жавоб берамиз."
+
+msgid "Xabar yuboring"
+msgstr "Хабар юборинг"
+
+msgid "Umumiy savol"
+msgstr "Умумий савол"
+
+msgid "Xato bildirish"
+msgstr "Хато билдириш"
+
+msgid "Boshqa"
+msgstr "Бошқа"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "To'g'ri email kiriting"
+msgstr "Тўғри email киритинг"
+
+msgid "Telefon"
+msgstr "Телефон"
+
+msgid "Kompaniya nomi"
+msgstr "Компания номи"
+
+msgid "Reklama formati"
+msgstr "Реклама формати"
+
+msgid "Formatni tanlang"
+msgstr "Форматни танланг"
+
+msgid "Banner reklama"
+msgstr "Баннер реклама"
+
+msgid "Video reklama"
+msgstr "Видео реклама"
+
+msgid "Reklama maqolasi"
+msgstr "Реклама мақоласи"
+
+msgid "Ijtimoiy tarmoq"
+msgstr "Ижтимоий тармоқ"
+
+msgid "Taxminiy byudjet"
+msgstr "Тахминий бюджет"
+
+msgid "Maqola URL"
+msgstr "Мақола URL"
+
+msgid "Xabar"
+msgstr "Хабар"
+
+msgid "Xabar kiritilmagan"
+msgstr "Хабар киритилмаган"
+
+msgid "Xabar yuborish"
+msgstr "Хабар юбориш"
+
+msgid "Xabar yuborildi!"
+msgstr "Хабар юборилди!"
+
+msgid "Tez orada siz bilan bog'lanamiz."
+msgstr "Тез орада сиз билан боғланамиз."
+
+msgid "Odatda 24 soat ichida javob beramiz."
+msgstr "Одатда 24 соат ичида жавоб берамиз."
+
+msgid "Ko'p so'raladigan savollar"
+msgstr "Кўп сўраладиган саволлар"
+
+msgid "Reklama narxlari qancha?"
+msgstr "Реклама нархлари қанча?"
+
+msgid "Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang."
+msgstr "Реклама нархлари форматларга қараб фарқ қилади. Батафсил маълумот учун reklama@ovoza.uz манзилига ёзинг."
+
+msgid "Muxbir bo'lish mumkinmi?"
+msgstr "Мухбир бўлиш мумкинми?"
+
+msgid "Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna maqolalaringizni info@ovoza.uz manziliga yuboring."
+msgstr "Ҳа, биз доим иқтидорли мухбирларни қидирамиз. Резюменгизни info@ovoza.uz манзилига юборинг."
+
+msgid "Yangilik taklif qilsam bo'ladimi?"
+msgstr "Янгилик таклиф қилсам бўладими?"
+
+msgid "Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar qiling. Tahririyat ko'rib chiqadi."
+msgstr "Албатта! Муҳим янгилик ҳақида билсангиз, бизга хабар қилинг. Таҳририят кўриб чиқади."
+
+msgid "Xato ma'lumot topsam nima qilaman?"
+msgstr "Хато маълумот топсам нима қиламан?"
+
+msgid "Iltimos, \"Xato bildirish\" bo'limidan foydalaning yoki to'g'ridan to'g'ri tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz."
+msgstr "Илтимос, «Хато билдириш» бўлимидан фойдаланинг ёки tahrir@ovoza.uz манзилига ёзинг."
+
+msgid "Asosiy email"
+msgstr "Асосий email"
+
+msgid "Umumiy savollar uchun"
+msgstr "Умумий саволлар учун"
+
+msgid "Reklama bo'limi"
+msgstr "Реклама бўлими"
+
+msgid "Hamkorlik va reklama uchun"
+msgstr "Ҳамкорлик ва реклама учун"
+
+msgid "Mirzo Ulug'bek tumani"
+msgstr "Мирзо Улуғбек тумани"
+
+msgid "Xaritada ko'rish"
+msgstr "Харитада кўриш"
+
+msgid "Ish vaqti"
+msgstr "Иш вақти"
+
+msgid "Dushanba"
+msgstr "Душанба"
+
+msgid "Seshanba"
+msgstr "Сешанба"
+
+msgid "Chorshanba"
+msgstr "Чоршанба"
+
+msgid "Payshanba"
+msgstr "Пайшанба"
+
+msgid "Juma"
+msgstr "Жума"
+
+msgid "Shanba"
+msgstr "Шанба"
+
+msgid "Yakshanba"
+msgstr "Якшанба"
+
+msgid "Dam olish"
+msgstr "Дам олиш"
+
+msgid "Ijtimoiy tarmoqlar"
+msgstr "Ижтимоий тармоқлар"
+
+msgid "412K+ obunachi"
+msgstr "412K+ обуначи"
+
+msgid "Qidiruv natijalari"
+msgstr "Қидирув натижалари"
+
+msgid "ta natija topildi"
+msgstr "та натижа топилди"
+
+msgid "Hech narsa topilmadi"
+msgstr "Ҳеч нарса топилмади"
+
+msgid "bo'yicha hech narsa topilmadi"
+msgstr "бўйича ҳеч нарса топилмади"
+
+msgid "Boshqa kalit so'z bilan qidirib ko'ring"
+msgstr "Бошқа калит сўз билан қидириб кўринг"
+
+msgid "Yuqoridagi qidiruv maydoniga so'z kiriting"
+msgstr "Юқоридаги қидирув майдонига сўз киритинг"
+
+msgid "Yangilik, mavzu yoki muallif qidirish..."
+msgstr "Янгилик, мавзу ёки муаллиф қидириш..."
+
+msgid "Salomatlik"
+msgstr "Саломатлик"
+
+msgid "Parolni tiklash"
+msgstr "Паролни тиклаш"
+
+msgid "Emailingizni kiriting — tiklash havolasi yuboramiz"
+msgstr "Emailingizni киритинг — тиклаш ҳаволаси юборамиз"
+
+msgid "Kirishga qaytish"
+msgstr "Киришга қайтиш"
+
+msgid "Xat yuborildi!"
+msgstr "Хат юборилди!"
+
+msgid "Emailingizni tekshiring va havolaga bosing"
+msgstr "Emailingizni текширинг ва ҳаволага босинг"
+
+msgid "Parolni tiklash havolasi emailingizga yuborildi."
+msgstr "Паролни тиклаш ҳаволаси emailингизга юборилди."
+
+msgid "Agar xat kelmagan bo'lsa, spam papkasini tekshiring."
+msgstr "Агар хат келмаган бўлса, spam папкасини текширинг."
+
+msgid "soniyada kirishga yo'naltirilasiz..."
+msgstr "сониядa киришга йўналтириласиз..."
+
+msgid "Yangi parol"
+msgstr "Янги парол"
+
+msgid "Yangi parolingizni kiriting"
+msgstr "Янги паролингизни киритинг"
+
+msgid "Havola yaroqsiz!"
+msgstr "Ҳавола яроқсиз!"
+
+msgid "Bu havola eskirgan yoki allaqachon ishlatilgan."
+msgstr "Бу ҳавола эскирган ёки аллақачон ишлатилган."
+
+msgid "Qaytadan yuborish"
+msgstr "Қайтадан юбориш"
+
+msgid "Parolni o'zgartirish"
+msgstr "Паролни ўзгартириш"
+
+msgid "Maqola"
+msgstr "Мақола"
+
+msgid "O'quvchi"
+msgstr "Ўқувчи"
+
+msgid "Trendlar"
+msgstr "Трендлар"
+
+msgid "O'xshash Maqolalar"
+msgstr "Ўхшаш Мақолалар"
+
+msgid "Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!"
+msgstr "Бу категорияда ҳали мақолалар қўшилмаган. Тез орада янгиликлар пайдо бўлади!"
+
+msgid "Hozircha teg yo'q"
+msgstr "Ҳозирча тег йўқ"

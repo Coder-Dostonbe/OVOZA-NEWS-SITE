@@ -125,7 +125,7 @@
         <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
         <div>
           <span class="logo-name">Ovoza</span>
-          <span class="logo-tagline">Yangiliklar portali</span>
+          <span class="logo-tagline">{% trans "Yangiliklar portali" %}</span>
         </div>
       </a>
       <a href="{% url 'home' %}" class="nav-back"><i class="fas fa-arrow-left"></i> {% trans "Bosh sahifaga qaytish" %}</a>
@@ -140,31 +140,31 @@
       <div class="auth-brand">
         <div class="auth-brand-icon"><i class="fas fa-satellite-dish"></i></div>
         <div class="auth-brand-name">Ovoza</div>
-        <div class="auth-brand-tag">Yangiliklar portali</div>
+        <div class="auth-brand-tag">{% trans "Yangiliklar portali" %}</div>
       </div>
 
       <!-- Card -->
       <div class="auth-card">
         <div class="auth-card-header">
-          <h2>Hisob yaratish</h2>
-          <p>Yangiliklar, izohlar va ko'proq imkoniyatlar uchun ro'yxatdan o'ting</p>
+          <h2>{% trans "Hisob yaratish" %}</h2>
+          <p>{% trans "Yangiliklar, izohlar va ko'proq imkoniyatlar uchun ro'yxatdan o'ting" %}</p>
         </div>
         <div class="auth-card-body">
 
           <!-- Tabs -->
           <div class="auth-tabs">
-            <button class="auth-tab" onclick="window.location='{% url 'login' %}'">Kirish</button>
-            <button class="auth-tab active" onclick="window.location='{% url 'register' %}'">Ro'yxatdan o'tish</button>
+            <button class="auth-tab" onclick="window.location='{% url 'login' %}'">{% trans "Kirish" %}</button>
+            <button class="auth-tab active" onclick="window.location='{% url 'register' %}'">{% trans "Ro'yxatdan o'tish" %}</button>
           </div>
 
           <!-- Google -->
           <a href="{% provider_login_url 'google' process='signup' %}" class="btn-google" id="googleBtn">
              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
-              Google orqali davom etish
+              {% trans "Google orqali davom etish" %}
           </a>
 
           <!-- Divider -->
-          <div class="auth-divider">yoki email bilan</div>
+          <div class="auth-divider">{% trans "yoki email bilan" %}</div>
 
           <!-- Form -->
           <form  id="registerForm" novalidate>
@@ -172,42 +172,41 @@
 
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Ism <span>*</span></label>
+                <label class="form-label">{% trans "Ism" %} <span>*</span></label>
                 <div class="input-wrap">
                   <i class="fas fa-user input-icon"></i>
-                  <input  type="text" name="name" class="form-control-dark" id="regFirst" placeholder="Ismingiz"
+                  <input  type="text" name="name" class="form-control-dark" id="regFirst" placeholder="{% trans 'Ismingiz' %}"
                     autocomplete="given-name" required />
                 </div>
-                <div class="form-error" id="firstError"><i class="fas fa-exclamation-circle"></i> Ism kiritilmagan</div>
+                <div class="form-error" id="firstError"><i class="fas fa-exclamation-circle"></i> {% trans "Ism kiritilmagan" %}</div>
               </div>
               <div class="form-group">
-                <label class="form-label">Familiya <span>*</span></label>
+                <label class="form-label">{% trans "Familiya" %} <span>*</span></label>
                 <div class="input-wrap">
                   <i class="fas fa-user input-icon"></i>
-                  <input type="text"  name="sure-name" class="form-control-dark" id="regLast" placeholder="Familiyangiz"
+                  <input type="text"  name="sure-name" class="form-control-dark" id="regLast" placeholder="{% trans 'Familiyangiz' %}"
                     autocomplete="family-name" required />
                 </div>
-                <div class="form-error" id="lastError"><i class="fas fa-exclamation-circle"></i> Familiya kiritilmagan
+                <div class="form-error" id="lastError"><i class="fas fa-exclamation-circle"></i> {% trans "Familiya kiritilmagan" %}
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Email manzil <span>*</span></label>
+              <label class="form-label">{% trans "Email manzil" %} <span>*</span></label>
               <div class="input-wrap">
                 <i class="fas fa-envelope input-icon"></i>
-                <input  type="email" name="email" class="form-control-dark" id="regEmail" placeholder="email@misol.uz"
+                <input  type="email" name="email" class="form-control-dark" id="regEmail" placeholder="{% trans 'email@misol.uz' %}"
                   autocomplete="email" />
               </div>
-              <div class="form-error" id="regEmailError"><i class="fas fa-exclamation-circle"></i> To'g'ri email manzil
-                kiriting</div>
+              <div class="form-error" id="regEmailError"><i class="fas fa-exclamation-circle"></i> {% trans "To'g'ri email manzil kiriting" %}</div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Parol <span>*</span></label>
+              <label class="form-label">{% trans "Parol" %} <span>*</span></label>
               <div class="input-wrap">
                 <i class="fas fa-lock input-icon"></i>
-                <input  type="password" name="password" class="form-control-dark" id="regPass" placeholder="Kamida 8 belgi"
+                <input  type="password" name="password" class="form-control-dark" id="regPass" placeholder="{% trans 'Kamida 8 belgi' %}"
                   autocomplete="new-password" />
                 <button type="button" class="input-toggle" id="toggleRegPass"><i class="far fa-eye"></i></button>
               </div>
@@ -219,19 +218,18 @@
                 <div class="strength-seg" id="seg4"></div>
               </div>
               <div class="strength-label" id="strengthLabel"></div>
-              <div class="form-error" id="regPassError"><i class="fas fa-exclamation-circle"></i> Kamida 8 belgi
-                kiriting</div>
+              <div class="form-error" id="regPassError"><i class="fas fa-exclamation-circle"></i> {% trans "Kamida 8 belgi kiriting" %}</div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Parolni tasdiqlash <span>*</span></label>
+              <label class="form-label">{% trans "Parolni tasdiqlash" %} <span>*</span></label>
               <div class="input-wrap">
                 <i class="fas fa-lock input-icon"></i>
                 <input type="password" name="retype-password" class="form-control-dark" id="regPassConfirm"
-                  placeholder="Parolni qayta kiriting" autocomplete="new-password" />
+                  placeholder="{% trans 'Parolni qayta kiriting' %}" autocomplete="new-password" />
                 <button type="button" class="input-toggle" id="toggleConfirm"><i class="far fa-eye"></i></button>
               </div>
-              <div class="form-error" id="confirmError"><i class="fas fa-exclamation-circle"></i> Parollar mos kelmaydi
+              <div class="form-error" id="confirmError"><i class="fas fa-exclamation-circle"></i> {% trans "Parollar mos kelmaydi" %}
               </div>
             </div>
 
@@ -239,35 +237,34 @@
               <label class="form-check-dark">
                 <input type="checkbox" id="agreeTerms" />
                 <span class="check-label">
-                  <a href="#">Foydalanish shartlari</a> va
-                  <a href="#">Maxfiylik siyosati</a> bilan roziman
+                  <a href="#">{% trans "Foydalanish shartlari" %}</a> {% trans "va" %}
+                  <a href="#">{% trans "Maxfiylik siyosati" %}</a> {% trans "bilan roziman" %}
                 </span>
               </label>
-              <div class="form-error" id="termsError"><i class="fas fa-exclamation-circle"></i> Shartlarni qabul qilish
-                shart</div>
+              <div class="form-error" id="termsError"><i class="fas fa-exclamation-circle"></i> {% trans "Shartlarni qabul qilish shart" %}</div>
             </div>
 
             <div class="form-group">
               <label class="form-check-dark">
                 <input type="checkbox" id="newsletter" checked />
-                <span class="check-label">Yangiliklar xabarnomasi olishni xohlayman</span>
+                <span class="check-label">{% trans "Yangiliklar xabarnomasi olishni xohlayman" %}</span>
               </label>
             </div>
 
             <button type="submit" class="btn-auth" id="registerBtn">
               <div class="spinner"></div>
-              <span class="btn-text"><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish</span>
+              <span class="btn-text"><i class="fas fa-user-plus"></i> {% trans "Ro'yxatdan o'tish" %}</span>
             </button>
           </form>
 
           <!-- Success state -->
           <div class="auth-success" id="regSuccess">
             <div class="success-icon"><i class="fas fa-check"></i></div>
-            <div class="success-title">Muvaffaqiyatli ro'yxatdan o'tdingiz!</div>
+            <div class="success-title">{% trans "Muvaffaqiyatli ro'yxatdan o'tdingiz!" %}</div>
           </div>
 
           <div class="auth-switch">
-            Hisobingiz bormi? <a href="{% url 'login' %}">Kirish</a>
+            {% trans "Hisobingiz bormi?" %} <a href="{% url 'login' %}">{% trans "Kirish" %}</a>
           </div>
 
         </div>
@@ -279,11 +276,11 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-mini">
-      <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+      <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
       <div class="footer-mini-links">
-        <a href="#">Maxfiylik</a>
-        <a href="#">Shartlar</a>
-        <a href="#">Yordam</a>
+        <a href="#">{% trans "Maxfiylik" %}</a>
+        <a href="#">{% trans "Shartlar" %}</a>
+        <a href="#">{% trans "Yordam" %}</a>
       </div>
     </div>
   </footer>

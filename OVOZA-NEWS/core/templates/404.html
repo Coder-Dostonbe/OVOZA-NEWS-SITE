@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 – Sahifa topilmadi | Ovoza</title>
+  <title>404 – {% trans "Sahifa topilmadi" %} | Ovoza</title>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -281,23 +281,23 @@
   <!-- Center -->
   <div class="center">
     <div class="err-num">4<span class="zero">0</span>4</div>
-    <div class="err-title">Sahifa topilmadi</div>
+    <div class="err-title">{% trans "Sahifa topilmadi" %}</div>
     <p class="err-text">
-      Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud bo'lmagan bo'lishi mumkin.
+      {% trans "Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud bo'lmagan bo'lishi mumkin." %}
     </p>
     <div class="btn-wrap">
-      <a href="{% url 'home' %}" class="btn-home"><i class="fas fa-home"></i> Bosh sahifa</a>
-      <button class="btn-back" onclick="history.back()"><i class="fas fa-arrow-left"></i> Orqaga</button>
+      <a href="{% url 'home' %}" class="btn-home"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a>
+      <button class="btn-back" onclick="history.back()"><i class="fas fa-arrow-left"></i> {% trans "Orqaga" %}</button>
     </div>
     <div class="countdown">
-      <span id="sec">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →
-      <a href="{% url 'home' %}">Bosh sahifa</a>
+      {% blocktrans %}<span id="sec">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →{% endblocktrans %}
+      <a href="{% url 'home' %}">{% trans "Bosh sahifa" %}</a>
     </div>
   </div>
 
   <!-- Bottom hint -->
   <div class="hint">
-    Yordam kerakmi? <a href="mailto:info@ovoza.uz">info@ovoza.uz</a>
+    {% trans "Yordam kerakmi?" %} <a href="mailto:info@ovoza.uz">info@ovoza.uz</a>
   </div>
 
   <script src="{% static 'assets/js/lang.js' %}"></script>

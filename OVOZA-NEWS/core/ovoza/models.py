@@ -20,7 +20,7 @@ class AuthUser(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
     description = models.TextField()
     icon = models.CharField(max_length=100, default='fas fa-folder')
     color = models.CharField(max_length=7, default='#1a6fa8')
@@ -37,7 +37,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -49,7 +49,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title = models.TextField(max_length=250)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
 
     short_description = CKEditor5Field(max_length=1000)
 

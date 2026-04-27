@@ -6,7 +6,7 @@
   {% load i18n %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yangiliklar – Ovoza</title>
+  <title>{% trans "Yangiliklar" %} – Ovoza</title>
   <meta name="description" content="Ovoza — O'zbekiston va dunyo bo'yicha so'nggi yangiliklar." />
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c0392b'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='white'>O</text></svg>" />
@@ -168,12 +168,12 @@
     <div class="container page-header-inner">
       <div class="page-header-left">
         <div class="breadcrumb">
-          <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
+          <a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a>
           <i class="fas fa-chevron-right"></i>
-          <span>Yangiliklar</span>
+          <span>{% trans "Yangiliklar" %}</span>
         </div>
-        <h1 class="page-title">So'nggi <span>Yangiliklar</span></h1>
-        <p class="page-subtitle">O'zbekiston va dunyo bo'yicha eng dolzarb xabarlar — har kuni yangilanib turadi</p>
+        <h1 class="page-title">{% trans "So'nggi" %} <span>{% trans "Yangiliklar" %}</span></h1>
+        <p class="page-subtitle">{% trans "O'zbekiston va dunyo bo'yicha eng dolzarb xabarlar — har kuni yangilanib turadi" %}</p>
       </div>
     </div>
   </section>
@@ -183,7 +183,7 @@
     <div class="container filter-bar-inner">
       <div class="filter-cats" id="filterCats">
         <a href="?sort={{ current_sort }}" class="filter-cat {% if not current_cat %}active{% endif %}">
-          <i class="fas fa-th"></i> Barchasi
+          <i class="fas fa-th"></i> {% trans "Barchasi" %}
         </a>
         {% for cat in categories|slice:":7" %}
         <a href="?cat={{ cat.slug }}&sort={{ current_sort }}"
@@ -195,18 +195,18 @@
       <div class="filter-right">
           <div class="sort-tabs">
             <a href="?cat={{ current_cat }}&sort=newest" class="sort-tab {% if current_sort == 'newest' %}active{% endif %}">
-              <i class="fas fa-clock"></i> Eng yangi
+              <i class="fas fa-clock"></i> {% trans "Eng yangi" %}
             </a>
             <a href="?cat={{ current_cat }}&sort=popular" class="sort-tab {% if current_sort == 'popular' %}active{% endif %}">
-              <i class="fas fa-fire"></i> Eng mashhur
+              <i class="fas fa-fire"></i> {% trans "Eng mashhur" %}
             </a>
             <a href="?cat={{ current_cat }}&sort=discussed" class="sort-tab {% if current_sort == 'discussed' %}active{% endif %}">
-              <i class="fas fa-comments"></i> Ko'p muhokama
+              <i class="fas fa-comments"></i> {% trans "Ko'p muhokama" %}
             </a>
           </div>
           <div class="view-toggle">
-            <button class="view-btn active" id="listViewBtn" title="List ko'rinish"><i class="fas fa-list"></i></button>
-            <button class="view-btn" id="gridViewBtn" title="Grid ko'rinish"><i class="fas fa-th-large"></i></button>
+            <button class="view-btn active" id="listViewBtn" title="{% trans 'List ko\'rinish' %}"><i class="fas fa-list"></i></button>
+            <button class="view-btn" id="gridViewBtn" title="{% trans 'Grid ko\'rinish' %}"><i class="fas fa-th-large"></i></button>
           </div>
       </div>
     </div>
@@ -219,15 +219,15 @@
 
         <div class="content-area">
           <div class="section-hd">
-            <span class="section-title">Yangiliklar</span>
-            <span class="result-count" id="resultCount">{{ total_count }} ta yangilik topildi</span>
+            <span class="section-title">{% trans "Yangiliklar" %}</span>
+            <span class="result-count" id="resultCount">{% blocktrans with count=total_count %}{{ count }} ta yangilik topildi{% endblocktrans %}</span>
           </div>
 
           <div class="news-list" id="newsList">
             {% for post in page_obj %}
             <div class="news-item {% if forloop.first and page_obj.number == 1 %}featured{% endif %}"
                  data-cat="{{ post.category.slug|default:'other' }}"
-                 onclick="window.location='{% url 'post_about' post.id %}'"
+                 onclick="window.location='{% url 'post_about' post.slug %}'"
                  style="cursor:pointer;">
               <div class="ni-img {% if forloop.first and page_obj.number == 1 %}featured-img{% endif %}">
                 {% if post.image %}
@@ -240,7 +240,7 @@
               </div>
               <div class="ni-body">
                 {% if forloop.first and page_obj.number == 1 %}
-                <div class="breaking-label"><i class="fas fa-bolt"></i> Tezkor xabar</div>
+                <div class="breaking-label"><i class="fas fa-bolt"></i> {% trans "Tezkor xabar" %}</div>
                 {% endif %}
                 <div class="ni-meta-top">
                   {% if post.category %}
@@ -263,14 +263,14 @@
                     <span><i class="far fa-eye"></i> {{ post.views }}</span>
                     <span><i class="far fa-comment"></i> {{ post.comments.count }}</span>
                   </div>
-                  <span class="ni-read-btn">O'qish <i class="fas fa-arrow-right"></i></span>
+                  <span class="ni-read-btn">{% trans "O'qish" %} <i class="fas fa-arrow-right"></i></span>
                 </div>
               </div>
             </div>
             {% empty %}
             <div style="text-align:center;padding:60px 20px;">
               <i class="fas fa-newspaper" style="font-size:3rem;color:#555;margin-bottom:16px;display:block;"></i>
-              <p style="color:#888;">Yangiliklar topilmadi.</p>
+              <p style="color:#888;">{% trans "Yangiliklar topilmadi." %}</p>
             </div>
             {% endfor %}
           </div><!-- /news-list -->
@@ -288,9 +288,9 @@
 
             {% for num in page_obj.paginator.page_range %}
               {% if num == page_obj.number %}
-              <button class="page-btn active">{{ num }}</button>
+                <button class="page-btn active">{{ num }}</button>
               {% else %}
-              <a href="?cat={{ current_cat }}&sort={{ current_sort }}&page={{ num }}" class="page-btn">{{ num }}</a>
+                <a href="?cat={{ current_cat }}&sort={{ current_sort }}&page={{ num }}" class="page-btn">{{ num }}</a>
               {% endif %}
             {% endfor %}
 
@@ -309,9 +309,9 @@
         <!-- ── SIDEBAR ── -->
         <aside class="sidebar">
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-fire-alt"></i> Ko'p O'qilganlar</div>
+            <div class="widget-header"><i class="fas fa-fire-alt"></i> {% trans "Ko'p O'qilganlar" %}</div>
             {% for post in popular_posts %}
-            <div class="popular-item" onclick="window.location='{% url 'post_about' post.id %}'" style="cursor:pointer;">
+            <div class="popular-item" onclick="window.location='{% url 'post_about' post.slug %}'" style="cursor:pointer;">
               <span class="pop-num">0{{ forloop.counter }}</span>
               {% if post.image %}
               <img class="pop-img" src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" />
@@ -329,7 +329,7 @@
 
           {% if advertisement %}
           <div class="ad-widget">
-            <div class="ad-label">Reklama</div>
+            <div class="ad-label">{% trans "Reklama" %}</div>
             {% if advertisement.video_url %}
             <iframe src="{{ advertisement.video_url }}" width="100%" height="200" frameborder="0" allowfullscreen></iframe>
             {% elif advertisement.video %}
@@ -345,7 +345,7 @@
           {% endif %}
 
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-th-large"></i> Kategoriyalar</div>
+            <div class="widget-header"><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</div>
             {% for cat in categories %}
             <a href="?cat={{ cat.slug }}&sort={{ current_sort }}" class="cat-link-item" style="text-decoration:none;">
               <div class="cat-link-left">
@@ -358,7 +358,7 @@
           </div>
 
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
+            <div class="widget-header"><i class="fas fa-hashtag"></i> {% trans "Mashhur Teglar" %}</div>
             <div class="tags-cloud">
               {% for tag in popular_tags %}
               <a href="{% url 'tag_posts' tag.name %}" class="tag-item" style="text-decoration:none;">#{{ tag.name }}</a>
@@ -374,19 +374,19 @@
   <!-- ═══ SEARCH OVERLAY ═══ -->
   <div class="search-overlay" id="searchOverlay">
     <div class="search-overlay-box">
-      <div class="search-ov-label"><i class="fas fa-search"></i> Qidirish</div>
+      <div class="search-ov-label"><i class="fas fa-search"></i> {% trans "Qidirish" %}</div>
       <form method="GET" action="{% url 'search' %}">
         <div class="search-ov-input-wrap">
           <i class="fas fa-search search-ov-icon"></i>
           <input id="searchOvInput" class="search-ov-input" type="text" name="q"
-                 placeholder="Yangilik, mavzu yoki muallif..." autocomplete="off" />
+                 placeholder="{% trans 'Yangilik, mavzu yoki muallif...' %}" autocomplete="off" />
           <button class="search-ov-close" type="button" id="searchOvClose"><i class="fas fa-times"></i></button>
         </div>
       </form>
       <div class="search-ov-hints">
-        <span><kbd>Enter</kbd> Qidirish</span>
-        <span><kbd>ESC</kbd> Yopish</span>
-        <span><kbd>Ctrl K</kbd> Ochish</span>
+        <span><kbd>Enter</kbd> {% trans "Qidirish" %}</span>
+        <span><kbd>ESC</kbd> {% trans "Yopish" %}</span>
+        <span><kbd>Ctrl K</kbd> {% trans "Ochish" %}</span>
       </div>
     </div>
   </div>
@@ -400,8 +400,7 @@
             <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
             <span class="footer-logo-name">Ovoza</span>
           </div>
-          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy
-            va chuqur tahliliy materiallar.</p>
+          <p class="footer-desc">{% trans "O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy va chuqur tahliliy materiallar." %}</p>
           <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
@@ -411,49 +410,49 @@
           </div>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <h5><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Siyosat</a></li>
-            <li><a href="#">Iqtisod</a></li>
-            <li><a href="#">Jamiyat</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Texnologiya</a></li>
-            <li><a href="#">Dunyo yangiliklari</a></li>
-            <li><a href="#">Madaniyat va san'at</a></li>
+            <li><a href="#">{% trans "Siyosat" %}</a></li>
+            <li><a href="#">{% trans "Iqtisod" %}</a></li>
+            <li><a href="#">{% trans "Jamiyat" %}</a></li>
+            <li><a href="#">{% trans "Sport" %}</a></li>
+            <li><a href="#">{% trans "Texnologiya" %}</a></li>
+            <li><a href="#">{% trans "Dunyo yangiliklari" %}</a></li>
+            <li><a href="#">{% trans "Madaniyat va san'at" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <h5><i class="fas fa-file-alt"></i> {% trans "Sahifalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Biz haqimizda</a></li>
-            <li><a href="#">Tahririyat</a></li>
-            <li><a href="#">Reklama</a></li>
-            <li><a href="#">Hamkorlik</a></li>
-            <li><a href="#">Arxiv</a></li>
+            <li><a href="#">{% trans "Biz haqimizda" %}</a></li>
+            <li><a href="#">{% trans "Tahririyat" %}</a></li>
+            <li><a href="#">{% trans "Reklama" %}</a></li>
+            <li><a href="#">{% trans "Hamkorlik" %}</a></li>
+            <li><a href="#">{% trans "Arxiv" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          <h5><i class="fas fa-phone-alt"></i> {% trans "Aloqa" %}</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> {% trans "Toshkent, Mirzo Ulug'bek ko'chasi, 47" %}
           </div>
           <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
           <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
-          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> {% trans "Dush–Juma: 09:00 – 18:00" %}</div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
         <div class="footer-bottom-links">
-          <a href="#">Maxfiylik siyosati</a>
-          <a href="#">Foydalanish shartlari</a>
+          <a href="#">{% trans "Maxfiylik siyosati" %}</a>
+          <a href="#">{% trans "Foydalanish shartlari" %}</a>
           <a href="#">Cookie</a>
-          <a href="#">Saytxaritasi</a>
+          <a href="#">{% trans "Saytxaritasi" %}</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+  <button id="scrollTop" title="{% trans 'Yuqoriga' %}"><i class="fas fa-chevron-up"></i></button>
 
   <script>
     window.addEventListener('load', function () {

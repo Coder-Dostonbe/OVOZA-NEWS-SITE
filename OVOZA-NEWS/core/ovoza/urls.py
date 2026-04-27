@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('', home, name='home'),
-    path('about/<int:id>/', post_about, name='post_about'),
+    path('about/<slug:slug>/', post_about, name='post_about'),
     path('about_section/', about_section, name='about_section'),
     path('category/<str:slug>/', categories_about, name='categories_about'),
     path('categories/', categories, name='categories'),
@@ -19,9 +19,9 @@ urlpatterns = [
     path('avatar_upload/', avatar_upload, name='avatar_upload'),
 
     path('tag/<str:tag_name>/', tag_posts, name='tag_posts'),
-    path('like/<int:id>/', like_post, name='like_post'),
-    path('about/<int:post_id>/comment/', add_comment, name='add_comment'),
-    path('share/<int:id>/', share_post, name='share_post'),
+    path('like/<slug:slug>/', like_post, name='like_post'),
+    path('about/<slug:slug>/comment/', add_comment, name='add_comment'),
+    path('share/<slug:slug>/', share_post, name='share_post'),
 
     path('comment/delete/<int:comment_id>/', delete_comment, name='delete_comment'),
     path('comment/edit/<int:comment_id>/', edit_comment, name='edit_comment'),

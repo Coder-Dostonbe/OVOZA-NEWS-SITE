@@ -24,6 +24,15 @@
     });
   });
 
+  /* ─── Ticker dynamic speed ──────────────────────────── */
+  const tickerTrack = document.querySelector(".ticker-track");
+  if (tickerTrack) {
+    const totalWidth = tickerTrack.scrollWidth;
+    const halfWidth  = totalWidth / 2;
+    const duration   = Math.max(10, halfWidth / 80);
+    tickerTrack.style.animationDuration = duration + "s";
+  }
+
   /* ─── Mobile nav ─────────────────────────────────────── */
   const navToggler = document.getElementById("navbarToggler");
   const navMenu    = document.getElementById("navbarMenu");

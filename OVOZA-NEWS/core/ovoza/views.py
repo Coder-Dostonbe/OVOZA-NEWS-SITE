@@ -64,7 +64,7 @@ def home(request):
     if not hero_post:
         hero_post = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at').first()
     side_posts = Post.objects.filter(is_featured=True, is_published=True, language=lang).order_by('-created_at')[1:3]
-    random_post = Post.objects.filter(is_published=True, language=lang).order_by('?')
+    random_post = Post.objects.filter(is_published=True, language=lang).order_by('?')[:10]
     ticker = Post.objects.filter(is_published=True, language=lang).order_by('-created_at')[:10]
     exclude_ids = []
     if hero_post:
@@ -76,7 +76,7 @@ def home(request):
     page_number = request.GET.get('page')
     recommended = paginator.get_page(page_number)
 
-    categories = Category.objects.annotate(post_count=Count('post')).order_by('-post_count')[:6]
+    categories = Category.objects.annotate(post_count=Count('post')).order_by('-post_count')[:4]
     for cat in categories:
         cat.latest_posts = cat.post_set.filter(is_published=True).order_by('-created_at')[:3]
 
@@ -100,23 +100,22 @@ def get_client_ip(request):
     return request.META.get('REMOTE_ADDR')
 
 
-def post_about(request, id):
-    about_post = get_object_or_404(Post, id=id, is_published=True)
+def post_about(request, slug):
+    about_post = get_object_or_404(Post, slug=slug, is_published=True)
     stat_blocks = about_post.blocks.filter(type='stat')
-    related_posts = Post.objects.filter(category=about_post.category, is_published=True).exclude(id=id).order_by('-created_at')[:5]
+    related_posts = Post.objects.filter(category=about_post.category, is_published=True).exclude(pk=about_post.pk).order_by('-created_at')[:5]
     most_viewed = Post.objects.filter(is_published=True).order_by('-views')[:5]
     comments = about_post.comments.filter(parent=None).select_related('user').prefetch_related('replies__user')
-
 
     ip = get_client_ip(request)
 
     if request.user.is_authenticated:
-        obj, created = PostView.objects.get_or_create(post=about_post, ip=f'user_(request.user.id)')
+        obj, created = PostView.objects.get_or_create(post=about_post, ip=f'user_{request.user.id}')
     else:
         obj, created = PostView.objects.get_or_create(post=about_post, ip=ip)
 
     if created:
-        Post.objects.filter(id=about_post.id).update(views=F('views') + 1)
+        Post.objects.filter(pk=about_post.pk).update(views=F('views') + 1)
         about_post.refresh_from_db()
 
     response = render(request, 'news-detail.html', {
@@ -130,7 +129,7 @@ def post_about(request, id):
     return response
 
 @require_POST
-def add_comment(request, post_id):
+def add_comment(request, slug):
     if not request.user.is_authenticated:
         return JsonResponse({'success': False, 'message': 'Hisobga kirish talab etiladi!'})
 
@@ -140,7 +139,7 @@ def add_comment(request, post_id):
     if not message:
         return JsonResponse({'success': False, 'message': 'Izoh Bo\'sh bo\'lishi mumkin emas!'})
 
-    post = get_object_or_404(Post, id=post_id, is_published=True)
+    post = get_object_or_404(Post, slug=slug, is_published=True)
     parent = None
     if parent_id:
         parent = get_object_or_404(Comment, id=parent_id)
@@ -182,8 +181,8 @@ def delete_comment(request, comment_id):
     return JsonResponse({'success': True})
 
 @require_POST
-def like_post(request, id):
-    post = get_object_or_404(Post, id=id)
+def like_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     ip = get_client_ip(request)
 
     if request.user.is_authenticated:
@@ -199,10 +198,10 @@ def like_post(request, id):
     return JsonResponse({'liked': liked, 'count':post.likes.count()})
 
 @require_POST
-def share_post(request, id):
-    Post.objects.filter(id=id).update(share=F('share') + 1)
-    post = get_object_or_404(Post, id=id)
-    return JsonResponse({'shares' : post.share})
+def share_post(request, slug):
+    Post.objects.filter(slug=slug).update(share=F('share') + 1)
+    post = get_object_or_404(Post, slug=slug)
+    return JsonResponse({'shares': post.share})
 
 def tag_posts(request, tag_name):
     tag = get_object_or_404(Tag, name=tag_name)
@@ -568,7 +567,7 @@ def category_posts_ajax(request, slug):
             'image': post.image.url if post.image else '',
             'views': post.views,
             'time_since': post.time_since(),
-            'url': f'/about/{post.id}/',
+            'url': f'/about/{post.slug}/',
         })
 
     return JsonResponse({'posts': data})

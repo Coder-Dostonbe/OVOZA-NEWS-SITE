@@ -82,7 +82,7 @@
       <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
       <div class="logo-text">
         <span class="logo-name">Ovoza</span>
-        <span class="logo-tagline">Yangiliklar portali</span>
+        <span class="logo-tagline">{% trans "Yangiliklar portali" %}</span>
       </div>
     </a>
 
@@ -124,17 +124,17 @@
     <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
   </div>
   <ul class="drawer-menu">
-    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a></li>
-    <li><a href="{% url 'categories' %}"><i class="fas fa-th-large"></i> Kategoriyalar</a></li>
-    <li><a href="{% url 'news_page' %}"><i class="fas fa-newspaper"></i> Yangiliklar</a></li>
-    <li><a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> Haqimizda</a></li>
-    <li><a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Aloqa</a></li>
+    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a></li>
+    <li><a href="{% url 'categories' %}"><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</a></li>
+    <li><a href="{% url 'news_page' %}"><i class="fas fa-newspaper"></i> {% trans "Yangiliklar" %}</a></li>
+    <li><a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> {% trans "Haqimizda" %}</a></li>
+    <li><a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> {% trans "Aloqa" %}</a></li>
     {% if request.user.is_authenticated %}
-    <li><a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profil</a></li>
-    <li class="drawer-logout"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Chiqish</a></li>
+    <li><a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> {% trans "Profil" %}</a></li>
+    <li class="drawer-logout"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> {% trans "Chiqish" %}</a></li>
     {% else %}
-    <li class="drawer-login"><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Kirish</a></li>
-    <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish</a></li>
+    <li class="drawer-login"><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</a></li>
+    <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> {% trans "Ro'yxatdan o'tish" %}</a></li>
     {% endif %}
   </ul>
 </div>
@@ -143,9 +143,9 @@
 <div class="breadcrumb-bar">
   <div class="container">
     <div class="breadcrumb">
-      <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
+      <a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a>
       <i class="fas fa-chevron-right"></i>
-      <a href="/categories/">Kategoriyalar</a>
+      <a href="/categories/">{% trans "Kategoriyalar" %}</a>
       <i class="fas fa-chevron-right"></i>
       <a href="#">{{ about_post.category }}</a>
       <i class="fas fa-chevron-right"></i>
@@ -182,24 +182,24 @@
           <span class="meta-sep">|</span>
           <div class="meta-item"><i class="far fa-calendar-alt"></i> {{ about_post.time_since }}</div>
           <div class="meta-item"><i class="far fa-clock"></i> {{ about_post.updated_at|date:"d M Y, H:i" }}</div>
-          <div class="meta-item"><i class="far fa-eye"></i> {{ about_post.views }} marta o'qildi</div>
+          <div class="meta-item"><i class="far fa-eye"></i> {% blocktrans with views=about_post.views %}{{ views }} marta o'qildi{% endblocktrans %}</div>
         </div>
 
         <!-- Engagement row — TEPADA -->
         <div class="engagement-row">
           <div class="eng-btn eng-like-display" style="cursor:default;">
             <i class="fas fa-thumbs-up" style="color:var(--primary);"></i>
-            <span>Yoqtirishlar</span>
+            <span>{% trans "Yoqtirishlar" %}</span>
             <span class="eng-count" id="likeCountTop">{{ about_post.likes.count }}</span>
           </div>
           <button class="eng-btn" id="commentScrollBtn">
             <i class="far fa-comment"></i>
-            <span>Fikrlar</span>
+            <span>{% trans "Fikrlar" %}</span>
             <span class="eng-count">{{ about_post.comments.count }}</span>
           </button>
           <button class="eng-btn" id="shareDropBtn">
             <i class="fas fa-share-alt"></i>
-            <span>Ulashish</span>
+            <span>{% trans "Ulashish" %}</span>
             <span class="eng-count" id="shareCount">{{ about_post.share }}</span>
           </button>
         </div>
@@ -264,7 +264,7 @@
 
         <!-- Tags -->
         <div class="article-tags">
-          <span class="tag-label"><i class="fas fa-hashtag"></i> Teglar:</span>
+          <span class="tag-label"><i class="fas fa-hashtag"></i> {% trans "Teglar:" %}</span>
           {% for tag in about_post.tags.all %}
           <a href="{% url 'tag_posts' tag.name %}" class="article-tag">#{{ tag.name }}</a>
           {% empty %}<a href="#" class="article-tag">#Yangilik</a>
@@ -274,18 +274,18 @@
         <!-- ===== LIKE TUGMASI — PASTDA ===== -->
         <div class="like-section">
           <button type="button" class="like-btn-main" id="likeBtn"
-                  data-id="{{ about_post.id }}"
+                  data-id="{{ about_post.slug }}"
                   data-likes="{{ about_post.likes.count }}"
                   {% if not request.user.is_authenticated %}data-guest="true"{% endif %}>
             <i class="far fa-thumbs-up"></i>
-            <span class="like-btn-text">Yoqtirish</span>
+            <span class="like-btn-text">{% trans "Yoqtirish" %}</span>
             <span class="like-btn-count" id="likeCount">{{ about_post.likes.count }}</span>
           </button>
         </div>
 
         <!-- Share bar -->
         <div class="share-bar">
-          <span class="share-label"><i class="fas fa-share-alt"></i> Ulashish:</span>
+          <span class="share-label"><i class="fas fa-share-alt"></i> {% trans "Ulashish:" %}</span>
           <button class="share-btn tg" onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(location.href))">
             <i class="fab fa-telegram-plane"></i><span> Telegram</span>
           </button>
@@ -298,19 +298,19 @@
           <button class="share-btn wa" onclick="window.open('https://wa.me/?text='+encodeURIComponent(location.href))">
             <i class="fab fa-whatsapp"></i><span> WhatsApp</span>
           </button>
-          <button class="share-btn cp" id="copyLinkBtn"><i class="fas fa-link"></i><span> Nusxa olish</span></button>
+          <button class="share-btn cp" id="copyLinkBtn"><i class="fas fa-link"></i><span> {% trans "Nusxa olish" %}</span></button>
         </div>
 
         <!-- Related news -->
         <section class="related-section">
-          <div class="section-hd"><span class="section-title">O'xshash Yangiliklar</span></div>
+          <div class="section-hd"><span class="section-title">{% trans "O'xshash Yangiliklar" %}</span></div>
           <div class="related-grid">
             {% for post in related_posts %}
             <div class="related-card">
               <div class="related-img"><img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" /></div>
               <div class="related-body">
                 <div class="related-cat">{{ post.category }}</div>
-                <div class="related-title"><a href="{% url 'post_about' post.id %}">{{ post.title }}</a></div>
+                <div class="related-title"><a href="{% url 'post_about' post.slug %}">{{ post.title }}</a></div>
                 <div class="related-meta"><i class="far fa-clock"></i> {{ post.time_since }}</div>
               </div>
             </div>
@@ -321,17 +321,17 @@
         <!-- ===== COMMENTS ===== -->
         <section class="comments-section" id="commentsSection">
           <div class="section-hd">
-            <span class="section-title">Fikrlar</span>
-            <span class="comments-count" id="commentsCount">{{ about_post.comments.count }} ta izoh</span>
+            <span class="section-title">{% trans "Fikrlar" %}</span>
+            <span class="comments-count" id="commentsCount">{% blocktrans with count=about_post.comments.count %}{{ count }} ta izoh{% endblocktrans %}</span>
           </div>
 
           {% if request.user.is_authenticated %}
           <div class="comment-form-wrap">
-            <div class="comment-form-title"><i class="fas fa-pen"></i> Fikr bildirish</div>
-            <textarea class="comment-textarea" id="commentTextarea" placeholder="Fikringizni yozing..."></textarea>
+            <div class="comment-form-title"><i class="fas fa-pen"></i> {% trans "Fikr bildirish" %}</div>
+            <textarea class="comment-textarea" id="commentTextarea" placeholder="{% trans 'Fikringizni yozing...' %}"></textarea>
             <div class="comment-form-footer">
-              <button class="btn-comment-submit" id="submitComment" data-post-id="{{ about_post.id }}">
-                <i class="fas fa-paper-plane"></i> Yuborish
+              <button class="btn-comment-submit" id="submitComment" data-post-id="{{ about_post.slug }}">
+                <i class="fas fa-paper-plane"></i> {% trans "Yuborish" %}
               </button>
             </div>
           </div>
@@ -339,7 +339,7 @@
           <div class="comment-form-wrap comment-form-guest">
             <div class="comment-note">
               <i class="fas fa-lock"></i>
-              Fikr bildirish uchun <a href="{% url 'login' %}">kirish</a> yoki <a href="{% url 'register' %}">ro'yxatdan o'tish</a> kerak
+              {% trans "Fikr bildirish uchun" %} <a href="{% url 'login' %}">{% trans "kirish" %}</a> {% trans "yoki" %} <a href="{% url 'register' %}">{% trans "ro'yxatdan o'tish" %}</a> {% trans "kerak" %}
             </div>
           </div>
           {% endif %}
@@ -369,10 +369,10 @@
                   <textarea id="inline-edit-textarea-{{ comment.id }}" class="comment-textarea" style="min-height:80px;">{{ comment.message }}</textarea>
                   <div class="edit-form-actions">
                     <button class="btn-comment-submit inline-edit-save" data-comment-id="{{ comment.id }}">
-                      <i class="fas fa-check"></i> Saqlash
+                      <i class="fas fa-check"></i> {% trans "Saqlash" %}
                     </button>
                     <button class="inline-edit-cancel" data-comment-id="{{ comment.id }}">
-                      <i class="fas fa-times"></i> Bekor
+                      <i class="fas fa-times"></i> {% trans "Bekor" %}
                     </button>
                   </div>
                 </div>
@@ -381,22 +381,22 @@
                 <div class="comment-actions">
                   {% if request.user.is_authenticated %}
                   <button class="comment-action-btn reply-btn" data-comment-id="{{ comment.id }}">
-                    <i class="fas fa-reply"></i> Javob
+                    <i class="fas fa-reply"></i> {% trans "Javob" %}
                   </button>
                   {% endif %}
                   {% if request.user == comment.user %}
                   <button class="comment-action-btn comment-edit-btn" data-comment-id="{{ comment.id }}">
-                    <i class="fas fa-pen"></i> Tahrirlash
+                    <i class="fas fa-pen"></i> {% trans "Tahrirlash" %}
                   </button>
                   {% endif %}
                 </div>
 
                 <div class="reply-form" id="reply-form-{{ comment.id }}" style="display:none;">
-                  <textarea class="comment-textarea reply-textarea" placeholder="Javobingizni yozing..."></textarea>
+                  <textarea class="comment-textarea reply-textarea" placeholder="{% trans 'Javobingizni yozing...' %}"></textarea>
                   <button class="btn-comment-submit reply-submit"
-                          data-post-id="{{ about_post.id }}"
+                          data-post-id="{{ about_post.slug }}"
                           data-parent-id="{{ comment.id }}">
-                    <i class="fas fa-paper-plane"></i> Yuborish
+                    <i class="fas fa-paper-plane"></i> {% trans "Yuborish" %}
                   </button>
                 </div>
 
@@ -418,17 +418,17 @@
                     {% if request.user == reply.user %}
                     <div class="comment-actions">
                       <button class="comment-action-btn comment-edit-btn" data-comment-id="{{ reply.id }}">
-                        <i class="fas fa-pen"></i> Tahrirlash
+                        <i class="fas fa-pen"></i> {% trans "Tahrirlash" %}
                       </button>
                     </div>
                     <div id="inline-edit-form-{{ reply.id }}" style="display:none; margin-top:10px;">
                       <textarea id="inline-edit-textarea-{{ reply.id }}" class="comment-textarea" style="min-height:70px;">{{ reply.message }}</textarea>
                       <div class="edit-form-actions">
                         <button class="btn-comment-submit inline-edit-save" data-comment-id="{{ reply.id }}">
-                          <i class="fas fa-check"></i> Saqlash
+                          <i class="fas fa-check"></i> {% trans "Saqlash" %}
                         </button>
                         <button class="inline-edit-cancel" data-comment-id="{{ reply.id }}">
-                          <i class="fas fa-times"></i> Bekor
+                          <i class="fas fa-times"></i> {% trans "Bekor" %}
                         </button>
                       </div>
                     </div>
@@ -442,7 +442,7 @@
             {% empty %}
             <div class="comments-empty">
               <i class="far fa-comment-dots"></i>
-              <p>Hali izoh qoldirilmagan. Birinchi bo'ling!</p>
+              <p>{% trans "Hali izoh qoldirilmagan. Birinchi bo'ling!" %}</p>
             </div>
             {% endfor %}
           </div>
@@ -453,13 +453,13 @@
       <!-- SIDEBAR -->
       <aside class="article-sidebar">
         <div class="sidebar-widget">
-          <div class="widget-header"><i class="fas fa-fire-alt"></i> Ko'p O'qilganlar</div>
+          <div class="widget-header"><i class="fas fa-fire-alt"></i> {% trans "Ko'p O'qilganlar" %}</div>
           {% for m in most_viewed %}
           <div class="pop-item">
             <span class="pop-num">{{ forloop.counter|stringformat:'02d' }}</span>
             <img class="pop-img" src="{{ m.image.url }}" alt="" loading="lazy" />
             <div class="pop-body">
-              <div class="pop-title"><a href="{% url 'post_about' m.id %}">{{ m.title }}</a></div>
+              <div class="pop-title"><a href="{% url 'post_about' m.slug %}">{{ m.title }}</a></div>
               <div class="pop-meta"><i class="far fa-eye"></i> {{ m.views }} · <i class="far fa-clock"></i> {{ m.time_since }}</div>
             </div>
           </div>
@@ -468,7 +468,7 @@
 
         {% if advertisement %}
         <div class="ad-banner">
-          <div class="ad-label">Reklama</div>
+          <div class="ad-label">{% trans "Reklama" %}</div>
           {% if advertisement.video_url %}
           <iframe src="{{ advertisement.video_url }}" width="100%" height="200" frameborder="0" allowfullscreen></iframe>
           {% elif advertisement.video %}
@@ -486,7 +486,7 @@
         {% endif %}
 
         <div class="sidebar-widget">
-          <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
+          <div class="widget-header"><i class="fas fa-hashtag"></i> {% trans "Mashhur Teglar" %}</div>
           <div class="tags-cloud">
             {% for pt in about_post.tags.all %}
             <a href="{% url 'tag_posts' pt.name %}" class="tag-pill">#{{ pt.name }}</a>
@@ -509,7 +509,7 @@
           <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
           <span class="footer-logo-name">Ovoza</span>
         </div>
-        <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
+        <p class="footer-desc">{% trans "O'zbekistonning eng ishonchli va tezkor yangiliklar portali." %}</p>
         <div class="footer-social">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
@@ -519,54 +519,54 @@
         </div>
       </div>
       <div class="footer-col">
-        <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+        <h5><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</h5>
         <ul class="footer-links-list">
-          <li><a href="#">Siyosat</a></li>
-          <li><a href="#">Iqtisod</a></li>
-          <li><a href="#">Sport</a></li>
-          <li><a href="#">Texnologiya</a></li>
-          <li><a href="#">Dunyo</a></li>
+          <li><a href="#">{% trans "Siyosat" %}</a></li>
+          <li><a href="#">{% trans "Iqtisod" %}</a></li>
+          <li><a href="#">{% trans "Sport" %}</a></li>
+          <li><a href="#">{% trans "Texnologiya" %}</a></li>
+          <li><a href="#">{% trans "Dunyo" %}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+        <h5><i class="fas fa-file-alt"></i> {% trans "Sahifalar" %}</h5>
         <ul class="footer-links-list">
-          <li><a href="#">Biz haqimizda</a></li>
-          <li><a href="#">Tahririyat</a></li>
-          <li><a href="#">Reklama</a></li>
-          <li><a href="#">Arxiv</a></li>
+          <li><a href="#">{% trans "Biz haqimizda" %}</a></li>
+          <li><a href="#">{% trans "Tahririyat" %}</a></li>
+          <li><a href="#">{% trans "Reklama" %}</a></li>
+          <li><a href="#">{% trans "Arxiv" %}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47</div>
+        <h5><i class="fas fa-phone-alt"></i> {% trans "Aloqa" %}</h5>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> {% trans "Toshkent, Mirzo Ulug'bek ko'chasi, 47" %}</div>
         <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
         <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
-        <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+        <div class="footer-contact-item"><i class="fas fa-clock"></i> {% trans "Dush–Juma: 09:00 – 18:00" %}</div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+      <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
       <div class="footer-bottom-links">
-        <a href="#">Maxfiylik siyosati</a>
-        <a href="#">Shartlar</a>
+        <a href="#">{% trans "Maxfiylik siyosati" %}</a>
+        <a href="#">{% trans "Shartlar" %}</a>
         <a href="#">Cookie</a>
       </div>
     </div>
   </div>
 </footer>
 
-<button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+<button id="scrollTop" title="{% trans 'Yuqoriga' %}"><i class="fas fa-chevron-up"></i></button>
 
 <!-- Alert modal -->
 <div class="alert-modal-overlay" id="alertModal">
   <div class="alert-modal">
     <div class="alert-icon"><i class="fas fa-user-lock"></i></div>
-    <div class="alert-title">Kirish talab etiladi</div>
-    <div class="alert-text">Like bosish uchun avval tizimga kiring.</div>
+    <div class="alert-title">{% trans "Kirish talab etiladi" %}</div>
+    <div class="alert-text">{% trans "Like bosish uchun avval tizimga kiring." %}</div>
     <div class="alert-btns">
-      <button class="btn-alert-login" onclick="window.location.href='/login/'"><i class="fas fa-sign-in-alt"></i> Kirish</button>
-      <button class="btn-alert-close" id="alertClose">Bekor qilish</button>
+      <button class="btn-alert-login" onclick="window.location.href='/login/'"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</button>
+      <button class="btn-alert-close" id="alertClose">{% trans "Bekor qilish" %}</button>
     </div>
   </div>
 </div>

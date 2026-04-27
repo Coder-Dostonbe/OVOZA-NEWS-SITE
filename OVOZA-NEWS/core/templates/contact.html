@@ -52,7 +52,7 @@
         <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
         <div>
           <span class="logo-name">Ovoza</span>
-          <span class="logo-tagline">Yangiliklar portali</span>
+          <span class="logo-tagline">{% trans "Yangiliklar portali" %}</span>
         </div>
       </a>
       <a href="{% url 'home' %}" class="nav-back"><i class="fas fa-arrow-left"></i> {% trans "Bosh sahifaga qaytish" %}</a>
@@ -63,9 +63,9 @@
   <div class="page-hero">
     <div class="container">
       <div class="hero-inner">
-        <div class="hero-label">Aloqa</div>
-        <h1>Biz bilan <em>bog'laning</em></h1>
-        <p>Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz.</p>
+        <div class="hero-label">{% trans "Aloqa" %}</div>
+        <h1>{% trans "Biz bilan" %} <em>{% trans "bog'laning" %}</em></h1>
+        <p>{% trans "Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz." %}</p>
       </div>
     </div>
   </div>
@@ -77,16 +77,15 @@
 
         <!-- ── FORM ── -->
         <div class="form-side">
-          <div class="form-section-title">Xabar yuboring</div>
+          <div class="form-section-title">{% trans "Xabar yuboring" %}</div>
 
           <!-- Subject tabs -->
           <div class="subject-tabs" id="subjectTabs">
-            <button class="subject-tab active" data-subject="umumiy"><i class="fas fa-comment"></i> Umumiy
-              savol</button>
-            <button class="subject-tab" data-subject="hamkorlik"><i class="fas fa-handshake"></i> Hamkorlik</button>
-            <button class="subject-tab" data-subject="reklama"><i class="fas fa-bullhorn"></i> Reklama</button>
-            <button class="subject-tab" data-subject="xato"><i class="fas fa-bug"></i> Xato bildirish</button>
-            <button class="subject-tab" data-subject="boshqa"><i class="fas fa-ellipsis-h"></i> Boshqa</button>
+            <button class="subject-tab active" data-subject="umumiy"><i class="fas fa-comment"></i> {% trans "Umumiy savol" %}</button>
+            <button class="subject-tab" data-subject="hamkorlik"><i class="fas fa-handshake"></i> {% trans "Hamkorlik" %}</button>
+            <button class="subject-tab" data-subject="reklama"><i class="fas fa-bullhorn"></i> {% trans "Reklama" %}</button>
+            <button class="subject-tab" data-subject="xato"><i class="fas fa-bug"></i> {% trans "Xato bildirish" %}</button>
+            <button class="subject-tab" data-subject="boshqa"><i class="fas fa-ellipsis-h"></i> {% trans "Boshqa" %}</button>
           </div>
 
           <!-- Form -->
@@ -95,46 +94,46 @@
 
             <div class="form-row-2">
               <div class="form-group">
-                <label class="form-label">Ism <span>*</span></label>
+                <label class="form-label">{% trans "Ism" %} <span>*</span></label>
                 <div class="input-wrap">
                   <i class="fas fa-user input-icon"></i>
-                  <input type="text" class="form-input" id="fname" placeholder="Ismingiz" />
+                  <input type="text" class="form-input" id="fname" placeholder="{% trans 'Ismingiz' %}" />
                 </div>
-                <div class="form-error" id="fnameErr"><i class="fas fa-exclamation-circle"></i> Ism kiritilmagan</div>
+                <div class="form-error" id="fnameErr"><i class="fas fa-exclamation-circle"></i> {% trans "Ism kiritilmagan" %}</div>
               </div>
               <div class="form-group">
-                <label class="form-label">Familiya</label>
+                <label class="form-label">{% trans "Familiya" %}</label>
                 <div class="input-wrap">
                   <i class="fas fa-user input-icon"></i>
-                  <input type="text" class="form-input" id="lname" placeholder="Familiyangiz" />
+                  <input type="text" class="form-input" id="lname" placeholder="{% trans 'Familiyangiz' %}" />
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Email <span>*</span></label>
+              <label class="form-label">{% trans "Email" %} <span>*</span></label>
               <div class="input-wrap">
                 <i class="fas fa-envelope input-icon"></i>
-                <input type="email" class="form-input" id="email" placeholder="email@misol.uz" />
+                <input type="email" class="form-input" id="email" placeholder="{% trans 'email@misol.uz' %}" />
               </div>
-              <div class="form-error" id="emailErr"><i class="fas fa-exclamation-circle"></i> To'g'ri email kiriting
+              <div class="form-error" id="emailErr"><i class="fas fa-exclamation-circle"></i> {% trans "To'g'ri email kiriting" %}
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Telefon</label>
+              <label class="form-label">{% trans "Telefon" %}</label>
               <div class="input-wrap">
                 <i class="fas fa-phone input-icon"></i>
-                <input type="tel" class="form-input" id="phone" placeholder="+998 90 000 00 00" />
+                <input type="tel" class="form-input" id="phone" placeholder="{% trans '+998 90 000 00 00' %}" />
               </div>
             </div>
 
             <!-- Hamkorlik: kompaniya nomi -->
             <div class="form-group extra-field" id="extraHamkorlik" style="display:none;">
-              <label class="form-label">Kompaniya nomi</label>
+              <label class="form-label">{% trans "Kompaniya nomi" %}</label>
               <div class="input-wrap">
                 <i class="fas fa-building input-icon"></i>
-                <input type="text" class="form-input" id="company" placeholder="Kompaniya yoki tashkilot nomi" />
+                <input type="text" class="form-input" id="company" placeholder="{% trans 'Kompaniya yoki tashkilot nomi' %}" />
               </div>
             </div>
 
@@ -142,23 +141,23 @@
             <div class="extra-field" id="extraReklama" style="display:none;">
               <div class="form-row-2">
                 <div class="form-group">
-                  <label class="form-label">Reklama formati</label>
+                  <label class="form-label">{% trans "Reklama formati" %}</label>
                   <div class="input-wrap">
                     <i class="fas fa-bullhorn input-icon"></i>
                     <select class="form-input" id="adFormat" style="cursor:pointer;background:var(--input-bg,#1e1e1e);">
-                      <option value="">Formatni tanlang</option>
-                      <option value="banner">Banner reklama</option>
-                      <option value="video">Video reklama</option>
-                      <option value="maqola">Reklama maqolasi</option>
-                      <option value="ijtimoiy">Ijtimoiy tarmoq</option>
+                      <option value="">{% trans "Formatni tanlang" %}</option>
+                      <option value="banner">{% trans "Banner reklama" %}</option>
+                      <option value="video">{% trans "Video reklama" %}</option>
+                      <option value="maqola">{% trans "Reklama maqolasi" %}</option>
+                      <option value="ijtimoiy">{% trans "Ijtimoiy tarmoq" %}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Taxminiy byudjet</label>
+                  <label class="form-label">{% trans "Taxminiy byudjet" %}</label>
                   <div class="input-wrap">
                     <i class="fas fa-wallet input-icon"></i>
-                    <input type="text" class="form-input" id="adBudget" placeholder="Masalan: $500 – $1000" />
+                    <input type="text" class="form-input" id="adBudget" placeholder="{% trans 'Masalan: $500 – $1000' %}" />
                   </div>
                 </div>
               </div>
@@ -166,59 +165,55 @@
 
             <!-- Xato bildirish: maqola URL -->
             <div class="form-group extra-field" id="extraXato" style="display:none;">
-              <label class="form-label">Maqola URL</label>
+              <label class="form-label">{% trans "Maqola URL" %}</label>
               <div class="input-wrap">
                 <i class="fas fa-link input-icon"></i>
-                <input type="url" class="form-input" id="articleUrl" placeholder="https://ovoza.uz/about/123/" />
+                <input type="url" class="form-input" id="articleUrl" placeholder="{% trans 'https://ovoza.uz/about/123/' %}" />
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Xabar <span>*</span></label>
-              <textarea class="form-textarea" id="message" placeholder="Xabaringizni yozing..."></textarea>
-              <div class="form-error" id="msgErr"><i class="fas fa-exclamation-circle"></i> Xabar kiritilmagan</div>
+              <label class="form-label">{% trans "Xabar" %} <span>*</span></label>
+              <textarea class="form-textarea" id="message" placeholder="{% trans 'Xabaringizni yozing...' %}"></textarea>
+              <div class="form-error" id="msgErr"><i class="fas fa-exclamation-circle"></i> {% trans "Xabar kiritilmagan" %}</div>
             </div>
 
             <button type="submit" class="btn-send" id="sendBtn">
               <div class="spinner"></div>
-              <span class="btn-text"><i class="fas fa-paper-plane"></i> Xabar yuborish</span>
+              <span class="btn-text"><i class="fas fa-paper-plane"></i> {% trans "Xabar yuborish" %}</span>
             </button>
           </form>
 
           <!-- Success -->
           <div class="form-success" id="formSuccess">
             <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-            <div class="success-title">Xabar yuborildi!</div>
-            <div class="success-text">Tez orada siz bilan bog'lanamiz.<br>Odatda 24 soat ichida javob beramiz.</div>
+            <div class="success-title">{% trans "Xabar yuborildi!" %}</div>
+            <div class="success-text">{% trans "Tez orada siz bilan bog'lanamiz." %}<br>{% trans "Odatda 24 soat ichida javob beramiz." %}</div>
           </div>
 
           <!-- FAQ -->
           <div class="faq-section">
-            <div class="form-section-title">Ko'p so'raladigan savollar</div>
+            <div class="form-section-title">{% trans "Ko'p so'raladigan savollar" %}</div>
             <div class="faq-grid" id="faqGrid">
 
               <div class="faq-item">
-                <div class="faq-question">Reklama narxlari qancha? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun
-                  reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang.</div>
+                <div class="faq-question">{% trans "Reklama narxlari qancha?" %} <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">{% trans "Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang." %}</div>
               </div>
 
               <div class="faq-item">
-                <div class="faq-question">Muxbir bo'lish mumkinmi? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna
-                  maqolalaringizni info@ovoza.uz manziliga yuboring.</div>
+                <div class="faq-question">{% trans "Muxbir bo'lish mumkinmi?" %} <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">{% trans "Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna maqolalaringizni info@ovoza.uz manziliga yuboring." %}</div>
               </div>
 
               <div class="faq-item">
-                <div class="faq-question">Yangilik taklif qilsam bo'ladimi? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar
-                  qiling. Tahririyat ko'rib chiqadi.</div>
+                <div class="faq-question">{% trans "Yangilik taklif qilsam bo'ladimi?" %} <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">{% trans "Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar qiling. Tahririyat ko'rib chiqadi." %}</div>
               </div>
 
               <div class="faq-item">
-                <div class="faq-question">Xato ma'lumot topsam nima qilaman? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Iltimos, "Xato bildirish" bo'limidan foydalaning yoki to'g'ridan to'g'ri
-                  tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz.</div>
+                <div class="faq-question">{% trans "Xato ma'lumot topsam nima qilaman?" %} <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">{% trans "Iltimos, \"Xato bildirish\" bo'limidan foydalaning yoki to'g'ridan to'g'ri tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz." %}</div>
               </div>
 
             </div>
@@ -232,27 +227,27 @@
           <div class="contact-card">
             <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
             <div class="contact-card-body">
-              <div class="contact-card-label">Asosiy email</div>
+              <div class="contact-card-label">{% trans "Asosiy email" %}</div>
               <div class="contact-card-value">info@ovoza.uz</div>
-              <div class="contact-card-note">Umumiy savollar uchun</div>
+              <div class="contact-card-note">{% trans "Umumiy savollar uchun" %}</div>
             </div>
           </div>
 
           <div class="contact-card">
             <div class="contact-card-icon green"><i class="fas fa-bullhorn"></i></div>
             <div class="contact-card-body">
-              <div class="contact-card-label">Reklama bo'limi</div>
+              <div class="contact-card-label">{% trans "Reklama bo'limi" %}</div>
               <div class="contact-card-value">reklama@ovoza.uz</div>
-              <div class="contact-card-note">Hamkorlik va reklama uchun</div>
+              <div class="contact-card-note">{% trans "Hamkorlik va reklama uchun" %}</div>
             </div>
           </div>
 
           <div class="contact-card">
             <div class="contact-card-icon blue"><i class="fas fa-phone"></i></div>
             <div class="contact-card-body">
-              <div class="contact-card-label">Telefon</div>
+              <div class="contact-card-label">{% trans "Telefon" %}</div>
               <div class="contact-card-value">+998 71 200-00-00</div>
-              <div class="contact-card-note">Dush–Juma: 09:00 – 18:00</div>
+              <div class="contact-card-note">{% trans "Dush–Juma: 09:00 – 18:00" %}</div>
             </div>
           </div>
 
@@ -261,7 +256,7 @@
             <div class="contact-card-body">
               <div class="contact-card-label">Telegram</div>
               <div class="contact-card-value">@ovoza_uz</div>
-              <div class="contact-card-note">412K+ obunachi</div>
+              <div class="contact-card-note">{% trans "412K+ obunachi" %}</div>
             </div>
           </div>
 
@@ -269,52 +264,52 @@
           <div class="map-block">
             <div class="map-placeholder">
               <div class="map-pin"><i class="fas fa-map-marker-alt"></i></div>
-              <p>Toshkent, Mirzo Ulug'bek ko'chasi, 47</p>
+              <p>{% trans "Toshkent, Mirzo Ulug'bek ko'chasi, 47" %}</p>
             </div>
             <div class="map-footer">
-              <div class="map-address"><i class="fas fa-map-marker-alt"></i> Mirzo Ulug'bek tumani</div>
+              <div class="map-address"><i class="fas fa-map-marker-alt"></i> {% trans "Mirzo Ulug'bek tumani" %}</div>
               <a href="https://maps.google.com" target="_blank" class="map-link">
-                Xaritada ko'rish <i class="fas fa-arrow-right"></i>
+                {% trans "Xaritada ko'rish" %} <i class="fas fa-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- Work hours -->
           <div class="hours-card">
-            <div class="hours-header"><i class="fas fa-clock"></i> Ish vaqti</div>
+            <div class="hours-header"><i class="fas fa-clock"></i> {% trans "Ish vaqti" %}</div>
             <div class="hours-row today">
-              <span class="hours-day">Dushanba</span>
+              <span class="hours-day">{% trans "Dushanba" %}</span>
               <span class="hours-time">09:00 – 18:00</span>
             </div>
             <div class="hours-row">
-              <span class="hours-day">Seshanba</span>
+              <span class="hours-day">{% trans "Seshanba" %}</span>
               <span class="hours-time">09:00 – 18:00</span>
             </div>
             <div class="hours-row">
-              <span class="hours-day">Chorshanba</span>
+              <span class="hours-day">{% trans "Chorshanba" %}</span>
               <span class="hours-time">09:00 – 18:00</span>
             </div>
             <div class="hours-row">
-              <span class="hours-day">Payshanba</span>
+              <span class="hours-day">{% trans "Payshanba" %}</span>
               <span class="hours-time">09:00 – 18:00</span>
             </div>
             <div class="hours-row">
-              <span class="hours-day">Juma</span>
+              <span class="hours-day">{% trans "Juma" %}</span>
               <span class="hours-time">09:00 – 17:00</span>
             </div>
             <div class="hours-row">
-              <span class="hours-day">Shanba</span>
-              <span class="hours-time closed">Dam olish</span>
+              <span class="hours-day">{% trans "Shanba" %}</span>
+              <span class="hours-time closed">{% trans "Dam olish" %}</span>
             </div>
             <div class="hours-row">
-              <span class="hours-day">Yakshanba</span>
-              <span class="hours-time closed">Dam olish</span>
+              <span class="hours-day">{% trans "Yakshanba" %}</span>
+              <span class="hours-time closed">{% trans "Dam olish" %}</span>
             </div>
           </div>
 
           <!-- Social -->
           <div class="social-section">
-            <div class="form-section-title">Ijtimoiy tarmoqlar</div>
+            <div class="form-section-title">{% trans "Ijtimoiy tarmoqlar" %}</div>
             <div class="social-grid">
               <a href="https://t.me/OvozaNewsPage" class="social-btn tg">
                 <i class="fab fa-telegram-plane"></i>
@@ -362,7 +357,7 @@
             <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
             <span class="footer-logo-name">Ovoza</span>
           </div>
-          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
+          <p class="footer-desc">{% trans "O'zbekistonning eng ishonchli va tezkor yangiliklar portali." %}</p>
           <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
@@ -372,38 +367,38 @@
           </div>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <h5><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Siyosat</a></li>
-            <li><a href="#">Iqtisod</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Texnologiya</a></li>
-            <li><a href="#">Dunyo</a></li>
+            <li><a href="#">{% trans "Siyosat" %}</a></li>
+            <li><a href="#">{% trans "Iqtisod" %}</a></li>
+            <li><a href="#">{% trans "Sport" %}</a></li>
+            <li><a href="#">{% trans "Texnologiya" %}</a></li>
+            <li><a href="#">{% trans "Dunyo" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <h5><i class="fas fa-file-alt"></i> {% trans "Sahifalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="{% url 'about_section' %}">Biz haqimizda</a></li>
-            <li><a href="{% url 'contact' %}">Aloqa</a></li>
-            <li><a href="#">Reklama</a></li>
-            <li><a href="#">Arxiv</a></li>
+            <li><a href="{% url 'about_section' %}">{% trans "Biz haqimizda" %}</a></li>
+            <li><a href="{% url 'contact' %}">{% trans "Aloqa" %}</a></li>
+            <li><a href="#">{% trans "Reklama" %}</a></li>
+            <li><a href="#">{% trans "Arxiv" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          <h5><i class="fas fa-phone-alt"></i> {% trans "Aloqa" %}</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> {% trans "Toshkent, Mirzo Ulug'bek ko'chasi, 47" %}
           </div>
           <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
           <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
-          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> {% trans "Dush–Juma: 09:00 – 18:00" %}</div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
         <div class="footer-bottom-links">
-          <a href="#">Maxfiylik</a>
-          <a href="#">Shartlar</a>
+          <a href="#">{% trans "Maxfiylik" %}</a>
+          <a href="#">{% trans "Shartlar" %}</a>
           <a href="#">Cookie</a>
         </div>
       </div>

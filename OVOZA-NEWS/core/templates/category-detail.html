@@ -146,9 +146,9 @@
         <div class="cat-hero-inner">
           <div class="cat-hero-left">
             <div class="breadcrumb">
-              <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
+              <a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a>
               <i class="fas fa-chevron-right"></i>
-              <a href="{% url 'categories' %}">Kategoriyalar</a>
+              <a href="{% url 'categories' %}">{% trans "Kategoriyalar" %}</a>
               <i class="fas fa-chevron-right"></i>
               <span>{{ category.name }}</span>
             </div>
@@ -161,15 +161,15 @@
           <div class="cat-hero-right">
             <div class="cat-stat">
               <span class="cat-stat-num" id="statArticles">{{ posts.count }}</span>
-              <span class="cat-stat-label">Maqola</span>
+              <span class="cat-stat-label">{% trans "Maqola" %}</span>
             </div>
             <div class="cat-stat">
               <span class="cat-stat-num" id="statToday">{{ today_count }}</span>
-              <span class="cat-stat-label">Bugun</span>
+              <span class="cat-stat-label">{% trans "Bugun" %}</span>
             </div>
             <div class="cat-stat">
               <span class="cat-stat-num" id="statViews">{{ total_views }}</span>
-              <span class="cat-stat-label">O'quvchi</span>
+              <span class="cat-stat-label">{% trans "O'quvchi" %}</span>
             </div>
           </div>
         </div>
@@ -180,9 +180,9 @@
     <div class="cat-tabs">
       <div class="container">
         <div class="cat-tabs-inner" id="catTabs">
-          <button class="cat-tab active" data-tab="all">Barchasi</button>
-          <button class="cat-tab" data-tab="latest">So'nggi</button>
-          <button class="cat-tab" data-tab="popular">Mashhur</button>
+          <button class="cat-tab active" data-tab="all">{% trans "Barchasi" %}</button>
+          <button class="cat-tab" data-tab="latest">{% trans "So'nggi" %}</button>
+          <button class="cat-tab" data-tab="popular">{% trans "Mashhur" %}</button>
           <button class="cat-tab" data-tab="video">Video</button>
         </div>
       </div>
@@ -200,7 +200,7 @@
           {% if posts %}
 
             {% if featured_post %}
-            <a href="{% url 'post_about' featured_post.id %}" class="featured-article">
+            <a href="{% url 'post_about' featured_post.slug %}" class="featured-article">
               <img src="{{ featured_post.image.url }}" alt="{{ featured_post.title }}" />
               <div class="featured-overlay"></div>
               <div class="featured-content">
@@ -220,7 +220,7 @@
             <div class="articles-grid" id="articlesGrid">
               {% for post in regular_posts %}
                 {% if forloop.counter|divisibleby:3 %}
-                <a href="{% url 'post_about' post.id %}" class="art-card wide">
+                <a href="{% url 'post_about' post.slug %}" class="art-card wide">
                   <div class="art-card-img tall">
                     {% if post.image %}
                     <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" />
@@ -229,15 +229,15 @@
                   </div>
                   <div class="art-card-body">
                     <div class="art-card-title">{{ post.title }}</div>
-                    <div class="art-card-excerpt">{{ post.short_description }}</div>
+                    <div class="art-card-excerpt">{{ post.short_description|safe }}</div>
                     <div class="art-card-footer">
                       <span><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</span>
-                      <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
+                      <span class="art-read-more">{% trans "O'qish" %} <i class="fas fa-arrow-right"></i></span>
                     </div>
                   </div>
                 </a>
                 {% else %}
-                <a href="{% url 'post_about' post.id %}" class="art-card">
+                <a href="{% url 'post_about' post.slug %}" class="art-card">
                   <div class="art-card-img tall">
                     {% if post.image %}
                     <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" />
@@ -246,10 +246,10 @@
                   </div>
                   <div class="art-card-body">
                     <div class="art-card-title">{{ post.title }}</div>
-                    <div class="art-card-excerpt">{{ post.short_description }}</div>
+                    <div class="art-card-excerpt">{{ post.short_description|safe }}</div>
                     <div class="art-card-footer">
                       <span><i class="far fa-clock"></i> {{ post.time_since }} &nbsp;·&nbsp; <i class="far fa-eye"></i> {{ post.views }}</span>
-                      <span class="art-read-more">O'qish <i class="fas fa-arrow-right"></i></span>
+                      <span class="art-read-more">{% trans "O'qish" %} <i class="fas fa-arrow-right"></i></span>
                     </div>
                   </div>
                 </a>
@@ -289,8 +289,8 @@
             <div class="empty-wrapper">
               <div class="empty-state">
                 <div class="empty-icon"><i class="fas {{ category.icon }}"></i></div>
-                <h3 class="empty-title">Hozircha maqola yo'q</h3>
-                <p class="empty-desc">Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!</p>
+                <h3 class="empty-title">{% trans "Hozircha maqola yo'q" %}</h3>
+                <p class="empty-desc">{% trans "Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!" %}</p>
               </div>
             </div>
           {% endif %}
@@ -303,7 +303,7 @@
           <!-- Trending -->
           <div class="sidebar-widget">
             <div class="widget-header">
-              <i class="fas fa-fire-alt"></i> <span>{{ category.name }} — Trendlar</span>
+              <i class="fas fa-fire-alt"></i> <span>{{ category.name }} — {% trans "Trendlar" %}</span>
             </div>
             {% for post in trend_posts %}
             <div class="trending-item">
@@ -319,7 +319,7 @@
           <!-- Similar posts -->
           <div class="sidebar-widget">
             <div class="widget-header">
-              <i class="fas fa-layer-group"></i> O'xshash Maqolalar
+              <i class="fas fa-layer-group"></i> {% trans "O'xshash Maqolalar" %}
             </div>
             {% for post in similar_posts %}
               <div class="similar-item">
@@ -334,7 +334,7 @@
 
           <!-- Ad widget -->
           <div class="ad-widget">
-          <div class="ad-label">Reklama</div>
+          <div class="ad-label">{% trans "Reklama" %}</div>
           {% if advertisement.video_url %}
             <iframe src="{{ advertisement.video_url }}"
                     width="100%" height="200"
@@ -353,12 +353,12 @@
 
           <!-- Tags widget -->
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-hashtag"></i> Mashhur Teglar</div>
+            <div class="widget-header"><i class="fas fa-hashtag"></i> {% trans "Mashhur Teglar" %}</div>
             <div class="tags-wrap">
               {% for tag in category_tags %}
                 <a href="{% url 'tag_posts' tag.name %}"><span class="tag-item">#{{ tag.name }}</span></a>
                {% empty %}
-                <span style="color:var(--text-muted);padding:14px;">Hozircha teg yo'q</span>
+                <span style="color:var(--text-muted);padding:14px;">{% trans "Hozircha teg yo'q" %}</span>
               {% endfor %}
 
             </div>
@@ -379,7 +379,7 @@
             <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
             <span class="footer-logo-name">Ovoza</span>
           </div>
-          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
+          <p class="footer-desc">{% trans "O'zbekistonning eng ishonchli va tezkor yangiliklar portali." %}</p>
           <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
@@ -389,44 +389,44 @@
           </div>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <h5><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Siyosat</a></li>
-            <li><a href="#">Iqtisod</a></li>
-            <li><a href="#">Jamiyat</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Texnologiya</a></li>
-            <li><a href="#">Dunyo</a></li>
+            <li><a href="#">{% trans "Siyosat" %}</a></li>
+            <li><a href="#">{% trans "Iqtisod" %}</a></li>
+            <li><a href="#">{% trans "Jamiyat" %}</a></li>
+            <li><a href="#">{% trans "Sport" %}</a></li>
+            <li><a href="#">{% trans "Texnologiya" %}</a></li>
+            <li><a href="#">{% trans "Dunyo" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <h5><i class="fas fa-file-alt"></i> {% trans "Sahifalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Biz haqimizda</a></li>
-            <li><a href="#">Tahririyat</a></li>
-            <li><a href="#">Reklama</a></li>
-            <li><a href="#">Arxiv</a></li>
+            <li><a href="#">{% trans "Biz haqimizda" %}</a></li>
+            <li><a href="#">{% trans "Tahririyat" %}</a></li>
+            <li><a href="#">{% trans "Reklama" %}</a></li>
+            <li><a href="#">{% trans "Arxiv" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47</div>
+          <h5><i class="fas fa-phone-alt"></i> {% trans "Aloqa" %}</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> {% trans "Toshkent, Mirzo Ulug'bek ko'chasi, 47" %}</div>
           <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
           <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
         <div class="footer-bottom-links">
-          <a href="#">Maxfiylik siyosati</a>
-          <a href="#">Foydalanish shartlari</a>
-          <a href="#">Saytxaritasi</a>
+          <a href="#">{% trans "Maxfiylik siyosati" %}</a>
+          <a href="#">{% trans "Foydalanish shartlari" %}</a>
+          <a href="#">{% trans "Saytxaritasi" %}</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+  <button id="scrollTop" title="{% trans 'Yuqoriga' %}"><i class="fas fa-chevron-up"></i></button>
 
   <script src="{% static 'assets/js/lang.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,128 +1,1302 @@
 # Russian translations
 msgid ""
 msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-27 16:12+0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: .\templates\404.html:9 .\templates\404.html:284
+msgid "Sahifa topilmadi"
+msgstr "Страница не найдена"
+
+#: .\templates\404.html:286
+msgid ""
+"Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud "
+"bo'lmagan bo'lishi mumkin."
+msgstr ""
+"Страница, которую вы ищете, возможно, была удалена, перемещена или никогда "
+"не существовала."
+
+#: .\templates\404.html:289 .\templates\404.html:294
+#: .\templates\categories.html:202 .\templates\categories.html:232
+#: .\templates\category-detail.html:120 .\templates\index.html:116
+#: .\templates\news-detail.html:91 .\templates\news-detail.html:127
+#: .\templates\news-detail.html:146 .\templates\news.html:145
+#: .\templates\news.html:171 .\templates\profile.html:63
+#: .\templates\search.html:57 .\templates\tag_posts.html:87
+#: .\templates\tag_posts.html:113
 msgid "Bosh sahifa"
 msgstr "Главная"
 
-msgid "Kategoriyalar"
-msgstr "Категории"
+#: .\templates\404.html:290
+msgid "Orqaga"
+msgstr "Назад"
 
-msgid "Yangiliklar"
-msgstr "Новости"
+#: .\templates\404.html:293
+msgid "<span id=\"sec\">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →"
+msgstr "Вы будете перенаправлены автоматически через <span id=\"sec\">10</span> секунд →"
 
-msgid "Sahifalar"
-msgstr "Страницы"
+#: .\templates\404.html:300
+msgid "Yordam kerakmi?"
+msgstr "Нужна помощь?"
 
-msgid "Haqimizda"
+#: .\templates\about.html:9 .\templates\about.html:141
+#: .\templates\about.html:305 .\templates\categories.html:378
+#: .\templates\news-detail.html:534 .\templates\news.html:427
+#: .\templates\profile.html:349 .\templates\tag_posts.html:272
+msgid "Biz haqimizda"
 msgstr "О нас"
 
-msgid "Aloqa"
-msgstr "Контакты"
+#: .\templates\about.html:130 .\templates\news-detail.html:85
+#: .\templates\profile.html:59
+msgid "Yangiliklar portali"
+msgstr "Новостной портал"
 
-msgid "Kirish"
-msgstr "Войти"
-
-msgid "Ro'yxatdan o'tish"
-msgstr "Регистрация"
-
-msgid "Profil"
-msgstr "Профиль"
-
-msgid "Qidirish"
-msgstr "Поиск"
-
-msgid "Obuna bo'lish"
-msgstr "Подписаться"
-
+#: .\templates\about.html:133 .\templates\account\password_reset.html:53
+#: .\templates\account\password_reset_done.html:53
+#: .\templates\account\password_reset_from_key.html:53
+#: .\templates\contact.html:58 .\templates\login.html:132
+#: .\templates\register.html:131 .\templates\tag_posts.html:186
 msgid "Bosh sahifaga qaytish"
 msgstr "На главную"
 
-msgid "Chiqish"
-msgstr "Выйти"
+#: .\templates\about.html:142
+msgid "O'zbekistonning"
+msgstr "Узбекистана"
 
-msgid "So'nggi"
-msgstr "Последние"
+#: .\templates\about.html:142
+msgid "eng ishonchli"
+msgstr "самый надёжный"
 
-msgid "Tezkor xabar"
-msgstr "Срочно"
+#: .\templates\about.html:142
+msgid "yangiliklar portali"
+msgstr "новостной портал"
 
-msgid "marta o'qildi"
-msgstr "раз прочитано"
+#: .\templates\about.html:143
+msgid ""
+"2026-yildan buyon har kuni millionlab o'zbekistonliklar Ovoza orqali dunyo "
+"yangiliklaridan xabardor bo'lmoqda. Haqqoniylik, tezkorlik va chuqurlik — "
+"bizning asosiy tamoyillarimiz."
+msgstr ""
+"С 2026 года миллионы узбекистанцев ежедневно следят за мировыми новостями "
+"через Ovoza. Достоверность, оперативность и глубина — наши главные принципы."
 
-msgid "To'liq o'qish"
-msgstr "Читать полностью"
+#: .\templates\about.html:155
+msgid "Bizning"
+msgstr "Наша"
 
-msgid "Yangilik yo'q"
-msgstr "Нет новостей"
+#: .\templates\about.html:155
+msgid "missiyamiz"
+msgstr "миссия"
 
-msgid "Tavsiya etilganlar"
-msgstr "Рекомендуем"
+#: .\templates\about.html:156
+msgid ""
+"Ovoza — O'zbekistonda mustaqil, haqqoniy va tezkor yangiliklar "
+"jurnalistikasini rivojlantirish uchun 2026-yilda tashkil etilgan raqamli "
+"yangiliklar platformasi."
+msgstr ""
+"Ovoza — цифровая новостная платформа, основанная в 2026 году для развития "
+"независимой, достоверной и оперативной журналистики в Узбекистане."
 
-msgid "O'qish"
-msgstr "Читать"
+#: .\templates\about.html:157
+msgid ""
+"Biz har kuni 50 dan ortiq mutaxassis muxbirlarimiz orqali siyosat, iqtisod, "
+"sport, texnologiya va madaniyat sohasidagi eng muhim voqealarni yoritib "
+"boramiz."
+msgstr ""
+"Каждый день более 50 профессиональных репортёров освещают важнейшие события "
+"в политике, экономике, спорте, технологиях и культуре."
 
-msgid "Eng qaynoq yangiliklar"
-msgstr "Горячие новости"
+#: .\templates\about.html:159
+msgid "\"Har bir yangilik — birovning hayotiga ta\\"
+msgstr ""
+"\"Каждая новость влияет на чью-то жизнь. Поэтому мы всегда публикуем только "
+"проверенную и достоверную информацию.\""
 
-msgid "Barchasini ko'rish"
-msgstr "Смотреть все"
+#: .\templates\about.html:161
+msgid ""
+"Ovoza faqat yangilik emas, tahlil va kontekst ham taqdim etadi. "
+"O'quvchilarimiz voqealarni nafaqat ko'radi, balki ularni tushunadi."
+msgstr ""
+"Ovoza предоставляет не только новости, но и анализ и контекст. Наши "
+"читатели не просто видят события — они понимают их."
 
+#: .\templates\about.html:165
+msgid "2026-yildan buyon"
+msgstr "С 2026 года"
+
+#: .\templates\about.html:166
+msgid ""
+"Toshkentda tashkil etilgan, butun O'zbekiston va dunyo bo'yicha "
+"o'quvchilarimizga xizmat qilamiz"
+msgstr ""
+"Основан в Ташкенте, обслуживает читателей по всему Узбекистану и миру"
+
+#: .\templates\about.html:174 .\templates\index.html:272
 msgid "ta maqola"
 msgstr "статей"
 
-msgid "Maqola yo'q"
-msgstr "Нет статей"
+#: .\templates\about.html:175
+msgid "Nashr etilgan"
+msgstr "Опубликовано"
 
-msgid "Valyuta Kurslari"
-msgstr "Курсы валют"
+#: .\templates\about.html:179
+msgid "ta bo'lim"
+msgstr "разделов"
 
-msgid "Markaziy bank kursi"
-msgstr "Курс ЦБ"
+#: .\templates\about.html:180 .\templates\about.html:293
+#: .\templates\categories.html:9 .\templates\categories.html:203
+#: .\templates\categories.html:234 .\templates\categories.html:236
+#: .\templates\categories.html:271 .\templates\categories.html:363
+#: .\templates\category-detail.html:121 .\templates\index.html:118
+#: .\templates\index.html:260 .\templates\index.html:408
+#: .\templates\news-detail.html:93 .\templates\news-detail.html:128
+#: .\templates\news-detail.html:148 .\templates\news-detail.html:522
+#: .\templates\news.html:146 .\templates\news.html:348
+#: .\templates\news.html:413 .\templates\profile.html:64
+#: .\templates\profile.html:339 .\templates\search.html:58
+#: .\templates\tag_posts.html:88 .\templates\tag_posts.html:260
+msgid "Kategoriyalar"
+msgstr "Категории"
 
-msgid "Ob-havo"
-msgstr "Погода"
+#: .\templates\about.html:184
+msgid "nafar"
+msgstr "человек"
 
-msgid "Havo Sifati (AQI)"
-msgstr "Качество воздуха (AQI)"
+#: .\templates\about.html:185
+msgid "Faol muxbirlar"
+msgstr "Активных репортёров"
 
-msgid "Yuklanmoqda..."
-msgstr "Загрузка..."
+#: .\templates\about.html:189
+msgid "yil"
+msgstr "лет"
 
-msgid "Xabar Olish"
-msgstr "Рассылка"
+#: .\templates\about.html:190
+msgid "Bozorda tajriba"
+msgstr "Опыт на рынке"
 
-msgid "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga"
-msgstr "10 главных новостей каждое утро на вашу почту"
+#: .\templates\about.html:195
+msgid "Qadriyatlarimiz"
+msgstr "Наши ценности"
 
-msgid "Email manzilingiz..."
-msgstr "Ваш email..."
+#: .\templates\about.html:199
+msgid "Haqqoniylik"
+msgstr "Достоверность"
 
-msgid "Ijtimoiy Tarmoqlar"
-msgstr "Социальные сети"
+#: .\templates\about.html:200
+msgid ""
+"Har bir yangilik kamida 2 ta mustaqil manbadan tekshiriladi. Biz hech qachon "
+"tasdiqlanmagan ma'lumot tarqatmaymiz."
+msgstr ""
+"Каждая новость проверяется не менее чем двумя независимыми источниками. Мы "
+"никогда не публикуем непроверенную информацию."
 
+#: .\templates\about.html:204
+msgid "Tezkorlik"
+msgstr "Оперативность"
+
+#: .\templates\about.html:205
+msgid ""
+"Voqea sodir bo'lgan daqiqadan 15 daqiqa ichida birinchi xabarimiz chiqadi. "
+"Biz har doim eng birinchi bo'lishga harakat qilamiz."
+msgstr ""
+"Первый репортаж выходит в течение 15 минут с момента события. Мы всегда "
+"стремимся быть первыми."
+
+#: .\templates\about.html:209
+msgid "Mustaqillik"
+msgstr "Независимость"
+
+#: .\templates\about.html:210
+msgid ""
+"Siyosiy yoki iqtisodiy bosimdan holi, faqat jamoatchilik manfaati uchun "
+"ishlashga qat'iy rioya qilamiz."
+msgstr ""
+"Свободные от политического или экономического давления, мы строго "
+"придерживаемся работы исключительно в интересах общества."
+
+#: .\templates\about.html:214
+msgid "Jamiyat uchun"
+msgstr "Для общества"
+
+#: .\templates\about.html:215
+msgid ""
+"O'quvchilarimiz faqat iste'molchi emas, jamiyatimizning faol a'zolari. "
+"Ularning ovozi bizga muhim."
+msgstr ""
+"Наши читатели — не просто потребители, они активные члены нашего общества. "
+"Их мнение важно для нас."
+
+#: .\templates\about.html:219
+msgid "Innovatsiya"
+msgstr "Инновации"
+
+#: .\templates\about.html:220
+msgid ""
+"Raqamli jurnalistikaning ilg'or usullarini qo'llagan holda, o'quvchilarga "
+"eng qulay tajriba yaratamiz."
+msgstr ""
+"Используя передовые методы цифровой журналистики, мы создаём максимально "
+"удобный опыт для наших читателей."
+
+#: .\templates\about.html:224
+msgid "Ko'pqatlamlilik"
+msgstr "Многоуровневость"
+
+#: .\templates\about.html:225
+msgid ""
+"Mahalliy va xalqaro yangiliklar bir platformada — O'zbekiston va dunyoni bir "
+"joyda kuzating."
+msgstr ""
+"Местные и международные новости на одной платформе — следите за "
+"Узбекистаном и миром в одном месте."
+
+#: .\templates\about.html:230
+msgid "Jamoamiz"
+msgstr "Наша команда"
+
+#: .\templates\about.html:249
+#, python-format
+msgid "%(count)s ta maqola nashr etilgan"
+msgstr "%(count)s статей опубликовано"
+
+#: .\templates\about.html:256
+msgid "Jamoa a'zolari hali qo'shilmagan"
+msgstr "Участники команды ещё не добавлены"
+
+#: .\templates\about.html:263
+msgid "Biz bilan bog'laning"
+msgstr "Свяжитесь с нами"
+
+#: .\templates\about.html:264
+msgid ""
+"Hamkorlik, reklama yoki muxbir sifatida ishlash bo'yicha savollaringiz bormi?"
+msgstr ""
+"Есть вопросы о партнёрстве, рекламе или работе репортёром?"
+
+#: .\templates\about.html:283 .\templates\index.html:398
+#: .\templates\news-detail.html:512 .\templates\profile.html:329
+#: .\templates\tag_posts.html:250
 msgid "O'zbekistonning eng ishonchli va tezkor yangiliklar portali."
 msgstr "Самый надёжный и быстрый новостной портал Узбекистана."
 
+#: .\templates\about.html:295 .\templates\categories.html:365
+#: .\templates\categories.html:428 .\templates\news-detail.html:524
+#: .\templates\news.html:415 .\templates\profile.html:341
+#: .\templates\tag_posts.html:262
+msgid "Siyosat"
+msgstr "Политика"
+
+#: .\templates\about.html:296 .\templates\categories.html:366
+#: .\templates\categories.html:430 .\templates\news-detail.html:525
+#: .\templates\news.html:416 .\templates\profile.html:341
+#: .\templates\tag_posts.html:263
+msgid "Iqtisod"
+msgstr "Экономика"
+
+#: .\templates\about.html:297 .\templates\categories.html:368
+#: .\templates\categories.html:429 .\templates\news-detail.html:526
+#: .\templates\news.html:418 .\templates\profile.html:342
+#: .\templates\tag_posts.html:264
+msgid "Sport"
+msgstr "Спорт"
+
+#: .\templates\about.html:298 .\templates\categories.html:369
+#: .\templates\categories.html:431 .\templates\news-detail.html:527
+#: .\templates\news.html:419 .\templates\profile.html:342
+#: .\templates\tag_posts.html:265
+msgid "Texnologiya"
+msgstr "Технологии"
+
+#: .\templates\about.html:299 .\templates\categories.html:432
+#: .\templates\news-detail.html:528 .\templates\profile.html:343
+#: .\templates\tag_posts.html:266
+msgid "Dunyo"
+msgstr "Мир"
+
+#: .\templates\about.html:303 .\templates\categories.html:206
+#: .\templates\categories.html:376 .\templates\category-detail.html:124
+#: .\templates\index.html:122 .\templates\index.html:417
+#: .\templates\news-detail.html:97 .\templates\news-detail.html:532
+#: .\templates\news.html:149 .\templates\news.html:425
+#: .\templates\profile.html:67 .\templates\profile.html:347
+#: .\templates\search.html:61 .\templates\tag_posts.html:91
+#: .\templates\tag_posts.html:270
+msgid "Sahifalar"
+msgstr "Страницы"
+
+#: .\templates\about.html:306 .\templates\categories.html:379
+#: .\templates\news-detail.html:535 .\templates\news.html:428
+#: .\templates\profile.html:349 .\templates\tag_posts.html:273
+msgid "Tahririyat"
+msgstr "Редакция"
+
+#: .\templates\about.html:307 .\templates\categories.html:380
+#: .\templates\news-detail.html:471 .\templates\news-detail.html:536
+#: .\templates\news.html:332 .\templates\news.html:429
+#: .\templates\profile.html:350 .\templates\tag_posts.html:274
+msgid "Reklama"
+msgstr "Реклама"
+
+#: .\templates\about.html:308 .\templates\categories.html:381
+#: .\templates\news.html:430
+msgid "Hamkorlik"
+msgstr "Партнёрство"
+
+#: .\templates\about.html:309 .\templates\categories.html:382
+#: .\templates\news-detail.html:537 .\templates\news.html:431
+#: .\templates\profile.html:350 .\templates\tag_posts.html:275
+msgid "Arxiv"
+msgstr "Архив"
+
+#: .\templates\about.html:313 .\templates\categories.html:209
+#: .\templates\categories.html:386 .\templates\category-detail.html:127
+#: .\templates\index.html:125 .\templates\index.html:426
+#: .\templates\news-detail.html:100 .\templates\news-detail.html:131
+#: .\templates\news-detail.html:541 .\templates\news.html:152
+#: .\templates\news.html:435 .\templates\profile.html:70
+#: .\templates\profile.html:354 .\templates\search.html:64
+#: .\templates\tag_posts.html:94 .\templates\tag_posts.html:279
+msgid "Aloqa"
+msgstr "Контакты"
+
+#: .\templates\about.html:314 .\templates\categories.html:387
+#: .\templates\news-detail.html:542 .\templates\news.html:436
+#: .\templates\profile.html:355 .\templates\tag_posts.html:280
+msgid "Toshkent, Mirzo Ulug'bek ko'chasi, 47"
+msgstr "Ташкент, ул. Мирзо Улугбека, 47"
+
+#: .\templates\about.html:318 .\templates\categories.html:391
+#: .\templates\news-detail.html:545 .\templates\news.html:440
+#: .\templates\tag_posts.html:283
+msgid "Dush–Juma: 09:00 – 18:00"
+msgstr "Пн–Пт: 09:00 – 18:00"
+
+#: .\templates\about.html:322 .\templates\categories.html:395
+#: .\templates\index.html:438 .\templates\news-detail.html:549
+#: .\templates\news.html:444 .\templates\profile.html:361
+#: .\templates\tag_posts.html:287
 msgid "Barcha huquqlar himoyalangan."
 msgstr "Все права защищены."
 
+#: .\templates\about.html:324 .\templates\profile.html:363
+msgid "Maxfiylik"
+msgstr "Конфиденциальность"
+
+#: .\templates\about.html:325 .\templates\news-detail.html:552
+#: .\templates\profile.html:363 .\templates\tag_posts.html:290
+msgid "Shartlar"
+msgstr "Условия"
+
+#: .\templates\about.html:332 .\templates\categories.html:407
+#: .\templates\news-detail.html:559 .\templates\news.html:455
+#: .\templates\profile.html:369 .\templates\tag_posts.html:297
+msgid "Yuqoriga"
+msgstr "Наверх"
+
+#: .\templates\account\password_reset.html:81 .\templates\contact.html:118
+#: .\templates\login.html:178 .\templates\register.html:199
+msgid "email@misol.uz"
+msgstr "email@primer.uz"
+
+#: .\templates\account\password_reset_from_key.html:92
+#: .\templates\register.html:210
+msgid "Kamida 8 belgi"
+msgstr "Минимум 8 символов"
+
+#: .\templates\account\password_reset_from_key.html:112
+#: .\templates\register.html:231
+msgid "Parolni qayta kiriting"
+msgstr "Повторите пароль"
+
+#: .\templates\categories.html:9
+msgid "Yangiliklar Portali"
+msgstr "Новостной портал"
+
+#: .\templates\categories.html:204 .\templates\category-detail.html:122
+#: .\templates\index.html:120 .\templates\news-detail.html:95
+#: .\templates\news-detail.html:129 .\templates\news.html:9
+#: .\templates\news.html:147 .\templates\news.html:173
+#: .\templates\news.html:175 .\templates\news.html:222
+#: .\templates\profile.html:65 .\templates\search.html:59
+#: .\templates\tag_posts.html:89 .\templates\tag_posts.html:115
+#: .\templates\tag_posts.html:217
+msgid "Yangiliklar"
+msgstr "Новости"
+
+#: .\templates\categories.html:208 .\templates\category-detail.html:126
+#: .\templates\index.html:124 .\templates\news-detail.html:99
+#: .\templates\news-detail.html:130 .\templates\news.html:151
+#: .\templates\profile.html:69 .\templates\search.html:63
+#: .\templates\tag_posts.html:93
+msgid "Haqimizda"
+msgstr "О нас"
+
+#: .\templates\categories.html:210 .\templates\category-detail.html:128
+#: .\templates\index.html:126 .\templates\news-detail.html:101
+#: .\templates\news-detail.html:136 .\templates\news-detail.html:568
+#: .\templates\news.html:153 .\templates\profile.html:71
+#: .\templates\search.html:65 .\templates\tag_posts.html:95
+msgid "Kirish"
+msgstr "Войти"
+
+#: .\templates\categories.html:211 .\templates\category-detail.html:129
+#: .\templates\index.html:127 .\templates\news-detail.html:102
+#: .\templates\news-detail.html:137 .\templates\news.html:154
+#: .\templates\profile.html:72 .\templates\search.html:66
+#: .\templates\tag_posts.html:96
+msgid "Ro'yxatdan o'tish"
+msgstr "Регистрация"
+
+#: .\templates\categories.html:212 .\templates\category-detail.html:130
+#: .\templates\index.html:128 .\templates\news-detail.html:103
+#: .\templates\news-detail.html:133 .\templates\news.html:155
+#: .\templates\profile.html:9 .\templates\profile.html:73
+#: .\templates\search.html:67 .\templates\tag_posts.html:97
+msgid "Profil"
+msgstr "Профиль"
+
+#: .\templates\categories.html:220 .\templates\index.html:451
+#: .\templates\index.html:460 .\templates\news.html:160
+#: .\templates\news.html:377 .\templates\news.html:387
+msgid "Qidirish"
+msgstr "Поиск"
+
+#: .\templates\categories.html:236
+msgid "Barcha"
+msgstr "Все"
+
+#: .\templates\categories.html:237
+msgid ""
+"O'zingizga qiziq bo'lgan yo'nalishni tanlang — siyosatdan tortib "
+"san'atgacha, iqtisoddan sportgacha hamma narsa bir joyda."
+msgstr ""
+"Выберите интересующее вас направление — от политики до искусства, от "
+"экономики до спорта, всё в одном месте."
+
+#: .\templates\categories.html:242
+msgid "Jami maqola"
+msgstr "Всего статей"
+
+#: .\templates\categories.html:246
+msgid "Kategoriya"
+msgstr "Категория"
+
+#: .\templates\categories.html:250
+msgid "Bugun"
+msgstr "Сегодня"
+
+#: .\templates\categories.html:272
+#, python-format
+msgid "%(count)s ta kategoriya"
+msgstr "%(count)s категорий"
+
+#: .\templates\categories.html:288
+msgid "So'nggi maqolalar"
+msgstr "Последние статьи"
+
+#: .\templates\categories.html:292
+msgid "Hozircha maqola yo'q"
+msgstr "Статей пока нет"
+
+#: .\templates\categories.html:296 .\templates\categories.html:317
+#: .\templates\profile.html:303 .\templates\profile.html:310
+#, python-format
+msgid "%(count)s ta maqola"
+msgstr "%(count)s статей"
+
+#: .\templates\categories.html:328 .\templates\news-detail.html:489
+#: .\templates\news.html:361 .\templates\tag_posts.html:226
+msgid "Mashhur Teglar"
+msgstr "Популярные теги"
+
+#: .\templates\categories.html:336
+msgid "Hozircha teglar yo'q"
+msgstr "Тегов пока нет"
+
+#: .\templates\categories.html:353 .\templates\news.html:403
+msgid ""
+"O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni "
+"dolzarb, haqqoniy va chuqur tahliliy materiallar."
+msgstr ""
+"Самый надёжный и быстрый новостной портал Узбекистана. Ежедневно актуальные, "
+"достоверные и глубоко аналитические материалы."
+
+#: .\templates\categories.html:367 .\templates\news.html:417
+msgid "Jamiyat"
+msgstr "Общество"
+
+#: .\templates\categories.html:370 .\templates\news.html:420
+msgid "Dunyo yangiliklari"
+msgstr "Мировые новости"
+
+#: .\templates\categories.html:371 .\templates\news.html:421
+msgid "Madaniyat va san'at"
+msgstr "Культура и искусство"
+
+#: .\templates\categories.html:372
+msgid "Sog'liqni saqlash"
+msgstr "Здравоохранение"
+
+#: .\templates\categories.html:397 .\templates\index.html:440
+#: .\templates\news-detail.html:551 .\templates\news.html:446
+#: .\templates\tag_posts.html:289
 msgid "Maxfiylik siyosati"
 msgstr "Политика конфиденциальности"
 
+#: .\templates\categories.html:398 .\templates\index.html:441
+#: .\templates\news.html:447
 msgid "Foydalanish shartlari"
 msgstr "Условия использования"
 
+#: .\templates\categories.html:400 .\templates\index.html:443
+#: .\templates\news.html:449
 msgid "Saytxaritasi"
 msgstr "Карта сайта"
 
-msgid "Nima qidiryapsiz?"
-msgstr "Что вы ищете?"
+#: .\templates\categories.html:414
+msgid "Kategoriya qidirish"
+msgstr "Поиск категорий"
 
+#: .\templates\categories.html:417
+msgid "Kategoriya nomi..."
+msgstr "Название категории..."
+
+#: .\templates\categories.html:422 .\templates\index.html:456
+#: .\templates\index.html:461 .\templates\news.html:388
 msgid "Yopish"
 msgstr "Закрыть"
 
+#: .\templates\categories.html:423 .\templates\index.html:462
+#: .\templates\news.html:389
 msgid "Ochish"
 msgstr "Открыть"
+
+#: .\templates\categories.html:426
+msgid "Tez o'tish:"
+msgstr "Быстрый переход:"
+
+#: .\templates\categories.html:433
+msgid "Madaniyat"
+msgstr "Культура"
+
+#: .\templates\contact.html:101 .\templates\register.html:178
+msgid "Ismingiz"
+msgstr "Ваше имя"
+
+#: .\templates\contact.html:109 .\templates\register.html:187
+msgid "Familiyangiz"
+msgstr "Ваша фамилия"
+
+#: .\templates\contact.html:128
+msgid "+998 90 000 00 00"
+msgstr "+998 90 000 00 00"
+
+#: .\templates\contact.html:137
+msgid "Kompaniya yoki tashkilot nomi"
+msgstr "Название компании или организации"
+
+#: .\templates\contact.html:161
+msgid "Masalan: $500 – $1000"
+msgstr "Например: $500 – $1000"
+
+#: .\templates\contact.html:172
+msgid "https://ovoza.uz/about/123/"
+msgstr "https://ovoza.uz/about/123/"
+
+#: .\templates\contact.html:178
+msgid "Xabaringizni yozing..."
+msgstr "Напишите ваше сообщение..."
+
+#: .\templates\index.html:58 .\templates\news.html:175
+msgid "So'nggi"
+msgstr "Последние"
+
+#: .\templates\index.html:105 .\templates\index.html:359
+#: .\templates\tag_posts.html:221
+msgid "Obuna bo'lish"
+msgstr "Подписаться"
+
+#: .\templates\index.html:143 .\templates\news.html:243
+msgid "Tezkor xabar"
+msgstr "Срочно"
+
+#: .\templates\index.html:149
+msgid "marta o'qildi"
+msgstr "раз прочитано"
+
+#: .\templates\index.html:152
+msgid "To'liq o'qish"
+msgstr "Читать полностью"
+
+#: .\templates\index.html:169
+msgid "Yangilik yo'q"
+msgstr "Нет новостей"
+
+#: .\templates\index.html:183
+msgid "Tavsiya etilganlar"
+msgstr "Рекомендуем"
+
+#: .\templates\index.html:200 .\templates\news.html:266
+#: .\templates\tag_posts.html:177
+msgid "O'qish"
+msgstr "Читать"
+
+#: .\templates\index.html:239
+msgid "Eng qaynoq yangiliklar"
+msgstr "Горячие новости"
+
+#: .\templates\index.html:261
+msgid "Barchasini ko'rish"
+msgstr "Смотреть все"
+
+#: .\templates\index.html:279
+msgid "Maqola yo'q"
+msgstr "Нет статей"
+
+#: .\templates\index.html:290
+msgid "Valyuta Kurslari"
+msgstr "Курсы валют"
+
+#: .\templates\index.html:313
+msgid "Markaziy bank kursi"
+msgstr "Курс ЦБ"
+
+#: .\templates\index.html:317
+msgid "Ob-havo"
+msgstr "Погода"
+
+#: .\templates\index.html:347
+msgid "Havo Sifati (AQI)"
+msgstr "Качество воздуха (AQI)"
+
+#: .\templates\index.html:349
+msgid "Yuklanmoqda..."
+msgstr "Загрузка..."
+
+#: .\templates\index.html:354
+msgid "Xabar Olish"
+msgstr "Рассылка"
+
+#: .\templates\index.html:355
+msgid "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga"
+msgstr "10 главных новостей каждое утро на вашу почту"
+
+#: .\templates\index.html:357 .\templates\tag_posts.html:220
+msgid "Email manzilingiz..."
+msgstr "Ваш email..."
+
+#: .\templates\index.html:365
+msgid "Ijtimoiy Tarmoqlar"
+msgstr "Социальные сети"
+
+#: .\templates\index.html:455
+msgid "Nima qidiryapsiz?"
+msgstr "Что вы ищете?"
+
+#: .\templates\login.html:189
+msgid "Parolingiz"
+msgstr "Ваш пароль"
+
+#: .\templates\news-detail.html:134 .\templates\profile.html:107
+#: .\templates\profile.html:379
+msgid "Chiqish"
+msgstr "Выйти"
+
+#: .\templates\news-detail.html:185
+#, python-format
+msgid "%(views)s marta o'qildi"
+msgstr "%(views)s раз прочитано"
+
+#: .\templates\news-detail.html:192
+msgid "Yoqtirishlar"
+msgstr "Лайки"
+
+#: .\templates\news-detail.html:197 .\templates\news-detail.html:324
+msgid "Fikrlar"
+msgstr "Комментарии"
+
+#: .\templates\news-detail.html:202
+msgid "Ulashish"
+msgstr "Поделиться"
+
+#: .\templates\news-detail.html:267
+msgid "Teglar:"
+msgstr "Теги:"
+
+#: .\templates\news-detail.html:281
+msgid "Yoqtirish"
+msgstr "Нравится"
+
+#: .\templates\news-detail.html:288
+msgid "Ulashish:"
+msgstr "Поделиться:"
+
+#: .\templates\news-detail.html:301
+msgid "Nusxa olish"
+msgstr "Скопировать ссылку"
+
+#: .\templates\news-detail.html:306
+msgid "O'xshash Yangiliklar"
+msgstr "Похожие новости"
+
+#: .\templates\news-detail.html:325
+#, python-format
+msgid "%(count)s ta izoh"
+msgstr "%(count)s комментариев"
+
+#: .\templates\news-detail.html:330
+msgid "Fikr bildirish"
+msgstr "Оставить комментарий"
+
+#: .\templates\news-detail.html:331
+msgid "Fikringizni yozing..."
+msgstr "Напишите ваше мнение..."
+
+#: .\templates\news-detail.html:334 .\templates\news-detail.html:399
+msgid "Yuborish"
+msgstr "Отправить"
+
+#: .\templates\news-detail.html:342
+msgid "Fikr bildirish uchun"
+msgstr "Чтобы оставить комментарий"
+
+#: .\templates\news-detail.html:342
+msgid "kirish"
+msgstr "войдите"
+
+#: .\templates\news-detail.html:342
+msgid "yoki"
+msgstr "или"
+
+#: .\templates\news-detail.html:342
+msgid "ro'yxatdan o'tish"
+msgstr "зарегистрируйтесь"
+
+#: .\templates\news-detail.html:342
+msgid "kerak"
+msgstr "необходимо"
+
+#: .\templates\news-detail.html:372 .\templates\news-detail.html:428
+#: .\templates\profile.html:232
+msgid "Saqlash"
+msgstr "Сохранить"
+
+#: .\templates\news-detail.html:375 .\templates\news-detail.html:431
+msgid "Bekor"
+msgstr "Отмена"
+
+#: .\templates\news-detail.html:384
+msgid "Javob"
+msgstr "Ответить"
+
+#: .\templates\news-detail.html:389 .\templates\news-detail.html:421
+#: .\templates\profile.html:222
+msgid "Tahrirlash"
+msgstr "Редактировать"
+
+#: .\templates\news-detail.html:395
+msgid "Javobingizni yozing..."
+msgstr "Напишите ваш ответ..."
+
+#: .\templates\news-detail.html:445
+msgid "Hali izoh qoldirilmagan. Birinchi bo'ling!"
+msgstr "Комментариев пока нет. Будьте первым!"
+
+#: .\templates\news-detail.html:456 .\templates\news.html:312
+#: .\templates\tag_posts.html:196
+msgid "Ko'p O'qilganlar"
+msgstr "Самое читаемое"
+
+#: .\templates\news-detail.html:565
+msgid "Kirish talab etiladi"
+msgstr "Требуется вход"
+
+#: .\templates\news-detail.html:566
+msgid "Like bosish uchun avval tizimga kiring."
+msgstr "Пожалуйста, сначала войдите в систему, чтобы поставить лайк."
+
+#: .\templates\news-detail.html:569 .\templates\profile.html:165
+#: .\templates\profile.html:233 .\templates\profile.html:378
+#: .\templates\profile.html:390
+msgid "Bekor qilish"
+msgstr "Отмена"
+
+#: .\templates\news.html:176
+msgid ""
+"O'zbekiston va dunyo bo'yicha eng dolzarb xabarlar — har kuni yangilanib "
+"turadi"
+msgstr ""
+"Самые актуальные новости из Узбекистана и мира — обновляется ежедневно"
+
+#: .\templates\news.html:186
+msgid "Barchasi"
+msgstr "Все"
+
+#: .\templates\news.html:198
+msgid "Eng yangi"
+msgstr "Новейшие"
+
+#: .\templates\news.html:201
+msgid "Eng mashhur"
+msgstr "Самые популярные"
+
+#: .\templates\news.html:204
+msgid "Ko'p muhokama"
+msgstr "Наиболее обсуждаемые"
+
+#: .\templates\news.html:208
+msgid "List ko\\"
+msgstr "Список"
+
+#: .\templates\news.html:209
+msgid "Grid ko\\"
+msgstr "Сетка"
+
+#: .\templates\news.html:223 .\templates\tag_posts.html:120
+#, python-format
+msgid "%(count)s ta yangilik topildi"
+msgstr "%(count)s новостей найдено"
+
+#: .\templates\news.html:273
+msgid "Yangiliklar topilmadi."
+msgstr "Новостей не найдено."
+
+#: .\templates\news.html:382
+msgid "Yangilik, mavzu yoki muallif..."
+msgstr "Новость, тема или автор..."
+
+#: .\templates\profile.html:95
+msgid "Rasmni o\\"
+msgstr "Изменить фото"
+
+#: .\templates\profile.html:114
+msgid "Yoqtirgan"
+msgstr "Понравилось"
+
+#: .\templates\profile.html:118
+msgid "Izohlar"
+msgstr "Комментарии"
+
+#: .\templates\profile.html:122 .\templates\profile.html:276
+msgid "A'zo bo'lgan"
+msgstr "Участник с"
+
+#: .\templates\profile.html:136
+msgid "Yoqtirilganlar"
+msgstr "Понравившиеся"
+
+#: .\templates\profile.html:140
+msgid "Izohlarim"
+msgstr "Мои комментарии"
+
+#: .\templates\profile.html:173
+msgid "Yoqtirganlar yo'q"
+msgstr "Нет понравившихся статей"
+
+#: .\templates\profile.html:174
+msgid "Yangiliklar o'qib, yoqtirgan maqolalaringiz bu yerda ko'rinadi"
+msgstr "Статьи, которые вам понравились во время чтения, появятся здесь"
+
+#: .\templates\profile.html:225 .\templates\profile.html:391
+msgid "O'chirish"
+msgstr "Удалить"
+
+#: .\templates\profile.html:240
+msgid "Izohlar yo'q"
+msgstr "Нет комментариев"
+
+#: .\templates\profile.html:241
+msgid "Hali izoh yozmagansiz"
+msgstr "Вы ещё не написали ни одного комментария"
+
+#: .\templates\profile.html:274
+msgid "Ma'lumotlar"
+msgstr "Информация"
+
+#: .\templates\profile.html:280
+msgid "Faollik"
+msgstr "Активность"
+
+#: .\templates\profile.html:284
+msgid "So'nggi o'qilgan"
+msgstr "Последнее прочитанное"
+
+#: .\templates\profile.html:295
+msgid "Sevimli kategoriya"
+msgstr "Любимая категория"
+
+#: .\templates\profile.html:302
+msgid "Bugun o'qilgan"
+msgstr "Прочитано сегодня"
+
+#: .\templates\profile.html:309
+msgid "Jami o'qilgan"
+msgstr "Всего прочитано"
+
+#: .\templates\profile.html:375
+msgid "Chiqmoqchimisiz?"
+msgstr "Вы уверены, что хотите выйти?"
+
+#: .\templates\profile.html:376
+msgid "Hisobdan chiqiladi"
+msgstr "Вы будете выведены из аккаунта"
+
+#: .\templates\profile.html:387
+msgid "Izohni o'chirmoqchimisiz?"
+msgstr "Удалить этот комментарий?"
+
+#: .\templates\profile.html:388
+msgid "Bu amal qaytarib bo'lmaydi"
+msgstr "Это действие нельзя отменить"
+
+#: .\templates\search.html:51
+msgid "Qidirish..."
+msgstr "Поиск..."
+
+#: .\templates\tag_posts.html:102
+msgid "Obuna"
+msgstr "Подписаться"
+
+#: .\templates\tag_posts.html:119
+#, python-format
+msgid "<span>#%(name)s</span> tegi bo'yicha yangiliklar"
+msgstr "Новости с тегом <span>#%(name)s</span>"
+
+#: .\templates\tag_posts.html:133
+#, python-format
+msgid "%(count)s ta yangilik"
+msgstr "%(count)s новостей"
+
+#: .\templates\tag_posts.html:185
+msgid "Bu teg bo'yicha hali yangilik qo'shilmagan."
+msgstr "Новостей для этого тега ещё нет."
+
+#: .\templates\tag_posts.html:218
+msgid "Har kuni ertalab eng muhim 10 ta xabar"
+msgstr "10 главных новостей каждое утро"
+
+msgid "Xush kelibsiz!"
+msgstr "Добро пожаловать!"
+
+msgid "Hisobingizga kirish uchun ma'lumotlarni kiriting"
+msgstr "Введите данные для входа в аккаунт"
+
+msgid "Google orqali kirish"
+msgstr "Войти через Google"
+
+msgid "yoki email bilan"
+msgstr "или через email"
+
+msgid "Email manzil"
+msgstr "Электронная почта"
+
+msgid "To'g'ri email manzil kiriting"
+msgstr "Введите корректный адрес электронной почты"
+
+msgid "Parol"
+msgstr "Пароль"
+
+msgid "Parolni unutdingizmi?"
+msgstr "Забыли пароль?"
+
+msgid "Parol kiritilmagan"
+msgstr "Пароль не введён"
+
+msgid "Meni eslab qol (30 kun)"
+msgstr "Запомнить меня (30 дней)"
+
+msgid "Hisobingiz yo'qmi?"
+msgstr "Нет аккаунта?"
+
+msgid "Ro'yxatdan o'ting"
+msgstr "Зарегистрироваться"
+
+msgid "Yordam"
+msgstr "Помощь"
+
+msgid "Hisob yaratish"
+msgstr "Создать аккаунт"
+
+msgid "Yangiliklar, izohlar va ko'proq imkoniyatlar uchun ro'yxatdan o'ting"
+msgstr "Зарегистрируйтесь для доступа к новостям, комментариям и другим возможностям"
+
+msgid "Google orqali davom etish"
+msgstr "Продолжить через Google"
+
+msgid "Ism"
+msgstr "Имя"
+
+msgid "Ism kiritilmagan"
+msgstr "Имя не введено"
+
+msgid "Familiya"
+msgstr "Фамилия"
+
+msgid "Familiya kiritilmagan"
+msgstr "Фамилия не введена"
+
+msgid "Kamida 8 belgi kiriting"
+msgstr "Введите не менее 8 символов"
+
+msgid "Parolni tasdiqlash"
+msgstr "Подтвердите пароль"
+
+msgid "Parollar mos kelmaydi"
+msgstr "Пароли не совпадают"
+
+msgid "va"
+msgstr "и"
+
+msgid "bilan roziman"
+msgstr "я согласен с"
+
+msgid "Shartlarni qabul qilish shart"
+msgstr "Необходимо принять условия"
+
+msgid "Yangiliklar xabarnomasi olishni xohlayman"
+msgstr "Хочу получать новостную рассылку"
+
+msgid "Muvaffaqiyatli ro'yxatdan o'tdingiz!"
+msgstr "Вы успешно зарегистрированы!"
+
+msgid "Hisobingiz bormi?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Biz bilan"
+msgstr "Свяжитесь"
+
+msgid "bog'laning"
+msgstr "с нами"
+
+msgid "Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz."
+msgstr "Задайте вопрос, отправьте предложение или запрос о сотрудничестве — мы ответим в течение 24 часов."
+
+msgid "Xabar yuboring"
+msgstr "Отправить сообщение"
+
+msgid "Umumiy savol"
+msgstr "Общий вопрос"
+
+msgid "Xato bildirish"
+msgstr "Сообщить об ошибке"
+
+msgid "Boshqa"
+msgstr "Другое"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "To'g'ri email kiriting"
+msgstr "Введите корректный email"
+
+msgid "Telefon"
+msgstr "Телефон"
+
+msgid "Kompaniya nomi"
+msgstr "Название компании"
+
+msgid "Reklama formati"
+msgstr "Формат рекламы"
+
+msgid "Formatni tanlang"
+msgstr "Выберите формат"
+
+msgid "Banner reklama"
+msgstr "Баннерная реклама"
+
+msgid "Video reklama"
+msgstr "Видеореклама"
+
+msgid "Reklama maqolasi"
+msgstr "Рекламная статья"
+
+msgid "Ijtimoiy tarmoq"
+msgstr "Социальные сети"
+
+msgid "Taxminiy byudjet"
+msgstr "Примерный бюджет"
+
+msgid "Maqola URL"
+msgstr "URL статьи"
+
+msgid "Xabar"
+msgstr "Сообщение"
+
+msgid "Xabar kiritilmagan"
+msgstr "Сообщение не введено"
+
+msgid "Xabar yuborish"
+msgstr "Отправить сообщение"
+
+msgid "Xabar yuborildi!"
+msgstr "Сообщение отправлено!"
+
+msgid "Tez orada siz bilan bog'lanamiz."
+msgstr "Мы свяжемся с вами в ближайшее время."
+
+msgid "Odatda 24 soat ichida javob beramiz."
+msgstr "Обычно мы отвечаем в течение 24 часов."
+
+msgid "Ko'p so'raladigan savollar"
+msgstr "Часто задаваемые вопросы"
+
+msgid "Reklama narxlari qancha?"
+msgstr "Сколько стоит реклама?"
+
+msgid "Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang."
+msgstr "Стоимость рекламы варьируется в зависимости от формата. Для подробностей напишите на reklama@ovoza.uz или выберите раздел рекламы."
+
+msgid "Muxbir bo'lish mumkinmi?"
+msgstr "Можно ли стать журналистом?"
+
+msgid "Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna maqolalaringizni info@ovoza.uz manziliga yuboring."
+msgstr "Да, мы всегда ищем талантливых журналистов. Отправьте резюме и примеры статей на info@ovoza.uz."
+
+msgid "Yangilik taklif qilsam bo'ladimi?"
+msgstr "Могу ли я предложить новость?"
+
+msgid "Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar qiling. Tahririyat ko'rib chiqadi."
+msgstr "Конечно! Если вы знаете о важной новости, сообщите нам. Редакция рассмотрит её."
+
+msgid "Xato ma'lumot topsam nima qilaman?"
+msgstr "Что делать, если я нашёл ошибку?"
+
+msgid "Iltimos, \"Xato bildirish\" bo'limidan foydalaning yoki to'g'ridan to'g'ri tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz."
+msgstr "Пожалуйста, воспользуйтесь разделом «Сообщить об ошибке» или напишите напрямую на tahrir@ovoza.uz. Мы исправим это оперативно."
+
+msgid "Asosiy email"
+msgstr "Основной email"
+
+msgid "Umumiy savollar uchun"
+msgstr "Для общих вопросов"
+
+msgid "Reklama bo'limi"
+msgstr "Отдел рекламы"
+
+msgid "Hamkorlik va reklama uchun"
+msgstr "Для партнёрства и рекламы"
+
+msgid "Mirzo Ulug'bek tumani"
+msgstr "Мирзо Улугбекский район"
+
+msgid "Xaritada ko'rish"
+msgstr "Посмотреть на карте"
+
+msgid "Ish vaqti"
+msgstr "Рабочее время"
+
+msgid "Dushanba"
+msgstr "Понедельник"
+
+msgid "Seshanba"
+msgstr "Вторник"
+
+msgid "Chorshanba"
+msgstr "Среда"
+
+msgid "Payshanba"
+msgstr "Четверг"
+
+msgid "Juma"
+msgstr "Пятница"
+
+msgid "Shanba"
+msgstr "Суббота"
+
+msgid "Yakshanba"
+msgstr "Воскресенье"
+
+msgid "Dam olish"
+msgstr "Выходной"
+
+msgid "Ijtimoiy tarmoqlar"
+msgstr "Социальные сети"
+
+msgid "412K+ obunachi"
+msgstr "412K+ подписчиков"
+
+msgid "Qidiruv natijalari"
+msgstr "Результаты поиска"
+
+msgid "ta natija topildi"
+msgstr "результатов найдено"
+
+msgid "Hech narsa topilmadi"
+msgstr "Ничего не найдено"
+
+msgid "bo'yicha hech narsa topilmadi"
+msgstr "— ничего не найдено"
+
+msgid "Boshqa kalit so'z bilan qidirib ko'ring"
+msgstr "Попробуйте другое ключевое слово"
+
+msgid "Yuqoridagi qidiruv maydoniga so'z kiriting"
+msgstr "Введите слово в поле поиска выше"
+
+msgid "Yangilik, mavzu yoki muallif qidirish..."
+msgstr "Поиск новостей, тем или авторов..."
+
+msgid "Salomatlik"
+msgstr "Здоровье"
+
+msgid "Parolni tiklash"
+msgstr "Сброс пароля"
+
+msgid "Emailingizni kiriting — tiklash havolasi yuboramiz"
+msgstr "Введите email — мы отправим ссылку для сброса"
+
+msgid "Kirishga qaytish"
+msgstr "Вернуться ко входу"
+
+msgid "Xat yuborildi!"
+msgstr "Письмо отправлено!"
+
+msgid "Emailingizni tekshiring va havolaga bosing"
+msgstr "Проверьте email и нажмите на ссылку"
+
+msgid "Parolni tiklash havolasi emailingizga yuborildi."
+msgstr "Ссылка для сброса пароля отправлена на ваш email."
+
+msgid "Agar xat kelmagan bo'lsa, spam papkasini tekshiring."
+msgstr "Если письмо не пришло, проверьте папку со спамом."
+
+msgid "soniyada kirishga yo'naltirilasiz..."
+msgstr "секунд до перенаправления ко входу..."
+
+msgid "Yangi parol"
+msgstr "Новый пароль"
+
+msgid "Yangi parolingizni kiriting"
+msgstr "Введите новый пароль"
+
+msgid "Havola yaroqsiz!"
+msgstr "Ссылка недействительна!"
+
+msgid "Bu havola eskirgan yoki allaqachon ishlatilgan."
+msgstr "Эта ссылка устарела или уже была использована."
+
+msgid "Qaytadan yuborish"
+msgstr "Отправить повторно"
+
+msgid "Parolni o'zgartirish"
+msgstr "Изменить пароль"
+
+msgid "Maqola"
+msgstr "Статьи"
+
+msgid "O'quvchi"
+msgstr "Читатели"
+
+msgid "Trendlar"
+msgstr "Тренды"
+
+msgid "O'xshash Maqolalar"
+msgstr "Похожие статьи"
+
+msgid "Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!"
+msgstr "В этой категории пока нет статей. Скоро появятся новости!"
+
+msgid "Hozircha teg yo'q"
+msgstr "Тегов пока нет"

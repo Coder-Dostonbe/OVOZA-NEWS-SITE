@@ -6,7 +6,7 @@
   {% load i18n %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kategoriyalar – Ovoza Yangiliklar Portali</title>
+  <title>{% trans "Kategoriyalar" %} – Ovoza {% trans "Yangiliklar Portali" %}</title>
   <meta name="description"
     content="Ovoza – barcha yangilik kategoriyalari: siyosat, iqtisod, sport, texnologiya, dunyo va boshqalar." />
 
@@ -229,26 +229,25 @@
     <div class="container page-hero-inner">
       <div class="page-hero-left">
         <div class="breadcrumb">
-          <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
+          <a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a>
           <i class="fas fa-chevron-right"></i>
-          <span>Kategoriyalar</span>
+          <span>{% trans "Kategoriyalar" %}</span>
         </div>
-        <h1>Barcha <span>Kategoriyalar</span></h1>
-        <p>O'zingizga qiziq bo'lgan yo'nalishni tanlang — siyosatdan tortib san'atgacha, iqtisoddan sportgacha hamma
-          narsa bir joyda.</p>
+        <h1>{% trans "Barcha" %} <span>{% trans "Kategoriyalar" %}</span></h1>
+        <p>{% trans "O'zingizga qiziq bo'lgan yo'nalishni tanlang — siyosatdan tortib san'atgacha, iqtisoddan sportgacha hamma narsa bir joyda." %}</p>
       </div>
       <div class="page-hero-stat">
         <div class="hero-stat-item">
           <span class="hero-stat-num" id="statArticles">{{ total_posts }}</span>
-          <span class="hero-stat-label">Jami maqola</span>
+          <span class="hero-stat-label">{% trans "Jami maqola" %}</span>
         </div>
         <div class="hero-stat-item">
           <span class="hero-stat-num">{{ total_categories }}</span>
-          <span class="hero-stat-label">Kategoriya</span>
+          <span class="hero-stat-label">{% trans "Kategoriya" %}</span>
         </div>
         <div class="hero-stat-item">
           <span class="hero-stat-num" id="statToday">{{ todays_posts }}</span>
-          <span class="hero-stat-label">Bugun</span>
+          <span class="hero-stat-label">{% trans "Bugun" %}</span>
         </div>
       </div>
     </div>
@@ -269,8 +268,8 @@
     <div class="container">
 
       <div class="section-hd">
-        <span class="section-hd-title">Kategoriyalar</span>
-        <span class="section-hd-count" id="visibleCount">{{ total_categories }} ta kategoriya</span>
+        <span class="section-hd-title">{% trans "Kategoriyalar" %}</span>
+        <span class="section-hd-count" id="visibleCount">{% blocktrans with count=total_categories %}{{ count }} ta kategoriya{% endblocktrans %}</span>
       </div>
 
       <div class="cat-grid" id="catGrid">
@@ -286,15 +285,15 @@
             <div class="cat-card-main">
               <p class="cat-card-desc">{{ cat.description }}</p>
               <div class="latest-in-cat">
-                <div class="latest-in-cat-title">So'nggi maqolalar</div>
+                <div class="latest-in-cat-title">{% trans "So'nggi maqolalar" %}</div>
                 {% for post in cat.latest_posts  %}
                   <div class="latest-in-cat-item">{{ post.title }}</div>
                 {% empty %}
-                  <div class="latest-in-cat-item">Hozircha maqola yo'q</div>
+                  <div class="latest-in-cat-item">{% trans "Hozircha maqola yo'q" %}</div>
                 {% endfor %}
               </div>
               <div class="cat-card-footer" style="margin-top:16px;">
-                <div class="cat-article-count"><i class="fas fa-file-alt"></i> {{ cat.post_count }} ta maqola</div><span
+                <div class="cat-article-count"><i class="fas fa-file-alt"></i> {% blocktrans with count=cat.post_count %}{{ count }} ta maqola{% endblocktrans %}</div><span
                   class="cat-badge-hot"><i class="fas fa-fire"></i> HOT</span>
               </div>
             </div>
@@ -315,7 +314,7 @@
             <div class="cat-card-name">{{ cat.name }}</div>
             <p class="cat-card-desc">{{ cat.description }}</p>
             <div class="cat-card-footer">
-              <div class="cat-article-count"><i class="fas fa-file-alt"></i> {{ cat.post_count }} ta maqola</div>
+              <div class="cat-article-count"><i class="fas fa-file-alt"></i> {% blocktrans with count=cat.post_count %}{{ count }} ta maqola{% endblocktrans %}</div>
             </div>
           </div>
         </div>
@@ -326,7 +325,7 @@
       <!-- Popular tags -->
       <div class="tags-section" style="margin-top:52px;">
         <div class="section-hd" style="margin-bottom:20px;">
-          <span class="section-hd-title">Mashhur Teglar</span>
+          <span class="section-hd-title">{% trans "Mashhur Teglar" %}</span>
         </div>
         <div class="tags-cloud">
           {% for tag in popular_tags %}
@@ -334,7 +333,7 @@
             <span class="tag-pill"><i class="fas fa-hashtag"></i> {{ tag.name }} <span class="tag-count">{{ tag.post_count }}</span></span>
             </a>
           {% empty %}
-            <span style="color:var(--text-muted);">Hozircha teglar yo'q</span>
+            <span style="color:var(--text-muted);">{% trans "Hozircha teglar yo'q" %}</span>
           {% endfor %}
         </div>
       </div>
@@ -351,8 +350,7 @@
             <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
             <span class="footer-logo-name">Ovoza</span>
           </div>
-          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy
-            va chuqur tahliliy materiallar.</p>
+          <p class="footer-desc">{% trans "O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy va chuqur tahliliy materiallar." %}</p>
           <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
@@ -362,77 +360,77 @@
           </div>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <h5><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Siyosat</a></li>
-            <li><a href="#">Iqtisod</a></li>
-            <li><a href="#">Jamiyat</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Texnologiya</a></li>
-            <li><a href="#">Dunyo yangiliklari</a></li>
-            <li><a href="#">Madaniyat va san'at</a></li>
-            <li><a href="#">Sog'liqni saqlash</a></li>
+            <li><a href="#">{% trans "Siyosat" %}</a></li>
+            <li><a href="#">{% trans "Iqtisod" %}</a></li>
+            <li><a href="#">{% trans "Jamiyat" %}</a></li>
+            <li><a href="#">{% trans "Sport" %}</a></li>
+            <li><a href="#">{% trans "Texnologiya" %}</a></li>
+            <li><a href="#">{% trans "Dunyo yangiliklari" %}</a></li>
+            <li><a href="#">{% trans "Madaniyat va san'at" %}</a></li>
+            <li><a href="#">{% trans "Sog'liqni saqlash" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <h5><i class="fas fa-file-alt"></i> {% trans "Sahifalar" %}</h5>
           <ul class="footer-links-list">
-            <li><a href="#">Biz haqimizda</a></li>
-            <li><a href="#">Tahririyat</a></li>
-            <li><a href="#">Reklama</a></li>
-            <li><a href="#">Hamkorlik</a></li>
-            <li><a href="#">Arxiv</a></li>
+            <li><a href="#">{% trans "Biz haqimizda" %}</a></li>
+            <li><a href="#">{% trans "Tahririyat" %}</a></li>
+            <li><a href="#">{% trans "Reklama" %}</a></li>
+            <li><a href="#">{% trans "Hamkorlik" %}</a></li>
+            <li><a href="#">{% trans "Arxiv" %}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
-          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47
+          <h5><i class="fas fa-phone-alt"></i> {% trans "Aloqa" %}</h5>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> {% trans "Toshkent, Mirzo Ulug'bek ko'chasi, 47" %}
           </div>
           <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
           <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
-          <div class="footer-contact-item"><i class="fas fa-clock"></i> Dush–Juma: 09:00 – 18:00</div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i> {% trans "Dush–Juma: 09:00 – 18:00" %}</div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
         <div class="footer-bottom-links">
-          <a href="#">Maxfiylik siyosati</a>
-          <a href="#">Foydalanish shartlari</a>
+          <a href="#">{% trans "Maxfiylik siyosati" %}</a>
+          <a href="#">{% trans "Foydalanish shartlari" %}</a>
           <a href="#">Cookie</a>
-          <a href="#">Saytxaritasi</a>
+          <a href="#">{% trans "Saytxaritasi" %}</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Scroll to top -->
-  <button id="scrollTop" title="Yuqoriga"><i class="fas fa-chevron-up"></i></button>
+  <button id="scrollTop" title="{% trans 'Yuqoriga' %}"><i class="fas fa-chevron-up"></i></button>
 
   <!-- Bootstrap JS -->
 
   <!-- ═══ SEARCH OVERLAY ═══ -->
   <div class="search-overlay" id="searchOverlay">
     <div class="search-overlay-box">
-      <div class="search-ov-label"><i class="fas fa-search"></i> Kategoriya qidirish</div>
+      <div class="search-ov-label"><i class="fas fa-search"></i> {% trans "Kategoriya qidirish" %}</div>
       <div class="search-ov-input-wrap">
         <i class="fas fa-search search-ov-icon"></i>
-        <input id="searchOvInput" class="search-ov-input" type="text" placeholder="Kategoriya nomi..."
+        <input id="searchOvInput" class="search-ov-input" type="text" placeholder="{% trans 'Kategoriya nomi...' %}"
           autocomplete="off" spellcheck="false" />
         <button class="search-ov-close" id="searchOvClose"><i class="fas fa-times"></i></button>
       </div>
       <div class="search-ov-hints">
-        <span><kbd>ESC</kbd> Yopish</span>
-        <span><kbd>Ctrl K</kbd> Ochish</span>
+        <span><kbd>ESC</kbd> {% trans "Yopish" %}</span>
+        <span><kbd>Ctrl K</kbd> {% trans "Ochish" %}</span>
       </div>
       <div class="search-ov-quick">
-        <span class="search-ov-quick-label">Tez o'tish:</span>
+        <span class="search-ov-quick-label">{% trans "Tez o'tish:" %}</span>
         <div class="search-ov-tags">
-          <span class="search-ov-tag" data-q="siyosat"><i class="fas fa-landmark"></i> Siyosat</span>
-          <span class="search-ov-tag" data-q="sport"><i class="fas fa-trophy"></i> Sport</span>
-          <span class="search-ov-tag" data-q="iqtisod"><i class="fas fa-chart-line"></i> Iqtisod</span>
-          <span class="search-ov-tag" data-q="texnologiya"><i class="fas fa-microchip"></i> Texnologiya</span>
-          <span class="search-ov-tag" data-q="dunyo"><i class="fas fa-globe-asia"></i> Dunyo</span>
-          <span class="search-ov-tag" data-q="madaniyat"><i class="fas fa-palette"></i> Madaniyat</span>
+          <span class="search-ov-tag" data-q="siyosat"><i class="fas fa-landmark"></i> {% trans "Siyosat" %}</span>
+          <span class="search-ov-tag" data-q="sport"><i class="fas fa-trophy"></i> {% trans "Sport" %}</span>
+          <span class="search-ov-tag" data-q="iqtisod"><i class="fas fa-chart-line"></i> {% trans "Iqtisod" %}</span>
+          <span class="search-ov-tag" data-q="texnologiya"><i class="fas fa-microchip"></i> {% trans "Texnologiya" %}</span>
+          <span class="search-ov-tag" data-q="dunyo"><i class="fas fa-globe-asia"></i> {% trans "Dunyo" %}</span>
+          <span class="search-ov-tag" data-q="madaniyat"><i class="fas fa-palette"></i> {% trans "Madaniyat" %}</span>
         </div>
       </div>
       <div class="search-ov-result" id="searchOvResult"></div>

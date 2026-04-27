@@ -126,7 +126,7 @@
         <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
         <div>
           <span class="logo-name">Ovoza</span>
-          <span class="logo-tagline">Yangiliklar portali</span>
+          <span class="logo-tagline">{% trans "Yangiliklar portali" %}</span>
         </div>
       </a>
       <a href="{% url 'home' %}" class="nav-back"><i class="fas fa-arrow-left"></i> {% trans "Bosh sahifaga qaytish" %}</a>
@@ -141,74 +141,73 @@
       <div class="auth-brand">
         <div class="auth-brand-icon"><i class="fas fa-satellite-dish"></i></div>
         <div class="auth-brand-name">Ovoza</div>
-        <div class="auth-brand-tag">Yangiliklar portali</div>
+        <div class="auth-brand-tag">{% trans "Yangiliklar portali" %}</div>
       </div>
 
       <!-- Card -->
       <div class="auth-card">
         <div class="auth-card-header">
-          <h2>Xush kelibsiz!</h2>
-          <p>Hisobingizga kirish uchun ma'lumotlarni kiriting</p>
+          <h2>{% trans "Xush kelibsiz!" %}</h2>
+          <p>{% trans "Hisobingizga kirish uchun ma'lumotlarni kiriting" %}</p>
         </div>
         <div class="auth-card-body">
 
           <!-- Tabs -->
           <div class="auth-tabs">
-            <button class="auth-tab active" onclick="window.location.href='{% url 'login' %}'">Kirish</button>
-            <button class="auth-tab" onclick="window.location.href='{% url 'register' %}'">Ro'yxatdan o'tish</button>
+            <button class="auth-tab active" onclick="window.location.href='{% url 'login' %}'">{% trans "Kirish" %}</button>
+            <button class="auth-tab" onclick="window.location.href='{% url 'register' %}'">{% trans "Ro'yxatdan o'tish" %}</button>
           </div>
 
           <!-- Google -->
           <a href="{% provider_login_url 'google' process='signin' %}" class="btn-google" id="googleBtn">
               <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
-              Google orqali kirish
+              {% trans "Google orqali kirish" %}
           </a>
 
           <!-- Divider -->
-          <div class="auth-divider">yoki email bilan</div>
+          <div class="auth-divider">{% trans "yoki email bilan" %}</div>
 
           <!-- Form -->
           <form action="{% url 'login' %}" method="post" id="loginForm" novalidate>
             {% csrf_token %}
 
             <div class="form-group">
-              <label class="form-label">Email manzil <span>*</span></label>
+              <label class="form-label">{% trans "Email manzil" %} <span>*</span></label>
               <div class="input-wrap">
                 <i class="fas fa-envelope input-icon"></i>
-                <input name="email" type="email" class="form-control-dark" id="loginEmail" placeholder="email@misol.uz"
+                <input name="email" type="email" class="form-control-dark" id="loginEmail" placeholder="{% trans 'email@misol.uz' %}"
                   autocomplete="email" />
               </div>
-              <div class="form-error" id="emailError"><i class="fas fa-exclamation-circle"></i> To'g'ri email manzil
-                kiriting</div>
+              <div class="form-error" id="emailError"><i class="fas fa-exclamation-circle"></i> {% trans "To'g'ri email manzil kiriting" %}</div>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Parol <span>*</span></label>
+              <label class="form-label">{% trans "Parol" %} <span>*</span></label>
               <div class="input-wrap">
                 <i class="fas fa-lock input-icon"></i>
-                <input type="password" name="password" class="form-control-dark" id="loginPass" placeholder="Parolingiz"
+                <input type="password" name="password" class="form-control-dark" id="loginPass" placeholder="{% trans 'Parolingiz' %}"
                   autocomplete="current-password" />
                 <button type="button" class="input-toggle" id="togglePass"><i class="far fa-eye"></i></button>
               </div>
-              <a href="{% url 'account_reset_password' %}" class="forgot-link">Parolni unutdingizmi?</a>
-              <div class="form-error" id="passError"><i class="fas fa-exclamation-circle"></i> Parol kiritilmagan</div>
+              <a href="{% url 'account_reset_password' %}" class="forgot-link">{% trans "Parolni unutdingizmi?" %}</a>
+              <div class="form-error" id="passError"><i class="fas fa-exclamation-circle"></i> {% trans "Parol kiritilmagan" %}</div>
             </div>
 
             <div class="form-group">
               <label class="form-check-dark">
                 <input type="checkbox" id="rememberMe" />
-                <span class="check-label">Meni eslab qol (30 kun)</span>
+                <span class="check-label">{% trans "Meni eslab qol (30 kun)" %}</span>
               </label>
             </div>
 
             <button type="submit" class="btn-auth" id="loginBtn">
               <div class="spinner"></div>
-              <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Kirish</span>
+              <span class="btn-text"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</span>
             </button>
           </form>
 
           <div class="auth-switch">
-            Hisobingiz yo'qmi? <a href="{% url 'register' %}">Ro'yxatdan o'ting</a>
+            {% trans "Hisobingiz yo'qmi?" %} <a href="{% url 'register' %}">{% trans "Ro'yxatdan o'ting" %}</a>
           </div>
 
         </div>
@@ -222,11 +221,11 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-mini">
-      <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+      <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
       <div class="footer-mini-links">
-        <a href="#">Maxfiylik</a>
-        <a href="#">Shartlar</a>
-        <a href="#">Yordam</a>
+        <a href="#">{% trans "Maxfiylik" %}</a>
+        <a href="#">{% trans "Shartlar" %}</a>
+        <a href="#">{% trans "Yordam" %}</a>
       </div>
     </div>
   </footer>

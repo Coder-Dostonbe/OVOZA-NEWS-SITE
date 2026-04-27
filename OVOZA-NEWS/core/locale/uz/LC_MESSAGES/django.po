@@ -1,21 +1,31 @@
-# English translations
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-27 16:12+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
+"Plural-Forms: nplurals=1; plural=0;\n"
 #: .\templates\404.html:9 .\templates\404.html:284
 msgid "Sahifa topilmadi"
-msgstr "Page Not Found"
+msgstr ""
 
 #: .\templates\404.html:286
 msgid ""
 "Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud "
 "bo'lmagan bo'lishi mumkin."
 msgstr ""
-"The page you're looking for may have been deleted, moved, or never existed."
 
 #: .\templates\404.html:289 .\templates\404.html:294
 #: .\templates\categories.html:202 .\templates\categories.html:232
@@ -26,31 +36,31 @@ msgstr ""
 #: .\templates\search.html:57 .\templates\tag_posts.html:87
 #: .\templates\tag_posts.html:113
 msgid "Bosh sahifa"
-msgstr "Home"
+msgstr ""
 
 #: .\templates\404.html:290
 msgid "Orqaga"
-msgstr "Back"
+msgstr ""
 
 #: .\templates\404.html:293
 msgid "<span id=\"sec\">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →"
-msgstr "<span id=\"sec\">10</span> seconds you will be redirected automatically →"
+msgstr ""
 
 #: .\templates\404.html:300
 msgid "Yordam kerakmi?"
-msgstr "Need help?"
+msgstr ""
 
 #: .\templates\about.html:9 .\templates\about.html:141
 #: .\templates\about.html:305 .\templates\categories.html:378
 #: .\templates\news-detail.html:534 .\templates\news.html:427
 #: .\templates\profile.html:349 .\templates\tag_posts.html:272
 msgid "Biz haqimizda"
-msgstr "About Us"
+msgstr ""
 
 #: .\templates\about.html:130 .\templates\news-detail.html:85
 #: .\templates\profile.html:59
 msgid "Yangiliklar portali"
-msgstr "News Portal"
+msgstr ""
 
 #: .\templates\about.html:133 .\templates\account\password_reset.html:53
 #: .\templates\account\password_reset_done.html:53
@@ -58,19 +68,19 @@ msgstr "News Portal"
 #: .\templates\contact.html:58 .\templates\login.html:132
 #: .\templates\register.html:131 .\templates\tag_posts.html:186
 msgid "Bosh sahifaga qaytish"
-msgstr "Back to home"
+msgstr ""
 
 #: .\templates\about.html:142
 msgid "O'zbekistonning"
-msgstr "Uzbekistan's"
+msgstr ""
 
 #: .\templates\about.html:142
 msgid "eng ishonchli"
-msgstr "most trusted"
+msgstr ""
 
 #: .\templates\about.html:142
 msgid "yangiliklar portali"
-msgstr "news portal"
+msgstr ""
 
 #: .\templates\about.html:143
 msgid ""
@@ -78,16 +88,14 @@ msgid ""
 "yangiliklaridan xabardor bo'lmoqda. Haqqoniylik, tezkorlik va chuqurlik — "
 "bizning asosiy tamoyillarimiz."
 msgstr ""
-"Since 2026, millions of Uzbeks follow world news through Ovoza daily. "
-"Credibility, speed and depth — our core values."
 
 #: .\templates\about.html:155
 msgid "Bizning"
-msgstr "Our"
+msgstr ""
 
 #: .\templates\about.html:155
 msgid "missiyamiz"
-msgstr "mission"
+msgstr ""
 
 #: .\templates\about.html:156
 msgid ""
@@ -95,8 +103,6 @@ msgid ""
 "jurnalistikasini rivojlantirish uchun 2026-yilda tashkil etilgan raqamli "
 "yangiliklar platformasi."
 msgstr ""
-"Ovoza — a digital news platform founded in 2026 to develop independent, "
-"credible and fast news journalism in Uzbekistan."
 
 #: .\templates\about.html:157
 msgid ""
@@ -104,45 +110,38 @@ msgid ""
 "sport, texnologiya va madaniyat sohasidagi eng muhim voqealarni yoritib "
 "boramiz."
 msgstr ""
-"Every day our 50+ expert reporters cover the most important events in "
-"politics, economy, sport, technology and culture."
 
 #: .\templates\about.html:159
 msgid "\"Har bir yangilik — birovning hayotiga ta\\"
 msgstr ""
-"\"Every news story affects someone's life. That's why we always provide "
-"verified and accurate information.\""
 
 #: .\templates\about.html:161
 msgid ""
 "Ovoza faqat yangilik emas, tahlil va kontekst ham taqdim etadi. "
 "O'quvchilarimiz voqealarni nafaqat ko'radi, balki ularni tushunadi."
 msgstr ""
-"Ovoza provides not just news, but analysis and context. Our readers don't "
-"just see events — they understand them."
 
 #: .\templates\about.html:165
 msgid "2026-yildan buyon"
-msgstr "Since 2026"
+msgstr ""
 
 #: .\templates\about.html:166
 msgid ""
 "Toshkentda tashkil etilgan, butun O'zbekiston va dunyo bo'yicha "
 "o'quvchilarimizga xizmat qilamiz"
 msgstr ""
-"Founded in Tashkent, serving readers across Uzbekistan and around the world"
 
 #: .\templates\about.html:174 .\templates\index.html:272
 msgid "ta maqola"
-msgstr "articles"
+msgstr ""
 
 #: .\templates\about.html:175
 msgid "Nashr etilgan"
-msgstr "Published"
+msgstr ""
 
 #: .\templates\about.html:179
 msgid "ta bo'lim"
-msgstr "sections"
+msgstr ""
 
 #: .\templates\about.html:180 .\templates\about.html:293
 #: .\templates\categories.html:9 .\templates\categories.html:203
@@ -157,162 +156,149 @@ msgstr "sections"
 #: .\templates\profile.html:339 .\templates\search.html:58
 #: .\templates\tag_posts.html:88 .\templates\tag_posts.html:260
 msgid "Kategoriyalar"
-msgstr "Categories"
+msgstr ""
 
 #: .\templates\about.html:184
 msgid "nafar"
-msgstr "people"
+msgstr ""
 
 #: .\templates\about.html:185
 msgid "Faol muxbirlar"
-msgstr "Active reporters"
+msgstr ""
 
 #: .\templates\about.html:189
 msgid "yil"
-msgstr "years"
+msgstr ""
 
 #: .\templates\about.html:190
 msgid "Bozorda tajriba"
-msgstr "Industry experience"
+msgstr ""
 
 #: .\templates\about.html:195
 msgid "Qadriyatlarimiz"
-msgstr "Our values"
+msgstr ""
 
 #: .\templates\about.html:199
 msgid "Haqqoniylik"
-msgstr "Credibility"
+msgstr ""
 
 #: .\templates\about.html:200
 msgid ""
 "Har bir yangilik kamida 2 ta mustaqil manbadan tekshiriladi. Biz hech qachon "
 "tasdiqlanmagan ma'lumot tarqatmaymiz."
 msgstr ""
-"Every story is verified by at least 2 independent sources. We never publish "
-"unverified information."
 
 #: .\templates\about.html:204
 msgid "Tezkorlik"
-msgstr "Speed"
+msgstr ""
 
 #: .\templates\about.html:205
 msgid ""
 "Voqea sodir bo'lgan daqiqadan 15 daqiqa ichida birinchi xabarimiz chiqadi. "
 "Biz har doim eng birinchi bo'lishga harakat qilamiz."
 msgstr ""
-"Our first report goes out within 15 minutes of an event. We always strive "
-"to be first."
 
 #: .\templates\about.html:209
 msgid "Mustaqillik"
-msgstr "Independence"
+msgstr ""
 
 #: .\templates\about.html:210
 msgid ""
 "Siyosiy yoki iqtisodiy bosimdan holi, faqat jamoatchilik manfaati uchun "
 "ishlashga qat'iy rioya qilamiz."
 msgstr ""
-"Free from political or economic pressure, we strictly adhere to working "
-"solely for the public interest."
 
 #: .\templates\about.html:214
 msgid "Jamiyat uchun"
-msgstr "For Society"
+msgstr ""
 
 #: .\templates\about.html:215
 msgid ""
 "O'quvchilarimiz faqat iste'molchi emas, jamiyatimizning faol a'zolari. "
 "Ularning ovozi bizga muhim."
 msgstr ""
-"Our readers are not just consumers — they are active members of our society. "
-"Their voice matters to us."
 
 #: .\templates\about.html:219
 msgid "Innovatsiya"
-msgstr "Innovation"
+msgstr ""
 
 #: .\templates\about.html:220
 msgid ""
 "Raqamli jurnalistikaning ilg'or usullarini qo'llagan holda, o'quvchilarga "
 "eng qulay tajriba yaratamiz."
 msgstr ""
-"Using advanced methods of digital journalism, we create the most convenient "
-"experience for our readers."
 
 #: .\templates\about.html:224
 msgid "Ko'pqatlamlilik"
-msgstr "Multilayered"
+msgstr ""
 
 #: .\templates\about.html:225
 msgid ""
 "Mahalliy va xalqaro yangiliklar bir platformada — O'zbekiston va dunyoni bir "
 "joyda kuzating."
 msgstr ""
-"Local and international news on one platform — follow Uzbekistan and the "
-"world in one place."
 
 #: .\templates\about.html:230
 msgid "Jamoamiz"
-msgstr "Our Team"
+msgstr ""
 
 #: .\templates\about.html:249
 #, python-format
 msgid "%(count)s ta maqola nashr etilgan"
-msgstr "%(count)s articles published"
+msgstr ""
 
 #: .\templates\about.html:256
 msgid "Jamoa a'zolari hali qo'shilmagan"
-msgstr "No team members added yet"
+msgstr ""
 
 #: .\templates\about.html:263
 msgid "Biz bilan bog'laning"
-msgstr "Contact Us"
+msgstr ""
 
 #: .\templates\about.html:264
 msgid ""
 "Hamkorlik, reklama yoki muxbir sifatida ishlash bo'yicha savollaringiz bormi?"
 msgstr ""
-"Do you have questions about partnership, advertising or working as a reporter?"
 
 #: .\templates\about.html:283 .\templates\index.html:398
 #: .\templates\news-detail.html:512 .\templates\profile.html:329
 #: .\templates\tag_posts.html:250
 msgid "O'zbekistonning eng ishonchli va tezkor yangiliklar portali."
-msgstr "Uzbekistan's most reliable and fastest news portal."
+msgstr ""
 
 #: .\templates\about.html:295 .\templates\categories.html:365
 #: .\templates\categories.html:428 .\templates\news-detail.html:524
 #: .\templates\news.html:415 .\templates\profile.html:341
 #: .\templates\tag_posts.html:262
 msgid "Siyosat"
-msgstr "Politics"
+msgstr ""
 
 #: .\templates\about.html:296 .\templates\categories.html:366
 #: .\templates\categories.html:430 .\templates\news-detail.html:525
 #: .\templates\news.html:416 .\templates\profile.html:341
 #: .\templates\tag_posts.html:263
 msgid "Iqtisod"
-msgstr "Economy"
+msgstr ""
 
 #: .\templates\about.html:297 .\templates\categories.html:368
 #: .\templates\categories.html:429 .\templates\news-detail.html:526
 #: .\templates\news.html:418 .\templates\profile.html:342
 #: .\templates\tag_posts.html:264
 msgid "Sport"
-msgstr "Sport"
+msgstr ""
 
 #: .\templates\about.html:298 .\templates\categories.html:369
 #: .\templates\categories.html:431 .\templates\news-detail.html:527
 #: .\templates\news.html:419 .\templates\profile.html:342
 #: .\templates\tag_posts.html:265
 msgid "Texnologiya"
-msgstr "Technology"
+msgstr ""
 
 #: .\templates\about.html:299 .\templates\categories.html:432
 #: .\templates\news-detail.html:528 .\templates\profile.html:343
 #: .\templates\tag_posts.html:266
 msgid "Dunyo"
-msgstr "World"
+msgstr ""
 
 #: .\templates\about.html:303 .\templates\categories.html:206
 #: .\templates\categories.html:376 .\templates\category-detail.html:124
@@ -323,31 +309,31 @@ msgstr "World"
 #: .\templates\search.html:61 .\templates\tag_posts.html:91
 #: .\templates\tag_posts.html:270
 msgid "Sahifalar"
-msgstr "Pages"
+msgstr ""
 
 #: .\templates\about.html:306 .\templates\categories.html:379
 #: .\templates\news-detail.html:535 .\templates\news.html:428
 #: .\templates\profile.html:349 .\templates\tag_posts.html:273
 msgid "Tahririyat"
-msgstr "Editorial"
+msgstr ""
 
 #: .\templates\about.html:307 .\templates\categories.html:380
 #: .\templates\news-detail.html:471 .\templates\news-detail.html:536
 #: .\templates\news.html:332 .\templates\news.html:429
 #: .\templates\profile.html:350 .\templates\tag_posts.html:274
 msgid "Reklama"
-msgstr "Advertisement"
+msgstr ""
 
 #: .\templates\about.html:308 .\templates\categories.html:381
 #: .\templates\news.html:430
 msgid "Hamkorlik"
-msgstr "Partnership"
+msgstr ""
 
 #: .\templates\about.html:309 .\templates\categories.html:382
 #: .\templates\news-detail.html:537 .\templates\news.html:431
 #: .\templates\profile.html:350 .\templates\tag_posts.html:275
 msgid "Arxiv"
-msgstr "Archive"
+msgstr ""
 
 #: .\templates\about.html:313 .\templates\categories.html:209
 #: .\templates\categories.html:386 .\templates\category-detail.html:127
@@ -358,60 +344,60 @@ msgstr "Archive"
 #: .\templates\profile.html:354 .\templates\search.html:64
 #: .\templates\tag_posts.html:94 .\templates\tag_posts.html:279
 msgid "Aloqa"
-msgstr "Contact"
+msgstr ""
 
 #: .\templates\about.html:314 .\templates\categories.html:387
 #: .\templates\news-detail.html:542 .\templates\news.html:436
 #: .\templates\profile.html:355 .\templates\tag_posts.html:280
 msgid "Toshkent, Mirzo Ulug'bek ko'chasi, 47"
-msgstr "Tashkent, Mirzo Ulugbek street, 47"
+msgstr ""
 
 #: .\templates\about.html:318 .\templates\categories.html:391
 #: .\templates\news-detail.html:545 .\templates\news.html:440
 #: .\templates\tag_posts.html:283
 msgid "Dush–Juma: 09:00 – 18:00"
-msgstr "Mon–Fri: 09:00 – 18:00"
+msgstr ""
 
 #: .\templates\about.html:322 .\templates\categories.html:395
 #: .\templates\index.html:438 .\templates\news-detail.html:549
 #: .\templates\news.html:444 .\templates\profile.html:361
 #: .\templates\tag_posts.html:287
 msgid "Barcha huquqlar himoyalangan."
-msgstr "All rights reserved."
+msgstr ""
 
 #: .\templates\about.html:324 .\templates\profile.html:363
 msgid "Maxfiylik"
-msgstr "Privacy"
+msgstr ""
 
 #: .\templates\about.html:325 .\templates\news-detail.html:552
 #: .\templates\profile.html:363 .\templates\tag_posts.html:290
 msgid "Shartlar"
-msgstr "Terms"
+msgstr ""
 
 #: .\templates\about.html:332 .\templates\categories.html:407
 #: .\templates\news-detail.html:559 .\templates\news.html:455
 #: .\templates\profile.html:369 .\templates\tag_posts.html:297
 msgid "Yuqoriga"
-msgstr "Scroll to top"
+msgstr ""
 
 #: .\templates\account\password_reset.html:81 .\templates\contact.html:118
 #: .\templates\login.html:178 .\templates\register.html:199
 msgid "email@misol.uz"
-msgstr "email@example.com"
+msgstr ""
 
 #: .\templates\account\password_reset_from_key.html:92
 #: .\templates\register.html:210
 msgid "Kamida 8 belgi"
-msgstr "At least 8 characters"
+msgstr ""
 
 #: .\templates\account\password_reset_from_key.html:112
 #: .\templates\register.html:231
 msgid "Parolni qayta kiriting"
-msgstr "Confirm password"
+msgstr ""
 
 #: .\templates\categories.html:9
 msgid "Yangiliklar Portali"
-msgstr "News Portal"
+msgstr ""
 
 #: .\templates\categories.html:204 .\templates\category-detail.html:122
 #: .\templates\index.html:120 .\templates\news-detail.html:95
@@ -422,7 +408,7 @@ msgstr "News Portal"
 #: .\templates\tag_posts.html:89 .\templates\tag_posts.html:115
 #: .\templates\tag_posts.html:217
 msgid "Yangiliklar"
-msgstr "News"
+msgstr ""
 
 #: .\templates\categories.html:208 .\templates\category-detail.html:126
 #: .\templates\index.html:124 .\templates\news-detail.html:99
@@ -430,7 +416,7 @@ msgstr "News"
 #: .\templates\profile.html:69 .\templates\search.html:63
 #: .\templates\tag_posts.html:93
 msgid "Haqimizda"
-msgstr "About"
+msgstr ""
 
 #: .\templates\categories.html:210 .\templates\category-detail.html:128
 #: .\templates\index.html:126 .\templates\news-detail.html:101
@@ -438,7 +424,7 @@ msgstr "About"
 #: .\templates\news.html:153 .\templates\profile.html:71
 #: .\templates\search.html:65 .\templates\tag_posts.html:95
 msgid "Kirish"
-msgstr "Login"
+msgstr ""
 
 #: .\templates\categories.html:211 .\templates\category-detail.html:129
 #: .\templates\index.html:127 .\templates\news-detail.html:102
@@ -446,7 +432,7 @@ msgstr "Login"
 #: .\templates\profile.html:72 .\templates\search.html:66
 #: .\templates\tag_posts.html:96
 msgid "Ro'yxatdan o'tish"
-msgstr "Register"
+msgstr ""
 
 #: .\templates\categories.html:212 .\templates\category-detail.html:130
 #: .\templates\index.html:128 .\templates\news-detail.html:103
@@ -454,848 +440,932 @@ msgstr "Register"
 #: .\templates\profile.html:9 .\templates\profile.html:73
 #: .\templates\search.html:67 .\templates\tag_posts.html:97
 msgid "Profil"
-msgstr "Profile"
+msgstr ""
 
 #: .\templates\categories.html:220 .\templates\index.html:451
 #: .\templates\index.html:460 .\templates\news.html:160
 #: .\templates\news.html:377 .\templates\news.html:387
 msgid "Qidirish"
-msgstr "Search"
+msgstr ""
 
 #: .\templates\categories.html:236
 msgid "Barcha"
-msgstr "All"
+msgstr ""
 
 #: .\templates\categories.html:237
 msgid ""
 "O'zingizga qiziq bo'lgan yo'nalishni tanlang — siyosatdan tortib "
 "san'atgacha, iqtisoddan sportgacha hamma narsa bir joyda."
 msgstr ""
-"Choose a topic that interests you — from politics to art, from economy to "
-"sports, everything in one place."
 
 #: .\templates\categories.html:242
 msgid "Jami maqola"
-msgstr "Total articles"
+msgstr ""
 
 #: .\templates\categories.html:246
 msgid "Kategoriya"
-msgstr "Category"
+msgstr ""
 
 #: .\templates\categories.html:250
 msgid "Bugun"
-msgstr "Today"
+msgstr ""
 
 #: .\templates\categories.html:272
 #, python-format
 msgid "%(count)s ta kategoriya"
-msgstr "%(count)s categories"
+msgstr ""
 
 #: .\templates\categories.html:288
 msgid "So'nggi maqolalar"
-msgstr "Latest articles"
+msgstr ""
 
 #: .\templates\categories.html:292
 msgid "Hozircha maqola yo'q"
-msgstr "No articles yet"
+msgstr ""
 
 #: .\templates\categories.html:296 .\templates\categories.html:317
 #: .\templates\profile.html:303 .\templates\profile.html:310
 #, python-format
 msgid "%(count)s ta maqola"
-msgstr "%(count)s articles"
+msgstr ""
 
 #: .\templates\categories.html:328 .\templates\news-detail.html:489
 #: .\templates\news.html:361 .\templates\tag_posts.html:226
 msgid "Mashhur Teglar"
-msgstr "Popular Tags"
+msgstr ""
 
 #: .\templates\categories.html:336
 msgid "Hozircha teglar yo'q"
-msgstr "No tags yet"
+msgstr ""
 
 #: .\templates\categories.html:353 .\templates\news.html:403
 msgid ""
 "O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni "
 "dolzarb, haqqoniy va chuqur tahliliy materiallar."
 msgstr ""
-"Uzbekistan's most reliable and fastest news portal. Daily relevant, "
-"credible and in-depth analytical materials."
 
 #: .\templates\categories.html:367 .\templates\news.html:417
 msgid "Jamiyat"
-msgstr "Society"
+msgstr ""
 
 #: .\templates\categories.html:370 .\templates\news.html:420
 msgid "Dunyo yangiliklari"
-msgstr "World news"
+msgstr ""
 
 #: .\templates\categories.html:371 .\templates\news.html:421
 msgid "Madaniyat va san'at"
-msgstr "Culture & Art"
+msgstr ""
 
 #: .\templates\categories.html:372
 msgid "Sog'liqni saqlash"
-msgstr "Healthcare"
+msgstr ""
 
 #: .\templates\categories.html:397 .\templates\index.html:440
 #: .\templates\news-detail.html:551 .\templates\news.html:446
 #: .\templates\tag_posts.html:289
 msgid "Maxfiylik siyosati"
-msgstr "Privacy Policy"
+msgstr ""
 
 #: .\templates\categories.html:398 .\templates\index.html:441
 #: .\templates\news.html:447
 msgid "Foydalanish shartlari"
-msgstr "Terms of Use"
+msgstr ""
 
 #: .\templates\categories.html:400 .\templates\index.html:443
 #: .\templates\news.html:449
 msgid "Saytxaritasi"
-msgstr "Sitemap"
+msgstr ""
 
 #: .\templates\categories.html:414
 msgid "Kategoriya qidirish"
-msgstr "Search categories"
+msgstr ""
 
 #: .\templates\categories.html:417
 msgid "Kategoriya nomi..."
-msgstr "Category name..."
+msgstr ""
 
 #: .\templates\categories.html:422 .\templates\index.html:456
 #: .\templates\index.html:461 .\templates\news.html:388
 msgid "Yopish"
-msgstr "Close"
+msgstr ""
 
 #: .\templates\categories.html:423 .\templates\index.html:462
 #: .\templates\news.html:389
 msgid "Ochish"
-msgstr "Open"
+msgstr ""
 
 #: .\templates\categories.html:426
 msgid "Tez o'tish:"
-msgstr "Quick jump:"
+msgstr ""
 
 #: .\templates\categories.html:433
 msgid "Madaniyat"
-msgstr "Culture"
+msgstr ""
 
 #: .\templates\contact.html:101 .\templates\register.html:178
 msgid "Ismingiz"
-msgstr "Your first name"
+msgstr ""
 
 #: .\templates\contact.html:109 .\templates\register.html:187
 msgid "Familiyangiz"
-msgstr "Your last name"
+msgstr ""
 
 #: .\templates\contact.html:128
 msgid "+998 90 000 00 00"
-msgstr "+998 90 000 00 00"
+msgstr ""
 
 #: .\templates\contact.html:137
 msgid "Kompaniya yoki tashkilot nomi"
-msgstr "Company or organization name"
+msgstr ""
 
 #: .\templates\contact.html:161
 msgid "Masalan: $500 – $1000"
-msgstr "E.g.: $500 – $1000"
+msgstr ""
 
 #: .\templates\contact.html:172
 msgid "https://ovoza.uz/about/123/"
-msgstr "https://ovoza.uz/about/123/"
+msgstr ""
 
 #: .\templates\contact.html:178
 msgid "Xabaringizni yozing..."
-msgstr "Write your message..."
+msgstr ""
 
 #: .\templates\index.html:58 .\templates\news.html:175
 msgid "So'nggi"
-msgstr "Latest"
+msgstr ""
 
 #: .\templates\index.html:105 .\templates\index.html:359
 #: .\templates\tag_posts.html:221
 msgid "Obuna bo'lish"
-msgstr "Subscribe"
+msgstr ""
 
 #: .\templates\index.html:143 .\templates\news.html:243
 msgid "Tezkor xabar"
-msgstr "Breaking news"
+msgstr ""
 
 #: .\templates\index.html:149
 msgid "marta o'qildi"
-msgstr "times read"
+msgstr ""
 
 #: .\templates\index.html:152
 msgid "To'liq o'qish"
-msgstr "Read more"
+msgstr ""
 
 #: .\templates\index.html:169
 msgid "Yangilik yo'q"
-msgstr "No news"
+msgstr ""
 
 #: .\templates\index.html:183
 msgid "Tavsiya etilganlar"
-msgstr "Recommended"
+msgstr ""
 
 #: .\templates\index.html:200 .\templates\news.html:266
 #: .\templates\tag_posts.html:177
 msgid "O'qish"
-msgstr "Read"
+msgstr ""
 
 #: .\templates\index.html:239
 msgid "Eng qaynoq yangiliklar"
-msgstr "Hot news"
+msgstr ""
 
 #: .\templates\index.html:261
 msgid "Barchasini ko'rish"
-msgstr "View all"
+msgstr ""
 
 #: .\templates\index.html:279
 msgid "Maqola yo'q"
-msgstr "No articles"
+msgstr ""
 
 #: .\templates\index.html:290
 msgid "Valyuta Kurslari"
-msgstr "Exchange Rates"
+msgstr ""
 
 #: .\templates\index.html:313
 msgid "Markaziy bank kursi"
-msgstr "Central bank rate"
+msgstr ""
 
 #: .\templates\index.html:317
 msgid "Ob-havo"
-msgstr "Weather"
+msgstr ""
 
 #: .\templates\index.html:347
 msgid "Havo Sifati (AQI)"
-msgstr "Air Quality (AQI)"
+msgstr ""
 
 #: .\templates\index.html:349
 msgid "Yuklanmoqda..."
-msgstr "Loading..."
+msgstr ""
 
 #: .\templates\index.html:354
 msgid "Xabar Olish"
-msgstr "Newsletter"
+msgstr ""
 
 #: .\templates\index.html:355
 msgid "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga"
-msgstr "Top 10 news every morning in your inbox"
+msgstr ""
 
 #: .\templates\index.html:357 .\templates\tag_posts.html:220
 msgid "Email manzilingiz..."
-msgstr "Your email address..."
+msgstr ""
 
 #: .\templates\index.html:365
 msgid "Ijtimoiy Tarmoqlar"
-msgstr "Social Networks"
+msgstr ""
 
 #: .\templates\index.html:455
 msgid "Nima qidiryapsiz?"
-msgstr "What are you looking for?"
+msgstr ""
 
 #: .\templates\login.html:189
 msgid "Parolingiz"
-msgstr "Your password"
+msgstr ""
 
 #: .\templates\news-detail.html:134 .\templates\profile.html:107
 #: .\templates\profile.html:379
 msgid "Chiqish"
-msgstr "Log out"
+msgstr ""
 
 #: .\templates\news-detail.html:185
 #, python-format
 msgid "%(views)s marta o'qildi"
-msgstr "%(views)s times read"
+msgstr ""
 
 #: .\templates\news-detail.html:192
 msgid "Yoqtirishlar"
-msgstr "Likes"
+msgstr ""
 
 #: .\templates\news-detail.html:197 .\templates\news-detail.html:324
 msgid "Fikrlar"
-msgstr "Comments"
+msgstr ""
 
 #: .\templates\news-detail.html:202
 msgid "Ulashish"
-msgstr "Share"
+msgstr ""
 
 #: .\templates\news-detail.html:267
 msgid "Teglar:"
-msgstr "Tags:"
+msgstr ""
 
 #: .\templates\news-detail.html:281
 msgid "Yoqtirish"
-msgstr "Like"
+msgstr ""
 
 #: .\templates\news-detail.html:288
 msgid "Ulashish:"
-msgstr "Share:"
+msgstr ""
 
 #: .\templates\news-detail.html:301
 msgid "Nusxa olish"
-msgstr "Copy link"
+msgstr ""
 
 #: .\templates\news-detail.html:306
 msgid "O'xshash Yangiliklar"
-msgstr "Related News"
+msgstr ""
 
 #: .\templates\news-detail.html:325
 #, python-format
 msgid "%(count)s ta izoh"
-msgstr "%(count)s comments"
+msgstr ""
 
 #: .\templates\news-detail.html:330
 msgid "Fikr bildirish"
-msgstr "Leave a comment"
+msgstr ""
 
 #: .\templates\news-detail.html:331
 msgid "Fikringizni yozing..."
-msgstr "Write your opinion..."
+msgstr ""
 
 #: .\templates\news-detail.html:334 .\templates\news-detail.html:399
 msgid "Yuborish"
-msgstr "Submit"
+msgstr ""
 
 #: .\templates\news-detail.html:342
 msgid "Fikr bildirish uchun"
-msgstr "To leave a comment"
+msgstr ""
 
 #: .\templates\news-detail.html:342
 msgid "kirish"
-msgstr "log in"
+msgstr ""
 
 #: .\templates\news-detail.html:342
 msgid "yoki"
-msgstr "or"
+msgstr ""
 
 #: .\templates\news-detail.html:342
 msgid "ro'yxatdan o'tish"
-msgstr "register"
+msgstr ""
 
 #: .\templates\news-detail.html:342
 msgid "kerak"
-msgstr "is required"
+msgstr ""
 
 #: .\templates\news-detail.html:372 .\templates\news-detail.html:428
 #: .\templates\profile.html:232
 msgid "Saqlash"
-msgstr "Save"
+msgstr ""
 
 #: .\templates\news-detail.html:375 .\templates\news-detail.html:431
 msgid "Bekor"
-msgstr "Cancel"
+msgstr ""
 
 #: .\templates\news-detail.html:384
 msgid "Javob"
-msgstr "Reply"
+msgstr ""
 
 #: .\templates\news-detail.html:389 .\templates\news-detail.html:421
 #: .\templates\profile.html:222
 msgid "Tahrirlash"
-msgstr "Edit"
+msgstr ""
 
 #: .\templates\news-detail.html:395
 msgid "Javobingizni yozing..."
-msgstr "Write your reply..."
+msgstr ""
 
 #: .\templates\news-detail.html:445
 msgid "Hali izoh qoldirilmagan. Birinchi bo'ling!"
-msgstr "No comments yet. Be the first!"
+msgstr ""
 
 #: .\templates\news-detail.html:456 .\templates\news.html:312
 #: .\templates\tag_posts.html:196
 msgid "Ko'p O'qilganlar"
-msgstr "Most Read"
+msgstr ""
 
 #: .\templates\news-detail.html:565
 msgid "Kirish talab etiladi"
-msgstr "Login required"
+msgstr ""
 
 #: .\templates\news-detail.html:566
 msgid "Like bosish uchun avval tizimga kiring."
-msgstr "Please log in first to like this article."
+msgstr ""
 
 #: .\templates\news-detail.html:569 .\templates\profile.html:165
 #: .\templates\profile.html:233 .\templates\profile.html:378
 #: .\templates\profile.html:390
 msgid "Bekor qilish"
-msgstr "Cancel"
+msgstr ""
 
 #: .\templates\news.html:176
 msgid ""
 "O'zbekiston va dunyo bo'yicha eng dolzarb xabarlar — har kuni yangilanib "
 "turadi"
 msgstr ""
-"The most relevant news from Uzbekistan and the world — updated daily"
 
 #: .\templates\news.html:186
 msgid "Barchasi"
-msgstr "All"
+msgstr ""
 
 #: .\templates\news.html:198
 msgid "Eng yangi"
-msgstr "Newest"
+msgstr ""
 
 #: .\templates\news.html:201
 msgid "Eng mashhur"
-msgstr "Most popular"
+msgstr ""
 
 #: .\templates\news.html:204
 msgid "Ko'p muhokama"
-msgstr "Most discussed"
+msgstr ""
 
 #: .\templates\news.html:208
 msgid "List ko\\"
-msgstr "List view"
+msgstr ""
 
 #: .\templates\news.html:209
 msgid "Grid ko\\"
-msgstr "Grid view"
+msgstr ""
 
 #: .\templates\news.html:223 .\templates\tag_posts.html:120
 #, python-format
 msgid "%(count)s ta yangilik topildi"
-msgstr "%(count)s news found"
+msgstr ""
 
 #: .\templates\news.html:273
 msgid "Yangiliklar topilmadi."
-msgstr "No news found."
+msgstr ""
 
 #: .\templates\news.html:382
 msgid "Yangilik, mavzu yoki muallif..."
-msgstr "News, topic or author..."
+msgstr ""
 
 #: .\templates\profile.html:95
 msgid "Rasmni o\\"
-msgstr "Change photo"
+msgstr ""
 
 #: .\templates\profile.html:114
 msgid "Yoqtirgan"
-msgstr "Liked"
+msgstr ""
 
 #: .\templates\profile.html:118
 msgid "Izohlar"
-msgstr "Comments"
+msgstr ""
 
 #: .\templates\profile.html:122 .\templates\profile.html:276
 msgid "A'zo bo'lgan"
-msgstr "Member since"
+msgstr ""
 
 #: .\templates\profile.html:136
 msgid "Yoqtirilganlar"
-msgstr "Liked articles"
+msgstr ""
 
 #: .\templates\profile.html:140
 msgid "Izohlarim"
-msgstr "My comments"
+msgstr ""
 
 #: .\templates\profile.html:173
 msgid "Yoqtirganlar yo'q"
-msgstr "No liked articles"
+msgstr ""
 
 #: .\templates\profile.html:174
 msgid "Yangiliklar o'qib, yoqtirgan maqolalaringiz bu yerda ko'rinadi"
-msgstr "Articles you liked while reading will appear here"
+msgstr ""
 
 #: .\templates\profile.html:225 .\templates\profile.html:391
 msgid "O'chirish"
-msgstr "Delete"
+msgstr ""
 
 #: .\templates\profile.html:240
 msgid "Izohlar yo'q"
-msgstr "No comments"
+msgstr ""
 
 #: .\templates\profile.html:241
 msgid "Hali izoh yozmagansiz"
-msgstr "You haven't written any comments yet"
+msgstr ""
 
 #: .\templates\profile.html:274
 msgid "Ma'lumotlar"
-msgstr "Information"
+msgstr ""
 
 #: .\templates\profile.html:280
 msgid "Faollik"
-msgstr "Activity"
+msgstr ""
 
 #: .\templates\profile.html:284
 msgid "So'nggi o'qilgan"
-msgstr "Last read"
+msgstr ""
 
 #: .\templates\profile.html:295
 msgid "Sevimli kategoriya"
-msgstr "Favorite category"
+msgstr ""
 
 #: .\templates\profile.html:302
 msgid "Bugun o'qilgan"
-msgstr "Read today"
+msgstr ""
 
 #: .\templates\profile.html:309
 msgid "Jami o'qilgan"
-msgstr "Total read"
+msgstr ""
 
 #: .\templates\profile.html:375
 msgid "Chiqmoqchimisiz?"
-msgstr "Are you sure you want to log out?"
+msgstr ""
 
 #: .\templates\profile.html:376
 msgid "Hisobdan chiqiladi"
-msgstr "You will be logged out"
+msgstr ""
 
 #: .\templates\profile.html:387
 msgid "Izohni o'chirmoqchimisiz?"
-msgstr "Delete this comment?"
+msgstr ""
 
 #: .\templates\profile.html:388
 msgid "Bu amal qaytarib bo'lmaydi"
-msgstr "This action cannot be undone"
+msgstr ""
 
 #: .\templates\search.html:51
 msgid "Qidirish..."
-msgstr "Search..."
+msgstr ""
 
 #: .\templates\tag_posts.html:102
 msgid "Obuna"
-msgstr "Subscribe"
+msgstr ""
 
 #: .\templates\tag_posts.html:119
 #, python-format
 msgid "<span>#%(name)s</span> tegi bo'yicha yangiliklar"
-msgstr "News tagged <span>#%(name)s</span>"
+msgstr ""
 
 #: .\templates\tag_posts.html:133
 #, python-format
 msgid "%(count)s ta yangilik"
-msgstr "%(count)s news"
+msgstr ""
 
 #: .\templates\tag_posts.html:185
 msgid "Bu teg bo'yicha hali yangilik qo'shilmagan."
-msgstr "No news added for this tag yet."
+msgstr ""
 
 #: .\templates\tag_posts.html:218
 msgid "Har kuni ertalab eng muhim 10 ta xabar"
-msgstr "Top 10 most important news every morning"
+msgstr ""
 
+#: .\templates\login.html .\templates\register.html .\templates\contact.html
+#: .\templates\login.html
 msgid "Xush kelibsiz!"
-msgstr "Welcome!"
+msgstr "Xush kelibsiz!"
 
+#: .\templates\login.html
 msgid "Hisobingizga kirish uchun ma'lumotlarni kiriting"
-msgstr "Enter your credentials to sign in"
+msgstr "Hisobingizga kirish uchun ma'lumotlarni kiriting"
 
+#: .\templates\login.html .\templates\register.html
 msgid "Google orqali kirish"
-msgstr "Sign in with Google"
+msgstr "Google orqali kirish"
 
+#: .\templates\login.html .\templates\register.html
 msgid "yoki email bilan"
-msgstr "or with email"
+msgstr "yoki email bilan"
 
+#: .\templates\login.html .\templates\register.html .\templates\contact.html
 msgid "Email manzil"
-msgstr "Email address"
+msgstr "Email manzil"
 
+#: .\templates\login.html .\templates\register.html
 msgid "To'g'ri email manzil kiriting"
-msgstr "Enter a valid email address"
+msgstr "To'g'ri email manzil kiriting"
 
+#: .\templates\login.html .\templates\register.html
 msgid "Parol"
-msgstr "Password"
+msgstr "Parol"
 
+#: .\templates\login.html
 msgid "Parolni unutdingizmi?"
-msgstr "Forgot your password?"
+msgstr "Parolni unutdingizmi?"
 
+#: .\templates\login.html
 msgid "Parol kiritilmagan"
-msgstr "Password is required"
+msgstr "Parol kiritilmagan"
 
+#: .\templates\login.html
 msgid "Meni eslab qol (30 kun)"
-msgstr "Remember me (30 days)"
+msgstr "Meni eslab qol (30 kun)"
 
+#: .\templates\login.html
 msgid "Hisobingiz yo'qmi?"
-msgstr "Don't have an account?"
+msgstr "Hisobingiz yo'qmi?"
 
+#: .\templates\login.html .\templates\register.html
 msgid "Ro'yxatdan o'ting"
-msgstr "Register"
+msgstr "Ro'yxatdan o'ting"
 
+#: .\templates\login.html .\templates\register.html
 msgid "Yordam"
-msgstr "Help"
+msgstr "Yordam"
 
+#: .\templates\register.html
 msgid "Hisob yaratish"
-msgstr "Create Account"
+msgstr "Hisob yaratish"
 
+#: .\templates\register.html
 msgid "Yangiliklar, izohlar va ko'proq imkoniyatlar uchun ro'yxatdan o'ting"
-msgstr "Register for news, comments and more features"
+msgstr "Yangiliklar, izohlar va ko'proq imkoniyatlar uchun ro'yxatdan o'ting"
 
+#: .\templates\register.html
 msgid "Google orqali davom etish"
-msgstr "Continue with Google"
+msgstr "Google orqali davom etish"
 
+#: .\templates\register.html .\templates\contact.html
 msgid "Ism"
-msgstr "First name"
+msgstr "Ism"
 
+#: .\templates\register.html .\templates\contact.html
 msgid "Ism kiritilmagan"
-msgstr "First name is required"
+msgstr "Ism kiritilmagan"
 
+#: .\templates\register.html .\templates\contact.html
 msgid "Familiya"
-msgstr "Last name"
+msgstr "Familiya"
 
+#: .\templates\register.html
 msgid "Familiya kiritilmagan"
-msgstr "Last name is required"
+msgstr "Familiya kiritilmagan"
 
+#: .\templates\register.html
 msgid "Kamida 8 belgi kiriting"
-msgstr "Enter at least 8 characters"
+msgstr "Kamida 8 belgi kiriting"
 
+#: .\templates\register.html
 msgid "Parolni tasdiqlash"
-msgstr "Confirm password"
+msgstr "Parolni tasdiqlash"
 
+#: .\templates\register.html
 msgid "Parollar mos kelmaydi"
-msgstr "Passwords do not match"
+msgstr "Parollar mos kelmaydi"
 
+#: .\templates\register.html
 msgid "va"
-msgstr "and"
+msgstr "va"
 
+#: .\templates\register.html
 msgid "bilan roziman"
-msgstr "I agree with"
+msgstr "bilan roziman"
 
+#: .\templates\register.html
 msgid "Shartlarni qabul qilish shart"
-msgstr "You must accept the terms"
+msgstr "Shartlarni qabul qilish shart"
 
+#: .\templates\register.html
 msgid "Yangiliklar xabarnomasi olishni xohlayman"
-msgstr "I want to receive the newsletter"
+msgstr "Yangiliklar xabarnomasi olishni xohlayman"
 
+#: .\templates\register.html
 msgid "Muvaffaqiyatli ro'yxatdan o'tdingiz!"
-msgstr "Successfully registered!"
+msgstr "Muvaffaqiyatli ro'yxatdan o'tdingiz!"
 
+#: .\templates\register.html
 msgid "Hisobingiz bormi?"
-msgstr "Already have an account?"
+msgstr "Hisobingiz bormi?"
 
+#: .\templates\contact.html
 msgid "Biz bilan"
-msgstr "Contact"
+msgstr "Biz bilan"
 
+#: .\templates\contact.html
 msgid "bog'laning"
-msgstr "us"
+msgstr "bog'laning"
 
+#: .\templates\contact.html
 msgid "Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz."
-msgstr "Send us your question, suggestion or partnership inquiry — we reply within 24 hours."
+msgstr "Savol, taklif yoki hamkorlik bo'yicha murojaat qiling — biz 24 soat ichida javob beramiz."
 
+#: .\templates\contact.html
 msgid "Xabar yuboring"
-msgstr "Send a Message"
+msgstr "Xabar yuboring"
 
+#: .\templates\contact.html
 msgid "Umumiy savol"
-msgstr "General Question"
+msgstr "Umumiy savol"
 
+#: .\templates\contact.html
 msgid "Xato bildirish"
-msgstr "Report an Error"
+msgstr "Xato bildirish"
 
+#: .\templates\contact.html
 msgid "Boshqa"
-msgstr "Other"
+msgstr "Boshqa"
 
+#: .\templates\contact.html
 msgid "Email"
 msgstr "Email"
 
+#: .\templates\contact.html
 msgid "To'g'ri email kiriting"
-msgstr "Enter a valid email"
+msgstr "To'g'ri email kiriting"
 
+#: .\templates\contact.html
 msgid "Telefon"
-msgstr "Phone"
+msgstr "Telefon"
 
+#: .\templates\contact.html
 msgid "Kompaniya nomi"
-msgstr "Company Name"
+msgstr "Kompaniya nomi"
 
+#: .\templates\contact.html
 msgid "Reklama formati"
-msgstr "Ad Format"
+msgstr "Reklama formati"
 
+#: .\templates\contact.html
 msgid "Formatni tanlang"
-msgstr "Select a format"
+msgstr "Formatni tanlang"
 
+#: .\templates\contact.html
 msgid "Banner reklama"
-msgstr "Banner Ad"
+msgstr "Banner reklama"
 
+#: .\templates\contact.html
 msgid "Video reklama"
-msgstr "Video Ad"
+msgstr "Video reklama"
 
+#: .\templates\contact.html
 msgid "Reklama maqolasi"
-msgstr "Sponsored Article"
+msgstr "Reklama maqolasi"
 
+#: .\templates\contact.html
 msgid "Ijtimoiy tarmoq"
-msgstr "Social Media"
+msgstr "Ijtimoiy tarmoq"
 
+#: .\templates\contact.html
 msgid "Taxminiy byudjet"
-msgstr "Estimated Budget"
+msgstr "Taxminiy byudjet"
 
+#: .\templates\contact.html
 msgid "Maqola URL"
-msgstr "Article URL"
+msgstr "Maqola URL"
 
+#: .\templates\contact.html
 msgid "Xabar"
-msgstr "Message"
+msgstr "Xabar"
 
+#: .\templates\contact.html
 msgid "Xabar kiritilmagan"
-msgstr "Message is required"
+msgstr "Xabar kiritilmagan"
 
+#: .\templates\contact.html
 msgid "Xabar yuborish"
-msgstr "Send Message"
+msgstr "Xabar yuborish"
 
+#: .\templates\contact.html
 msgid "Xabar yuborildi!"
-msgstr "Message Sent!"
+msgstr "Xabar yuborildi!"
 
+#: .\templates\contact.html
 msgid "Tez orada siz bilan bog'lanamiz."
-msgstr "We will get in touch with you soon."
+msgstr "Tez orada siz bilan bog'lanamiz."
 
+#: .\templates\contact.html
 msgid "Odatda 24 soat ichida javob beramiz."
-msgstr "We usually reply within 24 hours."
+msgstr "Odatda 24 soat ichida javob beramiz."
 
+#: .\templates\contact.html
 msgid "Ko'p so'raladigan savollar"
-msgstr "Frequently Asked Questions"
+msgstr "Ko'p so'raladigan savollar"
 
+#: .\templates\contact.html
 msgid "Reklama narxlari qancha?"
-msgstr "How much does advertising cost?"
+msgstr "Reklama narxlari qancha?"
 
+#: .\templates\contact.html
 msgid "Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang."
-msgstr "Ad prices vary by format. For details, email reklama@ovoza.uz or select the advertising category."
+msgstr "Reklama narxlari formatlarga qarab farq qiladi. Batafsil ma'lumot uchun reklama@ovoza.uz manziliga yozing yoki reklama bo'limini tanlang."
 
+#: .\templates\contact.html
 msgid "Muxbir bo'lish mumkinmi?"
-msgstr "Can I become a journalist?"
+msgstr "Muxbir bo'lish mumkinmi?"
 
+#: .\templates\contact.html
 msgid "Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna maqolalaringizni info@ovoza.uz manziliga yuboring."
-msgstr "Yes, we are always looking for talented journalists. Send your resume and sample articles to info@ovoza.uz."
+msgstr "Ha, biz doim iqtidorli muxbirlarni qidiramiz. Rezyumingizni va namuna maqolalaringizni info@ovoza.uz manziliga yuboring."
 
+#: .\templates\contact.html
 msgid "Yangilik taklif qilsam bo'ladimi?"
-msgstr "Can I suggest a news story?"
+msgstr "Yangilik taklif qilsam bo'ladimi?"
 
+#: .\templates\contact.html
 msgid "Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar qiling. Tahririyat ko'rib chiqadi."
-msgstr "Absolutely! If you know about an important story, let us know. The editorial team will review it."
+msgstr "Albatta! Agar siz muhim yangilik haqida biladigan bo'lsangiz, bizga xabar qiling. Tahririyat ko'rib chiqadi."
 
+#: .\templates\contact.html
 msgid "Xato ma'lumot topsam nima qilaman?"
-msgstr "What should I do if I find incorrect information?"
+msgstr "Xato ma'lumot topsam nima qilaman?"
 
+#: .\templates\contact.html
 msgid "Iltimos, \"Xato bildirish\" bo'limidan foydalaning yoki to'g'ridan to'g'ri tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz."
-msgstr "Please use the \"Report an Error\" section or email tahrir@ovoza.uz directly. We will correct it promptly."
+msgstr "Iltimos, \"Xato bildirish\" bo'limidan foydalaning yoki to'g'ridan to'g'ri tahrir@ovoza.uz manziliga yozing. Biz tezda to'g'irlaymiz."
 
+#: .\templates\contact.html
 msgid "Asosiy email"
-msgstr "Main Email"
+msgstr "Asosiy email"
 
+#: .\templates\contact.html
 msgid "Umumiy savollar uchun"
-msgstr "For general inquiries"
+msgstr "Umumiy savollar uchun"
 
+#: .\templates\contact.html
 msgid "Reklama bo'limi"
-msgstr "Advertising Department"
+msgstr "Reklama bo'limi"
 
+#: .\templates\contact.html
 msgid "Hamkorlik va reklama uchun"
-msgstr "For partnerships and advertising"
+msgstr "Hamkorlik va reklama uchun"
 
+#: .\templates\contact.html
 msgid "Mirzo Ulug'bek tumani"
-msgstr "Mirzo Ulugbek district"
+msgstr "Mirzo Ulug'bek tumani"
 
+#: .\templates\contact.html
 msgid "Xaritada ko'rish"
-msgstr "View on map"
+msgstr "Xaritada ko'rish"
 
+#: .\templates\contact.html
 msgid "Ish vaqti"
-msgstr "Working Hours"
+msgstr "Ish vaqti"
 
+#: .\templates\contact.html
 msgid "Dushanba"
-msgstr "Monday"
+msgstr "Dushanba"
 
+#: .\templates\contact.html
 msgid "Seshanba"
-msgstr "Tuesday"
+msgstr "Seshanba"
 
+#: .\templates\contact.html
 msgid "Chorshanba"
-msgstr "Wednesday"
+msgstr "Chorshanba"
 
+#: .\templates\contact.html
 msgid "Payshanba"
-msgstr "Thursday"
+msgstr "Payshanba"
 
+#: .\templates\contact.html
 msgid "Juma"
-msgstr "Friday"
+msgstr "Juma"
 
+#: .\templates\contact.html
 msgid "Shanba"
-msgstr "Saturday"
+msgstr "Shanba"
 
+#: .\templates\contact.html
 msgid "Yakshanba"
-msgstr "Sunday"
+msgstr "Yakshanba"
 
+#: .\templates\contact.html
 msgid "Dam olish"
-msgstr "Day off"
+msgstr "Dam olish"
 
+#: .\templates\contact.html
 msgid "Ijtimoiy tarmoqlar"
-msgstr "Social Networks"
+msgstr "Ijtimoiy tarmoqlar"
 
+#: .\templates\contact.html
 msgid "412K+ obunachi"
-msgstr "412K+ subscribers"
+msgstr "412K+ obunachi"
 
+#: .\templates\search.html
 msgid "Qidiruv natijalari"
-msgstr "Search Results"
+msgstr "Qidiruv natijalari"
 
+#: .\templates\search.html
 msgid "ta natija topildi"
-msgstr "results found"
+msgstr "ta natija topildi"
 
+#: .\templates\search.html
 msgid "Hech narsa topilmadi"
-msgstr "Nothing found"
+msgstr "Hech narsa topilmadi"
 
+#: .\templates\search.html
 msgid "bo'yicha hech narsa topilmadi"
-msgstr "— nothing found"
+msgstr "bo'yicha hech narsa topilmadi"
 
+#: .\templates\search.html
 msgid "Boshqa kalit so'z bilan qidirib ko'ring"
-msgstr "Try searching with a different keyword"
+msgstr "Boshqa kalit so'z bilan qidirib ko'ring"
 
+#: .\templates\search.html
 msgid "Yuqoridagi qidiruv maydoniga so'z kiriting"
-msgstr "Enter a word in the search field above"
+msgstr "Yuqoridagi qidiruv maydoniga so'z kiriting"
 
+#: .\templates\index.html
 msgid "Yangilik, mavzu yoki muallif qidirish..."
-msgstr "Search news, topics or authors..."
+msgstr "Yangilik, mavzu yoki muallif qidirish..."
 
+#: .\templates\index.html
 msgid "Salomatlik"
-msgstr "Health"
+msgstr "Salomatlik"
 
 msgid "Parolni tiklash"
-msgstr "Reset Password"
+msgstr "Parolni tiklash"
 
 msgid "Emailingizni kiriting — tiklash havolasi yuboramiz"
-msgstr "Enter your email — we will send a reset link"
+msgstr "Emailingizni kiriting — tiklash havolasi yuboramiz"
 
 msgid "Kirishga qaytish"
-msgstr "Back to Login"
+msgstr "Kirishga qaytish"
 
 msgid "Xat yuborildi!"
-msgstr "Email Sent!"
+msgstr "Xat yuborildi!"
 
 msgid "Emailingizni tekshiring va havolaga bosing"
-msgstr "Check your email and click the link"
+msgstr "Emailingizni tekshiring va havolaga bosing"
 
 msgid "Parolni tiklash havolasi emailingizga yuborildi."
-msgstr "A password reset link has been sent to your email."
+msgstr "Parolni tiklash havolasi emailingizga yuborildi."
 
 msgid "Agar xat kelmagan bo'lsa, spam papkasini tekshiring."
-msgstr "If you didn't receive it, please check your spam folder."
+msgstr "Agar xat kelmagan bo'lsa, spam papkasini tekshiring."
 
 msgid "soniyada kirishga yo'naltirilasiz..."
-msgstr "seconds until you are redirected to login..."
+msgstr "soniyada kirishga yo'naltirilasiz..."
 
 msgid "Yangi parol"
-msgstr "New Password"
+msgstr "Yangi parol"
 
 msgid "Yangi parolingizni kiriting"
-msgstr "Enter your new password"
+msgstr "Yangi parolingizni kiriting"
 
 msgid "Havola yaroqsiz!"
-msgstr "Invalid Link!"
+msgstr "Havola yaroqsiz!"
 
 msgid "Bu havola eskirgan yoki allaqachon ishlatilgan."
-msgstr "This link has expired or has already been used."
+msgstr "Bu havola eskirgan yoki allaqachon ishlatilgan."
 
 msgid "Qaytadan yuborish"
-msgstr "Resend"
+msgstr "Qaytadan yuborish"
 
 msgid "Parolni o'zgartirish"
-msgstr "Change Password"
+msgstr "Parolni o'zgartirish"
 
 msgid "Maqola"
-msgstr "Articles"
+msgstr "Maqola"
 
 msgid "O'quvchi"
-msgstr "Readers"
+msgstr "O'quvchi"
 
 msgid "Trendlar"
-msgstr "Trending"
+msgstr "Trendlar"
 
 msgid "O'xshash Maqolalar"
-msgstr "Similar Articles"
+msgstr "O'xshash Maqolalar"
 
 msgid "Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!"
-msgstr "No articles have been added to this category yet. News will appear soon!"
+msgstr "Bu kategoriyada hali maqolalar qo'shilmagan. Tez orada yangiliklar paydo bo'ladi!"
 
 msgid "Hozircha teg yo'q"
-msgstr "No tags yet"
+msgstr "Hozircha teg yo'q"
