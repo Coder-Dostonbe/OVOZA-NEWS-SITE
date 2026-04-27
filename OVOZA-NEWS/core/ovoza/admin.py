@@ -110,7 +110,7 @@ class AuthUserAdmin(BaseUserAdmin):
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('Custom fields', {'fields': ('role', 'avatar')}),
+        ('Custom fields', {'fields': ('role', 'avatar', 'bio')}),
     )
 
     add_fieldsets = (
@@ -142,3 +142,21 @@ class AdvertisementAdmin(admin.ModelAdmin):
 @admin.register(Subscriber)
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ('email', 'is_active', 'created_at')
+
+@admin.register(TelegramSettings)
+class TelegramSettingsAdmin(admin.ModelAdmin):
+    list_display = ('channel_id', 'send_title', 'send_image', 'send_description',
+                    'send_category', 'send_author', 'send_link', 'is_active')
+    list_editable = ('send_title', 'send_image', 'send_description',
+                     'send_category', 'send_author', 'send_link', 'is_active')
+
+    def has_add_permission(self, request):
+        return not TelegramSettings.objects.exists()
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'email', 'subject', 'is_read', 'created_at')
+    list_editable = ('is_read',)
+    list_filter = ('subject', 'is_read')
+    readonly_fields = ('first_name', 'last_name', 'email', 'phone', 'subject', 'message', 'extra_info', 'created_at')

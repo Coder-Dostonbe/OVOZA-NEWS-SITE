@@ -61,7 +61,7 @@ ul { list-style:none; }
 .logo-text { line-height:1.1; }
 .logo-name { font-family:var(--font-display); font-size:26px; font-weight:900; color:var(--white); letter-spacing:-0.5px; display:block; line-height:1; }
 .logo-tagline { font-family:var(--font-label); font-size:9px; letter-spacing:2.5px; color:var(--primary); text-transform:uppercase; display:block; margin-top:2px; }
-.nav-menu { display:flex; align-items:center; height:100%; gap:0; }
+.nav-menu { display:flex; align-items:center; height:100%; gap:0; flex:1; justify-content:center; }
 .nav-item { position:relative; height:100%; display:flex; align-items:center; }
 .nav-item > a {
   display:flex; align-items:center; gap:6px; padding:0 13px; height:100%;

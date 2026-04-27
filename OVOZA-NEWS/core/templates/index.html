@@ -3,6 +3,7 @@
 
 <head>
   {% load static %}
+  {% load i18n %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ovoza – O'zbekiston Yangiliklari Portali</title>
@@ -54,7 +55,7 @@
       </div>
 
       <!-- TICKER: label tashqarida, wrap faqat track uchun -->
-      <span class="ticker-label"><i class="fas fa-bolt" style="margin-right:4px;"></i>So'nggi</span>
+      <span class="ticker-label"><i class="fas fa-bolt" style="margin-right:4px;"></i>{% trans "So'nggi" %}</span>
       <div class="ticker-wrap">
         <div class="ticker-track">
           {% for t in ticker %}
@@ -68,14 +69,16 @@
       </div>
 
       <div class="topbar-links">
-        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram"></i> Telegram</a>
         <span class="divider">|</span>
         <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
         <span class="divider">|</span>
+        {% get_current_language as CURRENT_LANG %}
         <div class="lang-switcher">
-          <a href="#" class="lang-btn active" data-lang="uz">UZ</a>
-          <a href="#" class="lang-btn" data-lang="ru">RU</a>
-          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz' %}active{% endif %}" onclick="switchLang('uz');return false;">UZ</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz-cyrl' %}active{% endif %}" onclick="switchLang('uz-cyrl');return false;">УЗ</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'ru' %}active{% endif %}" onclick="switchLang('ru');return false;">RU</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'en' %}active{% endif %}" onclick="switchLang('en');return false;">EN</a>
         </div>
       </div>
     </div>
@@ -98,12 +101,8 @@
           </button>
         </div>
         <div class="nav-actions">
-          <button class="btn-icon" title="Bildirishnomalar">
-            <i class="fas fa-bell"></i>
-            <span class="notif-dot"></span>
-          </button>
-          <a href="#" class="btn-subscribe">
-            <i class="fas fa-envelope"></i> <span>Obuna bo'lish</span>
+          <a href="#subscribeWidget" class="btn-subscribe">
+            <i class="fas fa-envelope"></i> <span>{% trans "Obuna bo'lish" %}</span>
           </a>
           <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
             <i class="fas fa-bars"></i>
@@ -114,19 +113,19 @@
     <div class="navbar-bottom-row" id="navbarMenu">
       <div class="container">
         <ul class="nav-center-menu">
-          <li class="nav-item active"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item active"><a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a></li>
           <li class="nav-item">
-            <a href="{% url 'categories' %}">Categories <i class="fas fa-chevron-down"></i></a>
+            <a href="{% url 'categories' %}">{% trans "Kategoriyalar" %} <i class="fas fa-chevron-down"></i></a>
           </li>
-          <li class="nav-item"><a href="{% url 'news_page' %}">News</a></li>
+          <li class="nav-item"><a href="{% url 'news_page' %}">{% trans "Yangiliklar" %}</a></li>
           <li class="nav-item">
-            <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+            <a href="#">{% trans "Sahifalar" %} <i class="fas fa-chevron-down"></i></a>
             <div class="nav-dropdown">
-              <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
-              <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
-              <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
-              <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
-              <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profile</a>
+              <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> {% trans "Haqimizda" %}</a>
+              <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> {% trans "Aloqa" %}</a>
+              <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</a>
+              <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> {% trans "Ro'yxatdan o'tish" %}</a>
+              <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> {% trans "Profil" %}</a>
             </div>
           </li>
         </ul>
@@ -141,16 +140,16 @@
           <img src="{{ hero_post.image.url }}" alt="Asosiy yangilik" loading="eager" />
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <span class="hero-badge hero-anim-badge"><i class="fas fa-bolt"></i> Tezkor xabar</span>
+            <span class="hero-badge hero-anim-badge"><i class="fas fa-bolt"></i> {% trans "Tezkor xabar" %}</span>
             <h1 class="hero-title" id="heroTitle" data-text="{{ hero_post.title }}"></h1>
             <p class="hero-excerpt hero-anim-desc" id="heroDesc">{{ hero_post.short_description }}</p>
             <div class="hero-meta hero-anim-meta" id="heroMeta">
               <span><i class="far fa-user"></i>{{ hero_post.author.first_name }} {{ hero_post.author.last_name }}</span>
               <span><i class="far fa-clock"></i>{{ hero_post.time_since }}</span>
-              <span><i class="far fa-eye"></i>{{ hero_post.views }} marta o'qildi</span>
+              <span><i class="far fa-eye"></i>{{ hero_post.views }} {% trans "marta o'qildi" %}</span>
             </div>
             <a href="{% url 'post_about' hero_post.id %}" class="hero-read-btn hero-anim-btn" id="heroBtn">
-              To'liq o'qish <i class="fas fa-arrow-right"></i>
+              {% trans "To'liq o'qish" %} <i class="fas fa-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -167,7 +166,7 @@
             </div>
           {% empty %}
             <div class="hero-side-card" style="background:var(--dark-3);display:flex;align-items:center;justify-content:center;">
-              <p style="color:var(--text-muted);font-size:13px;">Yangilik yo'q</p>
+              <p style="color:var(--text-muted);font-size:13px;">{% trans "Yangilik yo'q" %}</p>
             </div>
           {% endfor %}
         </div>
@@ -181,7 +180,7 @@
         <div class="content-area">
           <section id="recommended">
             <div class="section-header">
-              <h2 class="section-title">Tavsiya etilganlar</h2>
+              <h2 class="section-title">{% trans "Tavsiya etilganlar" %}</h2>
             </div>
             <div class="news-grid">
               {% for post in recommended %}
@@ -198,7 +197,7 @@
                       <span><i class="far fa-clock"></i> {{post.time_since}}</span>
                       <span><i class="far fa-eye"></i> {{ post.views }}</span>
                     </div>
-                    <a href="{% url 'post_about' post.id %}" class="card-read-more">O'qish <i class="fas fa-arrow-right"></i></a>
+                    <a href="{% url 'post_about' post.id %}" class="card-read-more">{% trans "O'qish" %} <i class="fas fa-arrow-right"></i></a>
                   </div>
                 </div>
               </article>
@@ -237,7 +236,7 @@
 
           <section id="latest">
             <div class="section-header">
-              <h2 class="section-title">Eng qaynoq yangiliklar</h2>
+              <h2 class="section-title">{% trans "Eng qaynoq yangiliklar" %}</h2>
             </div>
             <div class="latest-list">
               {% for post in random_post %}
@@ -258,60 +257,37 @@
 
           <section class="categories-section" id="categories">
             <div class="section-header">
-              <h2 class="section-title">Kategoriyalar</h2>
+              <h2 class="section-title">{% trans "Kategoriyalar" %}</h2>
+              <a href="{% url 'categories' %}" class="section-link">{% trans "Barchasini ko'rish" %} <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="cat-grid">
-              <div class="cat-card">
+              {% for cat in categories %}
+              <a href="{% url 'categories_about' cat.slug %}" class="cat-card" style="text-decoration:none;display:block;">
                 <div class="cat-header">
-                  <div class="cat-icon politics"><i class="fas fa-landmark"></i></div>
-                  <div><div class="cat-name">Siyosat</div><div class="cat-count">248 ta maqola</div></div>
+                  <div class="cat-icon" style="background:{{ cat.color }}22;color:{{ cat.color }};">
+                    <i class="{{ cat.icon }}"></i>
+                  </div>
+                  <div>
+                    <div class="cat-name">{{ cat.name }}</div>
+                    <div class="cat-count">{{ cat.post_count }} {% trans "ta maqola" %}</div>
+                  </div>
                 </div>
                 <div class="cat-preview">
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Parlament sessiyasi yakunlandi</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Yangi mahalliy hokimlar tayinlandi</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Qonun loyihasi muhokamaga chiqarildi</div>
+                  {% for post in cat.latest_posts %}
+                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> {{ post.title|truncatewords:7 }}</div>
+                  {% empty %}
+                  <div class="cat-preview-item" style="color:#555;"><i class="fas fa-angle-right"></i> {% trans "Maqola yo'q" %}</div>
+                  {% endfor %}
                 </div>
-              </div>
-              <div class="cat-card">
-                <div class="cat-header">
-                  <div class="cat-icon economy"><i class="fas fa-chart-bar"></i></div>
-                  <div><div class="cat-name">Iqtisod</div><div class="cat-count">312 ta maqola</div></div>
-                </div>
-                <div class="cat-preview">
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> GDP o'sishi 6.2% ni tashkil etdi</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Eksport hajmi yangi rekord qo'ydi</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Investitsiya jozibadorligi oshmoqda</div>
-                </div>
-              </div>
-              <div class="cat-card">
-                <div class="cat-header">
-                  <div class="cat-icon sport"><i class="fas fa-trophy"></i></div>
-                  <div><div class="cat-name">Sport</div><div class="cat-count">196 ta maqola</div></div>
-                </div>
-                <div class="cat-preview">
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Boks: Olimov dunyoda 1-o'rin</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Kurash: jahon chempioni aniq</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Futbol: PAKHTAKOR g'alaba qildi</div>
-                </div>
-              </div>
-              <div class="cat-card">
-                <div class="cat-header">
-                  <div class="cat-icon tech"><i class="fas fa-microchip"></i></div>
-                  <div><div class="cat-name">Texnologiya</div><div class="cat-count">174 ta maqola</div></div>
-                </div>
-                <div class="cat-preview">
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> E-hukumat xizmatlari yangilandi</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> IT-Park rezidenlaridan yangi startup</div>
-                  <div class="cat-preview-item"><i class="fas fa-angle-right"></i> Kiber xavfsizlik konferensiyasi ochildi</div>
-                </div>
-              </div>
+              </a>
+              {% endfor %}
             </div>
           </section>
         </div>
 
         <aside class="sidebar">
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-coins"></i> Valyuta Kurslari</div>
+            <div class="widget-header"><i class="fas fa-coins"></i> {% trans "Valyuta Kurslari" %}</div>
             <div id="currencyWidget" class="currency-list">
               <div class="currency-item">
                 <div class="currency-left"><span class="currency-flag">🇺🇸</span><span class="currency-code">USD</span><span class="currency-name">Dollar</span></div>
@@ -334,11 +310,11 @@
                 <div class="currency-right"><span class="currency-rate" id="rate-gbp">16,110.80</span><span class="currency-change down" id="chg-gbp"><i class="fas fa-arrow-down"></i> 0.19%</span></div>
               </div>
             </div>
-            <div class="widget-footer-note"><i class="fas fa-sync-alt"></i> Markaziy bank kursi · <span id="currencyTime">--:--</span></div>
+            <div class="widget-footer-note"><i class="fas fa-sync-alt"></i> {% trans "Markaziy bank kursi" %} · <span id="currencyTime">--:--</span></div>
           </div>
 
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-cloud-sun"></i> Ob-havo</div>
+            <div class="widget-header"><i class="fas fa-cloud-sun"></i> {% trans "Ob-havo" %}</div>
             <div class="weather-widget">
               <div class="weather-tabs">
                 <button class="wtab active" data-city="tashkent">Toshkent</button>
@@ -368,25 +344,25 @@
           </div>
 
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-smog"></i> Havo Sifati (AQI)</div>
+            <div class="widget-header"><i class="fas fa-smog"></i> {% trans "Havo Sifati (AQI)" %}</div>
             <div id="aqiWidget" style="padding:4px 0;">
-              <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px;">Yuklanmoqda...</div>
+              <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px;">{% trans "Yuklanmoqda..." %}</div>
             </div>
           </div>
 
-          <div class="newsletter-widget">
-            <h4><i class="fas fa-envelope-open-text"></i> Xabar Olish</h4>
-            <p>Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga</p>
+          <div class="newsletter-widget" id="subscribeWidget">
+            <h4><i class="fas fa-envelope-open-text"></i> {% trans "Xabar Olish" %}</h4>
+            <p>{% trans "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga" %}</p>
             <form class="newsletter-form" id="newsletterForm">
-              <input type="email" id="subscribeEmail" placeholder="Email manzilingiz..." required />
+              <input type="email" id="subscribeEmail" placeholder="{% trans 'Email manzilingiz...' %}" required />
               <button type="button" onclick="subscribeNow()">
-                <i class="fas fa-paper-plane"></i> Obuna bo'lish
+                <i class="fas fa-paper-plane"></i> {% trans "Obuna bo'lish" %}
               </button>
             </form>
           </div>
 
           <div class="sidebar-widget">
-            <div class="widget-header"><i class="fas fa-share-alt"></i> Ijtimoiy Tarmoqlar</div>
+            <div class="widget-header"><i class="fas fa-share-alt"></i> {% trans "Ijtimoiy Tarmoqlar" %}</div>
             <div class="social-counts">
               <div class="social-item">
                 <div class="social-left"><div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div><span>Facebook</span></div>
@@ -419,17 +395,17 @@
             <div class="footer-logo-icon"><i class="fas fa-satellite-dish"></i></div>
             <span class="footer-logo-name">Ovoza</span>
           </div>
-          <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali. Har kuni dolzarb, haqqoniy va chuqur tahliliy materiallar.</p>
+          <p class="footer-desc">{% trans "O'zbekistonning eng ishonchli va tezkor yangiliklar portali." %}</p>
           <div class="footer-social">
             <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://t.me/OvozaNewsPage" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="#" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
           </div>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-th-large"></i> Kategoriyalar</h5>
+          <h5><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</h5>
           <ul class="footer-links-list">
             <li><a href="#">Siyosat</a></li><li><a href="#">Iqtisod</a></li>
             <li><a href="#">Jamiyat</a></li><li><a href="#">Sport</a></li>
@@ -438,16 +414,16 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
+          <h5><i class="fas fa-file-alt"></i> {% trans "Sahifalar" %}</h5>
           <ul class="footer-links-list">
             <li><a href="#">Biz haqimizda</a></li><li><a href="#">Tahririyat</a></li>
             <li><a href="#">Reklama</a></li><li><a href="#">Hamkorlik</a></li>
             <li><a href="#">Muharrirlar</a></li><li><a href="#">Arxiv</a></li>
-            <li><a href="#">RSS lenta</a></li><li><a href="#">Mobil ilova</a></li>
+            <li><a href="#">Mobil ilova</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5><i class="fas fa-phone-alt"></i> Aloqa</h5>
+          <h5><i class="fas fa-phone-alt"></i> {% trans "Aloqa" %}</h5>
           <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Toshkent, Mirzo Ulug'bek ko'chasi, 47</div>
           <div class="footer-contact-item"><i class="fas fa-phone"></i> +998 71 200-00-00</div>
           <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ovoza.uz</div>
@@ -459,12 +435,12 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2025 Ovoza. Barcha huquqlar himoyalangan.</span>
+        <span>&copy; 2025 Ovoza. {% trans "Barcha huquqlar himoyalangan." %}</span>
         <div class="footer-bottom-links">
-          <a href="#">Maxfiylik siyosati</a>
-          <a href="#">Foydalanish shartlari</a>
+          <a href="#">{% trans "Maxfiylik siyosati" %}</a>
+          <a href="#">{% trans "Foydalanish shartlari" %}</a>
           <a href="#">Cookie</a>
-          <a href="#">Saytxaritasi</a>
+          <a href="#">{% trans "Saytxaritasi" %}</a>
         </div>
       </div>
     </div>
@@ -472,18 +448,18 @@
 
   <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Qidirish">
     <div class="search-overlay-box">
-      <div class="search-overlay-label"><i class="fas fa-search" style="margin-right:6px;color:var(--primary);"></i>Qidirish</div>
+      <div class="search-overlay-label"><i class="fas fa-search" style="margin-right:6px;color:var(--primary);"></i>{% trans "Qidirish" %}</div>
       <form method="GET" action="{% url 'search' %}">
         <div class="search-overlay-input-wrap">
           <i class="fas fa-search ov-search-icon"></i>
-          <input class="search-overlay-input" name="q" value="{{ q }}" id="searchOverlayInput" type="text" placeholder="Nima qidiryapsiz?" autocomplete="off" spellcheck="false" />
-          <button class="search-overlay-close" type="button" id="searchOverlayClose" title="Yopish (ESC)"><i class="fas fa-times"></i></button>
+          <input class="search-overlay-input" name="q" value="{{ q }}" id="searchOverlayInput" type="text" placeholder="{% trans 'Nima qidiryapsiz?' %}" autocomplete="off" spellcheck="false" />
+          <button class="search-overlay-close" type="button" id="searchOverlayClose" title="{% trans 'Yopish' %} (ESC)"><i class="fas fa-times"></i></button>
         </div>
       </form>
       <div class="search-overlay-hint">
-        <span><kbd>Enter</kbd> Qidirish</span>
-        <span><kbd>ESC</kbd> Yopish</span>
-        <span><kbd>Ctrl K</kbd> Ochish</span>
+        <span><kbd>Enter</kbd> {% trans "Qidirish" %}</span>
+        <span><kbd>ESC</kbd> {% trans "Yopish" %}</span>
+        <span><kbd>Ctrl K</kbd> {% trans "Ochish" %}</span>
       </div>
       <div class="search-overlay-tags">
         <span class="search-tag"><i class="fas fa-fire-alt"></i> Siyosat</span>
@@ -502,6 +478,7 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
+  <script src="{% static 'assets/js/lang.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'assets/js/index.js' %}"></script>
 

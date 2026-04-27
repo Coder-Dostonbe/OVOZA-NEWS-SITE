@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'There should be a secret key '
+SECRET_KEY = 'There should be a secret key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -114,6 +114,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -158,9 +159,10 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'uz'
 
 LANGUAGES = [
-    ('uz', 'Uzbek'),
+    ('uz', "O'zbek (Lotin)"),
+    ('uz-cyrl', "Ўзбек (Кирил)"),
+    ('ru', 'Русский'),
     ('en', 'English'),
-    ('ru', 'Russian'),
 ]
 
 LOCALE_PATHS = [
@@ -199,6 +201,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+SITE_URL = os.getenv('SITE_URL', 'http://127.0.0.1:8000')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

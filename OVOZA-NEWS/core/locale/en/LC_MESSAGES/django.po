@@ -1,0 +1,128 @@
+# English translations
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Bosh sahifa"
+msgstr "Home"
+
+msgid "Kategoriyalar"
+msgstr "Categories"
+
+msgid "Yangiliklar"
+msgstr "News"
+
+msgid "Sahifalar"
+msgstr "Pages"
+
+msgid "Haqimizda"
+msgstr "About"
+
+msgid "Aloqa"
+msgstr "Contact"
+
+msgid "Kirish"
+msgstr "Login"
+
+msgid "Ro'yxatdan o'tish"
+msgstr "Register"
+
+msgid "Profil"
+msgstr "Profile"
+
+msgid "Qidirish"
+msgstr "Search"
+
+msgid "Obuna bo'lish"
+msgstr "Subscribe"
+
+msgid "Bosh sahifaga qaytish"
+msgstr "Back to home"
+
+msgid "Chiqish"
+msgstr "Log out"
+
+msgid "So'nggi"
+msgstr "Latest"
+
+msgid "Tezkor xabar"
+msgstr "Breaking news"
+
+msgid "marta o'qildi"
+msgstr "times read"
+
+msgid "To'liq o'qish"
+msgstr "Read more"
+
+msgid "Yangilik yo'q"
+msgstr "No news"
+
+msgid "Tavsiya etilganlar"
+msgstr "Recommended"
+
+msgid "O'qish"
+msgstr "Read"
+
+msgid "Eng qaynoq yangiliklar"
+msgstr "Hot news"
+
+msgid "Barchasini ko'rish"
+msgstr "View all"
+
+msgid "ta maqola"
+msgstr "articles"
+
+msgid "Maqola yo'q"
+msgstr "No articles"
+
+msgid "Valyuta Kurslari"
+msgstr "Exchange Rates"
+
+msgid "Markaziy bank kursi"
+msgstr "Central bank rate"
+
+msgid "Ob-havo"
+msgstr "Weather"
+
+msgid "Havo Sifati (AQI)"
+msgstr "Air Quality (AQI)"
+
+msgid "Yuklanmoqda..."
+msgstr "Loading..."
+
+msgid "Xabar Olish"
+msgstr "Newsletter"
+
+msgid "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga"
+msgstr "Top 10 news every morning in your inbox"
+
+msgid "Email manzilingiz..."
+msgstr "Your email address..."
+
+msgid "Ijtimoiy Tarmoqlar"
+msgstr "Social Networks"
+
+msgid "O'zbekistonning eng ishonchli va tezkor yangiliklar portali."
+msgstr "Uzbekistan's most reliable and fastest news portal."
+
+msgid "Barcha huquqlar himoyalangan."
+msgstr "All rights reserved."
+
+msgid "Maxfiylik siyosati"
+msgstr "Privacy Policy"
+
+msgid "Foydalanish shartlari"
+msgstr "Terms of Use"
+
+msgid "Saytxaritasi"
+msgstr "Sitemap"
+
+msgid "Nima qidiryapsiz?"
+msgstr "What are you looking for?"
+
+msgid "Yopish"
+msgstr "Close"
+
+msgid "Ochish"
+msgstr "Open"

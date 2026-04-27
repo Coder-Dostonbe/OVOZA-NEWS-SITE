@@ -1,3 +1,5 @@
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="uz">
 
@@ -273,7 +275,7 @@
   <!-- Top bar -->
   <div class="top-bar">
     <div class="logo-dot"><i class="fas fa-satellite-dish"></i></div>
-    <a href="index.html" class="logo-name">Ovoza</a>
+    <a href="{% url 'home' %}" class="logo-name">Ovoza</a>
   </div>
 
   <!-- Center -->
@@ -284,12 +286,12 @@
       Siz qidirayotgan sahifa o'chirilgan, ko'chirilgan yoki hech qachon mavjud bo'lmagan bo'lishi mumkin.
     </p>
     <div class="btn-wrap">
-      <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Bosh sahifa</a>
+      <a href="{% url 'home' %}" class="btn-home"><i class="fas fa-home"></i> Bosh sahifa</a>
       <button class="btn-back" onclick="history.back()"><i class="fas fa-arrow-left"></i> Orqaga</button>
     </div>
     <div class="countdown">
       <span id="sec">10</span> soniyadan so'ng avtomatik yo'naltirilasiz →
-      <a href="index.html">Bosh sahifa</a>
+      <a href="{% url 'home' %}">Bosh sahifa</a>
     </div>
   </div>
 
@@ -298,6 +300,7 @@
     Yordam kerakmi? <a href="mailto:info@ovoza.uz">info@ovoza.uz</a>
   </div>
 
+  <script src="{% static 'assets/js/lang.js' %}"></script>
   <script>
     let s = 10;
     const el = document.getElementById("sec");

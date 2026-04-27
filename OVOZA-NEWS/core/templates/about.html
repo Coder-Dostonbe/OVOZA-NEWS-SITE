@@ -3,6 +3,7 @@
 
 <head>
   {% load static %}
+  {% load i18n %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Biz haqimizda – Ovoza</title>
@@ -104,14 +105,16 @@
       <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate">Dushanba, 7 Yanvar 2025</span>
       </div>
       <div class="topbar-links">
-        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
         <span class="divider">|</span>
-        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram"></i> Telegram</a>
         <span class="divider">|</span>
+        {% get_current_language as CURRENT_LANG %}
         <div class="lang-switcher">
-          <a href="#" class="lang-btn active">UZ</a>
-          <a href="#" class="lang-btn">RU</a>
-          <a href="#" class="lang-btn">EN</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz' %}active{% endif %}" onclick="switchLang('uz');return false;">UZ</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz-cyrl' %}active{% endif %}" onclick="switchLang('uz-cyrl');return false;">УЗ</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'ru' %}active{% endif %}" onclick="switchLang('ru');return false;">RU</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'en' %}active{% endif %}" onclick="switchLang('en');return false;">EN</a>
         </div>
       </div>
     </div>
@@ -120,14 +123,14 @@
   <!-- NAVBAR -->
   <nav class="main-navbar">
     <div class="container navbar-wrap">
-      <a href="index.html" class="nav-logo">
+      <a href="{% url 'home' %}" class="nav-logo">
         <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
         <div>
           <span class="logo-name">Ovoza</span>
           <span class="logo-tagline">Yangiliklar portali</span>
         </div>
       </a>
-      <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Bosh sahifaga qaytish</a>
+      <a href="{% url 'home' %}" class="nav-back"><i class="fas fa-arrow-left"></i> {% trans "Bosh sahifaga qaytish" %}</a>
     </div>
   </nav>
 
@@ -137,7 +140,7 @@
       <div class="hero-inner">
         <div class="hero-label">Biz haqimizda</div>
         <h1>O'zbekistonning <em>eng ishonchli</em> yangiliklar portali</h1>
-        <p>2019-yildan buyon har kuni millionlab o'zbekistonliklar Ovoza orqali dunyo yangiliklaridan xabardor
+        <p>2026-yildan buyon har kuni millionlab o'zbekistonliklar Ovoza orqali dunyo yangiliklaridan xabardor
           bo'lmoqda. Haqqoniylik, tezkorlik va chuqurlik — bizning asosiy tamoyillarimiz.</p>
       </div>
     </div>
@@ -152,7 +155,7 @@
         <div class="mission-text">
           <h2>Bizning <span>missiyamiz</span></h2>
           <p>Ovoza — O'zbekistonda mustaqil, haqqoniy va tezkor yangiliklar jurnalistikasini rivojlantirish uchun
-            2019-yilda tashkil etilgan raqamli yangiliklar platformasi.</p>
+            2026-yilda tashkil etilgan raqamli yangiliklar platformasi.</p>
           <p>Biz har kuni 50 dan ortiq mutaxassis muxbirlarimiz orqali siyosat, iqtisod, sport, texnologiya va madaniyat
             sohasidagi eng muhim voqealarni yoritib boramiz.</p>
           <div class="highlight">
@@ -164,7 +167,7 @@
         </div>
         <div class="mission-visual">
           <div class="big-icon"><i class="fas fa-satellite-dish"></i></div>
-          <h3>2019-yildan buyon</h3>
+          <h3>2026-yildan buyon</h3>
           <p>Toshkentda tashkil etilgan, butun O'zbekiston va dunyo bo'yicha o'quvchilarimizga xizmat qilamiz</p>
         </div>
       </div>
@@ -172,19 +175,19 @@
       <!-- STATS -->
       <div class="stats-band">
         <div class="stat-item">
-          <div class="stat-num">2.4M</div>
-          <div class="stat-unit">oylik</div>
-          <div class="stat-label">O'quvchilar</div>
+          <div class="stat-num">{{ total_posts }}+</div>
+          <div class="stat-unit">ta maqola</div>
+          <div class="stat-label">Nashr etilgan</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">50+</div>
+          <div class="stat-num">{{ total_categories }}</div>
+          <div class="stat-unit">ta bo'lim</div>
+          <div class="stat-label">Kategoriyalar</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">{{ team.count }}</div>
           <div class="stat-unit">nafar</div>
-          <div class="stat-label">Professional muxbirlar</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">120</div>
-          <div class="stat-unit">ta yangilik</div>
-          <div class="stat-label">Har kuni chiqariladi</div>
+          <div class="stat-label">Faol muxbirlar</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">6</div>
@@ -237,63 +240,33 @@
       <!-- TEAM -->
       <div class="section-title">Jamoamiz</div>
       <div class="team-grid">
+        {% for member in team %}
         <div class="team-card">
           <div class="team-img-wrap">
-            <img class="team-img" src="https://i.pravatar.cc/300?img=11" alt="Sardor Umarov" loading="lazy" />
-            <div class="team-overlay">
-              <button class="team-social tg"><i class="fab fa-telegram-plane"></i></button>
-              <button class="team-social li"><i class="fab fa-linkedin-in"></i></button>
+            {% if member.avatar %}
+            <img class="team-img" src="{{ member.avatar.url }}" alt="{{ member.get_full_name }}" loading="lazy" />
+            {% else %}
+            <div class="team-img" style="display:flex;align-items:center;justify-content:center;background:var(--dark-3);font-size:3.5rem;color:var(--primary);">
+              <i class="fas fa-user-circle"></i>
             </div>
+            {% endif %}
           </div>
           <div class="team-body">
-            <div class="team-name">Sardor Umarov</div>
-            <div class="team-role">Bosh muharrir</div>
-            <div class="team-bio">10+ yil tajribali jurnalist. Siyosat va diplomatiya sohasida mutaxassis.</div>
+            <div class="team-name">{{ member.get_full_name|default:member.username }}</div>
+            <div class="team-role">{{ member.get_role_display }}</div>
+            {% if member.bio %}
+            <div class="team-bio">{{ member.bio }}</div>
+            {% else %}
+            <div class="team-bio">{{ member.post_count }} ta maqola nashr etilgan</div>
+            {% endif %}
           </div>
         </div>
-        <div class="team-card">
-          <div class="team-img-wrap">
-            <img class="team-img" src="https://i.pravatar.cc/300?img=32" alt="Malika Yusupova" loading="lazy" />
-            <div class="team-overlay">
-              <button class="team-social tg"><i class="fab fa-telegram-plane"></i></button>
-              <button class="team-social tw"><i class="fab fa-twitter"></i></button>
-            </div>
-          </div>
-          <div class="team-body">
-            <div class="team-name">Malika Yusupova</div>
-            <div class="team-role">Iqtisodiyot bo'limi boshlig'i</div>
-            <div class="team-bio">Moliya va makroiqtisodiyot tahlilchisi. Xalqaro iqtisodiyot bo'yicha muallif.</div>
-          </div>
+        {% empty %}
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">
+          <i class="fas fa-users" style="font-size:2rem;margin-bottom:12px;display:block;"></i>
+          Jamoa a'zolari hali qo'shilmagan
         </div>
-        <div class="team-card">
-          <div class="team-img-wrap">
-            <img class="team-img" src="https://i.pravatar.cc/300?img=15" alt="Jasur Mirzayev" loading="lazy" />
-            <div class="team-overlay">
-              <button class="team-social tg"><i class="fab fa-telegram-plane"></i></button>
-              <button class="team-social li"><i class="fab fa-linkedin-in"></i></button>
-            </div>
-          </div>
-          <div class="team-body">
-            <div class="team-name">Jasur Mirzayev</div>
-            <div class="team-role">Sport muxbiri</div>
-            <div class="team-bio">O'zbek sportini 8 yildan beri kuzatib kelayotgan tajribali sport jurnalisti.</div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-img-wrap">
-            <img class="team-img" src="https://i.pravatar.cc/300?img=22" alt="Aziza Rahimova" loading="lazy" />
-            <div class="team-overlay">
-              <button class="team-social tg"><i class="fab fa-telegram-plane"></i></button>
-              <button class="team-social tw"><i class="fab fa-twitter"></i></button>
-            </div>
-          </div>
-          <div class="team-body">
-            <div class="team-name">Aziza Rahimova</div>
-            <div class="team-role">Texnologiya muxbiri</div>
-            <div class="team-bio">IT va startap dunyosini qamrab oladi. O'zbekiston raqamli transformatsiyasi bo'yicha
-              ekspert.</div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <!-- CONTACT CTA -->
@@ -321,7 +294,7 @@
           <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
           <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-x-twitter"></i></a>
@@ -340,7 +313,7 @@
         <div class="footer-col">
           <h5><i class="fas fa-file-alt"></i> Sahifalar</h5>
           <ul class="footer-links-list">
-            <li><a href="about.html">Biz haqimizda</a></li>
+            <li><a href="{% url 'about_section' %}">Biz haqimizda</a></li>
             <li><a href="#">Tahririyat</a></li>
             <li><a href="#">Reklama</a></li>
             <li><a href="#">Hamkorlik</a></li>
@@ -377,6 +350,7 @@
     });
   </script>
 
+  <script src="{% static 'assets/js/lang.js' %}"></script>
   <script src="{% static 'assets/js/about.js' %}"></script>
 </body>
 

@@ -14,6 +14,13 @@ from allauth.socialaccount.models import SocialAccount
 from django.core.paginator import Paginator
 from datetime import timedelta
 
+def get_lang_filter(request):
+    lang = getattr(request, 'LANGUAGE_CODE', 'uz')
+    if Post.objects.filter(is_published=True, language=lang).exists():
+        return lang
+    return 'uz'
+
+
 def search_post(q):
     if not q:
         return Post.objects.none()
@@ -30,7 +37,13 @@ def search_post(q):
 
 def search_view(request):
     q = request.GET.get('q', '').strip()
-    posts = search_post(q) if q else Post.objects.none()
+    lang = get_lang_filter(request)
+    if q:
+        posts = search_post(q).filter(language=lang)
+        if not posts.exists():
+            posts = search_post(q)
+    else:
+        posts = Post.objects.none()
 
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
@@ -40,22 +53,32 @@ def search_view(request):
 
 def home(request):
     q= request.GET.get('q', '').strip()
+    lang = get_lang_filter(request)
 
-    recommended = Post.objects.filter(is_published=True).order_by('-created_at')
+    recommended = Post.objects.filter(is_published=True, language=lang).order_by('-created_at')
 
     if not q:
         recommended = search_post(q)
 
-    hero_post = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at').first()
-    side_posts = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at')[1:3]
-    random_post = Post.objects.filter(is_published=True).order_by('?')
-    ticker = Post.objects.filter(is_published=True).order_by('-created_at')[:10]
-    recommended = Post.objects.filter(is_published=True).exclude(id__in=[hero_post.id] + list(side_posts.values_list('id', flat=True))).order_by('-created_at')
-
+    hero_post = Post.objects.filter(is_featured=True, is_published=True, language=lang).order_by('-created_at').first()
+    if not hero_post:
+        hero_post = Post.objects.filter(is_featured=True, is_published=True).order_by('-created_at').first()
+    side_posts = Post.objects.filter(is_featured=True, is_published=True, language=lang).order_by('-created_at')[1:3]
+    random_post = Post.objects.filter(is_published=True, language=lang).order_by('?')
+    ticker = Post.objects.filter(is_published=True, language=lang).order_by('-created_at')[:10]
+    exclude_ids = []
+    if hero_post:
+        exclude_ids.append(hero_post.id)
+    exclude_ids += list(side_posts.values_list('id', flat=True))
+    recommended = Post.objects.filter(is_published=True, language=lang).exclude(id__in=exclude_ids).order_by('-created_at')
 
     paginator = Paginator(recommended, 5)
     page_number = request.GET.get('page')
     recommended = paginator.get_page(page_number)
+
+    categories = Category.objects.annotate(post_count=Count('post')).order_by('-post_count')[:6]
+    for cat in categories:
+        cat.latest_posts = cat.post_set.filter(is_published=True).order_by('-created_at')[:3]
 
     ctx = {
         'hero_post': hero_post,
@@ -63,6 +86,7 @@ def home(request):
         'random_post': random_post,
         'ticker': ticker,
         'recommended': recommended,
+        'categories': categories,
     }
 
     return render(request, 'index.html', ctx)
@@ -182,7 +206,10 @@ def share_post(request, id):
 
 def tag_posts(request, tag_name):
     tag = get_object_or_404(Tag, name=tag_name)
-    posts = Post.objects.filter(tags=tag).order_by('-created_at')
+    lang = get_lang_filter(request)
+    posts = Post.objects.filter(tags=tag, is_published=True, language=lang).order_by('-created_at')
+    if not posts.exists():
+        posts = Post.objects.filter(tags=tag, is_published=True).order_by('-created_at')
     all_tags = Tag.objects.annotate(post_count=Count('post')).order_by('-post_count')[:10]
 
     ctx = {
@@ -194,7 +221,17 @@ def tag_posts(request, tag_name):
     return render(request, 'tag_posts.html', ctx)
 
 def about_section(request):
-    return render(request, 'about.html')
+    total_posts = Post.objects.filter(is_published=True).count()
+    total_categories = Category.objects.count()
+    team = AuthUser.objects.filter(
+        role__in=['admin', 'author']
+    ).annotate(post_count=Count('posts')).filter(post_count__gt=0).order_by('-post_count')[:4]
+
+    return render(request, 'about.html', {
+        'total_posts': total_posts,
+        'total_categories': total_categories,
+        'team': team,
+    })
 
 
 def categories(request):
@@ -226,8 +263,11 @@ def categories(request):
 
 def categories_about(request, slug):
     category = get_object_or_404(Category, slug=slug)
+    lang = get_lang_filter(request)
 
-    posts = Post.objects.filter(category=category, is_published=True).order_by('-created_at')
+    posts = Post.objects.filter(category=category, is_published=True, language=lang).order_by('-created_at')
+    if not posts.exists():
+        posts = Post.objects.filter(category=category, is_published=True).order_by('-created_at')
 
     paginator = Paginator(posts, 12)
     page_number = request.GET.get('page')
@@ -399,11 +439,77 @@ def logout_user(request):
     return redirect('login')
 
 def contact(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        first_name = data.get('first_name', '').strip()
+        email = data.get('email', '').strip()
+        message_text = data.get('message', '').strip()
+
+        if not first_name or not email or not message_text:
+            return JsonResponse({'success': False, 'message': "Barcha majburiy maydonlarni to'ldiring!"})
+
+        subject = data.get('subject', 'umumiy')
+        extra_info = {}
+        if subject == 'hamkorlik' and data.get('company'):
+            extra_info['company'] = data['company'].strip()
+        elif subject == 'reklama':
+            if data.get('ad_format'):
+                extra_info['ad_format'] = data['ad_format']
+            if data.get('ad_budget'):
+                extra_info['ad_budget'] = data['ad_budget'].strip()
+        elif subject == 'xato' and data.get('article_url'):
+            extra_info['article_url'] = data['article_url'].strip()
+
+        ContactMessage.objects.create(
+            first_name=first_name,
+            last_name=data.get('last_name', '').strip(),
+            email=email,
+            phone=data.get('phone', '').strip(),
+            subject=subject,
+            message=message_text,
+            extra_info=extra_info or None,
+        )
+        return JsonResponse({'success': True})
+
     return render(request, 'contact.html')
 
 
 def news_page(request):
-    return render(request, 'news.html')
+    cat_slug = request.GET.get('cat', '')
+    sort = request.GET.get('sort', 'newest')
+    lang = get_lang_filter(request)
+
+    posts = Post.objects.filter(is_published=True, language=lang)
+
+    if cat_slug:
+        posts = posts.filter(category__slug=cat_slug)
+
+    if sort == 'popular':
+        posts = posts.order_by('-views')
+    elif sort == 'discussed':
+        posts = posts.annotate(comment_count=Count('comments')).order_by('-comment_count')
+    else:
+        posts = posts.order_by('-created_at')
+
+    total_count = posts.count()
+
+    paginator = Paginator(posts, 10)
+    page_obj = paginator.get_page(request.GET.get('page', 1))
+
+    categories = Category.objects.annotate(post_count=Count('post')).order_by('-post_count')
+    popular_posts = Post.objects.filter(is_published=True).order_by('-views')[:5]
+    popular_tags = Tag.objects.annotate(post_count=Count('post')).order_by('-post_count')[:12]
+
+    return render(request, 'news.html', {
+        'page_obj': page_obj,
+        'categories': categories,
+        'popular_posts': popular_posts,
+        'popular_tags': popular_tags,
+        'current_cat': cat_slug,
+        'current_sort': sort,
+        'total_count': total_count,
+        'advertisement': get_random_ad(),
+    })
 
 @require_POST
 def subscribe(request):

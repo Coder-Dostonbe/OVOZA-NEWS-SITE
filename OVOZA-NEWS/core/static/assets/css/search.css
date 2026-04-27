@@ -67,11 +67,29 @@ ul { list-style: none; }
 .search-clear:hover { color: var(--primary); }
 
 /* Nav menu */
-.nav-menu { display: flex; align-items: center; height: 100%; gap: 0; margin-left: auto; }
-.nav-item { height: 100%; display: flex; align-items: center; }
+.nav-menu { display: flex; align-items: center; height: 100%; gap: 0; flex-shrink: 0; }
+.nav-item { position: relative; height: 100%; display: flex; align-items: center; }
 .nav-item > a { display: flex; align-items: center; gap: 5px; padding: 0 14px; height: 100%; font-family: var(--font-label); font-size: 12px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); border-bottom: 3px solid transparent; margin-bottom: -3px; transition: var(--transition); white-space: nowrap; }
 .nav-item > a:hover { color: var(--white); border-bottom-color: var(--primary); }
 .nav-item > a i { font-size: 11px; color: var(--primary); }
+.nav-item > a i.fa-chevron-down { font-size: 9px; transition: var(--transition); }
+.nav-item:hover > a i.fa-chevron-down { transform: rotate(180deg); color: var(--primary); }
+.nav-dropdown {
+  display: none; position: absolute; top: 100%; left: 0;
+  background: var(--dark-2); border: 1px solid var(--border);
+  min-width: 180px; border-radius: 0 0 6px 6px;
+  z-index: 999; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.nav-item:hover .nav-dropdown { display: block; }
+.nav-dropdown a {
+  display: flex; align-items: center; gap: 9px;
+  padding: 10px 16px; font-size: 13.5px; color: var(--text-muted);
+  border-bottom: 1px solid var(--border); transition: var(--transition);
+  text-transform: none; letter-spacing: 0;
+}
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: var(--white); background: rgba(192,57,43,0.1); padding-left: 22px; }
+.nav-dropdown a i { color: var(--primary); width: 16px; font-size: 12px; }
 .navbar-toggler { display: none; background: none; border: 1px solid var(--border); color: var(--white); padding: 7px 10px; cursor: pointer; border-radius: 2px; }
 
 /* ===== MAIN ===== */

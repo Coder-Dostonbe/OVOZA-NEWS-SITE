@@ -61,22 +61,41 @@
     setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 400); }, 3500);
   }
 
+  /* ─── Tab config ─────────────────────────────────── */
+  const TAB_CONFIG = {
+    umumiy:    { extra: null,            placeholder: "Savolingizni batafsil yozing..." },
+    hamkorlik: { extra: "extraHamkorlik", placeholder: "Hamkorlik taklifi va kompaniyangiz haqida batafsil yozing..." },
+    reklama:   { extra: "extraReklama",   placeholder: "Reklama maqsadi, maqsadli auditoriya va kutilayotgan natija haqida yozing..." },
+    xato:      { extra: "extraXato",      placeholder: "Qaysi ma'lumot noto'g'ri? To'g'ri variant qanday? Maqola URL ni ham qo'shing." },
+    boshqa:    { extra: null,            placeholder: "Xabaringizni batafsil yozing..." },
+  };
+  const messageEl = document.getElementById("message");
+
+  function applyTab(subject) {
+    const cfg = TAB_CONFIG[subject] || TAB_CONFIG.umumiy;
+    // extra maydonlarni yashir/ko'rsat
+    document.querySelectorAll(".extra-field").forEach(el => {
+      el.style.display = "none";
+    });
+    if (cfg.extra) {
+      const el = document.getElementById(cfg.extra);
+      if (el) el.style.display = "";
+    }
+    // placeholder yangilash
+    if (messageEl) messageEl.placeholder = cfg.placeholder;
+  }
+
   /* ─── Subject tabs ───────────────────────────────── */
   const subjectInput = document.getElementById("subjectInput");
   document.querySelectorAll(".subject-tab").forEach(tab => {
     tab.addEventListener("click", function () {
       document.querySelectorAll(".subject-tab").forEach(t => t.classList.remove("active"));
       this.classList.add("active");
-      const map = {
-        umumiy:    "Umumiy savol",
-        hamkorlik: "Hamkorlik",
-        reklama:   "Reklama",
-        xato:      "Xato bildirish",
-        boshqa:    "Boshqa"
-      };
-      if (subjectInput) subjectInput.value = map[this.dataset.subject] || "Umumiy savol";
+      applyTab(this.dataset.subject);
     });
   });
+
+  applyTab("umumiy"); // boshlang'ich holat
 
   /* ─── Form validation ────────────────────────────── */
   function showErr(id, show) {
@@ -127,12 +146,42 @@
       sendBtn.classList.add("loading");
       sendBtn.disabled = true;
 
-      await new Promise(r => setTimeout(r, 1600));
+      const activeTab = document.querySelector(".subject-tab.active");
+      const csrfToken = document.cookie.split(';')
+        .find(c => c.trim().startsWith('csrftoken='))?.split('=')[1] || '';
 
-      /* Success */
-      form.style.display = "none";
-      if (success) success.classList.add("show");
-      toast("Xabar muvaffaqiyatli yuborildi!", "success");
+      try {
+        const res = await fetch('/contact/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+          body: JSON.stringify({
+            first_name:  fname.value.trim(),
+            last_name:   document.getElementById('lname')?.value.trim() || '',
+            email:       email.value.trim(),
+            phone:       document.getElementById('phone')?.value.trim() || '',
+            subject:     activeTab?.dataset.subject || 'umumiy',
+            message:     message.value.trim(),
+            company:     document.getElementById('company')?.value.trim() || '',
+            ad_format:   document.getElementById('adFormat')?.value || '',
+            ad_budget:   document.getElementById('adBudget')?.value.trim() || '',
+            article_url: document.getElementById('articleUrl')?.value.trim() || '',
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.style.display = "none";
+          if (success) success.classList.add("show");
+          toast("Xabar muvaffaqiyatli yuborildi!", "success");
+        } else {
+          toast(data.message || "Xatolik yuz berdi", "error");
+          sendBtn.classList.remove("loading");
+          sendBtn.disabled = false;
+        }
+      } catch {
+        toast("Server bilan ulanishda xatolik", "error");
+        sendBtn.classList.remove("loading");
+        sendBtn.disabled = false;
+      }
     });
   }
 

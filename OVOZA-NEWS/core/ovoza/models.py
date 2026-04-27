@@ -15,6 +15,7 @@ class AuthUser(AbstractUser):
     )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='author')
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
+    bio = models.TextField(blank=True)
 
 
 class Category(models.Model):
@@ -64,6 +65,14 @@ class Post(models.Model):
     )
 
     tags = models.ManyToManyField(Tag, blank=True)
+
+    LANGUAGE_CHOICES = [
+        ('uz', "O'zbek (Lotin)"),
+        ('uz-cyrl', "Ўзбек (Кирил)"),
+        ('ru', 'Русский'),
+        ('en', 'English'),
+    ]
+    language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='uz')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -242,3 +251,63 @@ class Subscriber(models.Model):
     class Meta:
         verbose_name = 'Obunachi'
         verbose_name_plural = 'Obunachilar'
+
+
+class TelegramSettings(models.Model):
+    channel_id = models.CharField(
+        max_length=100,
+        help_text="Faqat username formatida: @OvozaNewsPage — t.me/... emas!"
+    )
+    send_title       = models.BooleanField(default=True,  verbose_name="Sarlavha")
+    send_image       = models.BooleanField(default=True,  verbose_name="Rasm")
+    send_description = models.BooleanField(default=True,  verbose_name="Qisqacha matn")
+    send_category    = models.BooleanField(default=True,  verbose_name="Kategoriya")
+    send_author      = models.BooleanField(default=False, verbose_name="Muallif")
+    send_link        = models.BooleanField(default=True,  verbose_name="Havola")
+    is_active        = models.BooleanField(default=True,  verbose_name="Faol")
+
+    def save(self, *args, **kwargs):
+        # t.me/kanal → @kanal avtomatik tuzatish
+        cid = self.channel_id.strip()
+        if cid.startswith('https://t.me/'):
+            cid = '@' + cid.split('t.me/')[-1].rstrip('/')
+        elif cid.startswith('t.me/'):
+            cid = '@' + cid.split('t.me/')[-1].rstrip('/')
+        elif not cid.startswith('@') and not cid.startswith('-'):
+            cid = '@' + cid
+        self.channel_id = cid
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Telegram → {self.channel_id}"
+
+    class Meta:
+        verbose_name = 'Telegram sozlamalari'
+        verbose_name_plural = 'Telegram sozlamalari'
+
+
+class ContactMessage(models.Model):
+    SUBJECT_CHOICES = [
+        ('umumiy', 'Umumiy savol'),
+        ('hamkorlik', 'Hamkorlik'),
+        ('reklama', 'Reklama'),
+        ('xato', 'Xato bildirish'),
+        ('boshqa', 'Boshqa'),
+    ]
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100, blank=True)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20, blank=True)
+    subject = models.CharField(max_length=20, choices=SUBJECT_CHOICES, default='umumiy')
+    message = models.TextField()
+    extra_info = models.JSONField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.first_name} – {self.get_subject_display()}"
+
+    class Meta:
+        verbose_name = 'Murojaat'
+        verbose_name_plural = 'Murojaatlar'
+        ordering = ['-created_at']

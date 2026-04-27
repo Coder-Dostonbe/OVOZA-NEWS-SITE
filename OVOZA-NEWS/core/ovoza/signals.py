@@ -5,6 +5,7 @@ from django.conf import settings
 from .models import Post, Subscriber
 
 _was_published = {}
+_tg_was_published = {}
 
 @receiver(pre_save, sender=Post)
 def track_published(sender, instance, **kwargs):
@@ -12,10 +13,13 @@ def track_published(sender, instance, **kwargs):
         try:
             old = Post.objects.get(pk=instance.pk)
             _was_published[instance.pk] = old.is_published
+            _tg_was_published[instance.pk] = old.is_published
         except Post.DoesNotExist:
             _was_published[instance.pk] = False
+            _tg_was_published[instance.pk] = False
     else:
         _was_published[instance.pk] = False
+        _tg_was_published[instance.pk] = False
 
 
 @receiver(post_save, sender=Subscriber)
@@ -74,3 +78,59 @@ Ovoza jamoasi"""
         for email in subscribers
     )
     send_mass_mail(emails, fail_silently=True)
+
+
+@receiver(post_save, sender=Post)
+def notify_telegram(sender, instance, created, **kwargs):
+    was = _tg_was_published.pop(instance.pk, False)
+    if not instance.is_published or was:
+        return
+
+    from .models import TelegramSettings
+    from django.utils.html import strip_tags
+    import requests
+
+    cfg = TelegramSettings.objects.filter(is_active=True).first()
+    if not cfg:
+        return
+
+    token = settings.TELEGRAM_BOT_TOKEN
+    if not token:
+        return
+
+    site_url = getattr(settings, 'SITE_URL', 'http://127.0.0.1:8000')
+
+    parts = []
+    if cfg.send_category and instance.category:
+        parts.append(f"<b>#{instance.category.name}</b>")
+    if cfg.send_title:
+        parts.append(f"<b>{instance.title}</b>")
+    if cfg.send_description and instance.short_description:
+        desc = strip_tags(instance.short_description).strip()[:300]
+        if desc:
+            parts.append(desc)
+    if cfg.send_author:
+        name = instance.author.get_full_name() or instance.author.username
+        parts.append(f"✍️ {name}")
+    if cfg.send_link:
+        parts.append(f'🔗 <a href="{site_url}/about/{instance.id}/">To\'liq o\'qish</a>')
+
+    text = "\n\n".join(parts)
+
+    try:
+        if cfg.send_image and instance.image:
+            with open(instance.image.path, 'rb') as photo:
+                requests.post(
+                    f"https://api.telegram.org/bot{token}/sendPhoto",
+                    data={'chat_id': cfg.channel_id, 'caption': text, 'parse_mode': 'HTML'},
+                    files={'photo': photo},
+                    timeout=30,
+                )
+        else:
+            requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                json={'chat_id': cfg.channel_id, 'text': text, 'parse_mode': 'HTML'},
+                timeout=10,
+            )
+    except Exception:
+        pass

@@ -1,0 +1,128 @@
+# Russian translations
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Bosh sahifa"
+msgstr "Главная"
+
+msgid "Kategoriyalar"
+msgstr "Категории"
+
+msgid "Yangiliklar"
+msgstr "Новости"
+
+msgid "Sahifalar"
+msgstr "Страницы"
+
+msgid "Haqimizda"
+msgstr "О нас"
+
+msgid "Aloqa"
+msgstr "Контакты"
+
+msgid "Kirish"
+msgstr "Войти"
+
+msgid "Ro'yxatdan o'tish"
+msgstr "Регистрация"
+
+msgid "Profil"
+msgstr "Профиль"
+
+msgid "Qidirish"
+msgstr "Поиск"
+
+msgid "Obuna bo'lish"
+msgstr "Подписаться"
+
+msgid "Bosh sahifaga qaytish"
+msgstr "На главную"
+
+msgid "Chiqish"
+msgstr "Выйти"
+
+msgid "So'nggi"
+msgstr "Последние"
+
+msgid "Tezkor xabar"
+msgstr "Срочно"
+
+msgid "marta o'qildi"
+msgstr "раз прочитано"
+
+msgid "To'liq o'qish"
+msgstr "Читать полностью"
+
+msgid "Yangilik yo'q"
+msgstr "Нет новостей"
+
+msgid "Tavsiya etilganlar"
+msgstr "Рекомендуем"
+
+msgid "O'qish"
+msgstr "Читать"
+
+msgid "Eng qaynoq yangiliklar"
+msgstr "Горячие новости"
+
+msgid "Barchasini ko'rish"
+msgstr "Смотреть все"
+
+msgid "ta maqola"
+msgstr "статей"
+
+msgid "Maqola yo'q"
+msgstr "Нет статей"
+
+msgid "Valyuta Kurslari"
+msgstr "Курсы валют"
+
+msgid "Markaziy bank kursi"
+msgstr "Курс ЦБ"
+
+msgid "Ob-havo"
+msgstr "Погода"
+
+msgid "Havo Sifati (AQI)"
+msgstr "Качество воздуха (AQI)"
+
+msgid "Yuklanmoqda..."
+msgstr "Загрузка..."
+
+msgid "Xabar Olish"
+msgstr "Рассылка"
+
+msgid "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga"
+msgstr "10 главных новостей каждое утро на вашу почту"
+
+msgid "Email manzilingiz..."
+msgstr "Ваш email..."
+
+msgid "Ijtimoiy Tarmoqlar"
+msgstr "Социальные сети"
+
+msgid "O'zbekistonning eng ishonchli va tezkor yangiliklar portali."
+msgstr "Самый надёжный и быстрый новостной портал Узбекистана."
+
+msgid "Barcha huquqlar himoyalangan."
+msgstr "Все права защищены."
+
+msgid "Maxfiylik siyosati"
+msgstr "Политика конфиденциальности"
+
+msgid "Foydalanish shartlari"
+msgstr "Условия использования"
+
+msgid "Saytxaritasi"
+msgstr "Карта сайта"
+
+msgid "Nima qidiryapsiz?"
+msgstr "Что вы ищете?"
+
+msgid "Yopish"
+msgstr "Закрыть"
+
+msgid "Ochish"
+msgstr "Открыть"

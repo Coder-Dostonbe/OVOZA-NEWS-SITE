@@ -1,0 +1,128 @@
+# Uzbek Cyrillic translations
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Bosh sahifa"
+msgstr "Бош саҳифа"
+
+msgid "Kategoriyalar"
+msgstr "Категориялар"
+
+msgid "Yangiliklar"
+msgstr "Янгиликлар"
+
+msgid "Sahifalar"
+msgstr "Саҳифалар"
+
+msgid "Haqimizda"
+msgstr "Ҳақимизда"
+
+msgid "Aloqa"
+msgstr "Алоқа"
+
+msgid "Kirish"
+msgstr "Кириш"
+
+msgid "Ro'yxatdan o'tish"
+msgstr "Рўйхатдан ўтиш"
+
+msgid "Profil"
+msgstr "Профил"
+
+msgid "Qidirish"
+msgstr "Қидириш"
+
+msgid "Obuna bo'lish"
+msgstr "Обуна бўлиш"
+
+msgid "Bosh sahifaga qaytish"
+msgstr "Бош саҳифага қайтиш"
+
+msgid "Chiqish"
+msgstr "Чиқиш"
+
+msgid "So'nggi"
+msgstr "Сўнгги"
+
+msgid "Tezkor xabar"
+msgstr "Тезкор хабар"
+
+msgid "marta o'qildi"
+msgstr "марта ўқилди"
+
+msgid "To'liq o'qish"
+msgstr "Тўлиқ ўқиш"
+
+msgid "Yangilik yo'q"
+msgstr "Янгилик йўқ"
+
+msgid "Tavsiya etilganlar"
+msgstr "Тавсия этилганлар"
+
+msgid "O'qish"
+msgstr "Ўқиш"
+
+msgid "Eng qaynoq yangiliklar"
+msgstr "Энг қайноқ янгиликлар"
+
+msgid "Barchasini ko'rish"
+msgstr "Барчасини кўриш"
+
+msgid "ta maqola"
+msgstr "та мақола"
+
+msgid "Maqola yo'q"
+msgstr "Мақола йўқ"
+
+msgid "Valyuta Kurslari"
+msgstr "Валюта Курслари"
+
+msgid "Markaziy bank kursi"
+msgstr "Марказий банк курси"
+
+msgid "Ob-havo"
+msgstr "Об-ҳаво"
+
+msgid "Havo Sifati (AQI)"
+msgstr "Ҳаво Сифати (AQI)"
+
+msgid "Yuklanmoqda..."
+msgstr "Юкланмоқда..."
+
+msgid "Xabar Olish"
+msgstr "Хабар Олиш"
+
+msgid "Har kuni ertalab eng muhim 10 ta yangilik inbox'ingizga"
+msgstr "Ҳар куни эрталаб энг муҳим 10 та янгилик inbox'ингизга"
+
+msgid "Email manzilingiz..."
+msgstr "Email манзилингиз..."
+
+msgid "Ijtimoiy Tarmoqlar"
+msgstr "Ижтимоий Тармоқлар"
+
+msgid "O'zbekistonning eng ishonchli va tezkor yangiliklar portali."
+msgstr "Ўзбекистоннинг энг ишончли ва тезкор янгиликлар портали."
+
+msgid "Barcha huquqlar himoyalangan."
+msgstr "Барча ҳуқуқлар ҳимояланган."
+
+msgid "Maxfiylik siyosati"
+msgstr "Махфийлик сиёсати"
+
+msgid "Foydalanish shartlari"
+msgstr "Фойдаланиш шартлари"
+
+msgid "Saytxaritasi"
+msgstr "Сайтхаритаси"
+
+msgid "Nima qidiryapsiz?"
+msgstr "Нима қидиряпсиз?"
+
+msgid "Yopish"
+msgstr "Ёпиш"
+
+msgid "Ochish"
+msgstr "Очиш"

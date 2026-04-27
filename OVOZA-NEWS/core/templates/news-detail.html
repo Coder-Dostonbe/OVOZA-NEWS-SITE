@@ -2,6 +2,7 @@
 <html lang="uz">
 <head>
   {% load static %}
+  {% load i18n %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ about_post.title }} – Ovoza</title>
@@ -59,14 +60,16 @@
   <div class="container topbar-inner">
     <div class="topbar-date"><i class="far fa-calendar-alt"></i><span id="topbarDate"></span></div>
     <div class="topbar-links">
-      <a href="#"><i class="fab fa-telegram"></i><span> Telegram</span></a>
+      <a href="#"><i class="fab fa-youtube"></i><span> YouTube</span></a>
       <span class="divider">|</span>
-      <a href="#"><i class="fas fa-rss"></i><span> RSS</span></a>
+      <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram"></i><span> Telegram</span></a>
       <span class="divider">|</span>
+      {% get_current_language as CURRENT_LANG %}
       <div class="lang-switcher">
-        <a href="#" class="lang-btn active">UZ</a>
-        <a href="#" class="lang-btn">RU</a>
-        <a href="#" class="lang-btn">EN</a>
+        <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz' %}active{% endif %}" onclick="switchLang('uz');return false;">UZ</a>
+        <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz-cyrl' %}active{% endif %}" onclick="switchLang('uz-cyrl');return false;">УЗ</a>
+        <a href="#" class="lang-btn {% if CURRENT_LANG == 'ru' %}active{% endif %}" onclick="switchLang('ru');return false;">RU</a>
+        <a href="#" class="lang-btn {% if CURRENT_LANG == 'en' %}active{% endif %}" onclick="switchLang('en');return false;">EN</a>
       </div>
     </div>
   </div>
@@ -85,19 +88,19 @@
 
     <!-- Desktop nav -->
     <ul class="nav-menu" id="navMenu">
-      <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+      <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a></li>
       <li class="nav-item">
-        <a href="{% url 'categories' %}">Categories <i class="fas fa-chevron-down"></i></a>
+        <a href="{% url 'categories' %}">{% trans "Kategoriyalar" %} <i class="fas fa-chevron-down"></i></a>
       </li>
-      <li class="nav-item active"><a href="{% url 'news_page' %}">News</a></li>
+      <li class="nav-item active"><a href="{% url 'news_page' %}">{% trans "Yangiliklar" %}</a></li>
       <li class="nav-item">
-        <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+        <a href="#">{% trans "Sahifalar" %} <i class="fas fa-chevron-down"></i></a>
         <div class="nav-dropdown">
-          <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> About</a>
-          <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
-          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
-          <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
-          <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profil</a>
+          <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> {% trans "Haqimizda" %}</a>
+          <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> {% trans "Aloqa" %}</a>
+          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</a>
+          <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> {% trans "Ro'yxatdan o'tish" %}</a>
+          <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> {% trans "Profil" %}</a>
         </div>
       </li>
     </ul>
@@ -509,7 +512,7 @@
         <p class="footer-desc">O'zbekistonning eng ishonchli va tezkor yangiliklar portali.</p>
         <div class="footer-social">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
           <a href="#"><i class="fab fa-x-twitter"></i></a>
@@ -573,6 +576,7 @@
     setTimeout(function () { document.getElementById('pageLoader').classList.add('hidden'); }, 1100);
   });
 </script>
+<script src="{% static 'assets/js/lang.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'assets/js/detail.js' %}"></script>
 </body>

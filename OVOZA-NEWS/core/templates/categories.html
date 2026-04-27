@@ -3,6 +3,7 @@
 
 <head>
   {% load static %}
+  {% load i18n %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kategoriyalar – Ovoza Yangiliklar Portali</title>
@@ -171,16 +172,16 @@
         <span id="topbarDate">Dushanba, 7 Yanvar 2025 | 09:00</span>
       </div>
       <div class="topbar-links">
-        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
-        <span class="divider">|</span>
         <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
         <span class="divider">|</span>
-        <a href="#"><i class="fas fa-rss"></i> RSS</a>
+        <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram"></i> Telegram</a>
         <span class="divider">|</span>
+        {% get_current_language as CURRENT_LANG %}
         <div class="lang-switcher">
-          <a href="#" class="lang-btn active" data-lang="uz">UZ</a>
-          <a href="#" class="lang-btn" data-lang="ru">RU</a>
-          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz' %}active{% endif %}" onclick="switchLang('uz');return false;">UZ</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'uz-cyrl' %}active{% endif %}" onclick="switchLang('uz-cyrl');return false;">УЗ</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'ru' %}active{% endif %}" onclick="switchLang('ru');return false;">RU</a>
+          <a href="#" class="lang-btn {% if CURRENT_LANG == 'en' %}active{% endif %}" onclick="switchLang('en');return false;">EN</a>
         </div>
       </div>
     </div>
@@ -191,24 +192,24 @@
     <div class="container navbar-wrap">
 
       <!-- Logo -->
-      <a href="index.html" class="nav-logo">
+      <a href="{% url 'home' %}" class="nav-logo">
         <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
         <span class="logo-name">Ovoza</span>
       </a>
 
       <!-- Menu -->
       <ul class="nav-menu" id="navMenu">
-        <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li class="nav-item active"><a href="categories.html">Categories</a></li>
-        <li class="nav-item"><a href="#">News</a></li>
+        <li class="nav-item"><a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a></li>
+        <li class="nav-item active"><a href="{% url 'categories' %}">{% trans "Kategoriyalar" %}</a></li>
+        <li class="nav-item"><a href="{% url 'news_page' %}">{% trans "Yangiliklar" %}</a></li>
         <li class="nav-item">
-          <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+          <a href="#">{% trans "Sahifalar" %} <i class="fas fa-chevron-down"></i></a>
           <div class="nav-dropdown">
-            <a href="#"><i class="fas fa-info-circle"></i> About</a>
-            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="#"><i class="fas fa-user-plus"></i> Register</a>
-            <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> {% trans "Haqimizda" %}</a>
+            <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> {% trans "Aloqa" %}</a>
+            <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</a>
+            <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> {% trans "Ro'yxatdan o'tish" %}</a>
+            <a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> {% trans "Profil" %}</a>
           </div>
         </li>
       </ul>
@@ -216,7 +217,7 @@
       <!-- Right -->
       <div class="nav-right">
         <button class="nav-search-btn" id="searchTriggerNav">
-          <i class="fas fa-search"></i> Qidirish
+          <i class="fas fa-search"></i> {% trans "Qidirish" %}
         </button>
       </div>
 
@@ -228,7 +229,7 @@
     <div class="container page-hero-inner">
       <div class="page-hero-left">
         <div class="breadcrumb">
-          <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+          <a href="{% url 'home' %}"><i class="fas fa-home"></i> Bosh sahifa</a>
           <i class="fas fa-chevron-right"></i>
           <span>Kategoriyalar</span>
         </div>
@@ -354,7 +355,7 @@
             va chuqur tahliliy materiallar.</p>
           <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://t.me/OvozaNewsPage"><i class="fab fa-telegram-plane"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-x-twitter"></i></a>
@@ -381,7 +382,6 @@
             <li><a href="#">Reklama</a></li>
             <li><a href="#">Hamkorlik</a></li>
             <li><a href="#">Arxiv</a></li>
-            <li><a href="#">RSS lenta</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -439,6 +439,7 @@
     </div>
   </div>
 
+  <script src="{% static 'assets/js/lang.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Page JS -->
   <script src="{% static 'assets/js/categories.js' %}"></script>

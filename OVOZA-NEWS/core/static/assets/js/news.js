@@ -44,39 +44,28 @@
     });
   }
 
-  /* ─── Category filter ─────────────────────────────── */
-  const allItems   = Array.from(document.querySelectorAll(".news-item[data-cat]"));
-  const filterBtns = document.querySelectorAll(".filter-cat");
-  const resultEl   = document.getElementById("resultCount");
+  /* ─── Search overlay ─────────────────────────────── */
+  const searchOverlay = document.getElementById("searchOverlay");
+  const searchTrigger = document.getElementById("searchTriggerNav");
+  const searchOvClose = document.getElementById("searchOvClose");
+  const searchOvInput = document.getElementById("searchOvInput");
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener("click", function () {
-      filterBtns.forEach(b => b.classList.remove("active"));
-      this.classList.add("active");
-      const cat = this.dataset.cat;
-      filterNews(cat);
-    });
+  function openSearch() {
+    searchOverlay?.classList.add("active");
+    setTimeout(() => searchOvInput?.focus(), 150);
+  }
+  function closeSearch() { searchOverlay?.classList.remove("active"); }
+
+  searchTrigger?.addEventListener("click", openSearch);
+  searchOvClose?.addEventListener("click", closeSearch);
+  searchOverlay?.addEventListener("click", e => { if (e.target === searchOverlay) closeSearch(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeSearch();
+    if (e.ctrlKey && e.key === "k") { e.preventDefault(); openSearch(); }
   });
 
-  function filterNews(cat) {
-    let visible = 0;
-    allItems.forEach(item => {
-      const itemCat = item.dataset.cat;
-      const show = cat === "all" || itemCat === cat;
-      item.style.display = show ? "" : "none";
-      if (show) visible++;
-    });
-
-    // Also hide/show dividers
-    document.querySelectorAll(".news-divider").forEach(div => {
-      div.style.display = cat === "all" ? "" : "none";
-    });
-
-    if (resultEl) {
-      const counts = { all:247, siyosat:48, iqtisod:62, sport:83, tech:44, dunyo:55, jamiyat:35 };
-      resultEl.textContent = `${counts[cat] || visible} ta yangilik topildi`;
-    }
-  }
+  /* ─── News item entrance animation ───────────────── */
+  const allItems = Array.from(document.querySelectorAll(".news-item[data-cat]"));
 
   /* ─── View toggle (List ↔ Grid) ───────────────────── */
   const listViewBtn = document.getElementById("listViewBtn");
@@ -103,25 +92,9 @@
     });
   }
 
-  /* ─── Pagination ──────────────────────────────────── */
-  document.querySelectorAll(".page-btn:not(.disabled)").forEach(btn => {
-    btn.addEventListener("click", function () {
-      document.querySelectorAll(".page-btn:not(.disabled)").forEach(b => {
-        if (!b.querySelector("i")) b.classList.remove("active");
-      });
-      if (!this.querySelector("i")) {
-        this.classList.add("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
-  });
-
-  /* ─── News item click animation ───────────────────── */
-  allItems.forEach(item => {
-    item.addEventListener("click", function () {
-      this.style.opacity = "0.7";
-      setTimeout(() => { this.style.opacity = ""; }, 300);
-    });
+  /* ─── Pagination scroll to top ───────────────────── */
+  document.querySelectorAll(".pagination-wrap a.page-btn").forEach(link => {
+    link.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   });
 
   /* ─── News item staggered entrance ───────────────── */
@@ -145,17 +118,37 @@
   /* ─── Newsletter form ─────────────────────────────── */
   const nlForm = document.getElementById("newsletterForm");
   if (nlForm) {
-    nlForm.addEventListener("submit", e => {
+    nlForm.addEventListener("submit", async e => {
       e.preventDefault();
-      const input = nlForm.querySelector("input");
-      const btn   = nlForm.querySelector("button");
-      if (input && input.value.trim()) {
-        if (btn) { btn.innerHTML = '<i class="fas fa-check"></i> Obuna bo\'ldingiz!'; btn.style.background = "#27ae60"; }
-        input.value = "";
-        setTimeout(() => {
-          if (btn) { btn.innerHTML = '<i class="fas fa-paper-plane"></i> Obuna bo\'lish'; btn.style.background = ""; }
-        }, 3000);
+      const input  = nlForm.querySelector("input[type=email]");
+      const btn    = nlForm.querySelector("button[type=submit]");
+      const csrf   = nlForm.querySelector("[name=csrfmiddlewaretoken]");
+      if (!input || !input.value.trim()) return;
+      btn.disabled = true;
+      try {
+        const res  = await fetch("/subscribe/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-CSRFToken": csrf ? csrf.value : "" },
+          body: JSON.stringify({ email: input.value.trim() }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          btn.innerHTML = '<i class="fas fa-check"></i> Obuna bo\'ldingiz!';
+          btn.style.background = "#27ae60";
+          input.value = "";
+        } else {
+          btn.innerHTML = data.message || "Xatolik yuz berdi";
+          btn.style.background = "#c0392b";
+        }
+      } catch {
+        btn.innerHTML = "Xatolik yuz berdi";
+        btn.style.background = "#c0392b";
       }
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Obuna bo\'lish';
+        btn.style.background = "";
+        btn.disabled = false;
+      }, 3000);
     });
   }
 
@@ -178,13 +171,6 @@
     scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   }
 
-  /* ─── URL param — filter from other pages ─────────── */
-  const params = new URLSearchParams(window.location.search);
-  const catParam = params.get("cat");
-  if (catParam) {
-    const matchBtn = document.querySelector(`.filter-cat[data-cat="${catParam}"]`);
-    if (matchBtn) { matchBtn.click(); }
-  }
 
   console.log("Ovoza – news.js yuklandi");
 })();
