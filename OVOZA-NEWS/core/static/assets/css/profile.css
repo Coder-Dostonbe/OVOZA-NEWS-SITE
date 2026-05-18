@@ -290,4 +290,55 @@ ul { list-style: none; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   .pagination { gap: 4px; }
   .page-btn { width: 32px; height: 32px; font-size: 12px; }
+  .tab-btn { padding: 10px 14px; font-size: 12px; }
+  .tab-btn span:not(.tab-count) { display: none; }
+  .liked-card { flex-direction: column; }
+  .liked-img { width: 100%; height: 160px; }
+  .liked-body { padding: 12px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 14px; }
+  .profile-cover { height: 130px; }
+  .profile-center { top: 50%; }
+  .profile-avatar, .profile-avatar-default { width: 68px; height: 68px; }
+  .profile-avatar-default { font-size: 28px; }
+  .avatar-wrap { margin-top: -68px; }
+  .user-name { font-size: 16px; white-space: normal; }
+  .user-handle { font-size: 13px; }
+  .profile-stats { flex-wrap: wrap; }
+  .stat-item { min-width: 50%; padding: 10px 8px; }
+  .stat-num { font-size: 18px; }
+  .stat-label { font-size: 10.5px; }
+  .profile-main { padding: 20px 0 40px; }
+  .tab-btn { padding: 8px 10px; gap: 4px; }
+  .tab-count { display: none; }
+  .modal-box { min-width: unset; width: 100%; max-width: 340px; padding: 24px 18px; }
+  .comment-card { padding: 14px; }
+  .comment-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .comment-actions { width: 100%; }
+  .info-row { font-size: 12.5px; }
+  .topbar-links { display: none; }
+}
+
+@media (max-width: 420px) {
+  .container { padding: 0 12px; }
+  .logo-name { font-size: 20px; }
+  .logo-icon { width: 34px; height: 34px; }
+  .logo-icon i { font-size: 14px; }
+  .logo-tagline { display: none; }
+  .navbar-toggler { padding: 6px 9px; }
+  .profile-cover { height: 110px; }
+  .avatar-wrap { margin-top: -60px; }
+  .profile-avatar, .profile-avatar-default { width: 60px; height: 60px; }
+  .profile-avatar-default { font-size: 24px; }
+  .profile-info-row { min-height: 100px; }
+  .user-name { font-size: 15px; }
+  .btn-logout { font-size: 11px; padding: 7px 12px; }
+  .liked-footer { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .unlike-btn { align-self: flex-start; }
+  .footer-top { padding: 20px 0 16px; gap: 16px; }
+  .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  #scrollTop { bottom: 14px; right: 14px; width: 38px; height: 38px; }
+  .page-btn { width: 30px; height: 30px; font-size: 11px; }
 }

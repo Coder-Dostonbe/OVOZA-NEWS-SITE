@@ -33,16 +33,7 @@
     tickerTrack.style.animationDuration = duration + "s";
   }
 
-  /* ─── Mobile nav ─────────────────────────────────────── */
-  const navToggler = document.getElementById("navbarToggler");
-  const navMenu    = document.getElementById("navbarMenu");
-  if (navToggler && navMenu) {
-    navToggler.addEventListener("click", () => {
-      navMenu.classList.toggle("open");
-      const ic = navToggler.querySelector("i");
-      if (ic) { ic.classList.toggle("fa-bars"); ic.classList.toggle("fa-times"); }
-    });
-  }
+  /* ─── Mobile nav handled by mobile-drawer.js ─────────── */
 
   /* ─── Sticky navbar shadow ───────────────────────────── */
   const navbar = document.querySelector(".main-navbar");

@@ -15,6 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" />
 
   <link rel="stylesheet" href="{% static 'assets/css/about.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/mobile-drawer.css' %}" />
 
   <style>
     #pageLoader {
@@ -131,6 +132,8 @@
         </div>
       </a>
       <a href="{% url 'home' %}" class="nav-back"><i class="fas fa-arrow-left"></i> {% trans "Bosh sahifaga qaytish" %}</a>
+      <button class="lang-globe-btn" id="langGlobeBtn" aria-label="Til tanlash"><i class="fas fa-globe"></i></button>
+      <button class="mob-toggle" id="mobToggleBtn" aria-label="Menyu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -341,6 +344,41 @@
 
   <script src="{% static 'assets/js/lang.js' %}"></script>
   <script src="{% static 'assets/js/about.js' %}"></script>
+  <script src="{% static 'assets/js/mobile-drawer.js' %}"></script>
+
+  <!-- Mobile Drawer -->
+  <div class="mob-overlay" id="mobOverlay"></div>
+  <nav class="mob-drawer" id="mobDrawer" aria-label="Mobil menyu">
+    <div class="mob-drawer-header">
+      <a href="{% url 'home' %}" class="mob-logo">
+        <div class="mob-logo-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div>
+          <span class="mob-logo-text">Ovoza</span>
+          <span class="mob-logo-sub">Yangiliklar portali</span>
+        </div>
+      </a>
+      <button class="mob-close" id="mobClose" aria-label="Yopish"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="mob-nav">
+      <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Bosh sahifa" %}</a></li>
+      <li><a href="{% url 'categories' %}"><i class="fas fa-th-large"></i> {% trans "Kategoriyalar" %}</a></li>
+      <li><a href="{% url 'news_page' %}"><i class="fas fa-newspaper"></i> {% trans "Yangiliklar" %}</a></li>
+      <div class="mob-nav-divider"></div>
+      <li><a href="{% url 'about_section' %}"><i class="fas fa-info-circle"></i> {% trans "Haqimizda" %}</a></li>
+      <li><a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> {% trans "Aloqa" %}</a></li>
+      <div class="mob-nav-divider"></div>
+      <li><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> {% trans "Kirish" %}</a></li>
+      <li><a href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> {% trans "Profil" %}</a></li>
+    </ul>
+    <div class="mob-footer">
+      <a href="{% url 'home' %}#subscribeWidget" class="mob-subscribe"><i class="fas fa-envelope"></i> {% trans "Obuna bo'lish" %}</a>
+      <div class="mob-social">
+        <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </nav>
 </body>
 
 </html>

@@ -356,6 +356,38 @@ img { max-width: 100%; display: block; }
   .form-row { grid-template-columns: 1fr; gap: 0; }
   .auth-section { padding: 28px 12px; }
   .auth-inner { max-width: 100%; }
+  .auth-brand-name { font-size: 24px; }
+  .auth-brand-icon { width: 48px; height: 48px; font-size: 20px; }
+  .topbar-links { display: none; }
+  .topbar-date { font-size: 11px; }
+}
+
+@media (max-width: 420px) {
+  .auth-section { padding: 20px 10px; }
+  .auth-card-body { padding: 16px; }
+  .auth-card-header { padding: 16px 20px; }
+  .auth-card-header h2 { font-size: 19px; }
+  .auth-brand { margin-bottom: 20px; }
+  .auth-brand-name { font-size: 22px; }
+  .btn-auth { font-size: 13px; letter-spacing: 1px; }
+  .btn-google { font-size: 13px; }
+  .form-control-dark { font-size: 13.5px; padding: 9px 12px; }
+  .input-wrap .form-control-dark { padding-left: 34px; }
+  .footer-mini { flex-direction: column; gap: 8px; text-align: center; }
+  .footer-mini-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .logo-name { font-size: 20px; }
+  .logo-icon { width: 34px; height: 34px; }
+  .logo-icon i { font-size: 14px; }
+}
+
+@media (max-width: 375px) {
+  .auth-section { padding: 16px 8px; }
+  .auth-card-body { padding: 14px; }
+  .auth-tabs { padding: 2px; }
+  .auth-tab { font-size: 11px; padding: 7px 6px; }
+  .form-label { font-size: 12px; }
+  .strength-label { font-size: 10px; }
+  .auth-switch { font-size: 12.5px; }
 }
 
 

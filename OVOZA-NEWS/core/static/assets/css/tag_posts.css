@@ -68,3 +68,16 @@
   gap: 10px;
   color: #c0392b;
 }
+
+/* ===== RESPONSIVE (tag_posts page inherits news.css layout) ===== */
+@media (max-width: 600px) {
+  .empty-state { padding: 40px 16px; }
+  .empty-state i { font-size: 40px; }
+  .empty-state p { font-size: 14px; }
+  .btn-back { padding: 9px 18px; font-size: 12px; }
+}
+
+@media (max-width: 420px) {
+  .empty-state { padding: 30px 12px; }
+  .btn-back { width: 100%; justify-content: center; }
+}

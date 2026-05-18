@@ -632,6 +632,35 @@ ul { list-style: none; }
   .featured-title { font-size: 20px; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .topbar-links { display: none; }
+  .topbar-date { font-size: 11px; }
+  .cat-hero { padding: 24px 0 20px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 14px; }
+  .cat-hero-name { font-size: 26px; }
+  .cat-hero-desc { font-size: 13px; }
+  .filter-bar-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .sort-wrap { width: 100%; }
+  .sort-wrap select { width: 100%; }
+  .art-card.wide .art-card-img { height: 180px; }
+  .featured-title { font-size: 18px; }
+  .featured-meta { flex-wrap: wrap; gap: 8px; font-size: 11px; }
+  .footer-top { padding: 24px 0 18px; gap: 18px; }
+}
+
+@media (max-width: 420px) {
+  .container { padding: 0 12px; }
+  .logo-name { font-size: 20px; }
+  .logo-icon { width: 34px; height: 34px; }
+  .logo-icon i { font-size: 14px; }
+  .logo-tagline { display: none; }
+  .navbar-toggler { padding: 6px 9px; }
+  .cat-hero-name { font-size: 22px; }
+  .art-card.wide .art-card-img { height: 150px; }
+  .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  #scrollTop { bottom: 14px; right: 14px; width: 38px; height: 38px; }
 }
 
 /* ===== VIEW TRANSITIONS — category-detail sahifasi ===== */

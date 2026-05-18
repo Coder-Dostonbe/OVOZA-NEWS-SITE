@@ -1169,6 +1169,47 @@ ul { list-style: none; }
   .cat-card.featured { grid-column: span 1; }
   .filter-tags { gap: 6px; }
   .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .page-hero-left h1 { font-size: 22px; }
+  .filter-bar-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .filter-sort { width: 100%; }
+  .filter-sort select { width: 100%; }
+  .topbar-links { display: none; }
+  .topbar-date { font-size: 11px; }
+}
+
+@media (max-width: 420px) {
+  .container { padding: 0 12px; }
+  .logo-name { font-size: 20px; }
+  .logo-icon { width: 34px; height: 34px; }
+  .logo-icon i { font-size: 14px; }
+  .logo-tagline { display: none; }
+  .navbar-toggler { padding: 6px 9px; }
+  .page-hero-left h1 { font-size: 20px; }
+  .page-hero-left p { font-size: 13px; }
+  .cat-card-icon-wrap { padding: 20px 18px 14px; }
+  .cat-icon-circle { width: 48px; height: 48px; font-size: 18px; }
+  .cat-card-body { padding: 0 18px 18px; }
+  .cat-card-name { font-size: 15px; }
+  .cat-card.featured .cat-icon-circle { width: 56px; height: 56px; font-size: 22px; }
+  .ep-hero-body { padding: 16px; }
+  .ep-title-row { gap: 10px; }
+  .ep-icon-circle { width: 44px; height: 44px; font-size: 18px; }
+  .ep-cat-name { font-size: 22px; }
+  .ep-cat-desc { font-size: 13px; }
+  .ep-feat-title { font-size: 20px; }
+  .ep-card-img img { height: 150px; }
+  .footer-top { padding: 24px 0 18px; gap: 18px; }
+  .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  #scrollTop { bottom: 14px; right: 14px; width: 38px; height: 38px; }
+}
+
+@media (max-width: 375px) {
+  .container { padding: 0 10px; }
+  .cat-grid { gap: 10px; }
+  .search-overlay { padding-top: 70px; }
+  .search-overlay-input { font-size: 16px; padding: 13px 48px 13px 44px; }
+  .search-quick-tags { gap: 6px; }
+  .search-quick-tag { font-size: 11.5px; padding: 5px 10px; }
 }
 
 /* ===== SEARCH OVERLAY ===== */

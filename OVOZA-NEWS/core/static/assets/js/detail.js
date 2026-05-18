@@ -17,29 +17,7 @@
     return match ? match[2] : '';
   }
 
-  /* ─── Mobile drawer (o'ng tarafdan) ──────────────── */
-  const navToggler   = document.getElementById("navToggler");
-  const mobileDrawer = document.getElementById("mobileDrawer");
-  const mobileOverlay= document.getElementById("mobileOverlay");
-  const drawerClose  = document.getElementById("drawerClose");
-
-  function openDrawer() {
-    mobileDrawer.classList.add("open");
-    mobileOverlay.classList.add("open");
-    navToggler.classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-  function closeDrawer() {
-    mobileDrawer.classList.remove("open");
-    mobileOverlay.classList.remove("open");
-    navToggler.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-
-  if (navToggler)    navToggler.addEventListener("click", openDrawer);
-  if (drawerClose)   drawerClose.addEventListener("click", closeDrawer);
-  if (mobileOverlay) mobileOverlay.addEventListener("click", closeDrawer);
-  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+  /* ─── Mobile drawer handled by mobile-drawer.js ──── */
 
   /* ─── Sticky navbar shadow ────────────────────────── */
   const navbar = document.querySelector(".main-navbar");
